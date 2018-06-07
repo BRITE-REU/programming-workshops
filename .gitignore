@@ -1,0 +1,11 @@
+# Build directory
+_build/
+
+# Byte-complied / cached
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+venv/
+.python-version
