@@ -1,12 +1,20 @@
-.. contents::
+.. _linux_bash:
 
-0. Main intro
+===========================
+Workshop 1: Linux and Bash
+===========================
+
+Main intro
 ====================
 
 - Unix vs. Linux
 - GNU
 - Everything is a file
 - Bash scripts
+
+
+.. contents::
+
 
 1. CLI intro
 ====================
@@ -21,10 +29,10 @@
 ====================
 
 5. Pipelining and Redirection
-====================
+===============================
 
-6. nano/vim (file editing in the terminal)
-====================
+6. File editing in the terminal
+================================
 
 7. Bash scripting
 ====================
