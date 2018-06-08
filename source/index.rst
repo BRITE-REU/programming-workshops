@@ -6,8 +6,6 @@
 Welcome to BRITE-REU Programming Workshops!
 ===========================================================
 
-Contents:
-
 .. toctree::
    :maxdepth: 1
 
