@@ -14,10 +14,6 @@ Contents:
    Instructions <workshops/00_instructions/instructions>
 
 
-Parts
-=====
-:ref:`instructions`
-
 Indices and tables
 ==================
 
