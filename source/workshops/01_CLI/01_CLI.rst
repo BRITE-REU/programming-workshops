@@ -1,11 +1,11 @@
 ====================
-Instructions
+Introduction
 ====================
 
--Unix vs. Linux
--GNU
--Everything is a file
--Bash scripts
+- Unix vs. Linux
+- GNU
+- Everything is a file
+- Bash scripts
 
 ====================
 Outline
@@ -14,13 +14,28 @@ Outline
 .. contents::
 
 1. CLI intro
+====================
+
 2. Navigation
+====================
+
 3. File operations
+====================
+
 4. Grep/Awk/Sed
+====================
+
 5. Pipelining and Redirection
+====================
+
 6. nano/vim (file editing in the terminal)
+====================
+
 7. Bash scripting
+====================
+
 8. Tips and tricks
+====================
 
 # TODO:
 
