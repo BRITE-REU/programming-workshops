@@ -10,7 +10,7 @@ Welcome to BRITE-REU Programming Workshops!
    :maxdepth: 1
 
    Instructions <workshops/00_instructions/index>
-   Workshop 1: Linux and Bash  <workshops/01_linux_bash/linux_bash>
+   Workshop 1: Linux and Bash  <workshops/01_linux_bash/index>
 
 
 
