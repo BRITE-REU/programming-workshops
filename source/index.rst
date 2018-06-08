@@ -11,8 +11,12 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   Instructions <workshops/00_instructions/instructions>
+   Instructions <workshops/00_instructions/index>
    Workshop 1: Linux and Bash  <workshops/01_linux_bash/linux_bash>
+
+
+
+.. note:: This is a Work In Progress and is actively being updated.
 
 
 Indices and tables
