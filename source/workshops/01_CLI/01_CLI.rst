@@ -1,10 +1,18 @@
-# Introduction
-* Unix vs. Linux
-* GNU
-* Everything is a file
-* Bash scripts
+====================
+Instructions
+====================
 
-# Outline
+-Unix vs. Linux
+-GNU
+-Everything is a file
+-Bash scripts
+
+====================
+Outline
+====================
+
+.. contents::
+
 1. CLI intro
 2. Navigation
 3. File operations
