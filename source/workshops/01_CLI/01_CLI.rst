@@ -1,17 +1,12 @@
-====================
-Introduction
+.. contents::
+
+0. Main intro
 ====================
 
 - Unix vs. Linux
 - GNU
 - Everything is a file
 - Bash scripts
-
-====================
-Outline
-====================
-
-.. contents::
 
 1. CLI intro
 ====================
