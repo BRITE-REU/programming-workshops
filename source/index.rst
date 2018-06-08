@@ -3,14 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to BRITE-REU Programming Workshops's documentation!
+Welcome to BRITE-REU Programming Workshops!
 ===========================================================
 
+Contents:
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+
+   Instructions <workshops/00_instructions/instructions>
 
 
+Parts
+=====
+:ref:`instructions`
 
 Indices and tables
 ==================
