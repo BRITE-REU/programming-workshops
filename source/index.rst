@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 1
 
    Instructions <workshops/00_instructions/instructions>
+   Workshop 1: Linux and Bash  <workshops/01_linux_bash/linux_bash>
 
 
 Indices and tables
