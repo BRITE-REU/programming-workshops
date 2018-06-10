@@ -29,9 +29,11 @@ In a GNU/Linux system, Linux is the kernel component. The rest of the system con
 
 Linux is also less likely to crash, better able to run more than one program at the same time, and more secure than many operating systems. With these advantages, Linux is the fastest growing operating system in the server market. More recently, Linux has begun to be popular among home and business users as well.
 
+-----------------------
+
 **Bash**
 
-Bash is a shell developed by the GNU Project.
+Bash is a UNIX shell and command language developed by the GNU Project as a replacement for the Bourne shell. It the default login shell for most Linux distributions and maxOS. Bash is a command processor that typically runs in a text window, where the user types commands that cause actions. Bash can also read and execute commands from a file, called a shell script. Like all Unix shells, it supports filename globbing (wildcard matching), piping, here documents, command substitution, variables, and control structures for condition-testing and iteration. We will explore some of these concepts in the subsequent tutorial sections.
 
 .. raw:: html
 
@@ -49,6 +51,9 @@ The terminal vs. the shell. *Runtime ~ 1min*
 
 What is the Bash Shell. *Runtime ~ 1min*
 
+--------------------
+
+**Tutorials**
 
 .. toctree::
     :maxdepth: 2
@@ -60,23 +65,4 @@ What is the Bash Shell. *Runtime ~ 1min*
     Piping and Redirection <piping>
     Bash Scripting <bash_scripting>
     Tips & Tricks <tips_tricks>
-
-.. todo::
-
-    ## Before they come in:
-    1. Ask them if they installed the terminal?
-    2. Ask them to watch videos and read the material
-    3. Text files (Mary had a little lamb)
-
-    ## In class:
-    1. Go over videos and topics from the documentation, in class
-    2. Terminal quest
-    3. grep/awk with text files
-    4. write a bash script to do something
-
-- Unix vs. Linux
-- GNU
-- Everything is a file
-- Bash scripts
-
 
