@@ -11,6 +11,8 @@ Concepts covered in the video:
 6. ``ps`` - print out information on running processes
 7. ``TTY`` - terminal process is associated with
 8. ``fg`` - brings background job to foreground
+9. ``kill`` - Terminate a process
+10. ``top`` - Browse processes
 
 
 .. raw:: html
