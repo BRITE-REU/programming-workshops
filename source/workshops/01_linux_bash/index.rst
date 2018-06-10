@@ -4,51 +4,32 @@
 Workshop 1: Linux and Bash
 ===========================
 
-Main intro
-====================
-
 - Unix vs. Linux
 - GNU
 - Everything is a file
 - Bash scripts
 
 
-.. contents::
+.. toctree::
+    :maxdepth: 2
 
+    Introduction to the Command Line <cli_intro>
+    Navigation and Working with Files <nav_files>
+    Grep, AWK and Sed <grep_awk_sed>
+    Editing Files in the Terminal <file_editing>
+    Piping and Redirection <piping>
+    Bash Scripting <bash_scripting>
+    Tips & Tricks <tips_tricks>
 
-1. CLI intro
-====================
+.. todo::
 
-2. Navigation
-====================
+    ## Before they come in:
+    1. Ask them if they installed the terminal?
+    2. Ask them to watch videos and read the material
+    3. Text files (Mary had a little lamb)
 
-3. File operations
-====================
-
-4. Grep/Awk/Sed
-====================
-
-5. Pipelining and Redirection
-===============================
-
-6. File editing in the terminal
-================================
-
-7. Bash scripting
-====================
-
-8. Tips and tricks
-====================
-
-# TODO:
-
-## Before they come in:
-1. Ask them if they installed the terminal?
-2. Ask them to watch videos and read the material
-3. Text files (Mary had a little lamb)
-
-## In class:
-1. Go over videos and topics from the documentation, in class
-2. Terminal quest
-3. grep/awk with text files
-4. write a bash script to do something
+    ## In class:
+    1. Go over videos and topics from the documentation, in class
+    2. Terminal quest
+    3. grep/awk with text files
+    4. write a bash script to do something
