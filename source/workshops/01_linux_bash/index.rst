@@ -63,6 +63,7 @@ What is the Bash Shell. *Runtime ~ 1min*
     Grep, AWK and Sed <grep_awk_sed>
     Editing Files in the Terminal <file_editing>
     Piping and Redirection <piping>
+    Processes <processes>
     Bash Scripting <bash_scripting>
     Tips & Tricks <tips_tricks>
 
