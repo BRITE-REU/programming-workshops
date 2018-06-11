@@ -60,4 +60,4 @@ This lets you see a whole bunch of information about the files in the directory.
    
 The "-a" flag lets you see hidden files and directories. Files become hidden by having the first character of their name be a "."!
 
-Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge. That's it for an intro into the CLI itself for now, let's move onto the next topic!
+Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge, such as this tutorial: https://youtu.be/MmHcOPJEjGA .
