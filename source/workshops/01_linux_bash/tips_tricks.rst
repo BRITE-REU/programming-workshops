@@ -1,4 +1,4 @@
-7. Tips and tricks
+8. Tips and tricks
 ====================
 
 Customizing your ``.bashrc``

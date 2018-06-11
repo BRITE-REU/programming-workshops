@@ -1,4 +1,4 @@
-6. Bash scripting
+7. Bash scripting
 ====================
 
 A bash script is a file containing commands that can run on the bash shell. They usually have the ``.sh`` extension.
