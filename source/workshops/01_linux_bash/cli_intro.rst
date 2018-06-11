@@ -1,7 +1,7 @@
 1. CLI intro 
 ====================
 
-*Runtime ~ 1min*
+*Runtime ~ 5 min*
 
 If you were able to open a terminal, you should see something like this:
 
