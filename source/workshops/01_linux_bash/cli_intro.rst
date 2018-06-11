@@ -1,7 +1,7 @@
 1. CLI intro 
 ====================
 
-*Runtime ~ 1min*
+*Runtime ~ 5 min*
 
 If you were able to open a terminal, you should see something like this:
 
@@ -20,7 +20,7 @@ I gave "ls" command, short for "list". This lists all of the files in the curren
 .. image:: images/cd.png
    :width: 40pt
    
-By "cd level0", what I'm doing is changing my **C**urrent **D**irectory to the directory to the one named level0. Using ls, I see that there is a single file called level.md and a directory called level1. In the command "cd level0", the cd is the command and level0 is considered the first argument for that command.
+By "cd example", what I'm doing is changing my *C*urrent *D*irectory to the directory to the one named example. Using ls, I see that there are two files called "poem.txt" and "prose.txt" and a directory called "there_is_nothing_in_here". In the command "cd example", the cd is the command and example is considered the first argument for that command.
 
 The next command is the "man" command, and it stands for manual. It takes a single argument, the name of a command:
 
@@ -60,4 +60,4 @@ This lets you see a whole bunch of information about the files in the directory.
    
 The "-a" flag lets you see hidden files and directories. Files become hidden by having the first character of their name be a "."!
 
-Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge. That's it for an intro into the CLI itself for now, let's move onto the next topic!
+Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge, such as this tutorial series: https://youtu.be/MmHcOPJEjGA .
