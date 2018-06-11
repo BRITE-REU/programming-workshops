@@ -25,7 +25,7 @@ The next command is the ``man`` command, and it stands for manual. It takes a si
 .. image:: images/man.png
 
    
- .. image:: images/man_ls.png
+.. image:: images/man_ls.png
 
 
 You can press down, the space bar or page down to read down the manual, or up and page up to scroll back up. When you are done reading the manual, just press q and you'll be brought back to the command line. Most manuals have several sections:
