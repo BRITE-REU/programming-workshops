@@ -57,6 +57,6 @@ This lets you see a whole bunch of information about the files in the directory.
    
 The ``-a`` flag lets you see hidden files and directories. Files become hidden by having the first character of their name be a ``.``!
 
-Also, clicking tab will do an auto-complete if what you've written out is unique and in the right spot. For example, typing ``cd `` is enough in the example directory to hit tab and autocomplete ``there_is_nothing_in_here``, as there is no other directory in the current working directory to ``cd`` into. This works with commands as well, but commands tend to be short.
+Also, clicking tab will do an auto-complete if what you've written out is unique and in the right spot. For example, typing ``cd`` is enough in the example directory to hit tab and autocomplete ``there_is_nothing_in_here``, as there is no other directory in the current working directory to ``cd`` into. This works with commands as well, but commands tend to be short.
 
 Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge, such as this tutorial series: https://youtu.be/MmHcOPJEjGA .
