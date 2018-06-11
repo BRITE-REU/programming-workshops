@@ -91,18 +91,18 @@ This is where 1 is execute permissions, 2 is write permissions and 4 is read per
 
 All right, you can see and change a lot of a file's metadata, but how about its content?
 
--``cat`` - "Concatenate." Will concatenate the content of the files given as arguments and print the entire content of a file(s) to the screen.
+- ``cat`` - "Concatenate." Will concatenate the content of the files given as arguments and print the entire content of a file(s) to the screen.
 
 .. image:: images/file_stuff_cat.png
    :width: 40pt
   
--``head`` - Prints the first 10 lines of the files. You can also set how many lines you want it to print out instead of 10.
--``tail`` - Prints the last 10 lines of the files. You can also set how many lines you want it to print out instead of 10.
+- ``head`` - Prints the first 10 lines of the files. You can also set how many lines you want it to print out instead of 10.
+- ``tail`` - Prints the last 10 lines of the files. You can also set how many lines you want it to print out instead of 10.
 
 .. image:: images/file_stuff_coin.png
    :width: 40pt
   
--``less`` - Gives you the contents of a file one page at a time. Will sometimes allow you to read a compressed file without uncompressing it first.
+- ``less`` - Gives you the contents of a file one page at a time. Will sometimes allow you to read a compressed file without uncompressing it first.
 
 .. image:: images/file_stuff_less1.png
    :width: 40pt
