@@ -1,7 +1,7 @@
 4. File editing in the terminal
 ================================
 
-Typically, you'd want to turn on X-11 forwarding or mount the server onto your machine to work on some sort of GUI or IDE, but sometimes you just want to make a quick change to a file that you have write permissions. Well, I will describe vim, because that is our most used terminal editor.
+Typically, you'd want to turn on X-11 forwarding or mount the server onto your machine to work on some sort of GUI or IDE, but sometimes you just want to make a quick change to a file that you have write permissions. Well, I will describe vim, because that is our most used terminal editor. Vim is a very popular text editors these days, and has been around since the 1970s.
 
 You activate vim by typing ``vim`` followed by a file name. If the file doesn't already exist, then it will be created when you save you work.
 
