@@ -1,8 +1,8 @@
 2. Navigation and File Operations
 ====================
 
-Filesystem  *Runtime ~ 10 min*
-  A filesystem is the a structure that organizes how files are stored on the computer. In Unix, the two most basic objects are files and directories. Files can be things like text files or pictures. Directories contain files or other directories. Simple stuff.
+Filesystem  *Runtime ~ 5 min*
+  A filesystem is a structure that organizes how files are stored on the computer. In Unix, the two most basic objects are files and directories. Files can be things like text files or pictures. Directories contain files or other directories. Simple stuff.
   
   The base directory of the Unix file system is called root, and it is symbolized by a forward slash, ``/``. You can ``cd`` into it to see what's there.
   
@@ -14,13 +14,13 @@ Generally, all Unix systems have similar directories in their root directories. 
 .. image:: images/man_ls-la.png
 
   
-Well, ``.`` refers to your current directory and ``..`` refers to the one outside of your current directory. If you decide you want to go back, you can type ``cd ..``.
+Well, ``.`` refers to your current directory and ``..`` refers to the one outside of your current directory. If you decide you want to go back up the filesystem, you can type ``cd ..``.
   
 .. image:: images/cd_up.png
 
   
 Navigation *Runtime ~ 10 min*
-  The cd command is such a simple function that it doesn't even have a man page. It is not the only function that is used in navigating your filesystem. The ``pwd`` command outputs your current position:
+  The cd command is such a simple function that it doesn't even have a man page. It is not the only function that is used in navigating your filesystem, though. The ``pwd`` command outputs your current position:
   
 .. image:: images/pwd.png
 
@@ -37,7 +37,7 @@ It seems to do exactly what ``cd`` does. It moves you from one place to another.
 .. image:: images/popd.png
 
   
-Files  *Runtime ~ 10 min*
+Files  *Runtime ~ 5 min*
 
 Let's go back to ``ls -l``:
 
@@ -54,14 +54,14 @@ So what are all of those columns? In order, they are the file/directory's permis
 - Time of last modification - Month day year
 - File name - It will be appropriately colored if you have the terminal settings. Filenames can be up to 256 characters long and can use any characters except the null character and the forward slash. However, please don't use whitespace and non-alphanumeric symbols besides period, underscore and hyphen. Most other characters have special meanings, so trying to work with such a file will be difficult.
 
-These values are all stored in what is known as an inode table. This is not important for now, but jsut know that an empty file can still take up space on the server. 
+These values are all stored in what is known as an inode table, one for each file in the filesystem. This is not important for now, but just know that an empty file can still take up space on the server. 
 
 As hinted at before, some files can be executed. These files are known as executable, and can be activated like this:
 
 .. image:: images/executable.png
 
   
-There are a few ways to run an executable. Using ``./`` syntax is most reliable. Without it, the computer will look at what's called a PATH variable and try to find something with that name in the PATH variable's list. Instead, ``./`` tells the computer "hey, it's in this directory. Don't go elsewhere."
+Notice how only ``./hello_world.py`` and ```pwd`/hello_world.py`` were able to run the program. There are a few ways to run an executable. Using ``./`` syntax is most reliable. Without it, the computer will look at what's called a PATH variable and try to find something with that name in the PATH variable's list. Instead, ``./`` tells the computer "hey, it's in this directory. Don't go elsewhere."
 
 File Operations  *Runtime ~ 10 min*
 
