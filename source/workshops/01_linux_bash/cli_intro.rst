@@ -15,14 +15,14 @@ Given this is a "command" line, type a command and then press enter!
 .. image:: images/ls.png
    :width: 40pt
    
-I gave "ls" command, short for "list". This lists all of the files in the current directory. Because of my personal settings, directories are colored in blue and regular files are colored white. If you are ever playing around with your terminal settings, setting colors on will prove to be useful. Another command is the "cd" command:
+I gave ``ls`` command, short for "list". This lists all of the files in the current directory. Because of my personal settings, directories are colored in blue and regular files are colored white. If you are ever playing around with your terminal settings, setting colors on will prove to be useful. Another command is the ``cd`` command:
 
 .. image:: images/cd.png
    :width: 40pt
    
-By "cd example", what I'm doing is changing my *C*urrent *D*irectory to the directory to the one named example. Using ls, I see that there are two files called "poem.txt" and "prose.txt" and a directory called "there_is_nothing_in_here". In the command "cd example", the cd is the command and example is considered the first argument for that command.
+By ``cd example``, what I'm doing is changing my *C*urrent *D*irectory to the directory to the one named example. Using ``ls``, I see that there are two files called ``poem.txt`` and ``prose.txt`` and a directory called ``there_is_nothing_in_here``. In the command ``cd example``, the ``cd`` is the command and ``example`` is considered the first argument for that command.
 
-The next command is the "man" command, and it stands for manual. It takes a single argument, the name of a command:
+The next command is the ``man`` command, and it stands for manual. It takes a single argument, the name of a command:
 
 .. image:: images/man.png
    :width: 40pt
@@ -48,7 +48,7 @@ Bugs - Known bugs/where to report bugs
 
 Copyright - Who actually owns the source code
 
-If we go down far enough on the "ls" manual, we'll see that the "-l" flag gives the output in long list format. Here's how you use flags:
+If we go down far enough on the ``ls`` manual, we'll see that the ``-l`` flag gives the output in long list format. Here's how you use flags:
 
  .. image:: images/man_ls-l.png
    :width: 40pt
@@ -58,6 +58,6 @@ This lets you see a whole bunch of information about the files in the directory.
  .. image:: images/man_ls-la.png
    :width: 40pt
    
-The "-a" flag lets you see hidden files and directories. Files become hidden by having the first character of their name be a "."!
+The ``-a`` flag lets you see hidden files and directories. Files become hidden by having the first character of their name be a ``.``!
 
 Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge, such as this tutorial series: https://youtu.be/MmHcOPJEjGA .
