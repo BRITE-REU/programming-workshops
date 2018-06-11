@@ -13,12 +13,12 @@ Given this is a "command" line, type a command and then press enter!
 
 .. image:: images/ls.png
    
-I gave ``ls`` command, short for "list". This lists all of the files in the current directory. Because of my personal settings, directories are colored in blue and regular files are colored white. If you are ever playing around with your terminal settings, setting colors on will prove to be useful. Another command is the ``cd`` command:
+I gave the ``ls`` command, short for "list". This lists all of the files in the current directory. Because of my personal settings, directories are colored in blue and regular files are colored white. If you are ever playing around with your terminal settings, setting colors on will prove to be useful. Another command is the ``cd`` command:
 
 .. image:: images/cd.png
 
    
-By ``cd example``, what I'm doing is changing my *C*urrent *D*irectory to the directory to the one named example. Using ``ls``, I see that there are two files called ``poem.txt`` and ``prose.txt`` and a directory called ``there_is_nothing_in_here``. In the command ``cd example``, the ``cd`` is the command and ``example`` is considered the first argument for that command.
+By ``cd example``, what I'm doing is changing my *C*urrent *D*irectory to the one named ``example``. Using ``ls``, I see that there are two files called ``poem.txt`` and ``prose.txt`` and a directory called ``there_is_nothing_in_here`` in the ``example`` directory. In the command ``cd example``, ``cd`` is the command name and ``example`` is considered the first argument for that command.
 
 The next command is the ``man`` command, and it stands for manual. It takes a single argument, the name of a command:
 
@@ -57,6 +57,6 @@ This lets you see a whole bunch of information about the files in the directory.
    
 The ``-a`` flag lets you see hidden files and directories. Files become hidden by having the first character of their name be a ``.``!
 
-Also, clicking tab will do an auto-complete if what you've written out is unique and in the right spot. For example, typing ``cd`` is enough in the example directory to hit tab and autocomplete ``there_is_nothing_in_here``, as there is no other directory in the current working directory to ``cd`` into. This works with commands as well, but commands tend to be short.
+Also, clicking tab will do an auto-complete if what you've written out is unique and in the right spot. For example, typing ``cd`` is enough in the ``example`` directory for you to hit tab and autocomplete ``there_is_nothing_in_here``, as there is no other directory in the current working directory to ``cd`` into. This works with commands as well, but commands tend to be short.
 
 Woopdie doo, you can see files in a directory, go to nearby directories and look at manuals. You can do that with the file explorer GUI too. However, you'll come to see that the terminal can do a lot of the things that the GUI cannot do. If you are still having trouble, there are resources online that can help bolster your knowledge, such as this tutorial series: https://youtu.be/MmHcOPJEjGA .
