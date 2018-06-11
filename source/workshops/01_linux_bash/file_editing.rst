@@ -16,19 +16,19 @@ When you first enter vim, you will be in normal mode. Here, you can go into othe
 
 You can also do some editting tricks with vim:
 
--``[0-9]* dd`` - type a number and then dd. This will delete that many lines below you.
+- ``[0-9]* dd`` - type a number and then dd. This will delete that many lines below you.
 - ``D`` - delete until the end of a line
 - ``u`` - undo the last action
--``[0-9]* y`` - "yank." It means to copy. Regular select control-c works.
--``p`` - Paste. Regular control-p works too, not in conjunction with yank, though.
+- ``[0-9]* y`` - "yank." It means to copy. Regular select control-c works.
+- ``p`` - Paste. Regular control-p works too, not in conjunction with yank, though.
 
 if you ever type control-s, vim will keep recording your actions, but not display them, appearing to be stuck. Press control-q to get out of that jam.
 
 To leave vim, go into normal mode from editor mode by pressing escape. Then press ``:``. You can follow this with:
 
--``q`` - quit. No changes made.
--``q!`` - quit. Discard changes made.
--``w`` - save. returns you to normal mode afterwards.
--``wq`` - save and return to CLI.
+- ``q`` - quit. No changes made.
+- ``q!`` - quit. Discard changes made.
+- ``w`` - save. returns you to normal mode afterwards.
+- ``wq`` - save and return to CLI.
 
 Other text editors exist, such as emacs and nano. Find the one that works best for you and learn all of their tricks!
