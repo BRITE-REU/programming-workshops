@@ -23,14 +23,13 @@ Regexp or regular expression:
 ********************
 Regexp is how we specify that we find to see a particular pattern (it could be words or characters). 
 
-...note::
+... note::
 
       Case-insensitive search (grep -i):
 
 ... code-block:: sh
 
       grep -i 'mary' Mary_Lamb_lyrics.txt
-
 
 
       2) Whole-word search (grep -w):
