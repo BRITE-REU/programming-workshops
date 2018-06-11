@@ -29,30 +29,40 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 
 .. code-block:: sh
 
-      grep -i 'mary' Mary_Lamb_lyrics.txt
+      grep -i 'mary' mary-lamb.txt
 --------------------
 
 .. note::
       Whole-word search (grep -w):
 
 .. code-block:: sh
-      grep -w 'as' Mary_Lamb_lyrics.txt
+
+      grep -w 'as' mary-lamb.txt
 --------------------
 
 .. note::
       recursively search through sub-folders (grep -r <pattern> <path>):
 .. code-block:: sh
+
       grep -r '456' /<your_working_directory>/
 --------------------
 
 .. note::
-      4) Inverted search (grep -v):
+      Inverted search (grep -v):
 
-CL > grep -v ‘the’ Mary_Lamb_lyrics.txt
+.. code-block:: sh
 
-      5) Print additional (trailing) context lines after match (grep -A <NUM>):
+      grep -v ‘the’ mary-lamb.txt
+--------------------
 
-CL > grep -A1 'School'  Mary_Lamb_lyrics.txt
+.. note::
+      Print additional (trailing) context lines after match (grep -A <NUM>):
+
+.. code-block:: sh
+
+      grep -A1 'School'  Mary_Lamb_lyrics.txt
+--------------------
+
 
       6) Print additional (leading) context lines before match (grep -B <NUM>):
 
