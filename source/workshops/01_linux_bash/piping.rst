@@ -1,4 +1,4 @@
-4. Piping and Redirection
+5. Piping and Redirection
 ===============================
 
 I/O redirection and concepts covered in the video:
