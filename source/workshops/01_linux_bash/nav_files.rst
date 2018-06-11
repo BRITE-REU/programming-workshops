@@ -6,43 +6,43 @@ Filesystem  *Runtime ~ 10 min*
   
   The base directory of the Unix file system is called root, and it is symbolized by a forward slash, ``/``. You can ``cd`` into it to see what's there.
   
-..image: images/cd_root.png
-  :width: 40pt
+.. image: images/cd_root.png
+   :width: 40pt
 
   Generally, all Unix systems have similar directories in their root directories. From there, you can ``cd`` into any directory that you have permission to enter. Now, remember how when we used ``ls -la`` there were two files there named ``.`` and ``..``? 
 
-.. image: images/man_ls-la.png
-  :width: 40pt
+.. image:: images/man_ls-la.png
+   :width: 40pt
   
   Well, ``.`` refers to your current directory and ``..`` refers to the one outside of your current directory. If you decide you want to go back, you can type ``cd ..``.
   
-..image: images/cd_up.png
-  :width: 40pt
+.. image: images/cd_up.png
+   :width: 40pt
   
 Navigation *Runtime ~ 10 min*
   The cd command is such a simple function that it doesn't even have a man page. It is not the only function that is used in navigating your filesystem. The ``pwd`` command outputs your current position:
   
-..image: images/pwd.png
-  :width: 40pt
+.. image: images/pwd.png
+   :width: 40pt
   
 Not very exciting. 
 
 There are more interesting ways to move from one place to another, for example, ``pushd``:
 
-..image: images/pushd.png
-  :width: 40pt
+.. image: images/pushd.png
+   :width: 40pt
 
 It seems to do exactly what ``cd`` does. It moves you from one place to another. However, you can then use ``popd`` to return to wherever you left using `pushd``:
 
-..image: images/popd.png
-  :width: 40pt
+.. image: images/popd.png
+   :width: 40pt
   
 Files  *Runtime ~ 10 min*
 
 Let's go back to ``ls -l``:
 
-..image: images/man_ls-la.png
-  :width: 40pt
+.. image: images/man_ls-la.png
+   :width: 40pt
 
 So what are all of those columns? In order, they are the file/directory's permissions, number of links, the owner's name, the owner's group, the file size, the time of last modification and the file/directory name. Let's go one at a time:
 
@@ -58,8 +58,8 @@ These values are all stored in what is known as an inode table. This is not impo
 
 As hinted at before, some files can be executed. These files are known as executable, and can be activated like this:
 
-..image: images/executable.png
-  :width: 40pt
+.. image: images/executable.png
+   :width: 40pt
   
 There are a few ways to run an executable. Using ``./`` syntax is most reliable. Without it, the computer will look at what's called a PATH variable and try to find something with that name in the PATH variable's list. Instead, ``./`` tells the computer "hey, it's in this directory. Don't go elsewhere."
 
@@ -76,16 +76,16 @@ More commands!
 
 \*clobber - to overwrite
 
-..image: images/file_management.png
-  :width: 40pt
+.. image: images/file_management.png
+   :width: 40pt
 
 What if you want to change the permissions of a file? There are commands for that:
 
 - ``chmod`` - "change file mode bits." Basically, you get to change permissions to files that you can modify. There's a few syntax that you can use, but if you remember your binary, you can use the synatax shown.
 - ``chown`` - "change owner." Simple enough.
 
-..image: images/file_permissions.png
-  :width: 40pt
+.. image: images/file_permissions.png
+   :width: 40pt
 
 This is where 1 is execute permissions, 2 is write permissions and 4 is read permissions. Thus, 764 means that the user can do all three (1+2+4), the group can read and write (2+4) and anybody else can only read (4).
 
@@ -93,19 +93,19 @@ All right, you can see and change a lot of a file's metadata, but how about its 
 
 -``cat`` - "Concatenate." Will concatenate the content of the files given as arguments and print the entire content of a file(s) to the screen.
 
-..image: images/file_stuff_cat.png
-  :width: 40pt
+.. image: images/file_stuff_cat.png
+   :width: 40pt
   
 -``head`` - Prints the first 10 lines of the files. You can also set how many lines you want it to print out instead of 10.
 -``tail`` - Prints the last 10 lines of the files. You can also set how many lines you want it to print out instead of 10.
 
-..image: images/file_stuff_coin.png
-  :width: 40pt
+.. image: images/file_stuff_coin.png
+   :width: 40pt
   
 -``less`` - Gives you the contents of a file one page at a time. Will sometimes allow you to read a compressed file without uncompressing it first.
 
-..image: images/file_stuff_less1.png
-  :width: 40pt
+.. image: images/file_stuff_less1.png
+   :width: 40pt
   
-..image: images/file_stuff_less2.png
-  :width: 40pt
+.. image: images/file_stuff_less2.png
+   :width: 40pt
