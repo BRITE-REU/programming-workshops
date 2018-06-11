@@ -18,27 +18,29 @@ Grep (an acronym for “Global Regular Expression Print”), finds a string in a
 Grep format:
 ********************
 grep [options] [regexp] [filename]
+--------------------
 
 Regexp or regular expression:
 ********************
 Regexp is how we specify that we find to see a particular pattern (it could be words or characters). 
 
 .. note::
-
       Case-insensitive search (grep -i):
 
 .. code-block:: sh
-
       grep -i 'mary' Mary_Lamb_lyrics.txt
+--------------------
 
+.. note::
+      Whole-word search (grep -w):
+.. code-block:: sh
+      grep -w 'as' Mary_Lamb_lyrics.txt
+--------------------
 
-      2) Whole-word search (grep -w):
-
-CL > grep -w 'as' Mary_Lamb_lyrics.txt
- 
-      3) Recursively search through sub-folders (grep -r <pattern> <path>):
-
-CL > grep -r '456' /root/
+.. note::
+      ecursively search through sub-folders (grep -r <pattern> <path>):
+.. code-block:: sh
+      grep -r '456' /root/
 
       4) Inverted search (grep -v):
 
