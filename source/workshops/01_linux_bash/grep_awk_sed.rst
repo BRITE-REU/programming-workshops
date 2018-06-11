@@ -30,7 +30,6 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 .. code-block:: sh
       grep -i 'mary' Mary_Lamb_lyrics.txt
 
---------------------
 
 .. note::
       Whole-word search (grep -w):
