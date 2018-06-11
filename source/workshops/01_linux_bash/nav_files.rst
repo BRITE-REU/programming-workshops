@@ -11,7 +11,7 @@ Filesystem  *Runtime ~ 10 min*
 
   Generally, all Unix systems have similar directories in their root directories. From there, you can ``cd`` into any directory that you have permission to enter. Now, remember how when we used ``ls -la`` there were two files there named ``.`` and ``..``? 
 
-..image: images/man_ls-la.png
+.. image: images/man_ls-la.png
   :width: 40pt
   
   Well, ``.`` refers to your current directory and ``..`` refers to the one outside of your current directory. If you decide you want to go back, you can type ``cd ..``.
