@@ -33,15 +33,18 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 
 .. note::
       Whole-word search (grep -w):
+
 .. code-block:: sh
       grep -w 'as' Mary_Lamb_lyrics.txt
 --------------------
 
 .. note::
-      ecursively search through sub-folders (grep -r <pattern> <path>):
+      recursively search through sub-folders (grep -r <pattern> <path>):
 .. code-block:: sh
-      grep -r '456' /root/
+      grep -r '456' /<your_working_directory>/
+--------------------
 
+.. note::
       4) Inverted search (grep -v):
 
 CL > grep -v ‘the’ Mary_Lamb_lyrics.txt
