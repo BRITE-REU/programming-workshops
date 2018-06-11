@@ -61,8 +61,8 @@ CL > grep -H 'School' Mary_Lamb_lyrics.txt
 
  Now, let’s look at single regular expressions:
 
-The period (.) matches any single character.
-? when that the previous item could be optional, it will only be matched once.
+* The period ``.`` matches any single character.
+* ``?`` when that the previous item could be optional, it will only be matched once.
 * when that the previous item could be matched zero or more times.
 + when the preceding item will be matched one or more times.
 {n} when the previous pattern is matched exactly n times, while {n,} means the patten is matched n or more times. {n,m} means that the previous item is matched at least n times, but not more than m times. {,m}means that the previous pattern is , at the most, m times.
