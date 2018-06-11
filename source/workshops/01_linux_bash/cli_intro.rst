@@ -8,7 +8,7 @@ If you were able to open a terminal, you should see something like this:
 .. image:: images/terminal.png
    :width: 40pt
    
-Most often, you will see your username, your current position in the file system, the "$" symbol and then a cursor.
+Most often, you will see your username, your current position in the file system, the "$" or "#" symbol and then a cursor.
 
 Given this is a "command" line, type a command and then press enter!
 
