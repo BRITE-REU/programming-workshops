@@ -13,7 +13,6 @@ Files for ``grep`` tutorial
 
 
 Grep (an acronym for “Global Regular Expression Print”), finds a string in a given file or input.
-********************
 
 Grep format:
 ********************
@@ -92,6 +91,9 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 * ``?`` when that the previous patten could be optional, it will only be matched once.
 * ``*`` when that the previous pattern could be matched zero or more times.
 * ``+`` when the preceding pattern will be matched one or more times.
-* ``{n}`` when the previous pattern is matched exactly n times, while ``{n,}`` means the patten is matched n or more times. ``{n,m}`` means that the previous item is matched at least n times, but not more than m times. ``{,m}`` means that the previous pattern is , at the most, m times.
 
-CL > grep 'M.a' Mary_Lamb_lyrics.txt
+.. code-block:: sh
+
+      grep 'M.a' mary-lamb.txt
+--------------------
+
