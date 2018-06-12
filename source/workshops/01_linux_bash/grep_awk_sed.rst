@@ -100,7 +100,7 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 --------------------
 
 
-AWK format:
+AWK:
 ********************
 awk [options] [filename]
 
