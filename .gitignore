@@ -9,3 +9,6 @@ __pycache__/
 .env
 venv/
 .python-version
+
+# Notes for the workshop
+notes/
