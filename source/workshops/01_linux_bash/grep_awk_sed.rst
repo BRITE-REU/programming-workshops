@@ -90,7 +90,6 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 
 
 * The period ``.`` matches any single character.
-* ``?`` when the previous patten could be optional, it will only be matched once.
 * ``*`` when the previous pattern could be matched zero or more times.
 
 .. code-block:: sh
