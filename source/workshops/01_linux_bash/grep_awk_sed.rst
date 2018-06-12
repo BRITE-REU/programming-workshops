@@ -90,11 +90,126 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 
 
 * The period ``.`` matches any single character.
-* ``?`` when that the previous patten could be optional, it will only be matched once.
-* ``*`` when that the previous pattern could be matched zero or more times.
-* ``+`` when the preceding pattern will be matched one or more times.
+* ``?`` when the previous patten could be optional, it will only be matched once.
+* ``*`` when the previous pattern could be matched zero or more times.
 
 .. code-block:: sh
 
       grep 'M.a' mary-lamb.txt
+      grep 'M*y' Mary_Lamb_lyrics.txt 
+--------------------
+
+
+AWK format:
+********************
+awk [options] [filename]
+
+Named after the authors: Aho, Weinberger, Kernighan
+
+
+* Print everything in the text file:
+
+.. code-block:: sh
+
+      awk '{print}' BRITE_students.txt
+--------------------
+
+* Now, let's get the more specific. Let's ask for names only:
+
+.. code-block:: sh
+
+      awk '{print $1}' BRITE_students.txt
+--------------------
+
+* What if we want to see two columns at the same time, let's say name and GPA?
+
+.. code-block:: sh
+
+      awk '{print $1" "$3}' BRITE_students.txt
+--------------------
+
+* Now what let's see what your info is (exact match):
+
+.. code-block:: sh
+
+      awk '$1=="Ali"' BRITE_students.txt
+--------------------
+
+
+* How can we see a particular pattern in our cohort (not an exact match):
+
+.. code-block:: sh
+
+      awk '/Kat/ {print $0}' BRITE_students.txt
+--------------------
+
+* Question for you: How do you print the name and favorite sport of students whose names contain the letter "u"?
+
+.. code-block:: sh
+
+      <insert code here>
+--------------------
+
+* How many students are there whose name begins with "Kat"? 
+
+.. code-block:: sh
+
+      awk '/Kat/{++cnt} END {print "Count = ", cnt}' BRITE_students.txt
+--------------------
+
+* You could also run loops in awk, print all :
+
+.. code-block:: sh
+
+      awk 'BEGIN {
+   sum = 0; for (i = 0; i < 20; ++i) {
+      sum += i; if (sum > 50) exit(10); else print "Sum =", sum 
+   } 
+}'
+--------------------
+
+
+SED:
+********************
+sed [options] [filename]
+
+SED  stands for "Stream EDitor". It is a widely used text processing Linux tool. 
+
+* I want to read the first three lines of a text file:
+
+.. code-block:: sh
+
+      cat BRITE_students.txt | sed -n 3p
+--------------------
+
+* What if we want to replace one word with another:
+
+.. code-block:: sh
+
+      cat mary-lamb.txt | sed 's/Mary/Maria/g'
+--------------------
+
+* Let's remove the 1st, 2nd and 5th lines from a text file:
+
+.. code-block:: sh
+
+      sed -e '1d' -e '2d' -e '5d' BRITE_students.txt
+--------------------
+
+* But what if we had a much longer list and wanted to remove more lines?
+
+.. code-block:: sh
+
+      echo -e "1d\n2d\n5d" > my_lines.txt
+      cat my_lines.txt
+      sed -f my_lines.txt BRITE_students.txt
+--------------------
+
+* Now let's print the 2nd line to last:
+
+.. code-block:: sh
+
+      cat BRITE_students.txt | sed -n 2,'$p'
+--------------------
+
 
