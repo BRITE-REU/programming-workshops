@@ -6,7 +6,7 @@ Materials to download
 
 1. `Linux word dictionary <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/01_linux_bash/files/cracklib-small.txt>`_
 2. `Mary had a little lamb <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/01_linux_bash/files/mary-lamb.txt>`_
-
+3. `BRITE students <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/01_linux_bash/files/BRITE_students.txt>`
 
 --------------------
 
