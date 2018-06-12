@@ -1,90 +1,92 @@
 3. Grep/Awk/Sed
 ====================
 
-Materials to use
+Materials to download
+**************************
+
+1. `Linux word dictionary <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/01_linux_bash/files/cracklib-small.txt>`_
+2. `Mary had a little lamb <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/01_linux_bash/files/mary-lamb.txt>`_
+
+
+--------------------
+
+Grep
 ********************
-
-Files for ``grep`` tutorial
-
-`Linux word dictionary <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/01_linux_bash/files/cracklib-small.txt>`_
-
-`Mary had a little lamb <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/01_linux_bash/files/mary-lamb.txt>`_
-
-
 
 Grep (an acronym for “Global Regular Expression Print”), finds a string in a given file or input.
 
-Grep format:
-********************
-grep [options] [regexp] [filename]
+**Grep format:**
+
+.. code-block:: sh
+
+    grep [options] [regexp] [filename]
+
+
 --------------------
 
-Regexp or regular expression:
-********************
-Regexp is how we specify that we find to see a particular pattern (it could be words or characters). 
+**Grep usecases:**
 
-.. note::
-      1) Case-insensitive search (grep -i):
+1) Case-insensitive search (grep -i):
 
 .. code-block:: sh
 
       grep -i 'mary' mary-lamb.txt
---------------------
 
-.. note::
-      2) Whole-word search (grep -w):
+
+2) Whole-word search (grep -w):
 
 .. code-block:: sh
 
       grep -w 'as' mary-lamb.txt
---------------------
 
-.. note::
-      3) recursively search through sub-folders (grep -r <pattern> <path>):
+
+3) recursively search through sub-folders (grep -r <pattern> <path>):
+
 .. code-block:: sh
 
       grep -r '456' /<your_working_directory>/
---------------------
 
-.. note::
-      4) Inverted search (grep -v):
+
+4) Inverted search (grep -v):
 
 .. code-block:: sh
 
       grep -v ‘the’ mary-lamb.txt
---------------------
 
-.. note::
-      5) Print additional (trailing) context lines after match (grep -A <NUM>):
+
+5) Print additional (trailing) context lines after match (grep -A <NUM>):
 
 .. code-block:: sh
 
       grep -A1 'School'  mary-lamb.txt
---------------------
 
-.. note::
-      6) Print additional (leading) context lines before match (grep -B <NUM>):
+
+6) Print additional (leading) context lines before match (grep -B <NUM>):
 
 .. code-block:: sh
 
       grep -B2 'School'  mary-lamb.txt
---------------------
 
-.. note::
-      7) Print additional (leading and trailing) context lines before and after the match (grep -C <NUM>):
+
+7) Print additional (leading and trailing) context lines before and after the match (grep -C <NUM>):
 
 .. code-block:: sh
 
       grep -C3 'School' mary-lamb.txt
---------------------
 
-.. note::
-      8) Print the filename for each match (grep -H <pattern> filename):
+
+8) Print the filename for each match (grep -H <pattern> filename):
 
 .. code-block:: sh
 
       grep -H 'School' mary-lamb.txt
+
+
 --------------------
+
+**Regexp or regular expression:**
+
+Regexp is how we specify that we find to see a particular pattern (it could be words or characters). 
 
 
 * The period ``.`` matches any single character.
@@ -95,5 +97,4 @@ Regexp is how we specify that we find to see a particular pattern (it could be w
 .. code-block:: sh
 
       grep 'M.a' mary-lamb.txt
---------------------
 
