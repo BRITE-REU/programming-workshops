@@ -79,6 +79,7 @@ If you use SSH you will need an SSH key. Read `here to learn how to connect to G
  
 .. image:: images/HTTPS_SSH_bitbucket.png
 
+
 When using ``your_username`` to clone/fetch a ``repository`` from ``the_author``, an SSH url will look like:
  
 ``git@bitbucket.org:[the_author]/[repository].git`` 
