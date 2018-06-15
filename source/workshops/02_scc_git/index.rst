@@ -11,10 +11,10 @@ You will also learn version control using ``git``.
  
 You are expected to study the the following content:
 
-- `The SCC <the_scc>`_
-- `Submitting jobs <qsub>`_
+- `The SCC <the_scc.html>`_
+- `Submitting jobs <qsub.html>`_
 - `GitHub tutorial <https://try.github.io>`_ wich will introduce you to the basic ``git`` commands such as ``git config``, ``git init``, ``git status``, ``git clone``, ``git add``, ``git commit``, ``git push``, and ``git pull``. 
-- and the Version control with `git portion <git>`_
+- and the Version control with `git portion <git.html>`_
 
 
 In the hands-on workshop we will work on ssh login, loading modules and job submitting. 
