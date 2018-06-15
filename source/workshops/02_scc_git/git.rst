@@ -18,9 +18,11 @@ Or are you familiar with the scenario, in which you are working with a group, wr
 - You can find other projects, import their scripts and modify them to reuse them for your purpose.
 - You can share your code online: it's good for science and it's good for your resume.
 - If you are a PhD student, you can start saving your files early on, and by the time you finish, you will have all your analyses documented and easily accessible, which will help a lot when you're writing your thesis.
+
 How does all the magic happen? Usually using ``git``.   
 So `what is git? <https://www.atlassian.com/git/tutorials/what-is-git>`_    
 ``git`` is a open source tool, which features functionalities to make repositories, download them, get and push updates. It can allow for teams to work on the same project, manage conflicts, monitor changes and track issues. 
+
  
 Version control platforms
 ############################
@@ -34,6 +36,10 @@ For a more comprehensive comparison of the two platforms `see this comparison by
 Another platform for git is `Gitlab <https://about.gitlab.com/>`_.   
  
 So go on, start by signing up and making a username of these platforms. Use Bitbucket for *in-progress* work, and GitHub for *publishing*. Choose a professional ID for your GitHub account and put it on your CV.
+
+ 
+Installing and using ``git``
+############################
  
 How will you run ``git`` on your system? If you prefer terminals, just install ``git`` and you are good to go. You can install git on a Debian system using:    
  
@@ -55,16 +61,15 @@ and on Mac
  
 For Windows, to get a git shell you can install `TortoiseGit <https://tortoisegit.org/>`_.   
 If you prefer to work with a GUI, you could install `gitKraken <https://www.gitkraken.com/>`_ on all three Operating Systems.
- 
-Installing and using ``git``
-############################
- 
+
+Configuring git
+****************
 If you are using a terminal, the first thing to do is configure ``git`` with your username and email. The username will be printed on the commits and changes you make. The email will be used to log in. You will be prompted for your password when pushing and pulling from the server.
  
 .. code:: bash
  
    git config --global user.name "[your_username]"
-   git config --global user.email [your_email]
+   git config --global user.email "[your_email]"
  
  
 ``git`` is pretty simple. 
