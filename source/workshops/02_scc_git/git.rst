@@ -70,7 +70,7 @@ If you are using a terminal, the first thing to do is configure ``git`` with you
 You can find a list of ``git`` commands `here <https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html>`_.    
 The most typical use of ``git`` consists of: ``git init`` to initialize a new repository, ``git clone`` to copy a repository onto your local computer, ``git add`` to make a list of changes you made locally, ``git commit`` to make a log of your changes, ``git push`` to send the changes to the online repository, and ``git pull`` to get changes. 
  
-``SSH`` vs ``HTTPS``
+SSH vs HTTPS
 **********************
 The connection to the server is secured with SSH or HTTPS. It is recommended to use HTTPS, but if you want to, you can use SSH. 
 `GitHub explains which URL to use <https://help.github.com/articles/which-remote-url-should-i-use/>`_.     
@@ -87,7 +87,7 @@ and HTTPS will look like:
  
 ``https://[your_username]@bitbucket.org/[the_author]/[repository].git``.
  
-``git`` tutorial
+git tutorial
 ******************
 There are plenty of nice turorials to learn ``git`` on the web. 
 The best may be the `GitHub tutorial <https://try.github.io>`_ which features a built-in terminal that you can use to walk through the commands step by step. 
@@ -103,7 +103,7 @@ Useful tips
 ####################
 Let's go over some standards to keep in mind when using ``git``.
  
-``commit`` messages
+commit messages
 **********************
  
 When you are committing your changes always use meaningful messages. 
@@ -134,7 +134,7 @@ GNU is open source, and open source does not mean free.
 Whenever using code with GNU licensing, you must cite the authors/developers. 
 For more information on the license check `the GNU organization documentation <https://www.gnu.org/licenses/gpl-3.0.en.html>`_.
  
-Readme and ``MarkDown`` syntax
+Readme and MarkDown syntax
 *********************************
 It's a good practice to make a **Readme**. The Readme file can be made online using the editors GitHub and Bitbucket provide. Typically they are written in ``MarkDown`` syntax, which is very simple. You might have heard about ``R MarkDown``, but ``MarkDown`` is a syntax that ``R`` has knitted into its compiler. Again there are many tutorials to learn ``MarkDown``. You can check the syntax on the `Atlassian website <https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html>`_.
  
