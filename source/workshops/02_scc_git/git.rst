@@ -1,10 +1,6 @@
 3. Version control with git
 ===============================
  
-
- 
-Version control
-###################
 During your career as a researcher, you will write code and create documents over time, go back and edit them, reuse parts of it, share your code with other people or collaborate with others to make tools and documents.
  
 Have you ever had the problem that you lost files that weren't saved? Or have you gone to a conference or interview and met someone interested in your work and realized you don't have the files on your laptop? On a gloomy day, have you changed some part of your code when suddenly everything broke and you wished you could just go back to the previous working version, but alas there is no backup and you have tens of folders with misleading names? 
@@ -38,7 +34,7 @@ Another platform for git is `Gitlab <https://about.gitlab.com/>`_.
 So go on, start by signing up and making a username of these platforms. Use Bitbucket for *in-progress* work, and GitHub for *publishing*. Choose a professional ID for your GitHub account and put it on your CV.
 
  
-Installing and using ``git``
+Installing configuration
 ############################
  
 How will you run ``git`` on your system? If you prefer terminals, just install ``git`` and you are good to go. You can install git on a Debian system using:    
@@ -62,8 +58,6 @@ and on Mac
 For Windows, to get a git shell you can install `TortoiseGit <https://tortoisegit.org/>`_.   
 If you prefer to work with a GUI, you could install `gitKraken <https://www.gitkraken.com/>`_ on all three Operating Systems.
 
-Configuring git
-****************
 If you are using a terminal, the first thing to do is configure ``git`` with your username and email. The username will be printed on the commits and changes you make. The email will be used to log in. You will be prompted for your password when pushing and pulling from the server.
  
 .. code:: bash
