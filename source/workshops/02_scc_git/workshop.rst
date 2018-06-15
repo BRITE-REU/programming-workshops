@@ -2,8 +2,12 @@
 Part 1: SCC and qsub
 =====================================
 
-Loggin into SCC
+Login into SCC
 ####################
+
+.. code:: bash
+
+   ssh [username]@scc1.bu.edu
 
 Loading modules
 ####################
@@ -30,7 +34,7 @@ For example let's check for all the available JAVA versions on SCC and load vers
 
 Submitting jobs to the SCC
 ############################
-When you ssh to the SCC you are connected to a head node. 
+When you ``ssh`` to the SCC you are connected to a head node. 
 Head nodes are the only nodes on the cluster that are connected to the internet (so that you can access the SCC).
 They are the busiest and maintain all user connections. We should not run any program on the head node. 
 By default your program will be killed if it runs more than 20 minutes, 
@@ -39,57 +43,65 @@ but even if you have some code that runs in 5 minutes, do not run it on the head
 .. code:: bash
 
    qsub -P [project_name] -N [name_of_job] [bash_script]
-   
+
+When a job is running the standard output of it will be saved in a file names ``[job_name].o[job_ID]`` and the standard error output will go to ``[job_name].e[job_ID]`` in the directory you called ``qsub``. To merge them use ``-j y`` (join=yes). 
 For a full list of parameters and option for qsub see 
-'here <http://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/>'_. 
+`here <http://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/>`_. 
 You can see how to allocate more memory, multiple processes to multi-threaded jobs, send notification emails upon the completion of your job, ...
-Note the machines available.
+Note the machines and resources available.
 
-Once the job is given the resources it requires
+**Useful parameters**
 
-You can check the status of your ongoing jobs using qstat:
+- Send an email upon ending: ``-m e -M [email]``
+- Get multiple processes/slots: ``-pe omp [#processes]`` 
+- Set the maximum(hard) running time: ``-l h_rt=hh:mm::ss``
+
+
+Once the job is given the resources it requires you can check the status of your ongoing jobs using ``qstat``:
 
 .. code:: bash
 
    qstat -u [username]
    
-This will return all the running jobs with their job_ID, name, starting time, and status(qw=waiting, r=running).
+This will return all the running jobs with their job_ID, name, starting time, and status (qw=waiting, r=running).
 
-To delete/stop a job use qdel.
+To delete/stop a job use ``qdel``.
 
 .. code:: bash
 
    qdel [job_ID]
 
 
+
 Useful tips
 *************
 - Always use a meaningful name for your jobs. In general always use meaningful names!
 - Do not allocate more resources than you need. This will not make your program run faster. If your program is not meant to be multi-threaded or asking for too much memory when your program is not memory expensive, allocating more than one process just makes you wait longer in the queue. In general, don't be wasteful!
-- You can use j_hold to make one job to wait for another one to finish then run.
-If the job is running the machine associated to it will be shown too. You can ssh to that machine and see the status of that job, too. Use ``top -u [username] to see your ongoing processes and the amount of resources they use.
+- You can use ``j_hold`` to make one job to wait for another one to finish then run. If the job is running the machine associated to it will be shown too. You can ssh to that machine and see the status of that job, too. Use ``top -u [username]`` to see your ongoing processes and the amount of resources they use.
+
 
 Hands on activity
 ###################
+
 Here we will do an activity.
 `SRA toolkit <https://www.ncbi.nlm.nih.gov/sra/docs/>`_ is a useful tool used to download sequencing data from `GEO <https://www.ncbi.nlm.nih.gov/geo/>`_.
 Here we will use the toolkit to download some RNASeq data.
 
-1. Log on to SCC.
+**Log on to SCC.**
 
 .. code:: bash
 
    ssh [username]@scc1.bu.edu
    
-2. Choose some RNAseq data
+**Choose some RNAseq data**
 First `Query for a series <https://www.ncbi.nlm.nih.gov/geo/browse/?view=series>`_ on GEO.
 For example the `GSE113476 series <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE113476>`_ contains human breast cancer PDX samples.
 Get the SRA project (SRP) accession ID (`SRP141444 <https://www.ncbi.nlm.nih.gov/sra?term=SRP141444>`_) in the relations box.
 To download this project, we need to get all the sample files (with SRR accession IDs). 
-To do so use ` SRA Run Selector <https://www.ncbi.nlm.nih.gov/Traces/study/>`_ and search the SRP SRP141444. 
+To do so use `SRA Run Selector <https://www.ncbi.nlm.nih.gov/Traces/study/>`_ and search project SRP141444. 
 Get the accession list (SRR for each sample). Save it as a file on SCC. 
 
-3. Load sra toolkit.
+**Load sra toolkit.**
 See what versions of the toolkit are available.
 
 .. code:: bash
@@ -101,8 +113,10 @@ Load the default version.
 .. code:: bash
 
    module load sratoolkit
-   
-4. Make a bash script to download it. 
+ 
+
+
+**Make a bash script to download it.**
 Make a script to read the SRR accession IDs one by one and fastq-dump them into a directory.
 
 .. code:: bash
@@ -113,8 +127,9 @@ Make a script to read the SRR accession IDs one by one and fastq-dump them into 
   while read SRR_ID; do
      fastq-dump --split-files --outdir $OUTPUT_DIR $SRR_ID
   done < $ACCESSION_LIST_FILE
-  
-5. Submit the code.
+ 
+
+**Submit the code.**
 
 .. code:: bash
 
@@ -124,7 +139,8 @@ Check qstat to see if your job is running.
 
 This will download each SRR one by one. That is slow. Let's kill it (``qdel``) and make it faster.
 
-6. Make your code multi-processed to run faster.
+
+**Make your code multi-processed to run faster.**
 
 .. code:: bash
 
@@ -154,12 +170,12 @@ Forking a repository
 
 On `Bitbucket <https://confluence.atlassian.com/bitbucket/forking-a-repository-221449527.html>`_ you can fork from the left menu:
 
-.. image:: fork_atlassian.gif
+.. image:: images/fork_atlassian.gif
    :target: https://confluence.atlassian.com/bitbucket/forking-a-repository-221449527.html
 
 On `GitHub <https://help.github.com/articles/fork-a-repo/>`_ on the top left you can find the fork button.
 
-.. image:: fork_github.png
+.. image:: images/fork_github.png
    :target: https://guides.github.com/activities/forking/
 
 
@@ -172,8 +188,8 @@ You will be divided into groups. One person from each team forks the repository.
 
 Each team member will clone the repository on SCC.
 
-Editing from the server
-+++++++++++++++++++++++
+
+**Editing from the server**
 
 Go to the Bitbucket website, and find your repository.
 Go to **Source**, and open the Readme file.
@@ -181,8 +197,8 @@ Click **Edit** to make changes to the Readme, and write your name.
 Click the **Commit** button to save your changes.
 
 
-Running the code
-++++++++++++++++
+**Running the code**
+
 Read the **Readme** file. You will need to have Python3 and all the required modules installed.
 If you don't already have a ``conda`` environment, use:
 
@@ -218,8 +234,8 @@ You can run the code now and play around.
 
 
 
-Untracked directory
-+++++++++++++++++++
+**Untracked directory**
+
 When you run the code, a log file called *human_vs_machine.cvs* is made, which stores information for each run. You do not want the content of your runs to be uploaded to the repository. To do so, you can make a ``.gitignore`` file in the data folder.
 
 .. code:: python
@@ -228,8 +244,8 @@ When you run the code, a log file called *human_vs_machine.cvs* is made, which s
    ls -a data
 
 
-Make some changes on ``digit_recognition_game.py``
-++++++++++++++++++++++++++++++++++++++++++++++++++
+**Make some changes on digit_recognition_game.py**
+
 
 ``src/digit_recognition_game.py`` : runs a small code to learn handwritten digits from low resolution pictures. Then it will compete with you to see who can do better!!!
 You will make the following changes to improve the code:
@@ -268,8 +284,8 @@ Did some of your team members get an error message?
     fast-forwards' section of 'git push --help' for details.
 
 
-Resolving conflicts
-+++++++++++++++++++
+**Resolving conflicts**
+
 If you got a conflict message, try to pull the recent changes made by others. 
 
 .. code:: bash
@@ -291,8 +307,9 @@ Such as:
 If you don't want to merge and just get rid of all the changes you have made, you can use ``git stash``.
 All your changed will be lost.
 
-Try this on your own
-++++++++++++++++++++
+
+**Try this on your own**
+
 
 Now let's improve the code a bit.
 
@@ -344,8 +361,9 @@ Now let's improve the code a bit.
 
 Try to push and resolve your conflicts again.
 
-Revert changes (undoing the commit)
-+++++++++++++++++++++++++++++++++++
+
+**Revert changes (undoing the commit)**
+
 
 .. code:: bash
    
@@ -389,8 +407,8 @@ See what branch you are on:
 You have your own local copy on a separate branch.
 
 
-Make some changes on ``predict_sentiment.py``
-+++++++++++++++++++++++++++++++++++++++++++++
+**Make some changes on predict_sentiment.py**
+
 
 ``src/predict_sentiment.py`` runs a small code to learn the sentiment (positive or negative) of a sentence from a set of training sentences and tests on a another set. Make the following changes:
 
@@ -426,8 +444,8 @@ Push your changes on your own branch.
 There should be no conflicts.
 
 
-Merge the branch into master
-++++++++++++++++++++++++++++
+**Merge the branch into master**
+
 
 .. code:: bash
 
@@ -436,8 +454,7 @@ Merge the branch into master
 
 Hopefully you won't have conflicts. If you do, you know how to solve it.
 
-Pull requests
-++++++++++++++++++++++++++++
+**Pull requests**
 
 You can inform other's of you magnificent changes and accomplishments by making pull requests. 
 This way you let everyone know that you made some changes and they need to pull.
