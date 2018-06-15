@@ -141,22 +141,7 @@ This will download each SRR one by one. That is slow. Let's kill it (``qdel``) a
 
 **Make your code multi-processed to run faster.**
 
-.. code:: bash
-
-  #!/bin/bash
-  ACCESSION_LIST_FILE=$1
-  OUTPUT_DIR=$2
-  while read SRR_ID; do
-     fastq-dump --gzip --split-files --outdir $OUTPUT_DIR $SRR_ID &
-  done < $ACCESSION_LIST_FILE
-  
-Run with multiple processes.
-
-.. code:: bash
-
-   qsub -pe omp 8 dl_sra.sh SRR_Acc_List.txt SRP141444
-   
-Another way to make it multi processing (especially when you need to use large numbers of processes) is to use multiple jobs.
+You can make it multi processing (especially when you need to use large numbers of processes) is to use multiple jobs.
 Try that on your own. Make a bash script that sends a query (``qsub``) for each SRR accession.
    
 
