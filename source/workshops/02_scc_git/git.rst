@@ -83,7 +83,7 @@ The connection to the server is secured with SSH or HTTPS. It is recommended to 
 Typically when cloning you will see sometimes the repository has a .git at the end, and sometimes it doesn't.   
 If you use SSH you will need an SSH key. Read `here to learn how to connect to GitHub with SSH <https://help.github.com/articles/connecting-to-github-with-ssh/>`_ Bitbucket gives you the option of using either one. 
  
-.. image:: HTTPS_SSH_bitbucket.png
+.. image:: images/HTTPS_SSH_bitbucket.png
 
 When using ``your_username`` to clone/fetch a ``repository`` from ``the_author``, an SSH url will look like:
  
