@@ -101,11 +101,11 @@ The `Bibucket tutorial from Atlassian <https://www.atlassian.com/git/tutorials/s
    For the workshop, we expect you to know how to clone a repository, add and commit changes, push to, and pull from the repository.
  
 Useful tips
-**************
+####################
 Let's go over some standards to keep in mind when using ``git``.
  
 ``commit`` messages
-+++++++++++++++++++++++
+**********************
  
 When you are committing your changes always use meaningful messages. 
  
@@ -123,12 +123,12 @@ Commits can be undone. Conflicts can be resolved. And we will learn how to fix m
  
  
 Semantic versioning
-+++++++++++++++++++++
+**********************
 Have you ever wondered how developers decide how to number the different versions of their software?
 Do they just randomly come up with numbers? No, the version number consists of 3 numbers, ``x.y.z`` where ``x`` is a major change, ``y`` is a minor change and ``z`` a patch. There is `official documentation <http://semver.org/>`_ on this, which you can read if you are interested. But assume you have a tool that reads some data and performs some function on the data. If you find a bug and fix it, you publish the fix by adding to ``z``. If you added a small functionality, for example support for compressed data input and compatibility with other tools, increase ``y``. If you added another function to it, increase ``x``. 
  
 GNU licensing
-+++++++++++++++
+*****************
 ``git`` is opensource. 
 If you use GitHub and/or Bitbucket, you can publish your tool with the GNU licensing. 
 GNU is open source, and open source does not mean free. 
@@ -136,7 +136,7 @@ Whenever using code with GNU licensing, you must cite the authors/developers.
 For more information on the license check `the GNU organization documentation <https://www.gnu.org/licenses/gpl-3.0.en.html>`_.
  
 Readme and ``MarkDown`` syntax
-++++++++++++++++++++++++++++++++++
+*********************************
 It's a good practice to make a **Readme**. The Readme file can be made online using the editors GitHub and Bitbucket provide. Typically they are written in ``MarkDown`` syntax, which is very simple. You might have heard about ``R MarkDown``, but ``MarkDown`` is a syntax that ``R`` has knitted into its compiler. Again there are many tutorials to learn ``MarkDown``. You can check the syntax on the `Atlassian website <https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html>`_.
  
 A Readme should include information about:
@@ -154,7 +154,7 @@ A Readme should include information about:
 Look at `this nice outline <https://gist.github.com/PurpleBooth/109311bb0361f32d87a2>`_ for a standard Readme file in ``MarkDown`` syntax. To get the source code click the ``Raw`` button on the top left.
  
 Issue tracking
-+++++++++++++++++
+###################
 Both Bitbucket and GitHub allow for issue tracking. Members of a team can create an issue, assign it to a developer or admin, and comment on it. An issue can be marked according to its importance and type, for example, fixing a bug or adding functionality; and the issue can be resolved once it is has been taken care of. Issues can be linked to commits, to show which commit resulted in resolving an issue. 
  
 When a repository is publicly accessible, you can create issues to inform the developers there is a bug or a functionality you would be interested in. So, the next time you find an issue with some tool that you can't resolve after trying for a few days, just post an issue on their GitHub repository.
