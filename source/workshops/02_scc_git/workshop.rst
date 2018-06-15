@@ -72,7 +72,6 @@ To delete/stop a job use ``qdel``.
    qdel [job_ID]
 
 
-
 Useful tips
 *************
 - Always use a meaningful name for your jobs. In general always use meaningful names!
@@ -125,7 +124,7 @@ Make a script to read the SRR accession IDs one by one and fastq-dump them into 
   ACCESSION_LIST_FILE=$1
   OUTPUT_DIR=$2
   while read SRR_ID; do
-     fastq-dump --split-files --outdir $OUTPUT_DIR $SRR_ID
+     fastq-dump --gzip --split-files --outdir $OUTPUT_DIR $SRR_ID
   done < $ACCESSION_LIST_FILE
  
 
@@ -148,7 +147,7 @@ This will download each SRR one by one. That is slow. Let's kill it (``qdel``) a
   ACCESSION_LIST_FILE=$1
   OUTPUT_DIR=$2
   while read SRR_ID; do
-     fastq-dump --split-files --outdir $OUTPUT_DIR $SRR_ID &
+     fastq-dump --gzip --split-files --outdir $OUTPUT_DIR $SRR_ID &
   done < $ACCESSION_LIST_FILE
   
 Run with multiple processes.
