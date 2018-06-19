@@ -29,5 +29,5 @@ Then we will continue to clone a sample repository and work on forking, resolvin
     The SCC <the_scc>
     Submitting jobs <qsub>
     Version control with git <git>
-    Workshop <workshop>
+    Workshop 2 <workshop>
 
