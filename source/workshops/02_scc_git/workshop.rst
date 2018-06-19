@@ -134,11 +134,13 @@ Load the default version.
  
 
 **Make a bash script to download it.**
-Make a script to read the SRR accession IDs one by one and fastq-dump them into a directory.
+Make a script to read the SRR accession IDs one by one and ``fastq-dump`` them into a directory.
 
 .. code:: bash
    
    vim dl_sra.sh
+   
+Copy the following code into the bash script file.
    
 .. code:: bash
 
