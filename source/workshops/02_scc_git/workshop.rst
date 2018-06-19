@@ -59,7 +59,7 @@ Note the machines and resources available.
 
 - Send an email upon ending: ``-m e -M [email]``
 - Get multiple processes/slots: ``-pe omp [#processes]`` 
-- Set the maximum(hard) running time: ``-l h_rt=hh:mm::ss``
+- Set the maximum (hard) running time: ``-l h_rt=hh:mm::ss``
 
 
 Once the job is given the resources it requires you can check the status of your ongoing jobs using ``qstat``:
@@ -159,11 +159,12 @@ Copy the following code into the bash script file.
    qsub -N SRA_example dl_sra.sh SRR_Acc_List.txt SRP141444
 
 
+Check if your code is running:
+
 .. code:: bash
 
    qstat -u [username]
    
-
 
 This will download each SRR one by one. That is slow. Let's kill it (``qdel``) and make it faster.
 
