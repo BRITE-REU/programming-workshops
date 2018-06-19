@@ -1,6 +1,11 @@
 =====================================
-Part 1: SCC and qsub
+Workshop 2: SCC and git
 =====================================
+
+
+
+Part 2.1: SCC and qsub
+--------------------------------
 
 Login into SCC
 ####################
@@ -145,9 +150,9 @@ You can make it multi processing (especially when you need to use large numbers 
 Try that on your own. Make a bash script that sends a query (``qsub``) for each SRR accession.
    
 
-=====================================
-Part 2: Version control with git
-=====================================
+
+Part 2.2: Version control with git
+-------------------------------------
 
 Forking a repository
 ############################
