@@ -133,7 +133,6 @@ Load the default version.
    module load sratoolkit
  
 
-
 **Make a bash script to download it.**
 Make a script to read the SRR accession IDs one by one and fastq-dump them into a directory.
 
@@ -157,7 +156,12 @@ Make a script to read the SRR accession IDs one by one and fastq-dump them into 
 
    qsub -N SRA_example dl_sra.sh SRR_Acc_List.txt SRP141444
 
-Check qstat to see if your job is running.
+
+.. code:: bash
+
+   qstat -u [username]
+   
+
 
 This will download each SRR one by one. That is slow. Let's kill it (``qdel``) and make it faster.
 
