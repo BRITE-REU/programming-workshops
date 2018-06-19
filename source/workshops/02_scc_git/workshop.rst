@@ -195,7 +195,7 @@ On `GitHub <https://help.github.com/articles/fork-a-repo/>`_ on the top left you
 
 You will be divided into groups. One person from each team forks the repository.
 
-- Login to `githib <github.com>`_ Fork the repository `REU_workshop2_git <https://bitbucket.org/dmarcbriers/bub_workshop07_git/src/master>`_. 
+- Login to `BitBucket <bitbucket.org>`_ Fork the repository `REU_workshop2_git <https://bitbucket.org/dmarcbriers/bub_workshop07_git/src/master>`_. 
 - Go to your copy of the repository.
 - Click on **Send invitation** and then **Manage this repository** on bitbucket or **Settings** and **Collaborators** on github.
 - Add your team member/members and give them **Admin** access.
