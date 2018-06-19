@@ -1,7 +1,7 @@
 .. _linux_bash:
 
 ===========================
-Workshop 1: SCC and git
+Workshop 2: SCC and git
 ===========================
 
 
@@ -29,5 +29,5 @@ Then we will continue to clone a sample repository and work on forking, resolvin
     The SCC <the_scc>
     Submitting jobs <qsub>
     Version control with git <git>
-    Workshop 2 <workshop>
+    Workshop <workshop>
 
