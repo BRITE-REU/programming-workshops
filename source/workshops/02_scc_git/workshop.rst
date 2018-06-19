@@ -138,6 +138,10 @@ Load the default version.
 Make a script to read the SRR accession IDs one by one and fastq-dump them into a directory.
 
 .. code:: bash
+   
+   vim dl_sra.sh
+   
+.. code:: bash
 
   #!/bin/bash
   ACCESSION_LIST_FILE=$1
