@@ -195,7 +195,7 @@ On `GitHub <https://help.github.com/articles/fork-a-repo/>`_ on the top left you
 
 You will be divided into groups. One person from each team forks the repository.
 
-- Login to `githib <github.com>`_ Fork the repository `REU_workshop2_git <https://github.com/marzie-rasekh/REU_workshop2_git>`_. 
+- Login to `githib <github.com>`_ Fork the repository `REU_workshop2_git <https://bitbucket.org/dmarcbriers/bub_workshop07_git/src/master>`_. 
 - Go to your copy of the repository.
 - Click on **Send invitation** and then **Manage this repository** on bitbucket or **Settings** and **Collaborators** on github.
 - Add your team member/members and give them **Admin** access.
@@ -205,7 +205,7 @@ Each team member will clone the repository on their own computer or SCC.
 
 **Editing from the server**
 
-Go to the Bitbucket website, and find your repository.
+Go to your repository, and find your repository.
 Go to **Source**, and open the Readme file.
 Click **Edit** to make changes to the Readme, and write your name.
 Click the **Commit** button to save your changes.
