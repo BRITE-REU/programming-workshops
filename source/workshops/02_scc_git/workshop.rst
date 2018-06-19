@@ -103,7 +103,21 @@ For example the `GSE113476 series <https://www.ncbi.nlm.nih.gov/geo/query/acc.cg
 Get the SRA project (SRP) accession ID (`SRP141444 <https://www.ncbi.nlm.nih.gov/sra?term=SRP141444>`_) in the relations box.
 To download this project, we need to get all the sample files (with SRR accession IDs). 
 To do so use `SRA Run Selector <https://www.ncbi.nlm.nih.gov/Traces/study/>`_ and search project SRP141444. 
-Get the accession list (SRR for each sample). Save it as a file on SCC. 
+Get the accession list (SRR for each sample). Save it as a file on SCC either with filezilla or just vim.
+
+.. code:: bash
+   
+   vim SRR_Acc_List.txt
+   
+Copy the first four into the file and save it:
+
+.. code:: bash
+   
+   SRR7050666
+   SRR7050667
+   SRR7050668
+   SRR7050669
+
 
 **Load sra toolkit.**
 See what versions of the toolkit are available.
