@@ -195,7 +195,7 @@ On `GitHub <https://help.github.com/articles/fork-a-repo/>`_ on the top left you
 
 You will be divided into groups. One person from each team forks the repository.
 
-- Fork the repository. 
+- Fork the repository `REU_workshop2_git <https://github.com/marzie-rasekh/REU_workshop2_git>`_. 
 - Go to your copy of the repository.
 - Click on **Send invitation** and then **Manage this repository**.
 - Add your team members and give them **Admin** access.
