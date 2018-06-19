@@ -109,7 +109,7 @@ Get the accession list (SRR for each sample). Save it as a file on SCC either wi
    
    vim SRR_Acc_List.txt
    
-Copy the first four into the file and save it:
+Copy the first four SRR IDs into the file and save it:
 
 .. code:: bash
    
