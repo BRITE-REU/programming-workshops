@@ -1,7 +1,7 @@
 .. _python:
 
 ===========================
-Workshop 2: SCC and git
+Workshop 3: Python
 ===========================
 
 
