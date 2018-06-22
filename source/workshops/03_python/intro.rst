@@ -58,7 +58,7 @@ Unsurprisingly, Python can do math! The basic mathematic operators are
 **+**, **-**, **\***, and **\\** for addition, subtraction,
 multiplication, and division
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The print function takes a value or expression and displays the output to the screen.
     # The hash symbol denotes the proceeding text as a comment, and thus is not evaluated
@@ -78,7 +78,7 @@ multiplication, and division
     1.0
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Negative values are demonstrated with a '-'
     print(-3 + 2)
@@ -89,7 +89,7 @@ multiplication, and division
     -1
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Exponents use the double star operator '**'
     print(2**3)
@@ -100,7 +100,7 @@ multiplication, and division
     8
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The percent symbol, '%', is used as the modulo operator for calculating remainders.
     print(6 % 4)  # 6 = 4*1 + 2
@@ -111,7 +111,7 @@ multiplication, and division
     2
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Mathematical expressions follow the order of operations.
     print((2+3)*(-1)**2/2)
@@ -129,7 +129,7 @@ There are two basic numerical data types in Python: integers and
 floating point numbers. Integers are whole number, signed or unsigned,
 while floating point numbers contain decimal values.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The data type of a value can be determined using the 'type()' function.
     print(type(2))
@@ -142,7 +142,7 @@ while floating point numbers contain decimal values.
     <class 'float'>
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Values in Python can be assigned to variables with different names for later access. 
     # Variable assignment is done using the '=' symbol.
@@ -160,7 +160,7 @@ while floating point numbers contain decimal values.
     6.0
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Variables can be cast to compatible data types using the desired data type function.
     print(y)
@@ -179,7 +179,7 @@ while floating point numbers contain decimal values.
     <class 'int'>
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # While we instantiated 'z' using 'y' and then modified 'z', the value 'y' remains unchanged.
     print(y)
@@ -202,7 +202,7 @@ truth value of the given statement. All the previously listed operators
 expect to be sandwiched between two values, one to the left and one to
 the left, and are evaluated left to right.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The less than operator '<'
     x = 3
@@ -240,7 +240,7 @@ keywords follow their formal logic definitions: the **and** keyword is
 true is both statements are also true, the **or** keyword is true if one
 of the statements is true, and **not** negates the original truth value.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     print(y > x and y < z)
     print(y < x or y < z)
@@ -261,7 +261,7 @@ Strings are data types used to represent text data. They can be
 instantiated by placing expressions between single (**'[expression]'**)
 or double (**"[expression]"**) quotes.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     string_1 = 'dog'
     string_2 = "cat"
@@ -275,7 +275,7 @@ or double (**"[expression]"**) quotes.
     cat
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # strings can be concatenated using the '+' operator
     string_3 = string_2 + string_1
@@ -293,7 +293,7 @@ String Substitution
 Values can be substituted into a string using string substitution. This
 is done using the **.format()** method available to string objects.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # the second single or double quote mark can be escaped using a backslash: \
     statement = 'What do you mean you\'ve never seen a {0}?!'
@@ -305,7 +305,7 @@ is done using the **.format()** method available to string objects.
     What do you mean you've never seen a catdog?!
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # strings be evaluated using boolean operators
     print(string_1 == string_2)  # are they the same string?
@@ -324,7 +324,7 @@ is done using the **.format()** method available to string objects.
     False
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # String case can be changed using the .upper() and .lower() string methods.
     
@@ -340,7 +340,7 @@ is done using the **.format()** method available to string objects.
     True
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The length of a string can be accessed using the built-in len() function.
     print("The string '{0}' is {1} characters long.".format(string_1, len(string_1)))
@@ -351,7 +351,7 @@ is done using the **.format()** method available to string objects.
     The string 'dog' is 3 characters long.
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Characters in a string can be assessed by position.
     # Python indexing starts at 0.
@@ -372,7 +372,7 @@ is done using the **.format()** method available to string objects.
     The second to last character in 'dog' is: o.
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # If a string is of a numerical value, the string can be converted to an integer or float.
     
@@ -413,7 +413,7 @@ Lists
 Lists are arbitrarily long collections of objects. The are instantiated
 by placing comma-separated values within square bracks **[\*\* \*\*]**.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     my_list = [1, 2, 3, 4]
     print(my_list)
@@ -424,7 +424,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     [1, 2, 3, 4]
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Like strings, elements within lists can be accessed via their position. 
     print('The first element of my_list is {0}'.format(my_list[0]))
@@ -435,7 +435,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     The first element of my_list is 1
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Access and assign list value by accessing an indexed element,
     # and assigning it to a new value.
@@ -451,7 +451,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     [1, 2, 5]
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # A range of objects within a list can be select using ':'
     print(my_list[1:3])
@@ -466,7 +466,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     [2, 4]
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # element membership within a list can be tested using the 'in' keyword.
     
@@ -480,7 +480,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     True
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The length of a list is also assessed using the len() function.
     print(len(my_list))
@@ -491,7 +491,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     4
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # An empty list can be constructed using empty square brackets
     x = []
@@ -505,7 +505,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     []
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Elements can added onto the end of a list using the .append() list method.
     
@@ -518,7 +518,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     ['Hi']
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Lists can have mixed-type variables (e.g. a list can contain both integers and strings)
     my_list.append('String!')
@@ -530,7 +530,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     [1, 2, 3, 4, 'String!']
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # incremental lists up to a defined number can be created using the built-in range() function.
     # The range function outputs a 'range' object. However, it can be casted to a list
@@ -557,7 +557,7 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
     [3, 5, 7, 9]
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Lists can be concatenated using the '+' operator
     string_list = ['I', 'Love', 'Dogs']
@@ -577,7 +577,7 @@ are familiar with Set Theory in Mathematics, Python sets are simply an
 implementation of such a structure. Sets are constructed passing a list
 to the 'set()' function or constructing via **{ }**.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Sets can only contain unique elements.
     set_1 = set([1, 1, 2, 2, 3, 4, 5])
@@ -593,7 +593,7 @@ to the 'set()' function or constructing via **{ }**.
     {3, 4, 6, 7, 8, 9, 10}
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # add elements to a set using the .add set method
     set_1.add(6)
@@ -605,7 +605,7 @@ to the 'set()' function or constructing via **{ }**.
     {1, 2, 3, 4, 5, 6}
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # still only unique elements
     set_1.add(5)
@@ -617,7 +617,7 @@ to the 'set()' function or constructing via **{ }**.
     {1, 2, 3, 4, 5, 6}
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Remove elements using the .remove set method
     set_1.remove(6)
@@ -629,7 +629,7 @@ to the 'set()' function or constructing via **{ }**.
     {1, 2, 3, 4, 5}
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # retrieve union of two sets using the .union set method
     print(set_1.union(set_2))
@@ -648,7 +648,7 @@ to the 'set()' function or constructing via **{ }**.
     {3, 4}
 
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Unlike lists, sets are unordered and thus don't support indexing.
     print(set_1[0])
@@ -679,19 +679,19 @@ values can be of arbitrary data types. Similar to sets, dictionaries are
 consructed using curly brackets **{ }**, though each entry must follow
 the **key:value** syntax.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Construct dictionaries by separating keys and values using ':'
     # Separate key-value pairs using ','
     my_dict = {'a': 1, 'b': 2, 'c': 3}
     print(my_dict)
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Look up values using keys
     my_dict['a']
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Create an empty list using {}
     empty_dict = {}
@@ -701,12 +701,12 @@ the **key:value** syntax.
     empty_dict['key'] = 'value'
     print(empty_dict)
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Retrieve keys of a dictionary using .keys() dictionary method
     print(my_dict.keys())
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Retrieve values of a dictionary using .values() dictionary method
     print(my_dict.values())
@@ -727,7 +727,7 @@ An **if** statement uses if the following syntax:
 
     run this code
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # if statements must be followed by a colon.
     # Likewise, the next line MUST be indented using either a tab or 4 spaces.
@@ -738,7 +738,7 @@ An **if** statement uses if the following syntax:
     if (x < 10):
         print('{0} is less than 10'.format(x))
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # An else statement must follow an if statement and is executed
     # if the statement in the if statement is not met.
@@ -748,7 +748,7 @@ An **if** statement uses if the following syntax:
     else:
         print('{0} is greater than or equal to 10'.format(x))
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # Like an else statement, an elif statement must follow a preceding if statement.
     # However, like an if statement, an elif must also have its own boolean statement
@@ -787,14 +787,14 @@ variable **list** can be any iterable data type: not just a list. Like
 **if**, **else**, and **elif** statements, loop statements end with a
 colon and must be followed by a new line and an indentation.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # iterate through a list
     my_list = [1, 'hi', 'yellow', 'pizza', 4.5]
     for each in my_list:
         print(each)
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # use the range() function to iterate through integer values
     for i in range(5):
@@ -809,7 +809,7 @@ the first loop will run with the first value specified by the iterator
 j =0 and j = 1). Once the inner loop is completed, the outer loop then
 moves on to the next value, and the process is repeated.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     for i in range(5):
         for j in range(2):
@@ -827,7 +827,7 @@ loops employ the following syntax:
 
     execute code
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     count = 0
     while count < 5:
@@ -842,7 +842,7 @@ fully iterate through each loop, values used in the boolean statement in
 the inner loop must be set in the outer loop. This ensures the value
 will be reset for the next iteration in the inner loop.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     count = 0
     while count < 3:
@@ -872,14 +872,14 @@ following syntax:
 Like loops and control statements, function definitions end with a colon
 followed by a new line and an indentation.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     def add(x, y):
         return(x + y)
     
     print(add(1, 2))
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # It is common to have doc-strings, denoted by three sets of quotation marks, 
     # after a function definition to define the use of the function.
@@ -898,7 +898,7 @@ followed by a new line and an indentation.
     
     print(multiply(3, 2))
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # It is possible to include optional parameters in functions.
     # These are defined by setting an arguments name and giving
@@ -930,7 +930,7 @@ cannot be accessed outside of the function. If a variable is defined
 outside of a function, at the first indentation level, the scope is
 global: the variable can be accessed anywhere within the Python file.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     global_var = 20
     def scope_function():
@@ -938,7 +938,7 @@ global: the variable can be accessed anywhere within the Python file.
         local_var = 3
         print(global_var + local_var)  # global_var has global scope
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # local_var was defined only within scope_function(). Thus,
     # it does not exist outside of the function.
@@ -958,7 +958,7 @@ To read a file, we must first create a connection to the file. The most
 basic way to do this is with the **open** command and utilize the
 **readline** io method.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # The open command creates a TextIOWrapper object that is used to read
     # lines in a file. The first argument in the file to open, while the 
@@ -980,7 +980,7 @@ The above method requires we create a separate file object and remember
 to open and close it. This can be simplified by using the **with** and
 *as* keywords:
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     with open('input_file.txt') as f:
         for line in f:
@@ -993,7 +993,7 @@ We write to files analagous to the way we first read a file: creating a
 connection, iterating through the lines we want to write, and finally
 closing the file.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     write_list = ['This is a line',
                   'This is also a line.',
@@ -1022,7 +1022,7 @@ module must be accessed by first appending the module name to the method
 (e.g. to use the **sin** function in the **math** module, we type
 **math.sin**)
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     import math
     # find the sin of 1, 0, and pi
@@ -1035,12 +1035,12 @@ This is done by combining the **from** keyword with the **import**
 keyword. Depending on the level of import, the syntax for accessing the
 imported methods changes.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     from math import cos
     print(cos(math.pi))  # no `math.cos` necessary because we imported `cos` directly.
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     from os import path
     # import 'path' submodule from 'os' module to gain access to 'realpath' method.
@@ -1048,7 +1048,7 @@ imported methods changes.
     # However, path.realpath necessary because 'realpath' is in the 'path' sub-module.
     print(path.realpath('input_file.txt'))  
 
-.. code:: ipython3
+.. codeblock:: ipython3
 
     # You can re-name modules using the 'as' keyword on import
     import math as m
