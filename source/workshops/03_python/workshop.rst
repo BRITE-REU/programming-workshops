@@ -103,7 +103,7 @@ Helpful Tips and Files
 Read FASTA Files:
 ~~~~~~~~~~~~~~~~~
 
-.. code:: ipython3
+.. code-block:: python
 
     def read_fasta(fasta_file):
         """
@@ -119,7 +119,7 @@ Read FASTA Files:
 Write FASTA Files:
 ~~~~~~~~~~~~~~~~~~
 
-.. code:: ipython3
+.. code-block:: python
 
     def write_fasta(sequence, output_file, desc=''):
         """
@@ -137,7 +137,7 @@ Write FASTA Files:
 Read ``codon_table.csv``:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: ipython3
+.. code-block:: python
 
     def read_codon_table(codon_table='codon_table.csv'):
         """
@@ -160,7 +160,7 @@ Read ``codon_table.csv``:
 Transcribe DNA to RNA:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: ipython3
+.. code-block:: python
 
     def transcribe(dna_seq, direction='-'):
         """
@@ -180,7 +180,7 @@ Transcribe DNA to RNA:
 Translate RNA to Protein:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: ipython3
+.. code-block:: python
 
     def translate(rna_seq, codon_to_amino):
         """
@@ -199,7 +199,7 @@ Translate RNA to Protein:
 Tie the Steps Together:
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: ipython3
+.. code-block:: python
 
     def main(dna_seq, output_fasta):
         """
