@@ -430,6 +430,11 @@ Lists are data objects which contain elements of different types including numbe
 
    names(list_data) <- c("Vector1", "Character1", "Matrix1", "Logical1", "Numeric", "Logical2")
 
+   list_data
+  
+  
+.. code:: R
+
    $Vector1
    [1] 2 4 6 8
 
@@ -639,7 +644,7 @@ An example is to add values 1 to 10 to vector y using a for loop.
   [1] 1 2 3 4 5 6 7 8 9 10 
 
 
-To learn more about if statements and logical operators, check out this `video <https://www.youtube.com/watch?v=eVEx_pBEkRI>`
+To learn more about if statements and logical operators, check out this `video <https://www.youtube.com/watch?v=eVEx_pBEkRI>`_
 
 Alternatives to using looping and conditional statements include using the apply function in R. A quick introduction to apply function is provided `here <https://www.youtube.com/watch?v=csLati8vpOo>`_.
 
