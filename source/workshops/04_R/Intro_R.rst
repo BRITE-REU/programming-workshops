@@ -151,7 +151,7 @@ For characte data, we use single or double quotation to enclose the data
    [1] "T"
 
 
-We can use available functions in R to different the mode or type of data we are working with.
+We can use available functions in R to determine the mode or type of data we are working with.
 
 .. code:: R
    
@@ -507,6 +507,7 @@ To create a data frame, we can use the function data.frame():
 
 
 We can use the function str() to list the underlying structure of the data object.
+
 .. code:: R
   str(emp.data)
 
@@ -562,9 +563,11 @@ Logical and relational operators can be used to execute code based on certain co
 
 .. image:: images/Logical_Operators.png
 
-*********************************
+
+**************
 If statements
-*********************************
+**************
+
 
 .. code:: R
   q<-3
@@ -578,10 +581,12 @@ If statements
       
       w<-q-t
 
+
 .. code:: R
   w
   
   [1] 8 
+
 
 .. code:: R
   a<-2
@@ -590,6 +595,7 @@ If statements
   #Using and to test two conditions, both true
 
   if(a<b & b<c) x<-a+b+c
+
 
 .. code:: R
   x
@@ -600,8 +606,7 @@ If statements
 Looping
 *********************************
 
-We can use looping to efficiently repeat code without
-having to write the same code over and over.
+We can use looping to efficiently repeat code without having to write the same code over and over.
 
 The while loop repeats a condition while the expression in parenthesis holds true and takes the form:
 
