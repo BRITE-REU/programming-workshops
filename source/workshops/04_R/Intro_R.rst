@@ -291,6 +291,7 @@ A factor is a special type of character vector. Factors are qualitative or categ
 Converting temperature character vector to a factor type creates “levels” based on the factor values (these are the values of categorical variables).
 
 .. code:: R
+
    temperature
 
    [1] High Medium Low
@@ -311,6 +312,7 @@ data vector and parameters for the number of rows and columns.
 We can determine the dimensions of a matrix using the dim() function.
 
 .. code:: R
+
    #Create a simple 2 by 2 matrix.
 
    mat<-matrix(c(2,6,3,8),nrow=2,ncol=2)
@@ -325,9 +327,11 @@ We can determine the dimensions of a matrix using the dim() function.
 
    [1] 2 2
 
+
 We can also choose to add row names and column names to the matrix.
 
 .. code:: R
+
    #Add row names and column names
 
    rownames(mat) <- c("a", "b")
@@ -367,15 +371,20 @@ We can also create a matrix by concatenating vectors together using rbind() func
 
     a
 
+.. code:: R
+
        [,1] [,2] [,3]
     x    1    2    3
     y    4    5    6
 
+.. code:: R
 
     # Combined by columns
     b <- cbind(x,y)
 
     b
+
+.. code:: R
 
         x y
    [1,] 1 4
@@ -396,6 +405,7 @@ To create an array, we can use the function array(), which takes as arguments ve
    
    array1
    
+.. code:: R
 
    , , 1
 
@@ -459,10 +469,12 @@ Lists are data objects which contain elements of different types including numbe
 We can use the function str() to list the underlying structure of the data object.
 
 .. code:: R
+
   str(list_data)
 
 
 .. code:: R
+
      List of 6
    $ Vector1   : num [1:4] 2 4 6 8
    $ Character1: chr "Hello"
