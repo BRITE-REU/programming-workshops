@@ -25,8 +25,9 @@ Loading Data
 Importing downloaded data
 **************************
 
-Based on the data object, there are different functions available to import datasets into R. A cheatsheet from Rstudio community is provided `here <file:///Users/tanyatk/Downloads/data-import.pdf>`_ with useful functions to load in data.
+Based on the data object, there are different functions available to import datasets into R. A cheatsheet from Rstudio community is provided below with useful functions to load in data.
 
+.. image:: images/Import_Cheatsheet.pdf
 
 An alternative way to import downloaded data is to also click on "Import Dataset" on the upper right hand side under Environment. 
 
@@ -45,7 +46,9 @@ For example
 	#Use fread function to download data set under the variable mydat
 	mydat <- fread('http://www.stats.ox.ac.uk/pub/datasets/csb/ch11b.dat')
 	
+
 .. code:: R
+
 	head(mydat)
 
 		V1  V2   V3    V4 V5
@@ -81,6 +84,7 @@ We can save objects using the save() function.
 For example, if we loaded the mtcars dataset from data() function in R, we can then save mtcars object by specifying the object (mtcars) and the file path with an .RData extension. Note, we can save more than one data object in a .RData file.
 
 .. code:: R
+
 	#load mtcars data set
 	data("mtcars")
 
@@ -96,18 +100,21 @@ For example, if we loaded the mtcars dataset from data() function in R, we can t
 	Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 
 .. code:: R
+
 	#save mtcars in .RData extension
 	save(mtcars, file = "mtcars.RData")
 
 To load this file into R, we can use the load() function.
 
 .. code:: R
+
 	load(file = "mtcars.RData")
 
 
 Another way to save one data object is to save it using a .RDS extension. To save and load a .RDS extension, we can use saveRDS() function and readRDS() function.
 
 .. code:: R
+
 	#save mtcars to a .RDS file
 	saveRDS(mtcars, file = "mtcars.rds")
 
@@ -117,6 +124,7 @@ Another way to save one data object is to save it using a .RDS extension. To sav
 To write an R object or variable to a file, we can use existing functions to write mtcars to a csv file and txt file. 
 
 .. code:: R
+
 	write.csv(mtcars, file = "mtcars.csv")
 
 	write.table(mtcars, file = "mtcars.txt", sep="")
@@ -150,6 +158,7 @@ R supports a variety of graphics in the base package, and numerous other package
 For example, we can use a simple plot() function to plot specific variables of the mtcars data set. 
 
 .. code:: R
+
 	plot(mtcars$wt, mtcars$mpg)
 
 .. image:: images/Plot_Example.png
@@ -167,6 +176,7 @@ Many plot functions also include graphical parameter arguments.
 For example, we can add a title and axis labels and change the point size using arguments in the plot function.
 
 .. code:: R
+
 	plot(mtcars$wt, mtcars$mpg, main="Scatterplot", xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19)
 
 .. image:: images/Plot_Paramters.png
@@ -174,6 +184,7 @@ For example, we can add a title and axis labels and change the point size using 
 An alternative way to generate plots is to use ggplot2 package. 
 
 .. code:: R
+
 	install.packages("ggplot2")
 	library(ggplot2)
 
@@ -185,6 +196,7 @@ An alternative way to generate plots is to use ggplot2 package.
 With ggplot2, we can add other features and variables to our plot. 
 
 .. code:: R
+
 	p <- ggplot(mtcars, aes(wt, mpg))
 	geom_point(aes(colour=factor(cyl), size = qsec)) + xlab("Car Weight") + ylab("Miles Per Gallon")
 
@@ -193,5 +205,4 @@ With ggplot2, we can add other features and variables to our plot.
 
 
 To learn more advanced uses of ggplot2, look at this more detailed step by step `tutorial <https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html>`_.
-
 
