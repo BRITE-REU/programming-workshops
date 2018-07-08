@@ -1,17 +1,17 @@
-R and Rstudio: Introduction and Data Structures
+R and RStudio: Introduction and Data Structures
 ================================================
 
 
-R is a free programming language for statistical computing and graphics. It is an implementation of the S programming language and was created by Ross Ihaka and Robert Gentleman at the Univeristy of Auckland, New Zealand. R is currently developed by the R Development Core Team. Rstudio is an Integrated Development Environment (IDE) for R. 
+R is a free programming language for statistical computing and graphics. It is an implementation of the S programming language and was created by Ross Ihaka and Robert Gentleman at the Univeristy of Auckland, New Zealand. R is currently developed by the R Development Core Team. RStudio is an Integrated Development Environment (IDE) for R. 
 
-To start, download the latest versions of R and Rstudio following the instructions provided `here <https://programming-workshops.readthedocs.io/en/latest/workshops/00_instructions/r.html>`_
+To start, download the latest versions of R and RStudio following the instructions provided `here <https://programming-workshops.readthedocs.io/en/latest/workshops/00_instructions/r.html>`_
 
 
 ===============================
 Getting Started
 ===============================
 
-Open Rstudio locally and learn how to use the `Rstudio interface <https://www.youtube.com/watch?v=jAgbZ8jkBtQ>`_.
+Open RStudio locally and learn how to use the `RStudio interface <https://www.youtube.com/watch?v=jAgbZ8jkBtQ>`_.
 
 
 =====================
