@@ -27,7 +27,7 @@ Importing downloaded data
 
 Based on the data object, there are different functions available to import datasets into R. A cheatsheet from Rstudio community is provided below with useful functions to load in data.
 
-.. image:: images/Import_Cheatsheet.pdf
+.. image:: images/Import_Cheatsheet.png
 
 An alternative way to import downloaded data is to also click on "Import Dataset" on the upper right hand side under Environment. 
 
