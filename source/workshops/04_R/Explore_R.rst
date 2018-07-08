@@ -1,6 +1,8 @@
 Exploring Data in R
 ===========================
 
+In this section we will go into more detail as to how to import and explore data through different packages,functions, and graphics.
+
 ========================
 R packages and libraries
 ========================
