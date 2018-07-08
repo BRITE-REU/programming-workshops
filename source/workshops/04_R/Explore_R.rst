@@ -179,7 +179,7 @@ For example, we can add a title and axis labels and change the point size using 
 
 	plot(mtcars$wt, mtcars$mpg, main="Scatterplot", xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19)
 
-.. image:: images/Plot_Paramters.png
+.. image:: images/Plot_Parameters.png
 
 An alternative way to generate plots is to use ggplot2 package. 
 
@@ -191,7 +191,7 @@ An alternative way to generate plots is to use ggplot2 package.
 	p <- ggplot(mtcars, aes(wt, mpg))
 	p + geom_point(size=2) + xlab("Car Weight") + ylab("Miles Per Gallon")
 
-.. image:: images/ggplot2_variable.png
+.. image:: images/ggplot2_example.png
 
 With ggplot2, we can add other features and variables to our plot. 
 
@@ -201,7 +201,7 @@ With ggplot2, we can add other features and variables to our plot.
 	geom_point(aes(colour=factor(cyl), size = qsec)) + xlab("Car Weight") + ylab("Miles Per Gallon")
 
 
-.. image:: images/ggplot2_example.png
+.. image:: images/ggplot2_variable.png
 
 
 To learn more advanced uses of ggplot2, look at this more detailed step by step `tutorial <https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html>`_.
