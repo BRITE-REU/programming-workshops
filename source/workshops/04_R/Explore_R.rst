@@ -1,9 +1,9 @@
 Exploring Data in R
 ===========================
 
-*************************
+========================
 R packages and libraries
-************************
+========================
 
 R packages are collections of functions and data sets developed by the R community. The main repository used in R is CRAN which has over 10,000 packages published and more that are publicly available. 
 
@@ -65,7 +65,7 @@ Typing data() in the console provides a list of datasets and their descriptions.
 
 
 We can load these data sets with the function load().
-To look at the first few lines of the data set, we can use the function head(). Alternatively, to see the last few lines of the data set, we can use the function tail().
+To look at the first few lines of the data set, we can use the function head(). To see the last few lines of the data set, we can use the function tail().
 
 .. image:: images/Load_Dataset.png
 
@@ -75,8 +75,6 @@ Saving Data Object and Files
 ****************************
 
 We can save objects using the save() function.
-
-If we load the data set mtcars using the data() function, and decide we want to save the data.
 
 For example, if we loaded the mtcars dataset from data() function in R, we can then save mtcars object by specifying the object (mtcars) and the file path with an .RData extension. Note, we can save more than one data object in a .RData file.
 
@@ -108,11 +106,11 @@ To load this file into R, we can use the load() function.
 Another way to save one data object is to save it using a .RDS extension. To save and load a .RDS extension, we can use saveRDS() function and readRDS() function.
 
 .. code:: R
-	#save emp.data to a .RDS file
+	#save mtcars to a .RDS file
 	saveRDS(mtcars, file = "mtcars.rds")
 
-	#read in .RDS file and save under emp.data variable name
-	CO2 <- readRDS(file = "mtcars.rds")
+	#read in .RDS file and save under mtcars variable name
+	mtcars <- readRDS(file = "mtcars.rds")
 
 To write an R object or variable to a file, we can use existing functions to write mtcars to a csv file and txt file. 
 
@@ -167,7 +165,7 @@ Many plot functions also include graphical parameter arguments.
 For example, we can add a title and axis labels and change the point size using arguments in the plot function.
 
 .. code:: R
-	plot(mtcars$wt, mtcars$mpg, main="Scatterplot", +  xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19)
+	plot(mtcars$wt, mtcars$mpg, main="Scatterplot", xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19)
 
 .. image:: images/Plot_Paramters.png
 
@@ -192,6 +190,6 @@ With ggplot2, we can add other features and variables to our plot.
 .. image:: images/ggplot2_example.png
 
 
-To learn more advanced uses of ggplot2, look at this a detailed step by step `tutorial <https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html>`_.
+To learn more advanced uses of ggplot2, look at this more detailed step by step `tutorial <https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html>`_.
 
 
