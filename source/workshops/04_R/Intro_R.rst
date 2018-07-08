@@ -482,6 +482,7 @@ To create a data frame, we can use the function data.frame():
 
 
 .. code:: R
+
   #Create a data frame with employee ID, salaries, and start dates
   
   emp.data <- data.frame( 
@@ -496,6 +497,7 @@ To create a data frame, we can use the function data.frame():
 
 
 .. code:: R
+
       emp_id salary start_date
   1     U974 623.30 2012-01-01
   2     U503 515.20 2013-09-23
@@ -509,10 +511,12 @@ To create a data frame, we can use the function data.frame():
 We can use the function str() to list the underlying structure of the data object.
 
 .. code:: R
+
   str(emp.data)
 
 
 .. code:: R
+
     'data.frame': 5 obs. of  3 variables:
    $ emp_name  : chr  "U974" "U503" "U298" "U545" ...
    $ salary    : num  623 515 611 729 843
@@ -522,18 +526,22 @@ We can use the function str() to list the underlying structure of the data objec
 We can extract data from the data frame and also add data to the data frame.
 
 .. code:: R
+
   #Extract salary information
   emp.data$salary
 
 .. code:: R
+
   [1] 623.30 515.20 611.00 729.00 843.25
 
 
 .. code:: R
+
   #Add column vector
   emp.data$dept <- c("IT","Operations","IT","HR","Finance")
 
 .. code:: R
+
       emp_id salary start_date       dept
   1     U974 623.30 2012-01-01         IT
   2     U503 515.20 2013-09-23 Operations
@@ -570,25 +578,32 @@ If statements
 
 
 .. code:: R
-  q<-3
-  t<-5
-  #if else conditional statement 
-  if(q<t){
+
+   q <- 3
+   t<-5
+   
+   #if else conditional statement 
+    
+   if(q<t){
 
     w<-q+t
   
     } else 
       
       w<-q-t
+  
 
 
 .. code:: R
-  w
+
+   w
   
   [1] 8 
 
 
+
 .. code:: R
+
   a<-2
   b<-3
   c<-4
@@ -598,7 +613,8 @@ If statements
 
 
 .. code:: R
-  x
+
+   x
   [1] 9 
 
 
@@ -611,16 +627,19 @@ We can use looping to efficiently repeat code without having to write the same c
 The while loop repeats a condition while the expression in parenthesis holds true and takes the form:
 
 .. code:: R
+
   while (condition controlling flow is true)
-        perform task 
+        perform task
 
 
 .. code:: R
+
   x<-0
   while(x<=5){x<-x+1}
   
 
 .. code:: R
+
   x
   [1] 6 
 
@@ -629,6 +648,7 @@ For loops are used to iterate through a process a specified number of times. A
 counter variable such as "i" is used to count the number of times the loop is executed: 
 
 .. code:: R
+
   for (i in start:finish)
       execute task 
 
@@ -636,6 +656,7 @@ counter variable such as "i" is used to count the number of times the loop is ex
 An example is to add values 1 to 10 to vector y using a for loop.
 
 .. code:: R
+
   #Create empty vector
   y<-vector(mode="numeric")
 
@@ -645,7 +666,9 @@ An example is to add values 1 to 10 to vector y using a for loop.
      }
  
 .. code:: R
+
   y
+
   [1] 1 2 3 4 5 6 7 8 9 10 
 
 
