@@ -5,7 +5,7 @@ In this workshop, we will focus on learning how to load packages, import data, p
 
 We will work in R Markdown, a .Rmd file written in markdown and contains chunks of embedded R code. 
 
-The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) are in the R_workshop folder which you can download here. 
+The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) are in the R_workshop folder which you can download `here <https://drive.google.com/open?id=1qqoupV8tYrKt0Zptzf3ooo7Um7hANcFb>`_. 
 
 ***********************
 Load Packages
@@ -47,14 +47,14 @@ Load these libraries using library("package_name") function:
 
 .. code:: R
    
-   #library("base") in case it's not loaded
-   library("readr")
-   library("dplyr")
-   library("ggplot2")
-   library("magrittr")
-   library("SummarizedExperiment")
-   library("DESeq2")
-   library("airway")
+   #library(base) in case it's not loaded
+   library(readr)
+   library(dplyr)
+   library(ggplot2)
+   library(magrittr)
+   library(SummarizedExperiment)
+   library(DESeq2)
+   library(airway)
 
 
 ***********************
