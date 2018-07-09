@@ -15,7 +15,7 @@ You are expected to study the the following content:
 
 In the workshop, we will work with RNA-Seq data and perform differential analysis.
 
-- `R Workshop <R_Workshop.html>`_
+- `R Workshop <Workshop_R.html>`_
 
 
 **Tutorials**
@@ -26,3 +26,4 @@ In the workshop, we will work with RNA-Seq data and perform differential analysi
     R and RStudio: Introduction and Data Structures <Intro_R>
     Exploring Data in R <Explore_R>
     R Workshop <Workshop_R>
+    R Workshop Solution <Workshop_R_Solution>
