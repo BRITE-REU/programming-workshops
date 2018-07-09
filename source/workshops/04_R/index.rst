@@ -13,9 +13,9 @@ You are expected to study the the following content:
 - `Introduction and Data Structures <Intro_R.html>`_
 - `Exploring Data in R <Explore_R.html>`_
 
+In the workshop, we will work with RNA-Seq data and perform differential analysis.
 
-In the hands-on workshop we will work on ssh login, loading modules and job submitting. 
-Then we will continue to clone a sample repository and work on forking, resolving conflicts and more advanced git commands.
+- `R Workshop <R_Workshop.html>`_
 
 
 **Tutorials**
@@ -25,4 +25,4 @@ Then we will continue to clone a sample repository and work on forking, resolvin
 
     R and RStudio: Introduction and Data Structures <Intro_R>
     Exploring Data in R <Explore_R>
-
+    R Workshop <Workshop_R>
