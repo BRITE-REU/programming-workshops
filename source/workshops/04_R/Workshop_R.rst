@@ -33,12 +33,12 @@ Note: If package base is not already installed, please install that as well.
 .. code:: R
    
    packages <- c("readr", "ggplot2", "dplyr", "magrittr")
-   install.packages(packages)
+   install.packages(packages, dependencies = TRUE)
 
    source("https://bioconductor.org/biocLite.R")
-   biocLite("SummarizedExperiment")
-   biocLite("DESeq2")
-   biocLite("airway")
+   biocLite("SummarizedExperiment", dependencies = TRUE)
+   biocLite("DESeq2", dependencies = TRUE)
+   biocLite("airway", dependencies = TRUE)
 
 
 
