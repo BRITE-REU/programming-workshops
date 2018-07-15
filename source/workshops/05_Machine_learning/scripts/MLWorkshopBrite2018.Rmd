@@ -1,0 +1,167 @@
+---
+title: "MLWorkshopBrite2018"
+author: "Dakota Hawkins"
+date: "July 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Introduction
+
+In this workshop, we'll use the GSE53987 dataset to explore and gain experience
+with common machine learning techniques. The dataset contains gene expression
+profiles is post-mortem human brain samples from subject with schizophrenia,
+bioplor disorder, and major depressive disorder. There are also a few metadata 
+features included, such as sex, race, and age. This workshop will explore the relationship between metadata factors and gene expression patterns within tissue types and mental health status.
+
+## Set Up
+
+First, we need to load the dataset and a few helper functions we've written
+into our `R` environments. From the top of the Github repository, the data 
+can be found at `/source/workshops/05_Machine_learning/data/combined_data.csv`.
+```{r}
+combined_data <- read.csv('source/workshops/05_Machine_learning/data/GSE53987_combined.csv', row.names=1)
+```
+
+
+Next, we need to load in a few helper functions we've written to make plotting
+and data exploration easier.
+
+```{r}
+#' create_boxplot
+#'
+#' Create grouped violin/boxplots for a specified feature.
+#'
+#' @param dataframe (data.frame): data.frame containing data to plot.
+#' @param y_column (string): column name to plot along the y-axis.
+#' @param group_column (string): column name for grouping variable.
+#' @param facet (string, optional): second grouping variable. Will create
+#'     distinct boxplots for each unique value within the column. Boxplots are
+#'     stacked in rows. Default is '', and no facet wrapping is applied.
+#'
+#' @return (gg.ggplot): ggplot object of boxplots
+#' @export
+#'
+#' @examples
+#'
+#' # plot 'Pmi' accross disease states
+#' create_boxplots(combined_data, 'Pmi', 'Disease.state')
+#'
+#' # plot 'Pmi' accross disease states and tissue types
+#' create_boxplots(combined_data, 'Pmi', 'Disease.state', 'Tissue')
+create_boxplot <- function(dataframe, y_column, group_column, facet='') {
+  boxplots <- ggplot(dataframe, aes_string(x=group_column, y=y_column)) +
+              geom_violin(aes_string(fill=group_column), trim=FALSE) +
+              geom_boxplot(width=0.1) +
+              theme_minimal() +
+              theme(axis.text.x = element_text(angle=45, hjust=1))
+  if (facet != '' && facet %in% colnames(dataframe)) {
+    boxplots <- boxplots + facet_grid(reformulate('.', facet))
+  }
+  return(boxplots)
+}
+
+#' create_scatterplot()
+#'
+#' Create a scatterplot!
+#'
+#' @param dataframe (data.frame): data.frame containing data to plot.
+#' @param x_column (string): column name for variable to plot along the x-axis.
+#' @param y_column (string): column name for variable to plot along the y-axis.
+#' @param color_column (string, optional): column name for variable to dictate
+#'     dot color. Default is '' with no coloring.
+#'
+#' @return (gg.ggplot): ggplot object of scatterplot
+#' @export
+#'
+#' @examples
+#'
+#' # plot 'A1CF' and 'A2M' expression
+#' create_scatterplot(combined_data, 'A1CF', 'A2M')
+#'
+#' # PLOT 'A1CF' and 'A2M' expression with 'Tissue' coloring
+#' create_scatterplot(combined_data, 'A1CF', 'A2M', 'Tissue')
+create_scatterplot <- function(dataframe, x_column, y_column, color_column='') {
+  scatter <- ggplot(dataframe, aes_string(x=x_column, y=y_column))
+  if (color_column != '' && color_column %in% colnames(dataframe)) {
+    scatter <- scatter + geom_point(aes_string(color=color_column))
+  } else {
+    scatter <- scatter + geom_point()
+  }
+  return(scatter)
+}
+
+#' create_histogram()
+#'
+#' Create a histogram!
+#'
+#' @param dataframe (data.frame): dataframe containing data to plot.
+#' @param column (string): column name of variable to plot.
+#' @param facet (string, optional): categorical variable to separate data on.
+#'     Default is `''` with no separation.
+#' @param bins (int, optional): number of bins in histogram. Default is 30.
+#'
+#' @return (gg.ggplot): ggplot object of histograms.
+#' @export
+#'
+#' @examples
+
+create_histogram <- function(dataframe, column, facet='', bins=30) {
+  hist <- ggplot(dataframe, aes_string(column)) +
+          geom_histogram(bins=bins)
+  if (facet != '' && facet %in% colnames(dataframe)) {
+    hist <- hist + facet_grid(reformulate('.', facet))
+  }
+  return(hist)
+}
+```
+## Exploration 1: Features
+
+Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
+
+### Distributions/Histograms
+What type of distributions exist within the features? Is Gender a balanced feature (roughly equal representation between both men and women)? Are numerical values normally distributed? Explore numerical distributions by plotting histograms for Age, an Age + Gender histogram, and one of your favorite genes found in the dataset. Discuss your findings below your code.
+
+```{r}
+
+```
+
+### Factor Dependence/Boxplots
+Some features display factor dependent values. That is, whether a subject is a male or a female might effect the expression patterns of a given gene. Explore factor and feature relationships by creating boxplots for three different features grouped by Tissue, Disease.status, and combining the two with the `facet` parameter in `create_boxplot()`. Discuss your finding below your code. If we want to predict factor/group membership (e.g. tissue of origin), what types of boxplots would we expect to see from a predictive feature?
+
+```{r}
+
+```
+
+
+## Exploration 2: Principal Component Analysis
+
+Principal Component Analysis (PCA) is a commonly used technique to create linearly uncorrelated features from a set of possibly correlated features. The procedure is done in such a way that the first feature produced by PCA, the first principal component -- PC1, explains the largest amount of variability possible. In this way, PCA is a dimension reduction technique, as the first few principal components often explain upwards of 90% of the variability found within a dataset. You can perform PCA in R using the `prcomp` function. Give your R terminal that fatty `?prcomp` to look up how to use the function. It is important to note that if we're planning on predicting anything using the principal components, such as tissue type or Disease.status, those features should *not* be included in the matrix that is passed to `prcomp`. Before performing PCA, create a new data.table containing only explanatory values (i.e. the features we want to use to predict class membership).
+
+### Variation Explanation
+
+Explore how much variation is explained by the principal components.How much variation is explained by the first two principal components? How many principal components are required to explain 75%, 85%, 90%, 95%, and 99% of the variation within our dataset?
+
+
+### Separation in the Principal Components
+
+Because principal components contain so much information, they are often used to separate samples from different factor groups. Visually explore this separation using the `create_histogram()` function to plot the first two principal components and color samples according to Tissue and Disease.status. What effect does plotting the third principal component have on sample separation?
+
+
+### Tissue Dependent Separation
+
+It is possible samples from one tissue are more predictive of Disease.status than samples from another tissue. Subset the dataset into three disjoint datasets by Tissue. Run PCA on all three of these datasets, plot the first two principal components, and color the dots according to Disease.status. Does there appear to be a meaningful difference in the separation between disease classes between the three different datasets?
+
+## Exploration 3: Feature Selection
+
+## Exploration 4: Highly Related Features
+
+## Exploration 5: Unsupervised Learning - Clustering
+
+## Exploration 6: Association Rules
+
+## Exploration 7: Supervise Learning
+
+## Exploration 8: Rule Induction in RapidMiner
