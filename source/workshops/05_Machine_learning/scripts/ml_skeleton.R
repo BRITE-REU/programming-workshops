@@ -82,6 +82,12 @@ create_scatterplot <- function(dataframe, x_column, y_column, color_column='') {
 #' @export
 #'
 #' @examples
+#' 
+#' # create histogram of age distributions
+#' # create_histogram(combined_data, 'Age')
+#' #
+#' # create histogram of age distributions segmented by `Gender`
+#' # create_histogram(combined_data, 'Age', facet='Gender')
 create_histogram <- function(dataframe, column, facet='', bins=30) {
   hist <- ggplot(dataframe, aes_string(column)) +
           geom_histogram(bins=bins)
