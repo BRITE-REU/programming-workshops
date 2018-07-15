@@ -22,7 +22,7 @@ First, we need to load the dataset and a few helper functions we've written
 into our `R` environments. From the top of the Github repository, the data 
 can be found at `/source/workshops/05_Machine_learning/data/combined_data.csv`.
 ```{r}
-combined_data <- read.csv('source/workshops/05_Machine_learning/data/GSE53987_combined.csv', row.names=1)
+#combined_data <- read.csv('../data/GSE53987_combined.csv', row.names=1)
 ```
 
 
@@ -155,6 +155,26 @@ Because principal components contain so much information, they are often used to
 It is possible samples from one tissue are more predictive of Disease.status than samples from another tissue. Subset the dataset into three disjoint datasets by Tissue. Run PCA on all three of these datasets, plot the first two principal components, and color the dots according to Disease.status. Does there appear to be a meaningful difference in the separation between disease classes between the three different datasets?
 
 ## Exploration 3: Feature Selection
+
+Feature selection is a commonly performed step in statistics/machine learning to distinguish the most informative variable to use in model creation. There are several different ways to perform feature selection, and many of these can be application specific. In this workshop we'll explain four possible avenues for feature selection in gene expression data analysis: 1) selecting the $x$ most variable features, 2) selecting features with the $x$ largest correlations with principal components, 3) selecting the top $x$ differentially expressed genes between defined groups, and 4) calculating Fisher's Criterion for features between groups. Use one of the below methods to select the most informative features.
+
+### 1. Most variable features
+
+Calculating the most variable features in a dataset is relatively straight forward using the `var` or `cov` function in R. Ranking the values in the matrix diagnol will produce the most variable genes.
+
+### 2. Highest correlations with principal components
+
+Correlation explains how much variation in a variable $y$ is explained by the variation in variable $x$. Knowing that principal components maximize the variance found within a dataset, finding how much each feature correlates with each prinicipal component thus gives us a measure for how informative various features are. Because different principal components likely explain different parts of the data, it may be important to select variables that are highly correlated with different components.
+
+### 3. Differential Expression
+
+If we have pre-defined groups that we know we're interested in predicting, such a `Disease.status` or `Tissue`, we can find genes that are differentially expressed between the groups, and then subset our dataset down to the most differentially expressed. When considering ranking differentially expressed genes, it is important to consider *both* statistical significance (i.e. a p-value) as well as the biological difference (i.e. average log-fold change between groups).
+
+### 4. Largest Fisher's Criterion
+
+Fisher's Criterion, otherwise known as Fisher's linear discriminant, is used in linear discrimant analysis for classification. However, given predefined groups $i$ and $j$, we can calculate the statistic to find the informative features:
+
+$F.C. = \frac{(\mu_i - \mu_j)}{\sigma_i^2 + \sigma_j^2}$
 
 ## Exploration 4: Highly Related Features
 
