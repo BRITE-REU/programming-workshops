@@ -14,8 +14,6 @@ You are expected to study the the following content:
 
 - `Dataset exploration and validation <dataset.html>`_
 - `Learning models <learning.html>`_
-- `Machine learning in R <machine_learning_in_R.html>`_
-- `Introduction to RapidMiner <RapidMiner_intro.html>`_
 
 In the workshop, do some basic data exploration and modeling.
 
