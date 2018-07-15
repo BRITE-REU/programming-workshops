@@ -1,4 +1,5 @@
 library(ggplot2)
+library(reshape2)
 
 setwd('Documents/BRITE/BritePythonIntro/programming-workshops/source/workshops/05_Machine_learning/')
 combined_data <- read.csv('data/GSE53987_combined.csv', row.names=1)
@@ -77,7 +78,7 @@ create_scatterplot <- function(dataframe, x_column, y_column, color_column='') {
 #'     Default is `''` with no separation.
 #' @param bins (int, optional): number of bins in histogram. Default is 30.
 #'
-#' @return
+#' @return (gg.ggplot): ggplot object containing histograms.
 #' @export
 #'
 #' @examples
@@ -109,4 +110,29 @@ create_histogram <- function(dataframe, column, facet='', bins=30) {
 z_center_column <- function(dataframe, column_name) {
   return((dataframe[ , column_name] - mean(dataframe[ , column_name])) /
           sd(dataframe[ , column_name]))
+}
+
+#' correlation_plot
+#' 
+#' Create a simple correlation heatmap.
+#'
+#' @param cor_mat (data.frame, data.matrix): data matrix containing 
+#'     correlations between variables.
+#' @param row_title (string): name of features to plot along the x-axis.
+#' @param col_title (string): name of features to plot along the y-axis
+#'
+#' @return (gg.ggplot)
+#' @export
+#'
+#' @examples
+#' # cor_mat <- cor(combined_data[12:22])
+#' # correlation_plot(cor_mat, 'Genes', 'Genes')
+correlation_plot <- function(cor_mat, row_title, col_title) {
+  melted_data <- melt(cor_mat)
+  colnames(melted_data)[1:2] <- c(row_title, col_title)
+  cor_plot <- ggplot(data=melted_data, aes_string(x = row_title, y=col_title,
+                                      fill='value')) +
+              geom_tile() + 
+              theme(axis.text.x = element_text(angle=90, hjust=1))
+  return(cor_plot)
 }
