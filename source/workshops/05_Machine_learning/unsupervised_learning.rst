@@ -14,7 +14,9 @@ Dimensionality reduction
 
 It is hard to interpret the data in the feature space (M dimensions). The first exploration step into data is to reduce the dimensionality to 2 dimensions and plot the dimensions in x-y coordinates which are human readable. 
 
-* **Principle Component Analysis (PCA)** is the most commonly used dimensionality reduction method. Each principle component is a linear combination of Weights.Features, adjusting the weights to capture the most variability across the samples. The components are uncorrelated and can be plotted to observe the data in the 2 dimension space. You should keep in mind that while PCA shows the variability in the data, it is not always meaningful and might be showing noise or batch errors. 
+* **Principle Component Analysis (PCA)** is the most commonly used dimensionality reduction method. Each principle component is a linear combination of :math:`weights.features`. Weights are adjusted to capture the most variability across samples. The components are uncorrelated and can be used as features for further clustering or classification. Common practice is to plot principle components and color the samples by different features to see how the samples are separating. You should keep in mind that while PCA shows the variability in the data, it is not always meaningful and might be showing noise or batch errors. 
+
+.. image:: img/grz_tissues_PCA.png
 
 * **Singular-value decomposition (SVD)** calculates the diagonal matrix S on the data matrix A :
 
