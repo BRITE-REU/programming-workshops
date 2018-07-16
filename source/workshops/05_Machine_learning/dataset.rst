@@ -1,13 +1,10 @@
 .. _linux_bash:
 
 ============================================
-Workshop 5: The dataset
+Data preparation
 ============================================
 
---------------------------------------------
- The dataset 
---------------------------------------------
-The dataset in machine learning is a matrix (table) consisting of *N* rows (samples or instances) and *M* columns (features).
+The data in machine learning is presented in the form of a matrix (data frame in R) consisting of *N* rows (samples or instances) and *M* columns (features).
 
 --------------------------------------------
 Features
