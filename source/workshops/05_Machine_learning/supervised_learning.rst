@@ -161,3 +161,28 @@ Learning curves
  Semi-supervised learning
 --------------------------------------------
 Semi-supervised learning is applied to data that is partially labeled. First using a clustering algorithm you find clusters, then you use the known labels and propagate them to the nearby samples.
+
+
+--------------------------------------------
+Summary notes
+--------------------------------------------
+1. Do not skip the data preparation step. Never trust the data you are working on. You must end up working for months trying to improve a dataset then notice there was some mislabeled samples. Or get very unexpected good results and then notice you had redundant samples.
+
+2. Check for imbalances in your data. If 90% of your data is control and 10% case, a model that classifies everything as control will show 90% accuracy. If the nature of your data is imbalanced, make sure you specify balanced loss criteria while learning the model (positive and negative error will be treated respectively).
+
+3. The main mistake in learning rises from train leakage to test. If the normalization method uses information from other samples (e.g. quantile normalization), it should be done separately on train and test. Feature selection/reduction should be done only on train, then the final features will be extracted from the test. No cheating.
+
+4. When applying a model understand how the models work. Know it's parameters. Make rational choices and optimize parameters. 
+
+5. Test multiple models and draw ROC curves to compare their performance.
+
+6. Show more than 1 performance measurement. Do not rely on accuracy. Know what the expectation of your model is. The accuracy for a plane flight related model should be 99.99% but for human disease with so much variability, 80% can be a good prediction.
+
+7. When possible use more simple models. If you model performs 90% with 100 features and 89% with 10 features, the later is a better model. Same goes for complexity, e.g. degree of a kernel. In general avoid using degree greater than 2.5.
+
+8. Always draw learning curves to check for overfitting. However every model is overfitting to some extent.
+
+9. After you tested your model on the test and proved your model is correct and generalized, combine all the data and make a final model with cross-validation. 
+
+10. The power of a model is in its sample size and good feature selection. More samples better model. 
+
