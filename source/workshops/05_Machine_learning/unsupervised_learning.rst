@@ -6,6 +6,8 @@
 
 "Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses. The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data." `read more... <https://www.mathworks.com/discovery/unsupervised-learning.html>`_
 
+.. image:: img/unsupervised_flowchart.png
+
 ----------------------------
 Dimensionality reduction
 ----------------------------
@@ -45,6 +47,8 @@ Clustering algorithms try to divide the data samples based on some sort of simil
 .. raw:: html
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/BVFG7fd1H30" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    
+
     
 
 * **X-means** is a general K-means clustering algorithm that tries different K values to find the K that best represents the data.
