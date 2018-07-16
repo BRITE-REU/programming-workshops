@@ -86,6 +86,7 @@ Cross validation is a method to divide the data (train) into X portions. In a 10
 Cross validation helps to avoid overfitting. Also by calculating the the standard deviation of the performances, we can see how robust the model is. The following figure illustrates how cross validation will help find the best fit. The top left model is overfitted (while the average performance will be good the standard deviation will be high). The bottom right model is under-fitting, where the average performance will be low. 
 
 .. image:: img/CV_fit.gif
+    :scale: 50%
 
 Note that cross validation is applied when learning a model on the train. It is a good approach to build a model but after this we still need to test the model on *independent* test data. Why? Because the splits in the cross validation were correlated, so cross-validation is not a test performance, but rather a training performance.
 
