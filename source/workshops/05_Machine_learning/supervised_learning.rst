@@ -122,7 +122,7 @@ In the case of numeric labels, we have to measure the *error* of the prediction.
 
 .. math::
 
-   RMSD = sqrt{\frac{\sum{(label_{predicted} - label_{actual})^2}}{N}}
+   RMSD = \sqrt{\frac{\sum{(label_{predicted} - label_{actual})^2}}{N}}
 
 
 
