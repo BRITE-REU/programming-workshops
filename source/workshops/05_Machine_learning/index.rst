@@ -12,8 +12,10 @@ Then we will introduce a general pipeline for unsupervised and supervised learni
 
 You are expected to study the the following content:
 
-- `Dataset exploration and validation <dataset.html>`_
-- `Learning models <learning.html>`_
+* `Dataset exploration and validation <dataset.html>`_
+* `Learning models <learning.html>`_
+    - `Unsupervised learning <unsupervised_learning.html>`_
+    - `Supervised learning <supervised_learning.html>`_
 
 
 In the workshop, do some basic data exploration and modeling.
@@ -28,4 +30,6 @@ In the workshop, do some basic data exploration and modeling.
 
     Dataset exploration and validation <dataset>
     Learning models <learning>
+    Unsupervised <unsupervised_learning>
+    Supervised <supervised_learning>
     Machine Learning Workshop <Workshop_machine_learning>
