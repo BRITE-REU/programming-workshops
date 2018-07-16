@@ -10,7 +10,9 @@ There are 2 main learning methods: supervised, when we have *labels* and we want
 --------------------------------------------
  Unsupervised learning
 --------------------------------------------
+
 "Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses. The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data." `read more... <https://www.mathworks.com/discovery/unsupervised-learning.html>`_
+
 ***************************
 Dimensionality reduction
 ***************************
@@ -34,10 +36,11 @@ Clustering algorithms try to divide the data samples based on some sort of simil
 * **Hierarchical clustering** is the most basic clustering algorithm. The samples are put in it's own 'clade' and then iteratively the most similar clades are combined. This can be done bottom up or downwards to form a dendrogram which you can cut at any level to obtain different number of clusters. Hierarchical clustering is usually shown as a heatmap.
 
 .. image:: img/hierarchical_clustering.png
+    :scale: 50%
 
 .. raw:: html
 
-    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=7xHsRkOdVwo" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/7xHsRkOdVwo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
  
 * **K-means** is a method to cluster the samples into K groups with different means. The algorithm starts by choosing K random points as *means* in the feature space and assigning samples to each cluster based on their closest mean (by some similarity measure). The means are iteratively moved to best fit the samples until no further improvement can be done. This method is not deterministic and depends on the initial random guesses.
@@ -46,7 +49,8 @@ Clustering algorithms try to divide the data samples based on some sort of simil
 
 .. raw:: html
 
-    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=BVFG7fd1H30" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/BVFG7fd1H30" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    
 
 * **X-means** is a general K-means clustering algorithm that tries different K values to find the K that best represents the data.
 
