@@ -30,6 +30,10 @@ Next, we need to load in a few helper functions we've written to make plotting
 and data exploration easier.
 
 ```{r}
+library(ggplot2)
+library(reshape2)
+library(caret)
+library(e1071)
 #' create_boxplot
 #'
 #' Create grouped violin/boxplots for a specified feature.
@@ -178,10 +182,21 @@ $F.C. = \frac{(\mu_i - \mu_j)}{\sigma_i^2 + \sigma_j^2}$
 
 ## Exploration 4: Highly Related Features
 
+With datasets of any size, it is unlikely our features are entirely independent. Instead, there is likely redundant information contained in multiple features. While this is not a problem for some algorithms, with standard algorithms such as multi-variate linear regression, co-linearity between variables can lead to a highly overfit model. You might think of this as "double counting". Even if a specific algorithm may be able to deal with related variables, removing non-informative features can still help with overfitting and reducing run time. To visualize highly correlated features, first calculate the correlation matrix between your numerical variables, and visualize the relationships by calling the `correlation_plot()` function. Which features are highly related to each other? How do these relationships change if we subset our dataset by tissue type? If you would like, feel free to remove highly correlated variables. However, you'll need to decide how to determine which features to keep among those that are highly related.
+
 ## Exploration 5: Unsupervised Learning - Clustering
+
+Unsupervised learning can be thought of as applying an algorithm to a dataset in order to discover latent structure that exists between samples. We've already been exposed to some of these algorithms via PCA. However, one of the most common techniques in machine learning, and especially bioinformatics, is hierarchical clustering. Hierarchical clustering builds a dendogram/tree relating similar samples together. While hierarchical clustering itself doesn't produce distinct clusters, cutting the dendogram at different three heights does. However, even without producing distinct clusters the technique is still useful. The `heatmap()` function in `R` clusters both samples and features to group highly related features along with highly related samples. Use the `heatmap()` function in R to visualize the previously created correlation matrix. Is it easier to parse which features are highly related? Heatmaps are also commonly used to visualize gene expression patterns. Isolating only the gene expression values from your dataset, use the `heatmap()` function to explore sample and gene clusters. Do any genes form distinct clusters? What about samples? 
+
 
 ## Exploration 6: Association Rules
 
 ## Exploration 7: Supervise Learning
+
+Supervise learning is a technique to teach an algorithm to distinguish between previously labelled groups, such as `Tissue`, `Gender`, or `Disease.status`. However, all supervised methods require data to learn how to differentiate between classes. Therefore, it is necessary to separate data into test/train sets. The training set is used to train the model, while the test set is used to evaluate performance. Cross-validation, a method of partitioning the data into disjoint subsets and continually re-training and re-testing with different partition combinations, is often used to evaluate models. In `R`, you can use the `createFolds` function in the `caret` package to easily partition your data. Load/install the library, and `?createFolds` for more information. In this section, we will build various classifiers to predict different classes from our data. You should evaluate your models' performances using the AUC in ROC space -- at least for binary classes -- along with confusion matrices.
+
+### Logistic Regression
+
+Logistic regression 
 
 ## Exploration 8: Rule Induction in RapidMiner
