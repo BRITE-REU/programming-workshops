@@ -1,12 +1,15 @@
---------------------------------------------
+.. _linux_bash:
+
+============================================
  Unsupervised learning
---------------------------------------------
+============================================
 
 "Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses. The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data." `read more... <https://www.mathworks.com/discovery/unsupervised-learning.html>`_
 
-***************************
+----------------------------
 Dimensionality reduction
-***************************
+----------------------------
+
 It is hard to interpret the data in the feature space (M dimensions). The first exploration step into data is to reduce the dimensionality to 2 dimensions and plot the dimensions in x-y coordinates which are human readable. 
 
 * **Principle Component Analysis (PCA)** is the most commonly used dimensionality reduction method. Each principle component is a linear combination of Weights.Features, adjusting the weights to capture the most variability across the samples. The components are uncorrelated and can be plotted to observe the data in the 2 dimension space. You should keep in mind that while PCA shows the variability in the data, it is not always meaningful and might be showing noise or batch errors. 
@@ -19,9 +22,9 @@ It is hard to interpret the data in the feature space (M dimensions). The first 
 
 where M is the feature size (columns) and N is the sample size (rows). Read more `here <http://andrew.gibiansky.com/blog/mathematics/cool-linear-algebra-singular-value-decomposition/>`_. 
 
-***************
+----------------------------
 Clustering
-***************
+----------------------------
 To explore the data we can do some sort of clustering. 
 Clustering algorithms try to divide the data samples based on some sort of similarity into different *clusters*. An example is to cluster single cell gene expression data to find tissue types.
 
