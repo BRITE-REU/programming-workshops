@@ -78,6 +78,7 @@ Nominal labels
 **Confusion matrix** is a table showing out of total samples of each label class how many were predicted of each class:
 
 .. image:: img/confusion_matrix.png
+    :scale: 70%
 
 .. code::
 
