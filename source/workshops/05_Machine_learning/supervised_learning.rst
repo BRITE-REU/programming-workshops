@@ -5,7 +5,7 @@
 ============================================
 
 Another common learning approach is to learn a predictive model on labeled data to make predictions on new unknown samples. This is referred to as **classification**. 
-Classification is applied to a subset of the data - *train*, and tested on a smaller subset - *test*. So the first step after data preparation is to *randomly* split the data into two sets (usually 75% train and 25% test). Check if your train and test are not biased (by age, sex, or label). The purpose of separating some data as test is to later verify the model and ensure we are not over-fitting. The most critical part in classification is to make sure the train data does not *leak* into the test, meaning no information from the train should be secreted into the test data - whether at normalization, feature selection, or when learning the model.
+Classification is applied to a subset of the data - *train*, and tested on a smaller subset - *test*. So the first step after data preparation is to *randomly* split the data into two sets (usually 75% train and 25% test). Check if your train and test are not biased (by age, sex, or label). The purpose of separating some data as test is to later verify the model and ensure we are not over-fitting. The most critical part in classification is to make sure the train data does not *lea^k* into the test, meaning no information from the train should be secreted into the test data - whether at normalization, feature selection, or when learning the model.
 
 .. image:: img/supervised_flowchart.png
 
@@ -70,7 +70,7 @@ In order to find the *best* parameter combination, you can use **optimization gr
 *********************************
 Kernels
 *********************************
-Every classification model uses a pattern analysis method to find patterns within label classes. This pattern analysis can be determined by different kernels. A kernel is a function `f (features --> label)`. For example a linear kernel is defined as :math:`\sum{weights.X}`, a polynomial kernel of degree :math:`d` is defined as :math:`\sum{weights.X^degree}`, radial basis function is :math:`exp(- \frac{|X-X'|^2}{2\sigma ^2})`, ...
+Every classification model uses a pattern analysis method to find patterns within label classes. This pattern analysis can be determined by different kernels. A kernel is a function `f (features --> label)`. For example a linear kernel is defined as :math:`\sum{weights.X}`, a polynomial kernel of degree :math:`d` is defined as :math:`\sum{weights.X^d}`, radial basis function is :math:`exp(- \frac{|X-X'|^2}{2\sigma ^2})`, ...
 Understand the kernel you choose. And in general, the more simple kernels are preferable (if linear works fine don't go to a ANOVA kernel). Complicated models put you at the risk of over-fitting. 
 Whatever choice you make in life, you should be able to justify it.
 
