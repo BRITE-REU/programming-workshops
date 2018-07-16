@@ -29,10 +29,9 @@ where M is the feature size (columns) and N is the sample size (rows). Read more
 ----------------------------
 Clustering
 ----------------------------
-To explore the data we can do some sort of clustering. 
 Clustering algorithms try to divide the data samples based on some sort of similarity into different *clusters*. An example is to cluster single cell gene expression data to find tissue types.
 
-* **Hierarchical (agglermorative) clustering** is the most basic clustering algorithm. The samples are put in it's own 'clade' and then iteratively the most similar clades are combined. This can be done bottom up or downwards to form a dendrogram which you can cut at any level to obtain different number of clusters. Hierarchical clustering is usually shown as a heatmap.
+* **Hierarchical (agglermorative) clustering** is the most basic clustering algorithm. The samples are put in its own clusters and then iteratively the most similar clusters are combined to create super-clusters. This can be done bottom up or downwards to form a dendrogram which you can cut at any level to obtain different number of clusters. Hierarchical clustering is usually shown as a heatmap.
 
 .. image:: img/hierarchical_clustering.png
     :scale: 50%
@@ -42,7 +41,8 @@ Clustering algorithms try to divide the data samples based on some sort of simil
     <iframe width="560" height="315" src="https://www.youtube.com/embed/7xHsRkOdVwo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
  
-* **K-means** is a method to cluster the samples into K groups with different means. The algorithm starts by choosing K random points as *means* in the feature space and assigning samples to each cluster based on their closest mean (by some similarity measure). The means are iteratively moved to best fit the samples until no further improvement can be done. This method is not deterministic and depends on the initial random guesses.
+ 
+* **K-means** is a method to cluster the samples into K distributions with different means. The algorithm starts by choosing K random points as *means* in the feature space and assigns samples to a cluster with the closest mean (by some similarity measure). The means are iteratively moved to best fit the samples until no further improvement are made. This method is not deterministic and depends on the initial random guesses. Bad guesses will result in poor clustering.
 
 .. image:: img/k-means.png
 
@@ -60,10 +60,10 @@ The following image shows different clustering algorithm run on different data (
 .. image:: img/clustering.png
     :target: https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68
 
-Note that in all these clustering methods we talked about similarity. Similarity can be defined differently. **Euclidean distance** is the most common measure by simply measuring the straight line distance between the two samples in the feature space.
+Note that in all these clustering methods we talked about similarity. Similarity can be defined differently. **Euclidean distance** is the most common measure which is simply measuring the straight line distance between the two samples in the feature space.
 For a detailed comparison read this article:
 
 `Shirkhorshidi, Ali Seyed, Saeed Aghabozorgi, and Teh Ying Wah. "A comparison study on similarity and dissimilarity measures in clustering continuous data." PloS one 10.12 (2015): e0144059. <http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144059>`_
 
-It is very important to keep in mind that *any data clusters*. Clusters obtained by any method are a way to explore the data. You can measure the *fitness* of the clustering by measuring the intra-clusters similarity vs. the in-between cluster dissimilarity. 
+Keep in mind that *any data clusters*. Clusters obtained by any method are a way to explore the data. You can measure the *fitness* of the clustering by measuring the intra-clusters similarity vs. the in-between cluster dissimilarity. 
 Commonly used measure are Silhouette coefficient and the Davies–Bouldin index.
