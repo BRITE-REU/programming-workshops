@@ -1,7 +1,9 @@
 library(ggplot2)
 library(reshape2)
+library(caret)
+library(ROCR)
 
-setwd('Documents/BRITE/BritePythonIntro/programming-workshops/source/workshops/05_Machine_learning/')
+setwd('/Users/dakot/Code/programming-workshops/source/workshops/05_Machine_learning/')
 combined_data <- read.csv('data/GSE53987_combined.csv', row.names=1)
 
 
@@ -122,7 +124,7 @@ z_center_column <- function(dataframe, column_name) {
 #' 
 #' Create a simple correlation heatmap.
 #'
-#' @param cor_mat (data.frame, data.matrix): data matrix containing 
+#' @param cor_mat (data.frame, data.matrix): square data matrix containing 
 #'     correlations between variables.
 #' @param row_title (string): name of features to plot along the x-axis.
 #' @param col_title (string): name of features to plot along the y-axis
@@ -141,4 +143,74 @@ correlation_plot <- function(cor_mat, row_title, col_title) {
               geom_tile() + 
               theme(axis.text.x = element_text(angle=90, hjust=1))
   return(cor_plot)
+}
+
+
+
+#' cross_validate_logit_model_example
+#' 
+#' Example of cross-validation implementation using 
+#' logistic regression to predict Gender from A2M expression
+#'
+#' @param dataframe (data.frame): data.frame containing both
+#' dependent and independent variable. 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' 
+#' # cross_validate_logit_model_example(combined_data)
+cross_validate_logit_model_example <- function(dataframe) {
+  y <- dataframe$Gender
+  folds <- caret::createFolds(y, k=10)
+  
+  # bind outputted list auc scores to dataframe 
+  # for future averaging
+  metrics <- lapply(1:length(folds), function(i) {
+    test_idx <- folds[[i]]  # get current test partition
+    test <- dataframe[test_idx, ]
+    train_idx <- unlist(folds[c(1:length(folds))[-i]])  # get train partions
+    train <- dataframe[train_idx, ]
+    
+    # create model --> formula Gender ~ A2m is predicting Gender from 
+    # A2m expression | Gender ~ . would predict Gender using all features
+    model <- glm(Gender ~ A2M, data=train, family=binomial)
+    
+    test_pred <- predict(model, test)  # predict test labels from data
+    pred_metrics <- ROCR::prediction(test_pred, test$Gender)
+    roc_values <- ROCR::performance(pred_metrics, measure = 'tpr', x.measure='fpr')
+    auc <- ROCR::performance(pred_metrics, measure='auc')
+    auc <- auc@y.values[[1]]
+    return(list('fpr' = roc_values@x.values[[1]], 
+                'tpr' = roc_values@y.values[[1]], 'auc'=auc))
+  })
+  
+  # Concatenate metrics from different runs
+  fpr <- c()
+  tpr <- c()
+  fold <- c()
+  roc <- c()
+  for (i in 1:length(metrics)) {
+    fpr <- c(fpr, metrics[[i]]$fpr)
+    tpr <- c(tpr, metrics[[i]]$tpr)
+    roc <- c(roc, metrics[[i]]$auc)
+    fold <- c(fold, seq(i, i, length.out=length(metrics[[i]]$fpr)))
+  }
+  
+  # create data frames for ggplotting
+  roc_df <- data.frame('fpr'=fpr, 'tpr'=tpr,'fold'=fold)
+  roc_df$fold <- as.factor(roc_df$fold)
+  linspace <- seq(from=0, to=1, length.out=1000)
+  average_roc <- approx(fpr, tpr, xout=linspace)
+  average_df <- data.frame('fpr'=average_roc$x, 'tpr'=average_roc$y)
+  
+  # plot roc curve + auc 
+  mean_auc <- round(mean(auc), 3)
+  ggplot(data=roc_df, aes(x=fpr, y=tpr)) +
+    geom_line(aes(color=fold), alpha=0.75) + 
+    geom_line(data=average_df, color='black') + 
+    ggtitle("ROC Curve", subtitle=paste0('AUC = ',
+                                           as.character(mean_auc)))
+  
 }
