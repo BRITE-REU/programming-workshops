@@ -25,7 +25,7 @@ Features can be different types:
 
 Example: Many choose to set education status as 1: no college, 2: college degree, 3: post-graduate. Ask yourself, does 1.5 have a meaning?
 
-Example: Stages of a tumor is represented by numbers (1, 2, ..).
+Example: Stages of a tumor is represented by numbers (1, 2, ..) but it nominal.
 
 **Special features** include the ID, label, batch, etc. 
 They are treated differently. 
@@ -34,14 +34,19 @@ Label is used for supervised learning (classification). A dataset can only have 
 
 **Meta-features** are features made using the measured features. 
 For example BMI is a feature made from weight and height. 
-PCA vectors are features based on alll features.
+PCA vectors are features based on all features.
 
 
 --------------------------------------------
 Data exploration
 --------------------------------------------
 
-**Data validation** means that you should show all known relations shown in the literature is present in your data. For example if a gene has been highly associated with case studies, you should observe the same pattern in your data. Or if you have blood pressure and heart disease, they should be correlated. In addition you should show your data is representative of the real population. For example if working on samples from USA and you have an obesity feature (not label) you should make sure that the ratio of obese people is comparable to the ratio in USA. Or if the ratio of female to male is about 50%. 
+Explore the data to validate your data and potentially find new patterns. **Data validation** means that you should show known relations shown in the literature is present in your data. For example if a gene has been highly associated with your case studies, you should observe the same pattern in your data. Or if you have blood pressure and heart disease, they should be correlated. In addition you should show your data is **representative** of the real population. For example if you are working on samples from USA and you have an obesity feature (not label) you should make sure that the ratio of obese people is comparable to the ratio in USA. Or if the ratio of female to male is about 50%. 
+
+Draw many plots. Show how the features are distributed and how you expect them to be. Show your data is balanced (e.g. female and male have the same ratio) and if not be aware of the imbalance (for example rare diseases). The probability distributions in your data can result in misinterpretation. 
+
+In order to validate your data you can look for correlations between numeric features and associations between nominal features. The known relations in the literature should be validated by your data. You might find new relations and associations which can further be studied. 
+
 
 Let's look at an example on as subset of features patients with diabetes type 2. 
 
@@ -58,9 +63,6 @@ Let's look at an example on as subset of features patients with diabetes type 2.
 
 Education is the level of education (1=finished high school, 2=college degree, 3=post graduate) and living is the type of living environment (1=city/town, 2=village). Smoking is another nominal feature (0=doesn't smoke, 1: occasional smoker, 2=light smoker, 3=heavy smoker). HDL and LDL are good and bad cholesterol levels in blood. Missing data is represented with NAs.
 
-Draw many plots. Show how the features are distributed and how you expect them to be. Show your data is balanced (e.g. female and male have the same ratio) and if not be aware of the imbalance (for example rare diseases). The probability distributions in your data can result in misinterpretation. 
-
-In order to validate your data you can look for correlations between numeric features and associations between nominal features. The known relations in the literature should be validated by your data. You might find new relations and associations which can further be studied. 
 
 **1. Correlation matrix**: calculate the correlation between the features and draw a heatmap. 
 Look at the highly correlated features. Make sure the correlations are valid (by literature) and mark down if they are direct correlations or indirect. 
@@ -119,18 +121,20 @@ You should make sure that all the top rules are meaningful. For example: {age=[5
 --------------------------------------------
 Data preparation
 --------------------------------------------
-The most important but neglected part of machine learning of data mining is preparing the data. 
+The most important but neglected part of machine learning and data mining is preparing the data. 
 If your data is invalid, no matter what skills you have, the results will be invalid.
 The goal of data preparation is to make sure the data is representative and correct. 
 
-**1. Typos** are the most common error in the dataset. Most data are collected over time, manually input by operators. For any nominal value you should check the levels in the data. For example for sex make sure you only have 2 levels (F/M or female/male). For numeric values draw boxplots and histograms. Make sure the data follows the expected distribution and estimates (mean and sd are same as expected). If you have nominal features, make sure the numeric values for each are correctly spread out. For example if you have sex and age in your data, make sure the age distribution for female and male are comparable.
+**1. Typos** are the most common error in data. Most datasets are collected over time, manually input by operators. For any nominal value you should check the levels in the data. For example for sex make sure you only have 2 levels (F/M or female/male). For numeric values draw boxplots and histograms. Make sure the data follows the expected distribution and estimates (mean and standard deviation are same as expected). If you have nominal features, make sure the numeric values for each are correctly spread out. For example if you have sex and age in your data, make sure the age distribution for female and male are comparable.
 
-**2. Missing data** is common in data. Make sure they are presented in a correct format recognized by the tool and code you use. Some tools take NA or blanks as missing, some use ?. Make a table and see which data points are missing and how often. Try to understand why and if it is randomly missing or has a pattern? Decide how to handle them. Some methods accept missing values and some don't. Understand how missing values are interpreted. If you remove them have a good explanation of your criteria. Some might choose to replace missing data with nearby datapoints if possible.
+**2. Missing data** is common. Make sure they are presented in a correct format recognized by the tool and code you use. Some tools take NA or blanks as missing, some use "?". Make a table and see which data points are missing and how often. Try to understand why and if it is randomly missing or has a pattern? Decide how to handle them. Some methods accept missing values and some don't. Understand how missing values are interpreted. If you remove them have a good explanation of your criteria. Some might choose to replace missing data with nearby datapoints if possible.
 
-**3. Normalization** is an important step to make the samples and features comparable inside and in between datasets. Choose an appropriate normalization method and explain how it was done. The test has to be normalized in the same way but *independent* of the train data to avoid leaking train information into test. Expression data is usually log2 transformed and then quantile normalized. RMA and frozen-RMA are versions of quantile normalization common or microarray datasets which handles outliers better. zscore is a basic normalization method but flattens the data (forces them into a normal) and range normalization keeps the distribution but is very sensitive to outliers. Centering numeric values around zero is a good practice for some models, for example age. It is a good practice to make features in the same range to be able to compare the weights. For example if you have a feature in the order of thousands and a feature in the order of 10, the weights might seem smaller for the former, while the weights cannot be directly compared. Note than normalizing can be applied on features (normalizing measurements over all samples) or on samples (correcting to batch effects). 
+**3. Normalization** is an important step to make the samples and features comparable inside and in between datasets. Choose an appropriate normalization method and explain how it was done. In case of classification, the test has to be normalized in the same way but *independent* of the train data to avoid leaking train information into test. 
 
-**4. Feature selection and reduction** is used to chose relevant features. Note that the number of features should be significantly less than the sample size (M<<N). In general a model with less parameters is a better model and is less likely to overfit. Redundant features (usually very highly correlated features) should be removed for some models (any model doing determinant on the data matrix). Principle Component Analysis is a good practice to reduce the number of features while maintaining the variability in a linear space. Feature selection can be done based on variability (keeping highly variable features), fold changes (features which highest difference in mean between label classes such as deferentially expressed genes in gene expression data), or recursively by applying a classification model and applying the weights (choosing the features with highest importance for learning the model). Feature reduction can done based on correlation (removing highly correlated features) or invariability (features which have similar distributions between classes). Note that feature selection should be done only on the train data and not test.
+Expression data is usually log2 transformed and then quantile normalized. RMA and frozen-RMA are versions of quantile normalization common for microarray datasets which handle outliers better. zscore is a intuitive normalization method but flattens the data (forces them into a normal) and range normalization keeps the distribution but is very sensitive to outliers. Centering numeric values around zero is a good practice for some models. It is a good practice to make features in the same range to be able to compare the weights assigned to each fature by a model. For example if you have a feature in the order of thousands and a feature in the order of 10, the weights might seem smaller for the former, while the truth is the weights cannot be directly compared. Note than normalizing can be applied on features (normalizing measurements over all samples) or on samples (correcting for batch effects). 
 
-After data preparation, you should be able to explain the data in terms of what features their are and what distributions they have. You should show your data is representative and balanced. You should handle missing data in a logical way. You should have a well established method for choosing features. 
+**4. Feature selection and reduction** is used to chose relevant features. Note that the number of features should be significantly less than the sample size (M<<N). In general a model with less parameters is a better model and is less likely to overfit. Redundant features (usually very highly correlated features) should be removed for some models (any model doing determinant on the data matrix). Principle Component Analysis is a good practice to reduce the number of features while maintaining the variability. Feature selection can be done based on variability (keeping highly variable features), fold changes (difference in mean between label classes such as deferentially expressed genes in gene expression data), or recursively by applying a classification model and applying the weights (choosing the features with highest importance). Feature reduction can be done based on correlation (removing highly correlated features) or invariability (features which have similar distributions between classes). Note that in case of classification feature selection should be done only on the train data and not test.
+
+After data preparation, you should be able to explain the data in terms of what features there are and what distributions they follow. You should show your data is representative and balanced. You should handle missing data in a rational way. You should have a well established method for choosing features. 
 
  
