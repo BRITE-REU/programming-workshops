@@ -158,7 +158,7 @@ Learning curves
 .. image:: img/roc_curve.png
 
 
-**Learning curves** plot the performance of the model for different sample sizes. It is used to show our model is general and not overfitting. Note that in the following figure if the train and test error lines don't get tangent, that means we are underfitting. If the lines cross 
+**Learning curves** plot the performance of the model for different sample sizes. It is used to show our model is general and not overfitting. Note that in the following figure if the train and test error lines don't get tangent, that means we are underfitting. If the lines cross that means we are overfitting.
 
 .. image:: img/learning_curve.png
 
