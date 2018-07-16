@@ -56,7 +56,7 @@ Cross validation
 When learning the model on the train set, you should *always* use cross-validation. 
 Cross validation is a method to divide the data (train) into X portions. In a 10X validation, the data will be divided into 10 portions, and each time 90% of the data will be used to learn the model and then the model will be tested on the remaining 10%. The final performance will be the average of all 10 models.
 
-.. image:: img/K-fold_cross_validation.jpg
+.. image:: img/cross_validation.png
 
 Cross validation ensures that the data is not over-fitting. Also by calculating the the standard deviation of the performances, we can see how the model fits the data and the model is robust. In the following example you can see how cross validation will help you find the best fit. The top left model is over-fitted (while the average performance will be good the sd of the 10 models will be high). The bottom right model is under-fitting, where the average performance will be low. 
 
