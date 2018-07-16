@@ -27,6 +27,4 @@ In the workshop, do some basic data exploration and modeling.
 
     Dataset exploration and validation <dataset>
     Learning models <learning>
-    Machine learning in R <machine_learning_in_R>
-    Introduction to RapidMiner <RapidMiner_intro>
     Machine Learning Workshop <Workshop_machine_learning>
