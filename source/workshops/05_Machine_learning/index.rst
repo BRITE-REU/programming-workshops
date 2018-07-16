@@ -19,3 +19,17 @@ You are expected to study the the following content:
 In the workshop, do some basic data exploration and modeling.
 
 - `Machine Learning Workshop <Workshop_machine_learning.html>`_
+
+
+----------------
+Tutorials
+----------------
+
+.. toctree::
+    :maxdepth: 2
+
+    Dataset exploration and validation <dataset>
+    Learning models <learning>
+    Unsupervised <unsupervised_learning>
+    Supervised <supervised_learning>
+    Machine Learning Workshop <Workshop_machine_learning>
