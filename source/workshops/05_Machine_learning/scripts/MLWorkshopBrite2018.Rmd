@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 ## Introduction
 
@@ -21,17 +22,32 @@ features included, such as sex, race, and age. This workshop will explore the re
 First, we need to load the dataset and a few helper functions we've written
 into our `R` environments. From the top of the Github repository, the data 
 can be found at `/source/workshops/05_Machine_learning/data/combined_data.csv`.
-```{r}
-#combined_data <- read.csv('../data/GSE53987_combined.csv', row.names=1)
+
+```{R read data}
+
+# you can download the data at https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/05_Machine_learning/data/GSE53987_combined.csv
+
+GSE53987 <- read.csv('GSE53987_combined.csv', row.names=1, header = TRUE)
+N <- nrow(GSE53987)
+M <- ncol(GSE53987)
+dim(GSE53987)
+GSE53987_expression <- GSE53987[,11:M]
+
 ```
 
 
 Next, we need to load in a few helper functions we've written to make plotting
 and data exploration easier.
 
-```{r}
+```{R initialize}
+# if you need to install these packages use the following code:
+# install.packages("ggplot2", dependencies = TRUE)
+# install.packages("reshape2", dependencies = TRUE)
+# install.packages(c("glue", "magrittr", "lattice", "caret"))
+# install.packages("e1071", dependencies = TRUE)
 library(ggplot2)
 library(reshape2)
+library(lattice)
 library(caret)
 library(e1071)
 #' create_boxplot
@@ -125,17 +141,31 @@ create_histogram <- function(dataframe, column, facet='', bins=30) {
 
 Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
 
+```{R distributions}
+# there are 10 meta features 
+colnames(GSE53987[1:10])
+
+summary(GSE53987[,3:10])
+
+```
+
 ### Distributions/Histograms
 What type of distributions exist within the features? Is Gender a balanced feature (roughly equal representation between both men and women)? Are numerical values normally distributed? Explore numerical distributions by plotting histograms for Age, an Age + Gender histogram, and one of your favorite genes found in the dataset. Discuss your findings below your code.
 
-```{r}
+```{R distributions}
+
+# qplot(GSE53987$Age, geom="histogram")
+ggplot(data=GSE53987, aes(Age)) + geom_histogram()
 
 ```
 
 ### Factor Dependence/Boxplots
 Some features display factor dependent values. That is, whether a subject is a male or a female might effect the expression patterns of a given gene. Explore factor and feature relationships by creating boxplots for three different features grouped by Tissue, Disease.status, and combining the two with the `facet` parameter in `create_boxplot()`. Discuss your finding below your code. If we want to predict factor/group membership (e.g. tissue of origin), what types of boxplots would we expect to see from a predictive feature?
 
-```{r}
+```{r balance}
+
+ggplot(aes(y = Age, x = Tissue), data = GSE53987) + geom_boxplot()
+
 
 ```
 
@@ -144,14 +174,35 @@ Some features display factor dependent values. That is, whether a subject is a m
 
 Principal Component Analysis (PCA) is a commonly used technique to create linearly uncorrelated features from a set of possibly correlated features. The procedure is done in such a way that the first feature produced by PCA, the first principal component -- PC1, explains the largest amount of variability possible. In this way, PCA is a dimension reduction technique, as the first few principal components often explain upwards of 90% of the variability found within a dataset. You can perform PCA in R using the `prcomp` function. Give your R terminal that fatty `?prcomp` to look up how to use the function. It is important to note that if we're planning on predicting anything using the principal components, such as tissue type or Disease.status, those features should *not* be included in the matrix that is passed to `prcomp`. Before performing PCA, create a new data.table containing only explanatory values (i.e. the features we want to use to predict class membership).
 
+```{R PCA_plot}
+# install.packaged("ggfortify")
+library(ggfortify)
+GSE53987.PCA <- prcomp(GSE53987_expression)
+autoplot(GSE53987.PCA, data = GSE53987, colour = 'Tissue', shape = 'Disease.state')
+
+
+```
+
 ### Variation Explanation
 
 Explore how much variation is explained by the principal components.How much variation is explained by the first two principal components? How many principal components are required to explain 75%, 85%, 90%, 95%, and 99% of the variation within our dataset?
+
+```{R PCA}
+
+plot(GSE53987.PCA, type = "l")
+summary(GSE53987.PCA$rotation[1:5,1:4])
+
+```
 
 
 ### Separation in the Principal Components
 
 Because principal components contain so much information, they are often used to separate samples from different factor groups. Visually explore this separation using the `create_histogram()` function to plot the first two principal components and color samples according to Tissue and Disease.status. What effect does plotting the third principal component have on sample separation?
+
+```{R PcA_hist}
+
+
+```
 
 
 ### Tissue Dependent Separation
