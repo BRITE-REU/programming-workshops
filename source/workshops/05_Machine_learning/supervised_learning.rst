@@ -126,7 +126,7 @@ If you show the performance of the model as a confusion matrix, fitness can be m
 
    \frac{TP}{TP + FP}
 
-* **Recall or specifity** 
+* **Recall** 
 
 .. math::
 
