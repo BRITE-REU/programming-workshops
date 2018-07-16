@@ -9,12 +9,4 @@ There are 2 main learning methods: supervised, when we have *labels* and we want
 - `Unsupervised <unsupervised_learning.html>`_
 - `Supervised learning <supervised_learning.html>`_
 
-Tools:
-
-**R and python**
-
-**RapidMiner**
-
-**Other tools**
-KNIME
-Weka
+You can choose to code your models in **R** or **Python** or use high end interatice platforms such as **RapidMiner**, KNIME, or Weka.
