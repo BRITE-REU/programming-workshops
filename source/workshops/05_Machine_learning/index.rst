@@ -1,7 +1,7 @@
 .. _linux_bash:
 
 ============================================
-Workshop 5: Machine Learning and Rapidminer
+Workshop 5: Machine Learning 
 ============================================
 
 
@@ -14,6 +14,7 @@ You are expected to study the the following content:
 
 - `Dataset exploration and validation <dataset.html>`_
 - `Learning models <learning.html>`_
+
 
 In the workshop, do some basic data exploration and modeling.
 
