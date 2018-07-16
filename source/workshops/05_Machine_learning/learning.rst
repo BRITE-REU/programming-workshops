@@ -23,6 +23,7 @@ It is hard to interpret the data in the feature space (M dimensions). The first 
 * **Singular-value decomposition (SVD)** calculates the diagonal matrix S on the data matrix A :
 
 .. math::
+
     A_{M \times N} = U_{M \times M} S_{M \times N} V_{N \times N}
 
 where M is the feature size (columns) and N is the sample size (rows). Read more `here <http://andrew.gibiansky.com/blog/mathematics/cool-linear-algebra-singular-value-decomposition/>`_. 
@@ -33,7 +34,7 @@ Clustering
 To explore the data we can do some sort of clustering. 
 Clustering algorithms try to divide the data samples based on some sort of similarity into different *clusters*. An example is to cluster single cell gene expression data to find tissue types.
 
-* **Hierarchical clustering** is the most basic clustering algorithm. The samples are put in it's own 'clade' and then iteratively the most similar clades are combined. This can be done bottom up or downwards to form a dendrogram which you can cut at any level to obtain different number of clusters. Hierarchical clustering is usually shown as a heatmap.
+* **Hierarchical (agglermorative) clustering** is the most basic clustering algorithm. The samples are put in it's own 'clade' and then iteratively the most similar clades are combined. This can be done bottom up or downwards to form a dendrogram which you can cut at any level to obtain different number of clusters. Hierarchical clustering is usually shown as a heatmap.
 
 .. image:: img/hierarchical_clustering.png
     :scale: 50%
@@ -73,19 +74,33 @@ Commonly used measure are Silhouette coefficient and the Davies–Bouldin index.
 Another common learning approach is to learn a predictive model on labeled data to use later to predict new unknown samples. This is referred to as **classification**. 
 Classification is applied to the a subset of the data - *train*, and tested on a smaller subset - *test*. So the first step is to split the data into two sets (usually 75% train and 25% test). The purpose of separating some data as test is to later verify the model and ensure we are not over-fitting. The most critical part in classification is to ensure the train data does not *leak* into the test, meaning no information from the train should be secreted to the test - whether at feature selection step or when learning the model.
 
-##########################
-Fitness (perofrmance) the model
-##########################
+**************************
+Fitness of the model
+**************************
+
 A classification model is measured by its **fit**: how well does is fit the data. In other words the average error of the predicted labels vs. the actual labels. We could obtain very high fitness by increasing the features. This situation is referred to as over-fitting. This means instead of learning general patterns in the data we are learning noise, such that although we do respectively good on the train dataset, our model will fail to perform well on new data (test set) due to lack of generalization. 
 On the contrary, underfitting is when our model is over-generalizing, and thus cannot perform well. Under-fitting is easier to detect because the model has low fitness (low accuracy or precision), while over-fitting can be tempting as you see bloated fitness.
+
+**Nominal labels:**
 
 **Confusion matrix** is a table showing out of total samples of each label class how many were predicted of each class:
 
 .. image:: img/confusion_matrix.png
 
+.. code::
+
+   TN=true negative (samples predicted to be in class negative and that was correct)
+   TP=true positive (samples predicted to be in class positive and that was correct) 
+   FN=true negative (samples predicted to be in class negative and that was incorrect)
+   FP=true positive (samples predicted to be in class positive and that was incorrect) 
+
 If you show the performance of the model as a confusion matrix, fitness can be measured by 4 criteria:
 
 * **Accuracy** 
+
+.. math::
+
+   \frac{TP + TN}{TP + FP + TN + FN}
 
 * **Precision**
 
