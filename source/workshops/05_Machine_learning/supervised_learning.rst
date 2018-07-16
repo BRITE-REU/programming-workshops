@@ -4,8 +4,8 @@
  Supervised learning
 ============================================
 
-Another common learning approach is to learn a predictive model on labeled data to use later to predict new unknown samples. This is referred to as **classification**. 
-Classification is applied to the a subset of the data - *train*, and tested on a smaller subset - *test*. So the first step is to split the data into two sets (usually 75% train and 25% test). The purpose of separating some data as test is to later verify the model and ensure we are not over-fitting. The most critical part in classification is to ensure the train data does not *leak* into the test, meaning no information from the train should be secreted to the test - whether at feature selection step or when learning the model.
+Another common learning approach is to learn a predictive model on labeled data to make predictions on new unknown samples. This is referred to as **classification**. 
+Classification is applied to a subset of the data - *train*, and tested on a smaller subset - *test*. So the first step after data preparation is to *randomly* split the data into two sets (usually 75% train and 25% test). Check if your train and test are not biased (by age, sex, or label). The purpose of separating some data as test is to later verify the model and ensure we are not over-fitting. The most critical part in classification is to make sure the train data does not *leak* into the test, meaning no information from the train should be secreted into the test data - whether at normalization, feature selection, or when learning the model.
 
 .. image:: img/supervised_flowchart.png
 
@@ -14,27 +14,32 @@ Classification is applied to the a subset of the data - *train*, and tested on a
 Classification models
 ---------------------------------
 
-**************
-Probability
-**************
+*******************
+Probability based
+*******************
 These models use probability to predict the label.
 
-* **Naive-bayes** uses Bayes theorem using the feature distribution and probabilities. Usually is used as a baseline model (default or worse). Applies to nominal labels.  
-* **K nearest neighbors (KNN)** predicts each sample based on majority vote of its K nearest ones (by some similarity measure). It works good in tumor/tissue samples. Applies to nominal labels.
+* **Naive-bayes** uses Bayes theorem on the feature distribution and probabilities. Usually is used as a baseline model (default or worse). Applies to nominal labels.  
+* **K nearest neighbors (KNN)** predicts each sample based on majority vote of its K nearest neighbors (the K most similar samples). It works good in tumor/tissue samples. The kernel determines what similarity measure we are applying. Applies to nominal labels.
 
 **************
 Regression
 **************
-This group of classifiers try to draw planes to separate numeric features. The separation can be linear (a weighted sum of the features to estimate the label) or in a M-dimensional space. (M is the number of features)
+This group of classifiers to separate numeric features using regression. The separation can be single line (a weighted sum of the features to estimate the label) or a plane in a M-dimensional space. (M is the number of features)
 
-* **Linear regression** is a simple model used to find effect size of features. It's the first model you would run to check if there is some significant correlation between your features and label. Gives you weights (intercepts), applies to numeric labels.
+* **Linear regression** is a simple model used to find effect size of features. It's the first model you would run to check if there is some significant correlation between your features and label; gives you weights (intercepts) and applies to numeric labels.
 * **Logistic regression** is similar to linear regression but applies to nominal labels.
-* **Support Vector Machine (SVM)** is one of the strongest and popular learning models. It produces vectors to separate the samples by label. Using different kernels can make it very powerful. Applies to binominal labels. The prediction output is probabilistic: [0, 1] for each class. 
+* **Support Vector Machine (SVM)** is one of the strongest and most popular learning models. It produces vectors to separate the samples. adjusting the kernel can make it very powerful. Applies to binominal labels. The prediction output is probabilistic: [0, 1] for each class. 
 
 **************
 Trees
 **************
-Trees randomly sample the train data (sampling) and a random set of features (bagging) and based on 1 feature try to split the training data into two groups such that the labels are best separated. At each node a decision is to be made and following the branches we can get to a leaf node which is marked with the most probable label. The label should be nominal for trees.
+At each iteration a tree randomly samples the train data (sampling) and chooses a random set of features (bagging). The it find one feature that on a threshold divides the sampling data such that the labels are best separated. At each node a decision is to be made and following the branches we can get to a leaf node which is marked with the most probable label. The label should be nominal for trees.
+
+Bellow is a decision tree to predict if a sample is a vampire. Each branch ask a question and based on that divides the samples. Following the branches you get to a leaf which is labeled by the label majority of the train samples ending there. 
+
+.. image:: img/vampire-decsion-tree.jpg
+
 
 Trees are very popular in gene expression since they give an understanding of which genes are most important (top nodes) and what is the splitting criteria (if expression > threshold it's a case or control) and thus the results can be tested in the lab. 
 
@@ -83,13 +88,13 @@ Cross validation ensures that the data is not over-fitting. Also by calculating 
 
 .. image:: img/CV_fit.gif
 
-Note that cross validation is applied to learning the model on the train. It is a good approach to build a model but after this, we still need to test the model on unseen test data. Why? Because the splits in the cross validation were correlated, so cross-validation is not a test performance, but rather a model performance.
+Note that cross validation is applied when learning a model on the train. It is a good approach to build a model but after this we still need to test the model on unseen test data. Why? Because the splits in the cross validation were correlated, so cross-validation is not a test performance, but rather a training performance.
 
 ---------------------------------
 Fitness of the model
 ---------------------------------
 
-A classification model is measured by its **fit**: how well does is fit the data. In other words the average error of the predicted labels vs. the actual labels. We could obtain very high fitness by increasing the features. This situation is referred to as over-fitting. This means instead of learning general patterns in the data we are learning noise, such that although we do respectively good on the train dataset, our model will fail to perform well on new data (test set) due to lack of generalization. 
+A classification model is measured by its **fit**: how well does is fit the data, the predicted labels are close to the actual labels. We could obtain very high fitness by increasing the number of the features. This situation is referred to as over-fitting. This means instead of learning general patterns in the data we are learning noise, such that although we do respectively good on the train dataset, our model will fail to perform well on new data (test set) due to lack of generalization. 
 On the contrary, underfitting is when our model is over-generalizing, and thus cannot perform well. Under-fitting is easier to detect because the model has low fitness (low accuracy or precision), while over-fitting can be tempting as you see bloated fitness.
 
 **********************
