@@ -17,31 +17,30 @@ Data exploration
 ***********************
 
 1. check all the features, which one is numeric, binominal.. 
-* sex is binominal balanced, age can be centeralized, see if the measurements are normally distributed and (we say) what is the normal expected in literature, race is very unbalanced 
-* what would the labels be? could be (MDD/BPD/control) or tissue () or combine (9 classes)
-* what is the mean age of each disease?  boxplots
+
+sex is binominal balanced, age can be centeralized, see if the measurements are normally distributed and (we say) what is the normal expected in literature, race is very unbalanced 
+
+what would the labels be? could be (MDD/BPD/control) or tissue () or combine (9 classes)
+
+what is the mean age of each disease?  boxplots
 
 2. plot PCA, (we give them) code for plotting, color by disease, tissue, race, sex ...
-* repeat for each tissue (which tissue is more predective)
-* repeat for each disease... 
+
+repeat for each tissue (which tissue is more predective)
+
+repeat for each disease... 
 
 3. feature selection
-- by DE 
-- by PCA weights 
-- by variability (limma)
-- fisher's criteria 
-* how many genes did you get? 
+
+by DE, by PCA weights, by variability (limma), fisher's criteria 
 
 4. correlation matrix 
 
 ***********************
 Unsupervised learning
 ***********************
-5. clustering
-* hierarichal (heatmap)
-* k-means with k in {3,9,12} (use cluster on pca plot)
-* tell them xmeans finds the "best" k
-* is age correlated to the disease? 
+
+5. clustering, hierarichal (heatmap)
 
 6. association rules
 
@@ -49,9 +48,8 @@ Unsupervised learning
 Supervised learning
 ***********************
 
-7. learning models (on 2 sets of labels)
-* logistic regression, naive bayes, SVM
+7. learning models (on 2 sets of labels), logistic regression
 
-8. rapidminer KNN-GBT-Rule induction
+
 
 
