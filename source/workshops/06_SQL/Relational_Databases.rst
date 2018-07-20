@@ -12,34 +12,28 @@ There are **three main aspects** of database usage,
 
 Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
 
-- `1 Database Design`_
-- `2 Adding Data`_
-- `3 Querying Data`_
+- `Database Design`_
+- `Adding Data`_
+- `Querying Data`_
 
 During the workshop we'll work on the following tasks_.
 
-
-`1 Database Design`_
-
-`2 Adding Data`_
-
-`3 Querying Data`_
 
 ---------------------
 1 Database Design
 ---------------------
 
-Relational databases, the most common type, are designed around entities and relationships between entities.  Database design deals with these.  
+**Relational databases**, the most common type, are designed around **entities** and **relationships** between entities.  Database design deals with these.  
 
-For example, a movie database might contain information on movies and actors.  These are entities.  The relationship that ties certain actors to certain movies can be called the cast. The figure below is part of the design of such a database.  In it, the rectangles are entities and the diamond is a relationship.  The lines connect the entities to the relationship.  
+For example, a **movie database** might contain information on **movies** and **actors**.  These are entities.  The relationship that ties certain actors to certain movies can be called the **cast**. The figure below is part of the design of such a database.  In it, the **rectangles are entities** and the **diamond is a relationship**.  The lines connect the entities to the relationship.  
 
 .. image:: movies.actors.cast.er.diagram.png
-    :width: 500px
+    :width: 400px
     :align: center
-    :height: 100px
+    :height: 80px
  
 
-Relational databases consist of tables of data.  Each table consists of rows.  In an entity table, each row contains data about one instance of that entity.  For example, in a movie table, each row has information about one movie.   The following is a description of a table to hold movie data written is SQL.  This description is used to create the movie table.
+Relational databases consist of **tables of data**.  Each table consists of **rows**.  In an **entity table**, each row contains data about one instance of that entity.  For example, in a movie table, each row has information about one movie.   The following is a description of a table to hold movie data written is SQL.  This description is used to create the movie table.
 
 .. code:: SQL
 
@@ -51,15 +45,15 @@ Relational databases consist of tables of data.  Each table consists of rows.  I
     );
 
 
-The data in a row is divided into fields.  Each field holds a particular piece of data.  In our movie rows, the individual fields are:
+The data in a row is divided into **fields**.  Each field holds a particular piece of data.  In our movie rows, the individual fields are:
 
-- mid – a unique integer identifier for the row
-- title – the movie title, stored as a text string	
-- year – the year the movie came out, stored as an integer
-- genres – a list of classification labels for the movie content, stored as a text string
+- **mid** – a unique integer identifier for the row
+- **title** – the movie title, stored as a text string	
+- **year** – the year the movie came out, stored as an integer
+- **genres** – a list of classification labels for the movie content, stored as a text string
 
 The primary key notation on the mid field indicates that the data will be sorted for fast lookup on this field.  
-The following are a few rows of data from the movies table.   This data comes from the publicly available IMDb (Internet Movie Database) at `https://www.imdb.com/interfaces/ <https://www.imdb.com/interfaces/>`_ .
+The following are a **few rows of data from the movies table**.   This data comes from the publicly available IMDb (Internet Movie Database) at `https://www.imdb.com/interfaces/ <https://www.imdb.com/interfaces/>`_ .
 
 .. code:: 
 
@@ -74,7 +68,7 @@ The following are a few rows of data from the movies table.   This data comes fr
     2651352     Ratpocalypse                    2015  Fantasy,Sci-Fi      
     
 
-Similarly, each row in an actors table holds data about an actor.  The following is a description of a table to hold actor data written is SQL.  Again, this description is used to create the actor table.
+Similarly, each row in an **actors table** holds data about an actor.  The following is a description of a table to hold actor data written is SQL.  Again, this description is used to create the actor table.
 
 .. code:: SQL
 
@@ -86,10 +80,10 @@ Similarly, each row in an actors table holds data about an actor.  The following
 
 Rows in this table hold only two values:
 
-* aid, a unique integer identifier for the row
-* name, the name of the actor, stored as a text string
+- **aid** – a unique integer identifier for the row
+- **name** – the name of the actor, stored as a text string
 
-The following are a few rows of data from the actors table.  
+The following are a **few rows of data from the actors table**.
 
 .. code:: 
 
@@ -107,13 +101,7 @@ The following are a few rows of data from the actors table.
     10          James Cagney
 
 
-Here the fields are 
-
-* aid– a unique integer identifier for the row
-* name – the actor's name
-
-
-Relationship tables are different.   They hold values that tie the entities together. Instead of using actual data, the identifiers are used in a relationship table.  The following is a description of the cast table.
+**Relationship tables** are different.   They hold values that tie the entities together. Instead of using actual data, the identifiers are used in a relationship table.  The following is a description of the cast table.
 
 .. code:: SQL
 
@@ -125,11 +113,13 @@ Relationship tables are different.   They hold values that tie the entities toge
 
 
 The fields are:
-* mid, an integer identifier from the movies table
-* aid, an integer identifier from the actors table
-* role, a description of the actors role in the movie, stored as a text string
 
-Movies typically have more than one actor, so the cast table will typically have more than one row for the same movie, each with a different actor.  For example, the movie "Wonder Woman" has the following row in the movies table:
+
+- **mid** – an integer identifier from the movies table
+- **aid** – an integer identifier from the actors table
+- **role** – a description of the actor's role in the movie, stored as a text string
+
+Movies typically have more than one actor, so the **cast table will typically have more than one row for the same movie**, each with a different actor.  For example, the movie "Wonder Woman" has the following row in the movies table:
 
 .. code:: 
 
@@ -166,19 +156,19 @@ Who are these actors?  The only way to find out is to go to the actors table and
 2 Adding Data 
 ---------------
 
-In sqlite3, the easiest way to add data to a table is to load it from a file.  sqlite3 has a special command for this called .import that is one of a series of commands that start with a period and are called dot commands.  
+In **sqlite3**, the easiest way to add data to a table is to **load it from a file**.  sqlite3 has a special command for this called **.import** that is one of a series of commands that start with a period and are called `dot commands`_.  
 
 The file should:
 
-* contain rows of data
-* have in each row, 
-* one value for each field
-* fields in the same order as the create table statement
-* all fields separated by the same character, such as
-* a tab "\t" (a tab separated file or tsv)
-* a comma "," (a comma separated file or csv)
-
-For example, importing movie data into the movies table can be done as follows.  First set the type of field separator.  This can be done with .mode csv or .mode tabs then import the data from the file movies.tsv.  Note that the prompt sqlite> appears when the sqlite3 program is running.
+* contain **rows of data**
+* have **in each row**, 
+    - **one value for each field**
+    - **fields in the same order as the create table statement**
+* **all fields separated by the same character**, such as
+    - a tab "\t" (a tab separated file or **tsv**)
+    - a comma "," (a comma separated file or **csv**)
+    
+For example, importing movie data into the movies table can be done as follows.  First set the type of field separator.  This can be done with **.mode csv** or **.mode tabs** command,  then import the data from the file movies.tsv.  Note that the prompt **sqlite>** appears when the sqlite3 program is running.
 
 .. code:: SQL
 
@@ -190,33 +180,145 @@ For example, importing movie data into the movies table can be done as follows. 
 3 Querying Data
 --------------------
 
-Data is queried with SQL query statements.  These statements have the following clauses.  Select and From clauses are required, all others are optional.
+Data is queried with **SQL select statements**.  The basic form of an SQL query (Structured Query Language) for a single table is:
 
-* Select – lists the fields in the output 
-* From – lists the table or tables used to collect the data
-* Where – boolean conditions (true/false) limiting the rows used
-* Group by – used with aggregates like count(*)
-* Having – boolean conditions limiting output after a group by
-* Order by – sort the output by a field, either ascending (ASC) or descending (DESC)
-* Limit – limit the maximum rows of output
+.. code:: 
 
-The following example lists the first ten sci-fi movies from 2017 whose titles start with "star".  Note that like is used for string matching and that "%" stands for zero or more "I don't care" characters.  So this means that sci-fi occurs somewhere in the genres field.  
+    SELECT field name, field name, ...
+    FROM table name
+    WHERE condition [AND|OR condition etc.] 
+    GROUP BY field name
+    ORDER BY field name [asc|desc] ...
+    LIMIT integer
+
+The individual query parts are referred to as clauses. The **Select and From clauses are required**, all others are optional.
+
+- **Select** – lists the fields in the output 
+- **From** – lists the table(s) where the data is stored* 
+- **Where** – gives boolean condition(s) (true/false) limiting the rows used
+- **Group by** – used with aggregates like count(*)
+- **Having** – gives boolean conditions limiting output after a group by
+- **Order by** – sorts the output by field(s), either ascending (ASC) or descending (DESC)
+- **Limit** – restricts the output to a maximum number of rows
+
+The simplest query returns the whole table.  Limit is used because the table contains over 100,000 rows. Here, * means “all fields.”
+
+.. code::
+
+    SELECT *
+    FROM Movies
+    LIMIT 10
+
+.. code::
+
+    mid     title           year  genres    
+    ------  --------------  ----  ----------
+    35423   Kate & Leopold  2001  Comedy,Fan
+    66853   Na Boca da Noi  2016  Drama     
+    69049   The Other Side  2018  Drama     
+    88751   The Naked Mons  2005  Comedy,Hor
+    94859   Chief Zabu      2016  Comedy    
+    96056   Crime and Puni  2002  Drama     
+    97540   Responso        2004  \N        
+    100275  The Wandering   2017  Comedy,Dra
+    102362  Istota          2000  Drama,Roma
+    107706  Stupid Lovers   2000  \N             
+    SELECT pid, lname, fname FROM Professor
+
+Note that **\\N** means NULL or no value.
+    
+To restrict the fields, use field names:
+
+.. code::
+
+    SELECT title, genres, year
+    FROM Movies
+    LIMIT 10
+    
+.. code::
+
+    title           genres                year
+    --------------  --------------------  ----
+    Kate & Leopold  Comedy,Fantasy,Roman  2001
+    Na Boca da Noi  Drama                 2016
+    The Other Side  Drama                 2018
+    The Naked Mons  Comedy,Horror,Sci-Fi  2005
+    Chief Zabu      Comedy                2016
+    Crime and Puni  Drama                 2002
+    Responso        \N                    2004
+    The Wandering   Comedy,Drama,Fantasy  2017
+    Istota          Drama,Romance         2000
+    Stupid Lovers   \N                    2000    
+              
+To restrict records, impose a condition
+
+.. code::
+
+    SELECT title, genres, year
+    FROM Movies
+    WHERE year = 2018
+    LIMIT 10
+
+.. code::
+
+    title                       genres                year
+    --------------------------  --------------------  ----
+    The Other Side of the Wind  Drama                 2018
+    T.G.M. - osvoboditel        \N                    2018
+    To Chase a Million          Action,Drama          2018
+    Fahrenheit 451              Drama,Sci-Fi,Thrille  2018
+    Nappily Ever After          Comedy,Drama,Romance  2018
+    Alita: Battle Angel         Action,Adventure,Rom  2018
+    Surviving in L.A.           Comedy,Drama,Romance  2018
+    Escape from Heaven          Comedy,Fantasy        2018
+    The Last Full Measure       Drama,War             2018
+    Caravaggio and My Mother t  Comedy,Drama          2018
+       
+For **string comparison** several options are available. 
+
+- **‘=’** – strings must match exactly (usage\: **field = pattern**)
+
+     - not case sensitive
+
+- **‘LIKE’** –  strings must match exactly (usage\: **field LIKE pattern**)
+    can use wildcards in pattern
+
+    - ‘%’ for zero or more "I don't care" letters
+    - ‘_’ for one letter 
+    - not case sensitive
+
+The following example uses a condition on the title and genres to restrict the output to titles which begin with **"star"** and where **"sci-fi"** occurs somewhere in the genres field.
  
 .. code:: SQL
 	
-	sqlite> select title, year, genres 
+	sqlite> select title, genres, year 
 	   ...> from movies
 	   ...> where year = 2017 and title like "star%" and genres like "%sci-fi%"
 	   ...> limit 10;
+
+.. code:: 
+
+    title                          genres                year
+    -----------------------------  --------------------  ----
+    Star Wars: The Fallen Brother  Action,Fantasy,Sci-F  2017
+    Starwatch                      Action,Drama,Sci-Fi   2017
+    Star Wars: The Dark Reckoning  Sci-Fi                2017
+    Star Trek: The Paradise Maker  Adventure,Animation,  2017
+
 
 ******************
 Joins
 ******************
 
-When you want to combine data from different tables, joins are used.  This is how to retrieve information on both actors and movies in the same query.  Joins occur in the FROM clause.  All the tables required are listed and the columns that should be used to join the rows are specified.  Recall the diagram from above.  Now it's labeled with the columns that join the entity and relationship tables.
+When you want to combine data from different tables, joins are used.  This is how to retrieve information on both actors and movies in the same query.  **Joins occur in the FROM clause**.  All the tables required are listed and the columns that should be used to join the rows are specified.  Recall the diagram from above.  Now it's labeled with the columns that join the entity and relationship tables.
+
+.. image:: movies.actors.cast.er.diagram.with.primary.keys.png
+    :width: 400px
+    :align: center
+    :height: 80px
 
 
-Going back to the Wonder Woman example.  Here is a query that returns the actors by looking for the movie name.  The results are shown after the query.
+Going back to the **Wonder Woman example**.  Here is a query that returns the actors by looking for the movie name.  The results are shown after the query.
 
 .. code:: SQL
 
@@ -242,8 +344,12 @@ Notice the joins in the from clause.   The first one is
     movies join cast using(mid)
 
 
-This indicates that rows from movie should be combined with rows from cast when they share the same mid value.  In effect, this produces an intermediate table with the following rows: mid, title, aid, role as can be seen in the following query.
-sqlite> select * from movies join cast using (mid) limit 10;
+This indicates that rows from movie should be combined with rows from cast **when they share the same mid value**.  In effect, this produces an intermediate table with the following rows: mid, title, aid, role as can be seen in the following query.
+
+
+.. code:: SQL
+
+    sqlite> select * from movies join cast using (mid) limit 10;
 
 .. code:: 
 
@@ -268,7 +374,7 @@ The second join is:
     X join actors using (aid)
     
 
-where X is the result of the first join.   This indicates that rows from the first join should be combined with rows from actors when they share the same aid.  Again, this has the effect of producing an intermediate table with one additional field, name.  
+**where X is the result of the first join**.   This indicates that rows from the first join should be combined with rows from actors when they share the same aid.  Again, this has the effect of producing an intermediate table with one additional field, name.  
 
 .. code:: SQL
 	
@@ -325,7 +431,7 @@ Task 1
 
 **Starting and stopping sqlite.**
 
-The following starts sqlite and creates a database file mydatabase.db or uses that file if it already exists.  **Note that I'm using "%" as an arbitrary symbol for your system prompt.**
+The following starts sqlite and creates a database file **mydatabase.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
 .. code::
 	
@@ -339,14 +445,14 @@ The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
     sqlite> .quit
 
 
-Create a file "create.txt" in an editor and put in the CREATE TABLE statements for movies, actors, and cast.  Use .read to read in and execute the statements in sqlite.
+Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  Use **.read** to read in and execute the statements in sqlite.
 
 .. code::
 
    sqlite> .read create.txt
 
 
-Use .schema to see that all the tables were created.  This will list the CREATE TABLE statements.
+Use **.schema** to see that all the tables were created.  This will list the CREATE TABLE statements.
 
 .. code::
 
@@ -358,14 +464,14 @@ Use .schema to see that all the tables were created.  This will list the CREATE 
 Task 2
 ************
 
-Copy the files "`movies.csv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/sample.txt>`_", "actors.csv", and "cast.csv" into your directory and load their data into the tables you've created.  Use something similar to the following for each file.
+Copy the files "`movies.csv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.csv>`_", "`actors.csv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.csv>`_", and "`cast.csv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.csv>`_" into your directory and load their data into the tables you've created.  Use something similar to the following for each file.
 
 .. code::
 
 	sqlite>.mode tabs
 	sqlite>.import movies.tsv
 
-Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the .mode and .headers commands make the output easy to read.  "select *" means output all fields of each row. 
+Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the **.mode** and **.headers** commands make the output easy to read.  **select \*** means output all fields of each row. 
 
 .. code::
 
@@ -374,7 +480,7 @@ Confirm that data has been loaded into each table using commands like the follow
 	sqlite> select * from movies limit 10;
 	
 
-Note that if you get the continuation symbol  ...> it means you hit return before the command was complete.  Either continue typing or add a missing semicolon (;) at the end. 
+Note that if you get the continuation symbol  **...>** it means you hit return before the command was complete.  Either continue typing or add a missing semicolon (;) at the end. 
 
 .. code:: 
 
@@ -382,7 +488,7 @@ Note that if you get the continuation symbol  ...> it means you hit return befor
    	...>; 
 	
 
-Confirm the number of rows of data in the table. select count(*) means count the number of rows in the table.
+Confirm the number of rows of data in the table. **select count(*)** means count the number of rows in the table.
 
 .. code:: 
 
@@ -395,30 +501,34 @@ Confirm the number of rows of data in the table. select count(*) means count the
 Task 3
 ************
 
-Write SQL select statements to get the answers.
+Write SQL select statements to get the answers to the listed questions.
+
+.. _`dot commands`:
+
+---------------
+SQLite Dot Commands 
+---------------
 
 .. code:: 
 	
-	 sqlite3 dot commands
+	sqlite3 dot commands
 
 	.quit                  	Exit sqlite3
 	.headers on|off        	Turn display of field names on or off
 	.help                  	Show this message
 	.import FILE TABLE     	Import data from FILE into TABLE
-	.open FILE	       	    Close existing database and open FILE database
-	.output FILE|stdout    	Send output (such as result of SQL query) to FILE or screen
-	.read FILE	       	    Execute SQL in FILE
-	.schema 			    Show the CREATE statements in this database
-	.separator "x"		    Change the column separator to x for both .import and output
-	.show                  	Show the current values for various settings
-
-	.dump ?TABLE? ...      	Dump the database in an SQL text format
 	.mode OPTION		Set output mode where OPTION is one of:
-							csv     	  Comma-separated values
-						tabs    	  Tab-separated values
-						list     	  Values delimited by .separator strings
-							column   Left-aligned columns for display (use with .width)
-	  .width n1 n2 …		Set column widths for "column" mode, 0 means auto set column, 
+				    csv     	  Comma-separated values
+				    tabs    	  Tab-separated values
+				    list     	  Values delimited by .separator strings
+                                    column   Left-aligned columns for display (use with .width)
+	.open FILE	       	Close existing database and open FILE database
+	.output FILE|stdout    	Send output (such as result of SQL query) to FILE or screen
+	.read FILE	       	Execute SQL in FILE
+	.schema 		Show the CREATE statements in this database
+	.separator "x"		Change the column separator to x for both .import and output
+	.show                  	Show the current values for various settings
+	.width n1 n2 …		Set column widths for "column" mode, 0 means auto set column, 
 					negative values right-justify
                        			
 
