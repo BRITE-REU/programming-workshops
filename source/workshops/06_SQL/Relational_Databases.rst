@@ -33,6 +33,10 @@ Relational databases, the most common type, are designed around entities and rel
 
 For example, a movie database might contain information on movies and actors.  These are entities.  The relationship that ties certain actors to certain movies can be called the cast. The figure below is part of the design of such a database.  In it, the rectangles are entities and the diamond is a relationship.  The lines connect the entities to the relationship.  
 
+.. image:: movies.actors.cast.er.diagram.png
+    :width: 500px
+    :align: center
+    :height: 100px
  
 
 Relational databases consist of tables of data.  Each table consists of rows.  In an entity table, each row contains data about one instance of that entity.  For example, in a movie table, each row has information about one movie.   The following is a description of a table to hold movie data written is SQL.  This description is used to create the movie table.
