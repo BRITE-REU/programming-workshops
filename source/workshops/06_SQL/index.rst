@@ -13,4 +13,4 @@ Workshop 6: SQL
     Datasets <dataset>
     SQLite <SQLite>
     Relational Databases <Relational_Databases>
-    SQL <Workshop_SQL>
+    SQL Workshop <Workshop_SQL>
