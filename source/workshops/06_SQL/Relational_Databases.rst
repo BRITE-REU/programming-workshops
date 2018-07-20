@@ -160,11 +160,11 @@ In **sqlite3**, the easiest way to add data to a table is to **load it from a fi
 
 The file should:
 
-* contain **rows of data**
-* have **in each row**, 
+- contain **rows of data**
+- have **in each row**, 
     - **one value for each field**
     - **fields in the same order as the create table statement**
-* **all fields separated by the same character**, such as
+- **all fields separated by the same character**, such as
     - a tab "\t" (a tab separated file or **tsv**)
     - a comma "," (a comma separated file or **csv**)
     
@@ -397,7 +397,7 @@ The second join is:
     69049   The Other Side  2018  Drama       709947    ["John Dale"]   Robert Random       
 
 
-The result we're interested, the actors in "Wonder Woman" comes from searching the rows in the final intermediate table for those whose title matches "wonder woman".  
+To obtain the results we're interested in, sqlite searches the rows in the final intermediate table for those whose titles match "wonder woman".  
 
 .. _tasks:
 
@@ -529,7 +529,7 @@ SQLite Dot Commands
 	.separator "x"		Change the column separator to x for both .import and output
 	.show                  	Show the current values for various settings
 	.width n1 n2 …		Set column widths for "column" mode, 0 means auto set column, 
-					negative values right-justify
+				    negative values right-justify
                        			
 
 
