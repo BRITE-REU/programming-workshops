@@ -26,12 +26,13 @@ There are two reasonably good GUIs for using SQLite.  I haven’t used either ex
 - **SQLite Studio**.  Download for all three major operating systems here: https://sqlitestudio.pl/index.rvt?act=download
 - **DB Browser for SQLite**. Downloads are here: https://sqlitebrowser.org/
 
-**Test**
+**Test:**
+
 Follow these steps:
 
-- In all three major operating systems, open a command terminal and create and move to a directory called “sqlitedb”  
-- create a new database file called test.db by typing: “sqlite3 test.db”  
-- you should see something like this.  If so, it's working.
+- In all three major operating systems, open a command terminal, create a directory called “sqlitedb”, and move to that directory 
+- Create a new database file called test.db by typing: “sqlite3 test.db”  
+- You should see something like this.  If so, it's working.
 
   .. code::
 
@@ -41,7 +42,8 @@ Follow these steps:
 
 - Exit the program by typing “.quit”
 
-**Tutorial**
+**Tutorial:**
+
 This is a good introduction:
 https://www.tutorialspoint.com/sqlite/index.htm
 
