@@ -1,4 +1,4 @@
-R Workshop: Machine learning workshop
+Machine learning workshop
 =====================================================================
 
 In this workshop, we will study `GSE53987 <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE53987>`_ dataset on Bipolar disorder (BD) and major depressive disorder (MDD) and schizophrenia: 
