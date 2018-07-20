@@ -311,7 +311,7 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 	g. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
 
-_`Task 1`:
+.. _`Task 1`:
 
 ************
 Task 1
@@ -346,7 +346,7 @@ Use .schema to see that all the tables were created.  This will list the CREATE 
 
    sqlite> .schema
 
-_`Task 2`:
+.. _`Task 2`:
 
 ************
 Task 2
@@ -381,7 +381,7 @@ Confirm the number of rows of data in the table. select count(*)means count the 
 	sqlite> select count(*) from movies;
 
 
-_`Task 3`:
+.. _`Task 3`:
 
 ************
 Task 3
