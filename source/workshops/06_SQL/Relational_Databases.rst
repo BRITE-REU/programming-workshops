@@ -1,7 +1,20 @@
+====================================================
+Workshop 6: An Introduction to Relational Detabases
+====================================================
 
-====================================================
-An Introduction to Relational Detabases
-====================================================
+This workshop provides a basic introduction to Relational Databases using the SQLite program.
+
+There are **three main aspects** of database usage, 
+
+- database **design and construction**
+- **loading data**
+- **querying the data** 
+
+Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
+
+- `1 Database Design`_
+- `2 Adding Data`_
+- `3 Querying Data`_
 
 
 tasks_
