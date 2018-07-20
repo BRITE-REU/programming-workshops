@@ -361,7 +361,7 @@ Copy the files "`movies.csv <https://github.com/BRITE-REU/programming-workshops/
 	sqlite>.mode tabs
 	sqlite>.import movies.tsv
 
-Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the .mode and .headers commands make the output easy to read.  select * means output all fields of each row. 
+Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the .mode and .headers commands make the output easy to read.  "select *" means output all fields of each row. 
 
 .. code::
 
@@ -378,7 +378,7 @@ Note that if you get the continuation symbol  ...> it means you hit return befor
    	...>; 
 	
 
-Confirm the number of rows of data in the table. select count(*)means count the number of rows in the table.
+Confirm the number of rows of data in the table. select count(*) means count the number of rows in the table.
 
 .. code:: 
 
