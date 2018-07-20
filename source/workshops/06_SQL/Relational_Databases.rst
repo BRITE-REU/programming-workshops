@@ -12,11 +12,11 @@ There are **three main aspects** of database usage,
 
 Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
 
-- `1 Database Design`_
+- `Database Design`_
 - `2 Adding Data`_
 - `3 Querying Data`_
 
-
+During the workshop we'll work on the following tasks.
 tasks_
 
 `1 Database Design`_
@@ -292,18 +292,24 @@ The result we're interested, the actors in "Wonder Woman" comes from searching t
 -------------- 
 Tasks 
 --------------
+In the workshop, we'll do the following.  See the instructions below for guidance in each task.
 
-1. CREATE tables for movies, actors, and cast.
+1. Create tables for movies, actors, and cast.
+
 2. Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
+
 3. Write queries to get answers for the following.
-a. How many actors are listed in the actor table?  (answer is an integer)
-b. How many movies in the movie table? (answer is an integer)
-c. How many movies have the word "bride" in the title?  "groom" in the title? (answer for each is an integer)
-d. How many actors have a first name that starts "Amy"? (answer is a number)
-e. Pick a year and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre)
-f. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
-g. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
-h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
+
+	a. How many actors are listed in the actor table?  (answer is an integer)
+	
+	b. How many movies in the movie table? (answer is an integer)
+	
+	c. How many movies have the word "bride" in the title?  "groom" in the title? (answer for each is an integer)
+	d. How many actors have a first name that starts "Amy"? (answer is a number)
+	e. Pick a year and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre)
+	f. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
+	g. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
+	h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
 
 
 ************
