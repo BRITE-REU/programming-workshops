@@ -1,4 +1,3 @@
-.. _linux_bash:
 
 ====================================================
 An Introduction to Relational Detabases
@@ -68,7 +67,7 @@ Rows in this table hold only two values:
 
 The following are a few rows of data from the actors table.  
 
-.. code:: bash
+.. code:: 
 
     aid         name                          
     ----------  ------------------------------
