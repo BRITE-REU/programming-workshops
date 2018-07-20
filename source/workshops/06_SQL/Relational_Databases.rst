@@ -6,11 +6,14 @@ Workshop 6: An Introduction to Relational Detabases
 
 This workshop provides a basic introduction to Relational Databases using the SQLite program.
 
-There are three main aspects of database usage, 
+There are **three main aspects** of database usage, 
 
-- database design and construction
-- loading data
-- querying the data 
+- database **design and construction**
+- **loading data**
+- **querying the data** 
+
+
+DatabaseDesign_
 
 First we will talk about data preparation and exploration. 
 Then we will introduce a general pipeline for unsupervised and supervised learning. 
@@ -41,6 +44,7 @@ In the workshop, do some basic data exploration and modeling.
 
 Below I discuss the main points of each and introduce use of the SQL language in the context of the sqlite3 database management program.
 
+.. _DatabaseDesign
 ---------------------
 1 Database Design
 ---------------------
@@ -71,7 +75,7 @@ The data in a row is divided into fields.  Each field holds a particular piece o
 The primary key notation on the mid field indicates that the data will be sorted for fast lookup on this field.  
 The following are a few rows of data from the movies table.   This data comes from the publicly available IMDb (Internet Movie Database) at https://www.imdb.com/interfaces/.
 
-.. code:: SQL
+.. code:: 
 
     mid         title                           year  genres              
     ----------  ------------------------------  ----  --------------------
@@ -98,7 +102,7 @@ o	name, the name of the actor, stored as a text string
 
 The following are a few rows of data from the actors table.  
 
-.. code:: SQL
+.. code:: bash
 
     aid         name                          
     ----------  ------------------------------
