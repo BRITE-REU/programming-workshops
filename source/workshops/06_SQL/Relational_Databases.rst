@@ -294,11 +294,11 @@ Tasks
 --------------
 In the workshop, we'll do the following.  See the instructions below for guidance in each task.
 
-1. Create tables for movies, actors, and cast.
+1. `Task 1`_: Create tables for movies, actors, and cast.
 
-2. Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
+2. `Task 2`_: Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
 
-3. Write queries to get answers for the following.
+3. `Task 3`_:  Write queries to get answers for the following.
 
 	a. How many actors are listed in the actor table?  (answer is an integer)
 	
@@ -311,40 +311,42 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 	g. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
 
+_`Task 1`:
 
 ************
 Task 1
 ************
 
-Starting and stopping sqlite.
+**Starting and stopping sqlite.**
 
-The following starts sqlite and creates a database file or uses a file if it already exists.  Note that I'm using "%" as an arbitrary symbol for your system prompt.
+The following starts sqlite and creates a database file mydatabase.db or uses that file if it already exists.  **Note that I'm using "%" as an arbitrary symbol for your system prompt.**
 
-.. code:: SQL
+.. code::
 	
 	%sqlite3 mydatabase.db
 
 
-The following stops sqlite.  Note that "sqlite>" is the sqlite prompt.
+The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
-.. code:: SQL
+.. code::
 
     sqlite> .quit
 
 
-Create a file "create.txt" with the CREATE TABLE statements for movie, actor, and cast.  Use .read to read in and execute the statements in sqlite.
+Create a file "create.txt" in an editor and put in the CREATE TABLE statements for movies, actors, and cast.  Use .read to read in and execute the statements in sqlite.
 
-.. code:: SQL
+.. code::
 
    sqlite> .read create.txt
 
 
 Use .schema to see that all the tables were created.  This will list the CREATE TABLE statements.
 
-.. code:: SQL
+.. code::
 
    sqlite> .schema
 
+_`Task 2`:
 
 ************
 Task 2
@@ -379,6 +381,7 @@ Confirm the number of rows of data in the table. select count(*)means count the 
 	sqlite> select count(*) from movies;
 
 
+_`Task 3`:
 
 ************
 Task 3
