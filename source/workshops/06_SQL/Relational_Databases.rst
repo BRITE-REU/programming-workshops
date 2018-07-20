@@ -14,7 +14,7 @@ There are **three main aspects** of database usage,
 
 Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
 
-- `Database Design`_
+- ` 1 Database Design`_
 - `2 Adding Data`_
 - `3 Querying Data`_
 
