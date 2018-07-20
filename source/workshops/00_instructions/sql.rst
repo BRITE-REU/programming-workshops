@@ -63,8 +63,8 @@ Choose (mysql-installer-web-community-8.0.11.0.msi)
 For linux:
 https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html
 
-Install a mysql database interface
-****************************************
+**Install a mysql database interface**
+
 
 This gives a GUI interface to databases and their contents, as well as a window to write SQL commands.
 
