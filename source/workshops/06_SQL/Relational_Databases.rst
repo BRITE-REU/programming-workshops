@@ -12,8 +12,9 @@ There are **three main aspects** of database usage,
 - **loading data**
 - **querying the data** 
 
+Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
 
-DatabaseDesign_
+- `1 Database Design`_
 
 First we will talk about data preparation and exploration. 
 Then we will introduce a general pipeline for unsupervised and supervised learning. 
@@ -42,9 +43,8 @@ In the workshop, do some basic data exploration and modeling.
     Relational Databases <Relational_Databases>
     SQL <Workshop_SQL>
 
-Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.
 
-.. _DatabaseDesign
+.. _`1 Database Design`:
 ---------------------
 1 Database Design
 ---------------------
