@@ -15,6 +15,8 @@ There are **three main aspects** of database usage,
 Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
 
 - `1 Database Design`_
+- `2 Adding Data`_
+- `3 Querying Data`_
 
 First we will talk about data preparation and exploration. 
 Then we will introduce a general pipeline for unsupervised and supervised learning. 
@@ -45,6 +47,7 @@ In the workshop, do some basic data exploration and modeling.
 
 
 .. _`1 Database Design`:
+
 ---------------------
 1 Database Design
 ---------------------
@@ -169,8 +172,10 @@ Who are these actors?  The only way to find out is to go to the actors table and
 
 
 
+.. _`2 Adding Data`:
+
 ---------------
-2 Adding data 
+2 Adding Data 
 ---------------
 
 In sqlite3, the easiest way to add data to a table is to load it from a file.  sqlite3 has a special command for this called .import that is one of a series of commands that start with a period and are called dot commands.  
@@ -191,9 +196,10 @@ For example, importing movie data into the movies table can be done as follows. 
     sqlite>.mode tabs
     sqlite>.import movies.tsv
 
+.. _`3 Querying data`:
 
 --------------------
-3 Querying the data
+3 Querying Data
 --------------------
 
 Data is queried with SQL query statements.  These statements have the following clauses.  Select and From clauses are required, all others are optional.
