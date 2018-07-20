@@ -42,7 +42,7 @@ In the workshop, do some basic data exploration and modeling.
     Relational Databases <Relational_Databases>
     SQL <Workshop_SQL>
 
-Below I discuss the main points of each and introduce use of the SQL language in the context of the sqlite3 database management program.
+Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.
 
 .. _DatabaseDesign
 ---------------------
