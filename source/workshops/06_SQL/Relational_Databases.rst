@@ -8,7 +8,9 @@ tasks_
 
 `1 Database Design`_
 
-adding-data_
+`2 Adding Data`_
+
+`3 Querying Data`_
 
 ---------------------
 1 Database Design
