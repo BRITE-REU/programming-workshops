@@ -1,7 +1,7 @@
 .. _linux_bash:
 
 ============================================
-Workshop 5: Machine Learning 
+Workshop 06: SQL_test
 ============================================
 
 This workshop provides a basic introduction to machine learning. 
