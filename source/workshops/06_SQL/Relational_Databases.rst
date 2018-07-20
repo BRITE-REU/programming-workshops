@@ -238,7 +238,7 @@ sqlite> select * from movies join cast using (mid) limit 10;
     69049   The Other Side  2018  Drama       709947    ["John Dale"] 
 
 
-The second join is
+The second join is:
 
 .. code:: SQL
 
@@ -270,8 +270,9 @@ where X is the result of the first join.   This indicates that rows from the fir
 
 The result we're interested, the actors in "Wonder Woman" comes from searching the rows in the final intermediate table for those whose title matches "wonder woman".  
 
- 
+-------------- 
 Tasks 
+--------------
 
 1. CREATE tables for movies, actors, and cast.
 2. Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
@@ -286,9 +287,9 @@ g. Pick a movie and find all the actors that appeared in it.  (answer is multipl
 h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
 
 
---------
+************
 Task 1
---------
+************
 
 Starting and stopping sqlite.
 
@@ -320,10 +321,9 @@ Use .schema to see that all the tables were created.  This will list the CREATE 
    sqlite> .schema
 
 
-
---------
+************
 Task 2
---------
+************
 
 Copy the files "movies.csv", "actors.csv", and "cast.csv" into your directory and load their data into the tables you've created.  Use something similar to the following for each file.
 
@@ -355,9 +355,9 @@ Confirm the number of rows of data in the table. select count(*)means count the 
 
 
 
---------
+************
 Task 3
---------
+************
 
 Write SQL select statements to get the answers.
 
