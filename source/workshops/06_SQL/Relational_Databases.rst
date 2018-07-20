@@ -12,12 +12,12 @@ There are **three main aspects** of database usage,
 
 Below I discuss the main points of each and introduce use of the **SQL language** in the context of the **sqlite3** database management program.  This document contains the following sections:
 
-- `Database Design`_
+- `1 Database Design`_
 - `2 Adding Data`_
 - `3 Querying Data`_
 
-During the workshop we'll work on the following tasks.
-tasks_
+During the workshop we'll work on the following tasks_.
+
 
 `1 Database Design`_
 
@@ -289,6 +289,8 @@ where X is the result of the first join.   This indicates that rows from the fir
 
 The result we're interested, the actors in "Wonder Woman" comes from searching the rows in the final intermediate table for those whose title matches "wonder woman".  
 
+.. _tasks:
+
 -------------- 
 Tasks 
 --------------
@@ -352,14 +354,16 @@ Use .schema to see that all the tables were created.  This will list the CREATE 
 Task 2
 ************
 
-Copy the files "movies.csv", "actors.csv", and "cast.csv" into your directory and load their data into the tables you've created.  Use something similar to the following for each file.
+Copy the files "`movies.csv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/sample.txt>`_", "actors.csv", and "cast.csv" into your directory and load their data into the tables you've created.  Use something similar to the following for each file.
+
+.. code::
 
 sqlite>.mode tabs
 sqlite>.import movies.tsv
 
 Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the .mode and .headers commands make the output easy to read.  select * means output all fields of each row. 
 
-.. code:: SQL
+.. code::
 
 	sqlite> .mode column
 	sqlite> .headers on
@@ -368,7 +372,7 @@ Confirm that data has been loaded into each table using commands like the follow
 
 Note that if you get the continuation symbol  ...> it means you hit return before the command was complete.  Either continue typing or add a missing semicolon (;) at the end. 
 
-.. code:: SQL
+.. code:: 
 
 	sqlite> select * from movies limit 10
    	...>; 
@@ -376,7 +380,7 @@ Note that if you get the continuation symbol  ...> it means you hit return befor
 
 Confirm the number of rows of data in the table. select count(*)means count the number of rows in the table.
 
-.. code:: SQL
+.. code:: 
 
 	sqlite> select count(*) from movies;
 
@@ -389,7 +393,7 @@ Task 3
 
 Write SQL select statements to get the answers.
 
-.. code:: SQL
+.. code:: 
 	
 	 sqlite3 dot commands
 
