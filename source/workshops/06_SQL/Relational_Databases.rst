@@ -17,6 +17,7 @@ Below I discuss the main points of each and introduce use of the **SQL language*
 - `Querying Data`_
 
 .. _`Database Design`:
+
 ---------------------
 1 Database Design
 ---------------------
@@ -149,6 +150,8 @@ Who are these actors?  The only way to find out is to go to the actors table and
     705         Robin Wright        
     205063      Lucy Davis          
 
+
+.. _`Database Design`:
 
 ---------------
 2 Adding Data 
