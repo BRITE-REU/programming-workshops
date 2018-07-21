@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'BRITE-REU Programming Workshops'
-copyright = '2018, Ali Amin-Mansour, Dakota Hawkins, Dileep Kishore, Jeffrey Maurer, Marzie E. Rasekh, Tanya Karagiannis'
+copyright = '2018, Ali Amin-Mansour, Dakota Hawkins, Dileep Kishore, Gary Benson, Jeffrey Maurer, Marzie E. Rasekh, Tanya Karagiannis'
 author = 'Ali Amin-Mansour, Dakota Hawkins, Dileep Kishore, Jeffrey Maurer, Marzie E. Rasekh, Tanya Karagiannis'
 
 # The short X.Y version
