@@ -16,6 +16,7 @@ Below I discuss the main points of each and introduce use of the **SQL language*
 - `Adding Data`_
 - `Querying Data`_
 
+.. _`Database Design`:
 ---------------------
 1 Database Design
 ---------------------
