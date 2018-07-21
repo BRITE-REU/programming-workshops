@@ -69,7 +69,7 @@ Similarly, each row in an **actors table** holds data about an actor.  The follo
 
 .. code:: SQL
 
-    CREATE TABLE actors3 (
+    CREATE TABLE actors (
         aid integer primary key, 
         name text
     );
