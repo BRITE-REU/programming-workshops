@@ -193,11 +193,11 @@ Data is queried with **SQL select statements**.  The basic form of an SQL query 
 
 The individual query parts are referred to as clauses. The **Select and From clauses are required**, all others are optional.
 
-- **Select** – lists the fields in the output 
-- **From** – lists the table(s) where the data is stored* 
+- **Select** – lists the fields in the output, any order 
+- **From** – lists the table(s) where the data is stored 
 - **Where** – gives boolean condition(s) (true/false) limiting the rows used
 - **Group by** – used with aggregates like count(*)
-- **Having** – gives boolean conditions limiting output after a group by
+- **Having** – gives boolean conditions limiting output after a GROUP BY
 - **Order by** – sorts the output by field(s), either ascending (ASC) or descending (DESC)
 - **Limit** – restricts the output to a maximum number of rows
 
