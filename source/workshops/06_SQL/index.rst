@@ -10,7 +10,5 @@ Workshop 6: SQL
 .. toctree::
     :maxdepth: 2
 
-    Datasets <dataset>
-    SQLite <SQLite>
     Relational Databases <Relational_Databases>
     SQL Workshop <Workshop_SQL>
