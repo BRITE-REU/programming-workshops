@@ -22,19 +22,19 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 	
 	#. Pick a year and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre) 
 
-	a. How many actors are listed in the actor table?  (answer is a count)
+	#. How many actors are listed in the actor table?  (answer is a count)
 	
-	b. How many movies in the movie table? (answer is a count)
+	#. How many movies in the movie table? (answer is a count)
 	
-	c. How many movies have the word "bride" in the title?  "groom" in the title? (answer for each is a count)
+	#. How many movies have the word "bride" in the title?  "groom" in the title? (answer for each is a count)
 	
-	d. How many actors have a first name that starts "Amy"? (answer is a count)
+	#. How many actors have a first name that starts "Amy"? (answer is a count)
 	
-	f. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
+	#. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
 	
-	g. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
+	#. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	
-	h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
+	#. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
 	
 	#. Find two actors that appear together in two different movies (hard).  (answer is multiple rows, each containing actor1, actor2, movie1, movie2)
 
