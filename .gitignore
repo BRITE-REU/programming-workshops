@@ -4,6 +4,8 @@ build/
 # Byte-complied / cached
 __pycache__/
 *.py[cod]
+.mypy_cache
+tags
 
 # Environment files
 .env
