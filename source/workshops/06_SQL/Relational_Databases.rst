@@ -16,7 +16,6 @@ Below I discuss the main points of each and introduce use of the **SQL language*
 - `Adding Data`_
 - `Querying Data`_
 
-.. _`Database Design`:
 ---------------------
 Database Design
 ---------------------
@@ -150,7 +149,6 @@ Who are these actors?  The only way to find out is to go to the actors table and
     205063      Lucy Davis          
 
 
-.. _`Adding Data`:
 
 ---------------
 Adding Data 
