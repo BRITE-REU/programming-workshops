@@ -42,11 +42,13 @@ Follow these steps:
 
 - Exit the program by typing “.quit”
 
-**Tutorial:**
+**Tutorial and Documentation:**
 
 This is a good introduction:
 https://www.tutorialspoint.com/sqlite/index.htm
 
+This is the official SQLite Documentation: 
+https://sqlite.org
 
 
 ------------------------------------------------------------
