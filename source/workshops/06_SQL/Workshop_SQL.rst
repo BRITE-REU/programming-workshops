@@ -10,11 +10,11 @@ Tasks
 --------------
 In the workshop, we'll do the following.  See the instructions below for guidance in each task.
 
-1. `Task 1`_: Create tables for movies, actors, and cast.
+- `Task 1`_: Create tables for movies, actors, and cast.
 
-2. `Task 2`_: Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
+- `Task 2`_: Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
 
-3. `Task 3`_:  Write queries to get answers for the following.
+- `Task 3`_:  Write queries to get answers for the following.
 
 	a. How many actors are listed in the actor table?  (answer is an integer)
 	
