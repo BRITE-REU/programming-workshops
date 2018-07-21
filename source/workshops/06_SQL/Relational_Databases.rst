@@ -201,7 +201,7 @@ The individual query parts are referred to as clauses. The **Select and From cla
 - **Order by** – sorts the output by field(s), either ascending (ASC) or descending (DESC)
 - **Limit** – restricts the output to a maximum number of rows
 
-The simplest query returns the whole table.  Limit is used because the table contains over 100,000 rows. Here, * means “all fields.”
+The simplest query returns the whole table.  Limit is used because the table contains over 100,000 rows. Here, "*" means “all fields.”
 
 .. code::
 
@@ -223,7 +223,7 @@ The simplest query returns the whole table.  Limit is used because the table con
     100275  The Wandering   2017  Comedy,Dra
     102362  Istota          2000  Drama,Roma
     107706  Stupid Lovers   2000  \N             
-    SELECT pid, lname, fname FROM Professor
+
 
 Note that **\\N** means NULL or no value.
     
@@ -276,13 +276,13 @@ To restrict records, impose a condition
        
 For **string comparison** several options are available. 
 
-- **‘=’** – strings must match exactly (usage\: **field = pattern**)
+- **=** – strings must match exactly (usage\: **field = "pattern"**)
 
      - not case sensitive
 
-- **‘LIKE’** –  strings must match exactly (usage\: **field LIKE pattern**)
-    can use wildcards in pattern
-
+- **LIKE** –  strings must match exactly (usage\: **field LIKE "pattern"**)
+    
+    - can use wildcards in pattern
     - ‘%’ for zero or more "I don't care" letters
     - ‘_’ for one letter 
     - not case sensitive
@@ -310,7 +310,7 @@ The following example uses a condition on the title and genres to restrict the o
 Joins
 ******************
 
-When you want to combine data from different tables, joins are used.  This is how to retrieve information on both actors and movies in the same query.  **Joins occur in the FROM clause**.  All the tables required are listed and the columns that should be used to join the rows are specified.  Recall the diagram from above.  Now it's labeled with the columns that join the entity and relationship tables.
+When you want to combine data from different tables, joins are used.  This is how to retrieve information on both actors and movies in the same query.  **Joins occur in the FROM clause**.  All the required tables are listed and the columns that should be used to join the rows are specified.  Recall the actors -- cast -- movies diagram from above.  Now it's labeled with the columns that join the entity and relationship tables.
 
 .. image:: movies.actors.cast.er.diagram.with.primary.keys.png
     :width: 400px
@@ -349,7 +349,9 @@ This indicates that rows from movie should be combined with rows from cast **whe
 
 .. code:: SQL
 
-    sqlite> select * from movies join cast using (mid) limit 10;
+    sqlite> select * 
+    from movies join cast using (mid) 
+    limit 10;
 
 .. code:: 
 
@@ -378,7 +380,9 @@ The second join is:
 
 .. code:: SQL
 	
-	sqlite> select * from movies join cast using (mid) join actors using (aid) limit 10;
+	sqlite> select * 
+	from movies join cast using (mid) join actors using (aid) 
+	limit 10;
 
 
 .. code:: 
