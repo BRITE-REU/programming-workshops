@@ -18,7 +18,7 @@ Below I discuss the main points of each and introduce use of the **SQL language*
 
 .. _`Database Design`:
 ---------------------
-1 Database Design
+Database Design
 ---------------------
 
 **Relational databases**, the most common type, are designed around **entities** and **relationships** between entities.  Database design deals with these.  
@@ -153,7 +153,7 @@ Who are these actors?  The only way to find out is to go to the actors table and
 .. _`Adding Data`:
 
 ---------------
-2 Adding Data 
+Adding Data 
 ---------------
 
 In **sqlite3**, the easiest way to add data to a table is to **load it from a file**.  sqlite3 has a special command for this called **.import** that is one of a series of commands that start with a period and are called `dot commands`_.  
@@ -177,7 +177,7 @@ For example, importing movie data into the movies table can be done as follows. 
 
 
 --------------------
-3 Querying Data
+Querying Data
 --------------------
 
 Data is queried with **SQL select statements**.  The basic form of an SQL query (Structured Query Language) for a single table is:
