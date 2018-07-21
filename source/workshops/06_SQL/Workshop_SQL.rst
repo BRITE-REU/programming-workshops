@@ -35,6 +35,8 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 	g. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	
 	h. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
+	
+	#. Find two actors that appear together in two different movies (hard).  (answer is multiple rows, each containing actor1, actor2, movie1, movie2)
 
 .. _`Task 1`:
 
