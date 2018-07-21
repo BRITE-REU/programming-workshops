@@ -154,7 +154,9 @@ Who are these actors?  The only way to find out is to go to the actors table and
 Adding Data 
 ---------------
 
-In **sqlite3**, the easiest way to add data to a table is to **load it from a file**.  sqlite3 has a special command for this called **.import** that is one of a series of commands that start with a period and are called `dot commands`_.  
+In **sqlite3**, the easiest way to add data to a table is to **load it from a file**.  sqlite3 has a special command for this called **.import** that is one of a series of commands that start with a period and are called `Dot Commands`_.  
+
+.. _`Dot Commands`: https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/Workshop_SQL.rst#sqlite-dot-commands
 
 The file should:
 
