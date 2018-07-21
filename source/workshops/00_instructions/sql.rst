@@ -21,7 +21,7 @@ Should already be preinstalled.  To check, open a terminal window and type “sq
 
 **GUI:**
 
-There are two reasonably good GUIs for using SQLite.  I haven’t used either extensively, so can’t make a strong recommendation, but I preferred SQLite Studio.  
+There are two reasonably good GUIs for using SQLite.  I haven’t used either extensively, so can’t make a strong recommendation, but I preferred SQLite Studio. These are not required for the workshop, but may be beneficial if you use the program after this summer. 
 
 - **SQLite Studio**.  Download for all three major operating systems here: https://sqlitestudio.pl/index.rvt?act=download
 - **DB Browser for SQLite**. Downloads are here: https://sqlitebrowser.org/
