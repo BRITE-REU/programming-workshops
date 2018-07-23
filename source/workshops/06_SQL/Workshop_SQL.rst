@@ -126,6 +126,7 @@ Note that if you get the continuation symbol  **...>** it means you hit return b
    	...>; 
 	
 
+
 Confirm the number of rows of data in the table. **select count(*)** means count the number of rows in the table.
 
 .. code:: 
