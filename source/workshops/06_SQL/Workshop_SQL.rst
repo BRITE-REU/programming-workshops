@@ -80,8 +80,8 @@ Create a file **create.txt** in an editor and enter the CREATE TABLE statements 
 
 .. code::
 
-CREATE INDEX mid_aid_index on cast (mid, aid);
-CREATE INDEX aid_mid_index on cast (aid, mid);
+	CREATE INDEX mid_aid_index on cast (mid, aid);
+	CREATE INDEX aid_mid_index on cast (aid, mid);
 
 Use **.read** to read in the file create.txt and execute the statements in sqlite.
 
