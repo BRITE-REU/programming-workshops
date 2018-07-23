@@ -152,7 +152,7 @@ SQLite Dot Commands
 				    csv     	  Comma-separated values
 				    tabs    	  Tab-separated values
 				    list     	  Values delimited by .separator strings
-                                    column   Left-aligned columns for display (use with .width)
+                                    column        Left-aligned columns for display (use with .width)
 	.open FILE	       	Close existing database and open FILE database
 	.output FILE|stdout    	Send output (such as result of SQL query) to FILE or screen
 	.read FILE	       	Execute SQL in FILE
