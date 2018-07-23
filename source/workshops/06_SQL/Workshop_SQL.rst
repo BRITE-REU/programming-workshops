@@ -140,7 +140,18 @@ Confirm the number of rows of data in the table. **select count(*)** means count
 Task 3
 ************
 
-Write SQL select statements to get the answers to the listed questions.
+Write SQL select statements to get the answers to the listed questions.  Use the format shown below.
+
+
+.. code:: 
+
+    SELECT field name, field name, ...
+    FROM table name
+    WHERE condition [AND|OR condition etc.] 
+    GROUP BY field name
+    ORDER BY field name [asc|desc] ...
+    LIMIT integer
+
 
 .. _`dot commands`:
 
