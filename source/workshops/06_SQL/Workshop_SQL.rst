@@ -172,7 +172,7 @@ Asnwer these queries
 
 	1. How many movies are rated?
 	#. How many movies have more than 5000 votes?
-	#. What are the top tem rated movies with at least 5000 votes? With at least 50,000 votes?  With less than 5000 votes?
+	#. What are the top ten rated movies with at least 5000 votes? With at least 50,000 votes?  With less than 5000 votes?
 	#. What is the range of ratings (use min() for low and max() for high)?
 	#. Show the ratings, votes, and year of all Star Wars movies, from highest to lowest.
 	#. What is the distribution of ratings in bins of size 1 (i.e., how many are rated from 0 to 0.999, from 1 to 1.999, etc).  To do this you can use 1) the **round( )** function on the ratings and 2) GROUP BY.
