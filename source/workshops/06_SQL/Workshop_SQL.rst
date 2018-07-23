@@ -76,7 +76,7 @@ The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
     sqlite> .quit
 
 
-Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  Also add the following two lines to your create.txt file.  They create indexes which sort the data in the cast file for fast lookup.  This is necessary because the cast table doesn't have a primary key.
+Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  **Also add the following two lines to your create.txt file**.  They create indexes which sort the data in the cast file for fast lookup.  This is necessary because the cast table doesn't have a primary key.
 
 .. code::
 
