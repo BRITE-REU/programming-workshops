@@ -161,16 +161,20 @@ Try It At Home
 
 Follow these steps to add movie ratings to your database.
 
-- Create a table **ratings**.  It should have three fields: 
-	- mid – a unique integer identifier for the movie (set this should be the primary key)
-	- rating – a floating point value for the movie rating (datatype: real)
-	- votes – an integer value for the number of votes received by the movie
-- download the data file ratings.tsv_<https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>
-- import the data into your table
+- **Create** a table **ratings**.  It should have three fields: 
+	- **mid** – a unique integer identifier for the movie (set this as the **primary key**)
+	- **rating** – a floating point value for the movie rating (**datatype: real**)
+	- **votes** – an integer value for the number of votes received by the movie
+- **Download** the data file **ratings.tsv_<https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>**
+- **Import* the data into your table
 
 Asnwer these queries
 
 	1. How many movies are rated?
+	#. How many movies have more than 5000 votes?
+	#. What are the top tem rated movies with at least 5000 votes?
+	#. What is the range of ratings (low and high)?
+	#. Show the ratings and votes of all Star Wars movies, from highest to lowest.
 	
 ---------------
 SQLite Dot Commands 
