@@ -161,20 +161,22 @@ Try It At Home
 
 Follow these steps to add movie ratings to your database.
 
-- **Create** a table **ratings**.  It should have three fields: 
+- **Create** a **ratings** table.  It should have three fields: 
 	- **mid** – a unique integer identifier for the movie (set this as the **primary key**)
 	- **rating** – a floating point value for the movie rating (**datatype: real**)
 	- **votes** – an integer value for the number of votes received by the movie
-- **Download** the data file **ratings.tsv_<https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>**
-- **Import* the data into your table
+- **Download** the data file ratings.tsv_<https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>
+- **Import** the data into your table
 
 Asnwer these queries
 
 	1. How many movies are rated?
 	#. How many movies have more than 5000 votes?
-	#. What are the top tem rated movies with at least 5000 votes?
-	#. What is the range of ratings (low and high)?
-	#. Show the ratings and votes of all Star Wars movies, from highest to lowest.
+	#. What are the top tem rated movies with at least 5000 votes? With at least 50,000 votes?  With less than 5000 votes?
+	#. What is the range of ratings (use min() for low and max() for high)?
+	#. Show the ratings, votes, and year of all Star Wars movies, from highest to lowest.
+	#. What is the distribution of ratings in bins of size 1 (i.e., how many are rated from 0 to 0.999, from 1 to 1.999, etc).  To do this you can use 1) the **round()** function on the ratings and 2) group by.
+	#. What is the distribution of votes in bins of size 1000?
 	
 ---------------
 SQLite Dot Commands 
