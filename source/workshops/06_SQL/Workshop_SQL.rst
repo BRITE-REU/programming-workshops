@@ -107,7 +107,8 @@ Copy the files "`movies.csv <https://github.com/BRITE-REU/programming-workshops/
 .. code::
 
 	sqlite>.mode tabs
-	sqlite>.import movies.tsv
+	sqlite>.
+	sqlite>.import movies.tsv movies
 
 Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the **.mode** and **.headers** commands make the output easy to read.  **select \*** means output all fields of each row. 
 
