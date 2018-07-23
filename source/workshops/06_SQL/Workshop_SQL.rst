@@ -18,7 +18,7 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 
 **Using SELECT and WHERE in a single table**
 
-	a. Pick a movie you know from year 2000 or later and find out its mid.  (answer is mid)
+	1. Pick a movie you know from year 2000 or later and find out its mid.  (answer is mid)
 	
 	#. Pick an actor you know and find out her or his aid.  (answer is aid)
 	
@@ -26,7 +26,7 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 
 **Using count()**
 
-	#. How many actors are listed in the actor table?  (answer is a count)
+	4. How many actors are listed in the actor table?  (answer is a count)
 	
 	#. How many movies in the movie table? (answer is a count)
 	
@@ -36,21 +36,21 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 	
 **Using Group By**
 	
-	#. List the number of movies in each year.  (answer is multiple rows, each containing year and count)
+	8. List the number of movies in each year.  (answer is multiple rows, each containing year and count)
 	
 **Using joins**
 	
-	#. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
+	9. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
 	
 	#. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	
 **Using ORDER BY**
 
-	#. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
+	11. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
 	
 **Using the same table more than once in a join**
 
-	#. Find two actors that appear together in two different movies (harder).  (answer is multiple rows, each containing actor1, actor2, movie1, movie2)
+	12. Find two actors that appear together in two different movies (harder).  (answer is multiple rows, each containing actor1, actor2, movie1, movie2)
 	
 	
 
