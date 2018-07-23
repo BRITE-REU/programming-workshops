@@ -165,7 +165,7 @@ Follow these steps to add movie ratings to your database.
 	- **mid** – a unique integer identifier for the movie (set this as the **primary key**)
 	- **rating** – a floating point value for the movie rating (**datatype: real**)
 	- **votes** – an integer value for the number of votes received by the movie
-- **Download** the data file **`ratings.tsv<https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>`_**
+- **Download** the data file "`ratings.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>`_"
 - **Import** the data into your table
 
 Asnwer these queries
