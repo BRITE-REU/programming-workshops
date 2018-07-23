@@ -90,7 +90,7 @@ Use **.read** to read in the file create.txt and execute the statements in sqlit
    sqlite> .read create.txt
 
 
-Use **.schema** to see that all the tables were created.  This will list the CREATE TABLE statements.
+Use **.schema** to see that all the tables were created.  This will list the CREATE TABLE and CREATE INDEX statements.
 
 .. code::
 
