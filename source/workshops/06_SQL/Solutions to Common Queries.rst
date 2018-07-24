@@ -53,8 +53,8 @@ Average number of actors per movie
 
 	select avg(n) 
 	from (
-				select count(aid) as n 
-				from cast group by mid
+		select count(aid) as n 
+		from cast group by mid
 	);
 
 Actors in movies titled Frozen
