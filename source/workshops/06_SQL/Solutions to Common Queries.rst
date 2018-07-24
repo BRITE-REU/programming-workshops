@@ -163,7 +163,7 @@ Top actors (most movies) since 2015
 	order by count(mid) desc 
 	limit 10;
 
-Same two actors in two movies (complete version, note less than instead of not equal in final part of where to avoid reversed duplicates)
+Same two actors in two movies (complete version, note less than (<) instead of not equal (<>) in final part of the where to avoid reversed duplicates)
 
 
 .. image:: two.actors.two.movies.png
