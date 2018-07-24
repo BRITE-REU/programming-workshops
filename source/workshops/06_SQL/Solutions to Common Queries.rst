@@ -3,7 +3,7 @@
 
 
 ******************************
-Solutions to Common Queris
+Solutions to Common Queries
 ******************************
 
 Movies with title containing "star".
