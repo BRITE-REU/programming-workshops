@@ -167,9 +167,9 @@ Same two actors in two movies (complete version, note less than (<) instead of n
 
 
 .. image:: two.actors.two.movies.png
-    :width: 400px
+    :width: 500px
     :align: center
-    :height: 100px
+    :height: 120px
  
 
 
