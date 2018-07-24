@@ -6,7 +6,7 @@
 Solutions to Common Queries
 ******************************
 
-Movies with title containing "star".
+Movies with title containing "star"
 
 .. code::
 
