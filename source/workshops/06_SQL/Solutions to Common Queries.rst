@@ -175,5 +175,23 @@ Same two actors in two movies (complete version, note less than instead of not e
 					join actors a2 on c4.aid=a2.aid 
 						join movies as m1 on m1.mid=c1.mid 
 							join movies as m2 on m2.mid=c4.mid 
-	where c1.aid <> c2.aid and c1.mid<c3.mid 
+	where c1.aid <> c2.aid and c1.mid < c3.mid 
 	limit 10;
+	
+Same two actors in two movies, one of which is Emma Stone
+
+.. code::
+
+	select a1.name, a2.name, m1.title, m2.title 
+	from actors a1 join cast c1 using (aid) 
+		join cast as c2 using(mid) 
+			join cast as c3 on c1.aid=c3.aid 
+				join cast as c4 on c2.aid = c4.aid and c3.mid=c4.mid 
+					join actors a2 on c4.aid=a2.aid 
+						join movies as m1 on m1.mid=c1.mid 
+							join movies as m2 on m2.mid=c4.mid 
+	where c1.aid <> c2.aid and c1.mid < c3.mid and a1.name like "Emma Stone"
+	limit 10;
+	
+
+
