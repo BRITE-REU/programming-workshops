@@ -163,13 +163,17 @@ Top actors (most movies) since 2015
 	order by count(mid) desc 
 	limit 10;
 
-Same two actors in two movies
+Same two actors in two movies (complete version, note less than instead of not equal in final part of where to avoid reversed duplicates)
 
 .. code::
 
-	select * 
-	from cast as c1 join cast as c2 using(mid) 
-		join cast as c3 on c1.aid=c3.aid 
-			join cast as c4 on c2.aid = c4.aid and c3.mid=c4.mid 
-	where c1.aid <> c2.aid and c1.mid<>c3.mid and c1.aid = 1297015 
+	select a1.name, a2.name, m1.title, m2.title 
+	from actors a1 join cast c1 using (aid) 
+		join cast as c2 using(mid) 
+			join cast as c3 on c1.aid=c3.aid 
+				join cast as c4 on c2.aid = c4.aid and c3.mid=c4.mid 
+					join actors a2 on c4.aid=a2.aid 
+						join movies as m1 on m1.mid=c1.mid 
+							join movies as m2 on m2.mid=c4.mid 
+	where c1.aid <> c2.aid and c1.mid<c3.mid 
 	limit 10;
