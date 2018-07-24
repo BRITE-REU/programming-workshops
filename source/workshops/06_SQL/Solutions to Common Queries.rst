@@ -1,3 +1,10 @@
+
+============================
+Answers to Common Queries
+============================
+
+
+
 Number of movies
 
 .. code::
