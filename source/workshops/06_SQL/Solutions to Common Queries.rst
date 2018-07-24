@@ -2,22 +2,22 @@ Number of movies
 
 .. code::
 
-select count(*) 
-from movies;
+	select count(*) 
+	from movies;
 
 Number of actors
 
 .. code::
 
-select count(*) 
-from actors;
+	select count(*) 
+	from actors;
 
 Number of rows in cast
 
 .. code::
 
-select count(*) 
-from cast;
+	select count(*) 
+	from cast;
 
 Movies in a range of mid values
 
@@ -32,10 +32,10 @@ Movies named "Frozen" (case sensitive)
 
 .. code::
 
-select * 
-from movies 
-where title = "Frozen"  
-limit 10;
+	select * 
+	from movies 
+	where title = "Frozen"  
+	limit 10;
 
 
 Movies name "frozen" (case insensitive)
