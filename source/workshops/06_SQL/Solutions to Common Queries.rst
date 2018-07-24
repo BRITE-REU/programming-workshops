@@ -165,6 +165,15 @@ Top actors (most movies) since 2015
 
 Same two actors in two movies (complete version, note less than instead of not equal in final part of where to avoid reversed duplicates)
 
+
+.. image:: two.actors.two.movies.png
+    :width: 400px
+    :align: center
+    :height: 100px
+ 
+
+
+
 .. code::
 
 	select a1.name, a2.name, m1.title, m2.title 
