@@ -1,6 +1,6 @@
 
 ============================
-Answers to Common Queries
+Solutions to Common Queries
 ============================
 
 
