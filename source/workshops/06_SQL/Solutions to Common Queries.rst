@@ -1,11 +1,54 @@
+Number of movies
+
+.. code::
+
+select count(*) 
+from movies;
+
+Number of actors
+
+.. code::
+
+select count(*) 
+from actors;
+
+Number of rows in cast
+
+.. code::
+
+select count(*) 
+from cast;
+
+Movies in a range of mid values
+
+.. code::
+
+	select * 
+	from movies 
+	where mid>112303 and mid <114000 
+	limit 10;
+
+Movies named "Frozen" (case sensitive)
+
+.. code::
+
+select * 
+from movies 
+where title = "Frozen"  
+limit 10;
 
 
+Movies name "frozen" (case insensitive)
 
-===============================
-Solutions to Common Queries
-===============================
+.. code::
 
-Movies with title containing "star"
+
+	select * 
+	from movies 
+	where title like "frozen"  
+	limit 10;
+
+Movies with title containing "star".
 
 .. code::
 
@@ -46,7 +89,7 @@ Count of movies per year
 	group by year 
 	limit 20;
 
-Average number of actors per movie
+Average number of actors per movie (uses subquery)
 
 .. code::
 
@@ -56,7 +99,7 @@ Average number of actors per movie
 		from cast group by mid
 	);
 
-Actors in movies titled Frozen
+Actors in movies titled "Frozen"
 
 .. code::
 
@@ -123,5 +166,3 @@ Same two actors in two movies
 			join cast as c4 on c2.aid = c4.aid and c3.mid=c4.mid 
 	where c1.aid <> c2.aid and c1.mid<>c3.mid and c1.aid = 1297015 
 	limit 10;
-
-
