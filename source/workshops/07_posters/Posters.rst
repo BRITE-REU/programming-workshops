@@ -7,8 +7,8 @@ Poster Templates
 --------------------
 
 The following are suggested posters templates.
-- Three column red <36x48_phdposters_template red.pptx>
-- Three column blue <36x48_phdposters_template blue.pptx>
+- Three column red <programming-workshops/source/workshops/07_posters/data/36x48_phdposters_template red.pptx>
+- Three column blue <programming-workshops/source/workshops/07_posters/data/36x48_phdposters_template blue.pptx>
 
 
 
