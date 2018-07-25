@@ -1,4 +1,4 @@
-Workshop 6: SQL
+Posters
 
 Tutorials
 
