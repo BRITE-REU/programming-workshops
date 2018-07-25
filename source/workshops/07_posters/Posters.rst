@@ -44,7 +44,7 @@ What to look for when reading a poster
 	5) Does the results section make clear what was the outcome?
 	6) Are graphs and figures clear, well labeled, and described.  Are important results highlighted?
 	7) Does the conclusion discuss the importance of the results and what further work needs to be done?
-	8) Is there are reference section with relevant articles and books?
+	8) Is there a reference section with relevant articles and books?
 	9) Is there an acknowledgement section that contains grant support information?
 
 **Appearance and overall effect**
