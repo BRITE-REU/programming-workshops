@@ -9,5 +9,5 @@ Posters
 
     Abstracts <Abstracts>
     Posters <Posters>
-    Submission Deadlines <Submmission Deadlines>
+    Submission Deadlines <Submission Deadlines>
 
