@@ -14,12 +14,10 @@ Indianapolis, Indiana
 Travel Award 
 -------------
 Deadline Aug 22 at 11:59 p.m. PDT
-
-.. _Link: http://www.abrcms.org/index.php/register/apply-for-a-travel-award
+`Apply for a travel award <http://www.abrcms.org/index.php/register/apply-for-a-travel-award>`_
 
 -----------
 Abstract
 -----------
 Deadline Sept 7 at 11:59 p.m. PDT
-
-.. _Link: http://www.abrcms.org/index.php/present-at-abrcms/submit-an-abstract
+`Submit an abstract <http://www.abrcms.org/index.php/present-at-abrcms/submit-an-abstract>`_
