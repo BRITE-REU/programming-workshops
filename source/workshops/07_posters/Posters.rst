@@ -19,8 +19,7 @@ Poster Draft Guidelines
 	- **Title**
 	- **Authors**
 	- **Affiliations of Authors**
-		- Yours should be your school and 
-			Boston University Bioinformatics BRITE REU Program, Summer 2018 
+		- Yours should be your school and "Boston University Bioinformatics BRITE REU Program, Summer 2018" 
 	- **Abstract**
 	- **Text for** 
 		- Motivation and Background
