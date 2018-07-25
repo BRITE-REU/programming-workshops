@@ -12,10 +12,10 @@ Submission Deadlines
     Travel Award 
     -------------
     Deadline Aug 22 at 11:59 p.m. PDT
-    .. : http://www.abrcms.org/index.php/register/apply-for-a-travel-award
+    .. _: http://www.abrcms.org/index.php/register/apply-for-a-travel-award
 
     -----------
     Abstract
     -----------
     Deadline Sept 7 at 11:59 p.m. PDT
-    .. : http://www.abrcms.org/index.php/present-at-abrcms/submit-an-abstract
+    .. _: http://www.abrcms.org/index.php/present-at-abrcms/submit-an-abstract
