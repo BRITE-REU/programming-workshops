@@ -16,22 +16,22 @@ The following are suggested posters templates.
 Poster Draft Guidelines
 ------------------------
 
-- **Title**
-- **Authors**
-- **Affiliations of Authors**
-	- Yours should be your school and 
-		Boston University Bioinformatics BRITE REU Program, Summer 2018 
-- **Abstract**
-- **Text for** 
-	- Motivation and Background
-	- Methods
-	- Results
-	- Discussion and Future Work
-- **Figures**
-- **References**  
-- **Acknowledgements**
-	- Include: "This work was funded, in part, by NSF grant DBI-1559829, awarded to the Boston University Bioinformatics BRITE REU program, [and if other grants] and <grant agency, like NSF or NIH> grant <grant number>."
-  
+	- **Title**
+	- **Authors**
+	- **Affiliations of Authors**
+		- Yours should be your school and 
+			Boston University Bioinformatics BRITE REU Program, Summer 2018 
+	- **Abstract**
+	- **Text for** 
+		- Motivation and Background
+		- Methods
+		- Results
+		- Discussion and Future Work
+	- **Figures**
+	- **References**  
+	- **Acknowledgements**
+		- Include: "This work was funded, in part, by NSF grant DBI-1559829, awarded to the Boston University Bioinformatics BRITE REU program, [and if other grants] and <grant agency, like NSF or NIH> grant <grant number>."
+
 ---------------------------------------
 What to look for when reading a poster
 ---------------------------------------
