@@ -4,9 +4,9 @@ Submission Deadlines
 =========================
 
 
-|**2018 ABRCMS National Conference**
-|November 14-17, 2018
-|Indianapolis, Indiana
+| **2018 ABRCMS National Conference**
+| November 14-17, 2018
+| Indianapolis, Indiana
     
 -------------
 Travel Award 
