@@ -48,7 +48,7 @@ What to look for when reading a poster
 	9) Is there an acknowledgement section that contains grant support information?
 
 **Appearance and overall effect**
-1) Is it interesting?
-2) Is there a good mix of text and figures?
-3) Was there a good flow in the story?
-4) Did you learn something from it?
+	1) Is it interesting?
+	2) Is there a good mix of text and figures?
+	3) Was there a good flow in the story?
+	4) Did you learn something from it?
