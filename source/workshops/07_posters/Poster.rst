@@ -2,18 +2,19 @@
 Posters
 ===============
 
-***********************
+--------------------
 Poster Templates
-***********************
+--------------------
+
 The following are suggested posters templates.
 - Three column red <36x48_phdposters_template red.pptx>
 - Three column blue <36x48_phdposters_template blue.pptx>
 
 
 
-************************
+------------------------
 Poster Draft Guidelines
-************************
+------------------------
 
 - Title
 - Authors
@@ -31,12 +32,11 @@ Poster Draft Guidelines
 - Acknowledgements
 	- Include: "This work was funded, in part, by NSF grant DBI-1559829, awarded to the Boston University Bioinformatics BRITE REU program, [and if other grants] and <grant agency, like NSF or NIH> grant <grant number>."
   
+---------------------------------------
+What to look for when reading a poster
+---------------------------------------
 
-**********************************
-What to ask when reading a poster
-**********************************
-
-Contents
+**Contents**
 1) Does the abstract say briefly what the authors did, why they did it (including importance), what results they got?
 2) Is there an introduction to basic concepts?
 3) Does it use diagrams or flowcharts to increase clarity?
@@ -47,7 +47,7 @@ Contents
 8) Is there are reference section with relevant articles and books?
 9) Is there an acknowledgement section that contains grant support information?
 
-Appearance and overall effect
+**Appearance and overall effect**
 1) Is it interesting?
 2) Is there a good mix of text and figures?
 3) Was there a good flow in the story?
