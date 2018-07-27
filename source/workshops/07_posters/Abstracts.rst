@@ -8,6 +8,7 @@ Abstract Draft Guidelines
 --------------------------
 
 **Include**:
+  - Title
   - Motivation and Background
   - Question or Goal
   - Methods and Data
