@@ -60,9 +60,9 @@ multiplication, and division
 
 .. code-block:: python
 
-    # The print function takes a value or expression and displays the output to the screen.
-    # The hash symbol denotes the proceeding text as a comment, and thus is not evaluated
-    # by the interpreter. 
+    # The print function takes a value or expression and displays the output to
+    # the screen. The hash symbol denotes the proceeding text as a comment, and
+    # thus is not evaluated by the interpreter. 
     
     print(2 + 2)
     print(2 - 2)
@@ -102,7 +102,8 @@ multiplication, and division
 
 .. code-block:: python
 
-    # The percent symbol, '%', is used as the modulo operator for calculating remainders.
+    # The percent symbol, '%', is used as the modulo operator for calculating
+    # remainders.
     print(6 % 4)  # 6 = 4*1 + 2
 
 
@@ -144,8 +145,8 @@ while floating point numbers contain decimal values.
 
 .. code-block:: python
 
-    # Values in Python can be assigned to variables with different names for later access. 
-    # Variable assignment is done using the '=' symbol.
+    # Values in Python can be assigned to variables with different names for
+    # later access. Variable assignment is done using the '=' symbol.
     x = 2
     y = 3.0
     print(x)
@@ -162,7 +163,8 @@ while floating point numbers contain decimal values.
 
 .. code-block:: python
 
-    # Variables can be cast to compatible data types using the desired data type function.
+    # Variables can be cast to compatible data types using the desired data
+    # type function.
     print(y)
     print(type(y))
     
@@ -181,7 +183,8 @@ while floating point numbers contain decimal values.
 
 .. code-block:: python
 
-    # While we instantiated 'z' using 'y' and then modified 'z', the value 'y' remains unchanged.
+    # While we instantiated 'z' using 'y' and then modified 'z', the value 'y'
+    # remains unchanged.
     print(y)
 
 
@@ -200,7 +203,7 @@ statement. In Python, these take the form the key words, **True** and
 values. Each of these operators returns a boolean value representing the
 truth value of the given statement. All the previously listed operators
 expect to be sandwiched between two values, one to the left and one to
-the left, and are evaluated left to right.
+the right, and are evaluated left to right.
 
 .. code-block:: python
 
@@ -237,8 +240,9 @@ the left, and are evaluated left to right.
 Boolean statements (e.g. 3 < 5) can be strung together using and
 maniuplated using the **and**, **or**, and **not** keywords. All
 keywords follow their formal logic definitions: the **and** keyword is
-true is both statements are also true, the **or** keyword is true if one
-of the statements is true, and **not** negates the original truth value.
+true if both statements are true, the **or** keyword is true if one
+of the statements is true, and **not** negates the original truth value of a
+given statement.
 
 .. code-block:: python
 
@@ -258,8 +262,8 @@ String Variables and Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Strings are data types used to represent text data. They can be
-instantiated by placing expressions between single (**'[expression]'**)
-or double (**"[expression]"**) quotes.
+instantiated by placing expressions between single (**'expression'**)
+or double (**"expression"**) quotes.
 
 .. code-block:: python
 
@@ -359,10 +363,12 @@ is done using the **.format()** method available to string objects.
     print("The first character in '{0}' is: {1}.".format(string_1, string_1[0]))
     
     # Due to zero indexing, the last element is the n - 1 element.
-    print("The last character in '{0}' is: {1}.".format(string_1, string_1[len(string_1) - 1]))
+    print("The last character in '{0}' is: {1}.".format(string_1,
+                                                        string_1[len(string_1) - 1]))
     
     # Negative indexing also works (e.g. -1 accesses the last element):
-    print("The second to last character in '{0}' is: {1}.".format(string_1, string_1[-2]))
+    print("The second to last character in '{0}' is: {1}.".format(string_1,
+                                                                  string_1[-2]))
 
 
 ::
@@ -374,24 +380,27 @@ is done using the **.format()** method available to string objects.
 
 .. code-block:: python
 
-    # If a string is of a numerical value, the string can be converted to an integer or float.
+    # If a string is of a numerical value, the string can be converted to an
+    # integer or float.
     
     float_string = '2.5'
     int_string = '2'
     print_msg = 'Converted {0} to {1} from type {2} to type {3}'
     
     int_num = int(int_string)
-    print(print_msg.format(int_string, int_num, type(int_string), type(int_num)))
+    print(print_msg.format(int_string, int_num, type(int_string),
+                           type(int_num)))
     
     float_num = float(float_string)
-    print(print_msg.format(float_string, float_num, type(float_string), type(float_num)))
+    print(print_msg.format(float_string, float_num, type(float_string),
+                           type(float_num)))
     
     # Likewise, numbers can easily be converted to strings
     num = 3.5
     print(print_msg.format(num, str(num), type(num), type(str(num))))
     
-    # It is important to note that if a string represents a floating point number, 
-    # Python is unable to convert that number to an integer.
+    # It is important to note that if a string represents a floating point
+    # number, Python is unable to convert that number to an integer.
 
 
 ::
@@ -411,7 +420,7 @@ Lists
 ~~~~~
 
 Lists are arbitrarily long collections of objects. The are instantiated
-by placing comma-separated values within square bracks **[\*\* \*\*]**.
+by placing comma-separated values within square bracks **[]**.
 
 .. code-block:: python
 
@@ -520,7 +529,8 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
 
 .. code-block:: python
 
-    # Lists can have mixed-type variables (e.g. a list can contain both integers and strings)
+    # Lists can have mixed-type variables (e.g. a list can contain both integers
+    # and strings)
     my_list.append('String!')
     print(my_list)
 
@@ -532,9 +542,9 @@ by placing comma-separated values within square bracks **[\*\* \*\*]**.
 
 .. code-block:: python
 
-    # incremental lists up to a defined number can be created using the built-in range() function.
-    # The range function outputs a 'range' object. However, it can be casted to a list
-    # using the list() function.
+    # incremented lists up to a defined number can be created using the built-in
+    # range() function. The range function outputs a 'range' object. However, it
+    # can be casted to a list using the list() function.
     
     n = 10
     # Create list of length 10 ranging from 0 - 9
@@ -686,10 +696,12 @@ the **key:value** syntax.
     my_dict = {'a': 1, 'b': 2, 'c': 3}
     print(my_dict)
 
+
 .. code-block:: python
 
     # Look up values using keys
     my_dict['a']
+
 
 .. code-block:: python
 
@@ -706,10 +718,13 @@ the **key:value** syntax.
     # Retrieve keys of a dictionary using .keys() dictionary method
     print(my_dict.keys())
 
+
 .. code-block:: python
 
     # Retrieve values of a dictionary using .values() dictionary method
     print(my_dict.values())
+
+
 
 If, Else, and Elif Statements
 =============================
@@ -750,9 +765,9 @@ An **if** statement uses if the following syntax:
 
 .. code-block:: python
 
-    # Like an else statement, an elif statement must follow a preceding if statement.
-    # However, like an if statement, an elif must also have its own boolean statement
-    # that must be met in order for its snippets to be run.
+    # Like an else statement, an elif statement must follow a preceding if
+    # statement. However, like an if statement, an elif must also have its own
+    # boolean statement that must be met in order for its snippets to be run.
     
     if (x < 10):
         print('{0} is less than 10'.format(x))
@@ -832,7 +847,8 @@ loops employ the following syntax:
     count = 0
     while count < 5:
         print(count)
-        count += 1  # the += operator increments the value of a variable by the right value
+        count += 1  # the += operator increments the value of a variable by
+                    # the right value
 
 Nested While Loops
 ------------------
@@ -1038,14 +1054,16 @@ imported methods changes.
 .. code-block:: python
 
     from math import cos
-    print(cos(math.pi))  # no `math.cos` necessary because we imported `cos` directly.
+    print(cos(math.pi))  # no `math.cos` necessary because we imported
+                         # `cos` directly.
 
 .. code-block:: python
 
     from os import path
-    # import 'path' submodule from 'os' module to gain access to 'realpath' method.
-    # When executing, os.path.realpath' not necessary because 'path' sub-module imported.
-    # However, path.realpath necessary because 'realpath' is in the 'path' sub-module.
+    # import 'path' submodule from 'os' module to gain access to 'realpath'
+    # method. When executing, os.path.realpath' not necessary because 'path'
+    # sub-module imported. However, path.realpath necessary because 'realpath'
+    # is in the 'path' sub-module.
     print(path.realpath('input_file.txt'))  
 
 .. code-block:: python
@@ -1063,4 +1081,4 @@ structures in Python. Many concepts, techniques, and capabilities were
 left out. Feel free to explore more of Python's capabilities on your own
 if you so desire. Looking into external libraries such as **numpy** and
 **scipy** will be incredibly beneficial for anyone looking to continue
-to perform analysis in Python.
+to perform numerical/data analysis in Python.
