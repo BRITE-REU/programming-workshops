@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "MLWorkshopBrite2018"
 author: "Dakota Hawkins"
@@ -7,6 +8,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 ## Introduction
 
@@ -21,17 +23,38 @@ features included, such as sex, race, and age. This workshop will explore the re
 First, we need to load the dataset and a few helper functions we've written
 into our `R` environments. From the top of the Github repository, the data 
 can be found at `/source/workshops/05_Machine_learning/data/combined_data.csv`.
-```{r}
-#combined_data <- read.csv('../data/GSE53987_combined.csv', row.names=1)
+
+```{R read_data}
+
+# you can download the data at https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/05_Machine_learning/data/GSE53987_combined.csv
+
+GSE53987 <- read.csv('../data/GSE53987_combined.csv', row.names = 1, header = TRUE)
+N <- nrow(GSE53987)
+M <- ncol(GSE53987)
+
+GSE53987.meta <- GSE53987[,1:10]
+GSE53987.expression <- GSE53987[,11:M]
+
+
+M.ES <- ncol(GSE53987.expression)
+dim(GSE53987)
+
+
 ```
 
 
 Next, we need to load in a few helper functions we've written to make plotting
 and data exploration easier.
 
-```{r}
+```{R initialize}
+# if you need to install these packages use the following code:
+# install.packages("ggplot2", dependencies = TRUE)
+# install.packages("reshape2", dependencies = TRUE)
+# install.packages(c("glue", "magrittr", "lattice", "caret"))
+# install.packages("e1071", dependencies = TRUE)
 library(ggplot2)
 library(reshape2)
+library(lattice)
 library(caret)
 library(e1071)
 #' create_boxplot
@@ -120,22 +143,133 @@ create_histogram <- function(dataframe, column, facet='', bins=30) {
   }
   return(hist)
 }
+
+
+#' correlation_plot
+#' 
+#' Create a simple correlation heatmap.
+#'
+#' @param cor_mat (data.frame, data.matrix): square data matrix containing 
+#'     correlations between variables.
+#' @param row_title (string): name of features to plot along the x-axis.
+#' @param col_title (string): name of features to plot along the y-axis
+#'
+#' @return (gg.ggplot)
+#' @export
+#'
+#' @examples
+#' # cor_mat <- cor(combined_data[12:22])
+#' # correlation_plot(cor_mat, 'Genes', 'Genes')
+correlation_plot <- function(cor_mat, row_title, col_title) {
+  melted_data <- melt(cor_mat)
+  colnames(melted_data)[1:2] <- c(row_title, col_title)
+  cor_plot <- ggplot(data=melted_data, aes_string(x = row_title, y=col_title,
+                                      fill='value')) +
+              geom_tile() + 
+              theme(axis.text.x = element_text(angle=90, hjust=1))
+  return(cor_plot)
+}
+
+#' cross_validate_logit_model_example
+#' 
+#' Example of cross-validation implementation using 
+#' logistic regression to predict label from all gene expression
+#'
+#' @param dataframe (data.frame): data.frame containing both
+#' dependent and independent variable. 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' 
+#' # cross_validate_logit_model_example(combined_data)
+cross_validate_logit_model_example <- function(dataframe) {
+  y <- dataframe$label
+  folds <- caret::createFolds(y, k=10)
+  
+  # bind outputted list auc scores to dataframe 
+  # for future averaging
+  metrics <- lapply(1:length(folds), function(i) {
+    test_idx <- folds[[i]]  # get current test partition
+    test <- dataframe[test_idx, ]
+    train_idx <- unlist(folds[c(1:length(folds))[-i]])  # get train partions
+    train <- dataframe[train_idx, ]
+    
+    # create model --> formula Gender ~ A2m is predicting Gender from 
+    # all gene expression | label ~ . would predict label using all features
+    model <- glm(label ~., data=train, family=binomial(link="logit"))
+    
+    test_pred <- predict(model, test)  # predict test labels from data
+    pred_metrics <- ROCR::prediction(test_pred, test$label)
+    roc_values <- ROCR::performance(pred_metrics, measure = 'tpr', x.measure='fpr')
+    auc <- ROCR::performance(pred_metrics, measure='auc')
+    auc <- auc@y.values[[1]]
+    return(list('fpr' = roc_values@x.values[[1]], 
+                'tpr' = roc_values@y.values[[1]], 'auc'=auc))
+  })
+  
+  # Concatenate metrics from different runs
+  fpr <- c()
+  tpr <- c()
+  fold <- c()
+  roc <- c()
+  for (i in 1:length(metrics)) {
+    fpr <- c(fpr, metrics[[i]]$fpr)
+    tpr <- c(tpr, metrics[[i]]$tpr)
+    roc <- c(roc, metrics[[i]]$auc)
+    fold <- c(fold, seq(i, i, length.out=length(metrics[[i]]$fpr)))
+  }
+  
+  # create data frames for ggplotting
+  roc_df <- data.frame('fpr'=fpr, 'tpr'=tpr,'fold'=fold)
+  roc_df$fold <- as.factor(roc_df$fold)
+  linspace <- seq(from=0, to=1, length.out=1000)
+  average_roc <- approx(fpr, tpr, xout=linspace)
+  average_df <- data.frame('fpr'=average_roc$x, 'tpr'=average_roc$y)
+  
+  # plot roc curve + auc 
+  mean_auc <- round(mean(auc), 3)
+  ggplot(data=roc_df, aes(x=fpr, y=tpr)) +
+    geom_line(aes(color=fold), alpha=0.75) + 
+    geom_line(data=average_df, color='black') + 
+    ggtitle("ROC Curve", subtitle=paste0('AUC = ',
+                                           as.character(mean_auc)))
+  
+}
+
 ```
 ## Exploration 1: Features
 
 Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
 
+```{R distributions}
+# there are 10 meta features 
+colnames(GSE53987.meta)
+str(GSE53987.meta)
+summary(GSE53987.meta)
+
+```
+
 ### Distributions/Histograms
 What type of distributions exist within the features? Is Gender a balanced feature (roughly equal representation between both men and women)? Are numerical values normally distributed? Explore numerical distributions by plotting histograms for Age, an Age + Gender histogram, and one of your favorite genes found in the dataset. Discuss your findings below your code.
 
-```{r}
+```{R distributions}
+
+create_histogram(dataframe = GSE53987, column = 'Age', facet = 'Disease.state')
+
 
 ```
 
 ### Factor Dependence/Boxplots
 Some features display factor dependent values. That is, whether a subject is a male or a female might effect the expression patterns of a given gene. Explore factor and feature relationships by creating boxplots for three different features grouped by Tissue, Disease.status, and combining the two with the `facet` parameter in `create_boxplot()`. Discuss your finding below your code. If we want to predict factor/group membership (e.g. tissue of origin), what types of boxplots would we expect to see from a predictive feature?
 
-```{r}
+```{r balance}
+# boxplot
+ggplot(GSE53987, aes(x=Disease.state, y=Age, fill=Gender)) + geom_boxplot()
+
+# violin plots
+create_boxplot(dataframe = GSE53987, y_column = 'Age', group_column = 'Tissue', facet = 'Gender')
 
 ```
 
@@ -144,19 +278,57 @@ Some features display factor dependent values. That is, whether a subject is a m
 
 Principal Component Analysis (PCA) is a commonly used technique to create linearly uncorrelated features from a set of possibly correlated features. The procedure is done in such a way that the first feature produced by PCA, the first principal component -- PC1, explains the largest amount of variability possible. In this way, PCA is a dimension reduction technique, as the first few principal components often explain upwards of 90% of the variability found within a dataset. You can perform PCA in R using the `prcomp` function. Give your R terminal that fatty `?prcomp` to look up how to use the function. It is important to note that if we're planning on predicting anything using the principal components, such as tissue type or Disease.status, those features should *not* be included in the matrix that is passed to `prcomp`. Before performing PCA, create a new data.table containing only explanatory values (i.e. the features we want to use to predict class membership).
 
+```{R PCA_plot}
+# install.packaged("ggfortify")
+library(ggfortify)
+GSE53987.prcomp <- prcomp(GSE53987.expression, center = TRUE)
+autoplot(GSE53987.prcomp, data = GSE53987, colour = 'Tissue', shape = 'Disease.state')
+
+
+```
+
 ### Variation Explanation
 
 Explore how much variation is explained by the principal components.How much variation is explained by the first two principal components? How many principal components are required to explain 75%, 85%, 90%, 95%, and 99% of the variation within our dataset?
 
+```{R PCA}
+
+plot(GSE53987.prcomp, type = "l")
+# proportion of variability
+PoV <- 100 * GSE53987.prcomp$sdev^2 / sum(GSE53987.prcomp$sdev^2)
+plot(PoV, type="o", ylab = "Proportion of variability", xlim = c(1,10), main = "GSE53987.prcomp")
+summary(GSE53987.prcomp$rotation[1:5,1:4])
+
+```
+
 
 ### Separation in the Principal Components
 
-Because principal components contain so much information, they are often used to separate samples from different factor groups. Visually explore this separation using the `create_histogram()` function to plot the first two principal components and color samples according to Tissue and Disease.status. What effect does plotting the third principal component have on sample separation?
+Because principal components contain so much information, they are often used to separate samples from different factor groups. Visually explore this separation using the `create_scatterplot()` function to plot the first two principal components and color samples according to Tissue and Disease.status. What effect does plotting the third principal component have on sample separation?
+
+```{R PCA_hist}
+
+create_scatterplot(dataframe =cbind(GSE53987.meta, GSE53987.prcomp$x), x_column = 'PC1', y_column = 'PC2', color_column = 'Tissue')
+create_scatterplot(dataframe = cbind(GSE53987.meta, GSE53987.prcomp$x), x_column = 'PC1', y_column = 'PC3', color_column = 'Disease.state')
+
+```
 
 
 ### Tissue Dependent Separation
 
 It is possible samples from one tissue are more predictive of Disease.status than samples from another tissue. Subset the dataset into three disjoint datasets by Tissue. Run PCA on all three of these datasets, plot the first two principal components, and color the dots according to Disease.status. Does there appear to be a meaningful difference in the separation between disease classes between the three different datasets?
+
+```{R subset_tissue}
+
+# try to separate by Disease.state on a single Tissue
+idx <- which(GSE53987$Tissue == "hippocampus")
+GSE53987.hippocampus <- GSE53987[idx,]
+GSE53987.hippocamp.prcomp <- prcomp(GSE53987.expression[idx,])
+autoplot(GSE53987.hippocamp.prcomp, data = GSE53987.hippocampus, colour = 'Disease.state', shape = 'Gender')
+
+create_scatterplot(dataframe = cbind(GSE53987.hippocamp.prcomp$x, GSE53987.hippocampus[,1:10]), x_column = 'PC2', y_column = 'PC4', color_column = 'Disease.state')
+
+```
 
 ## Exploration 3: Feature Selection
 
@@ -166,13 +338,69 @@ Feature selection is a commonly performed step in statistics/machine learning to
 
 Calculating the most variable features in a dataset is relatively straight forward using the `var` or `cov` function in R. Ranking the values in the matrix diagnol will produce the most variable genes.
 
+```{R feature_selection_variability}
+# feature selection by variance
+features.var <- diag(var(GSE53987.expression))
+features.var.rank <- rank(features.var)
+
+features.var.top <- sort(names(features.var.rank[features.var.rank > M.ES-100]))
+GSE53987.var <- GSE53987.expression[,features.var.top]
+
+
+# feature selection by covariance
+# practice: replace var with cov
+
+```
+
 ### 2. Highest correlations with principal components
 
 Correlation explains how much variation in a variable $y$ is explained by the variation in variable $x$. Knowing that principal components maximize the variance found within a dataset, finding how much each feature correlates with each prinicipal component thus gives us a measure for how informative various features are. Because different principal components likely explain different parts of the data, it may be important to select variables that are highly correlated with different components.
 
+```{R feature_selection_PCA}
+
+
+
+```
+
 ### 3. Differential Expression
 
 If we have pre-defined groups that we know we're interested in predicting, such a `Disease.status` or `Tissue`, we can find genes that are differentially expressed between the groups, and then subset our dataset down to the most differentially expressed. When considering ranking differentially expressed genes, it is important to consider *both* statistical significance (i.e. a p-value) as well as the biological difference (i.e. average log-fold change between groups).
+
+```{R feature_selection_DE}
+# differentially expresed genes by t.test
+p_threshold <- 0.05
+# TODO:set the disease to be the class of interest
+control.group <- GSE53987.expression[GSE53987$Disease.state == "control",]
+disease.group <- GSE53987.expression[GSE53987$Disease.state != "control",]
+
+features.DE <- c()
+# perform a t.test to find significantly different genes
+for (i in 1:M.ES) { 
+  if(t.test(control.group[,i], disease.group[,i])$p.value <= p_threshold) {
+    features.DE <- c(features.DE, colnames(GSE53987.expression[i]))
+  }
+}
+features.DE <- sort(features.DE)
+length(features.DE)
+GSE53987.DE <- GSE53987.expression[,features.DE]
+
+# differentially expressed genes by limma
+library(limma)
+#source("http://www.bioconductor.org/biocLite.R")
+#biocLite("ALL")
+library("ALL")
+library(limma)
+GSE53987.eset <- ExpressionSet(t(as.matrix(GSE53987.expression)))
+phenoData(GSE53987.eset) <- AnnotatedDataFrame(GSE53987.meta)
+f <- factor(as.character(GSE53987.eset$Disease.state == "control"))
+design <- model.matrix(~f)
+fit <- eBayes(lmFit(GSE53987.eset, design))
+features.limma <- fit$p.value[, 2] < p_threshold # correct way is to adjust p-values 
+GSE53987.limma.eset <- GSE53987.eset[features.limma, ]
+GSE53987.limma <- cbind(GSE53987.limma.eset$Disease.state, t(exprs(GSE53987.limma.eset)))
+
+```
+
 
 ### 4. Largest Fisher's Criterion
 
@@ -184,19 +412,614 @@ $F.C. = \frac{(\mu_i - \mu_j)}{\sigma_i^2 + \sigma_j^2}$
 
 With datasets of any size, it is unlikely our features are entirely independent. Instead, there is likely redundant information contained in multiple features. While this is not a problem for some algorithms, with standard algorithms such as multi-variate linear regression, co-linearity between variables can lead to a highly overfit model. You might think of this as "double counting". Even if a specific algorithm may be able to deal with related variables, removing non-informative features can still help with overfitting and reducing run time. To visualize highly correlated features, first calculate the correlation matrix between your numerical variables, and visualize the relationships by calling the `correlation_plot()` function. Which features are highly related to each other? How do these relationships change if we subset our dataset by tissue type? If you would like, feel free to remove highly correlated variables. However, you'll need to decide how to determine which features to keep among those that are highly related.
 
+```{R correlation_plot}
+dataset <- GSE53987.var
+cor_matrix <- cor(dataset)
+# TODO: can't get this working
+#correlation_plot(cor_matrix, "genes", "genes")
+heatmap.2(cor_matrix, trace = "none")
+
+cor_matrix[upper.tri(cor_matrix)] <- 0
+diag(cor_matrix) <- 0
+GSE53987.var.cor <- dataset[,!apply(cor_matrix,2,function(x) any(abs(x) > 0.99))]
+dim(GSE53987.var.cor)
+
+```
+
 ## Exploration 5: Unsupervised Learning - Clustering
 
 Unsupervised learning can be thought of as applying an algorithm to a dataset in order to discover latent structure that exists between samples. We've already been exposed to some of these algorithms via PCA. However, one of the most common techniques in machine learning, and especially bioinformatics, is hierarchical clustering. Hierarchical clustering builds a dendogram/tree relating similar samples together. While hierarchical clustering itself doesn't produce distinct clusters, cutting the dendogram at different three heights does. However, even without producing distinct clusters the technique is still useful. The `heatmap()` function in `R` clusters both samples and features to group highly related features along with highly related samples. Use the `heatmap()` function in R to visualize the previously created correlation matrix. Is it easier to parse which features are highly related? Heatmaps are also commonly used to visualize gene expression patterns. Isolating only the gene expression values from your dataset, use the `heatmap()` function to explore sample and gene clusters. Do any genes form distinct clusters? What about samples? 
 
+```{R clustering}
+# format the data
+library(tidyr)
+library(ggplot2)
+
+
+# use feature selection by var, change and see what happens
+dataset <- as.data.frame(GSE53987.var)
+
+color.map.disease <- function(disease) { if (disease=="control") "#FF0000" else if (disease == "Bipolar disorder") "#00FF00" else if (disease == "Major depression disorder") "#0000FF" else "#0FFF00"}
+color.map.tissue <- function(tissue) { if (tissue=="Associative striatum")  "#FF0000" else if (tissue == "hippocampus")  "#00FF00" else  "#0000FF" }
+patientcolors <- unlist(lapply(GSE53987[rownames(dataset), "Disease.state"], color.map.disease))
+tissuecolors <- unlist(lapply(GSE53987[rownames(dataset), "Tissue"], color.map.tissue))
+
+
+par(mar=c(10, 4.1, 4.1, 8), xpd=TRUE)
+heatmap(as.matrix(dataset), RowSideColors=patientcolors)
+legend("topleft", inset=c(-0.15,0), leg = c("control", "BPD", "MDD", "schiz"), fill=c("#FF0000", "#00FF00", "#0000FF", "#999999"), bty = "n")
+
+par(mar=c(10, 4.1, 4.1, 8), xpd=TRUE)
+heatmap.2(as.matrix(dataset), RowSideColors=tissuecolors, trace = "none", labRow = FALSE)
+legend("topleft", inset=c(-0.15,0), leg = c("striatum", "hippo", "BA46"), fill=c("#FF0000", "#00FF00", "#0000FF"), bty = "n")
+
+
+```
+
 
 ## Exploration 6: Association Rules
 
-## Exploration 7: Supervise Learning
+```{R associaition_rules, message=FALSE, warning=FALSE}
+library(arules)
+GSE53987.nominal_features <- GSE53987[,c(1:4, 9:10)]
+GSE53987.nominal_features$Age <- discretize(GSE53987.nominal_features$Age)
+rules <- apriori(GSE53987.nominal_features, parameter=list(support=0.10, confidence=0.50))
+length(rules)
+inspect(head(rules, n = 10, by ="lift"))
+
+```
+
+## Exploration 7: Supervised Learning
 
 Supervise learning is a technique to teach an algorithm to distinguish between previously labelled groups, such as `Tissue`, `Gender`, or `Disease.status`. However, all supervised methods require data to learn how to differentiate between classes. Therefore, it is necessary to separate data into test/train sets. The training set is used to train the model, while the test set is used to evaluate performance. Cross-validation, a method of partitioning the data into disjoint subsets and continually re-training and re-testing with different partition combinations, is often used to evaluate models. In `R`, you can use the `createFolds` function in the `caret` package to easily partition your data. Load/install the library, and `?createFolds` for more information. In this section, we will build various classifiers to predict different classes from our data. You should evaluate your models' performances using the AUC in ROC space -- at least for binary classes -- along with confusion matrices.
+
+```{R supervised_preparing}
+dataset <- GSE53987.expression[GSE53987$Disease.state == "control" | GSE53987$Disease.state == "schizophrenia", ]
+N <- nrow(dataset)
+
+# split the data into train and test
+RATIO <- 0.75
+idx.train <- sample(size = RATIO*N, x = c(1:N))
+idx.test <- setdiff(c(1:N), idx.train)
+dataset.train <- dataset[idx.train, ]
+dataset.test <- dataset[idx.test, ]
+
+# select features
+# percent of genes to keep
+KEEP <- 10
+features.var <- diag(var(dataset.train))
+features.var.rank <- rank(features.var)
+features.var.top <- sort(names(features.var.rank[features.var.rank > ncol(dataset.train)-10]))
+dataset.train <- dataset.train[,features.var.top]
+dataset.test <- dataset.test[,features.var.top]
+
+# add label
+dataset.train <- cbind(label = as.character(GSE53987[rownames(dataset.train), "Disease.state"]), dataset.train)
+dataset.test <- cbind(label = as.character(GSE53987[rownames(dataset.test), "Disease.state"]), dataset.test)
+
+
+```
 
 ### Logistic Regression
 
 Logistic regression 
 
-## Exploration 8: Rule Induction in RapidMiner
+```{R logistic_regression}
+# TODO I can't get this working
+cross_validate_logit_model_example(dataset.train)
+
+
+```
+=======
+---
+title: "MLWorkshopBrite2018"
+author: "Dakota Hawkins"
+date: "July 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+## Introduction
+
+In this workshop, we'll use the GSE53987 dataset to explore and gain experience
+with common machine learning techniques. The dataset contains gene expression
+profiles is post-mortem human brain samples from subject with schizophrenia,
+bioplor disorder, and major depressive disorder. There are also a few metadata 
+features included, such as sex, race, and age. This workshop will explore the relationship between metadata factors and gene expression patterns within tissue types and mental health status.
+
+## Set Up
+
+First, we need to load the dataset and a few helper functions we've written
+into our `R` environments. From the top of the Github repository, the data 
+can be found at `/source/workshops/05_Machine_learning/data/combined_data.csv`.
+
+```{R read_data}
+
+# you can download the data at https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/05_Machine_learning/data/GSE53987_combined.csv
+
+GSE53987 <- read.csv('../data/GSE53987_combined.csv', row.names = 1, header = TRUE)
+N <- nrow(GSE53987)
+M <- ncol(GSE53987)
+
+GSE53987.meta <- GSE53987[,1:10]
+GSE53987.expression <- GSE53987[,11:M]
+
+
+M.ES <- ncol(GSE53987.expression)
+dim(GSE53987)
+
+
+```
+
+
+Next, we need to load in a few helper functions we've written to make plotting
+and data exploration easier.
+
+```{R initialize}
+# if you need to install these packages use the following code:
+# install.packages("ggplot2", dependencies = TRUE)
+# install.packages("reshape2", dependencies = TRUE)
+# install.packages(c("glue", "magrittr", "lattice", "caret"))
+# install.packages("e1071", dependencies = TRUE)
+library(ggplot2)
+library(reshape2)
+library(lattice)
+library(caret)
+library(e1071)
+#' create_boxplot
+#'
+#' Create grouped violin/boxplots for a specified feature.
+#'
+#' @param dataframe (data.frame): data.frame containing data to plot.
+#' @param y_column (string): column name to plot along the y-axis.
+#' @param group_column (string): column name for grouping variable.
+#' @param facet (string, optional): second grouping variable. Will create
+#'     distinct boxplots for each unique value within the column. Boxplots are
+#'     stacked in rows. Default is '', and no facet wrapping is applied.
+#'
+#' @return (gg.ggplot): ggplot object of boxplots
+#' @export
+#'
+#' @examples
+#'
+#' # plot 'Pmi' accross disease states
+#' create_boxplots(combined_data, 'Pmi', 'Disease.state')
+#'
+#' # plot 'Pmi' accross disease states and tissue types
+#' create_boxplots(combined_data, 'Pmi', 'Disease.state', 'Tissue')
+create_boxplot <- function(dataframe, y_column, group_column, facet='') {
+  boxplots <- ggplot(dataframe, aes_string(x=group_column, y=y_column)) +
+              geom_violin(aes_string(fill=group_column), trim=FALSE) +
+              geom_boxplot(width=0.1) +
+              theme_minimal() +
+              theme(axis.text.x = element_text(angle=45, hjust=1))
+  if (facet != '' && facet %in% colnames(dataframe)) {
+    boxplots <- boxplots + facet_grid(reformulate('.', facet))
+  }
+  return(boxplots)
+}
+
+#' create_scatterplot()
+#'
+#' Create a scatterplot!
+#'
+#' @param dataframe (data.frame): data.frame containing data to plot.
+#' @param x_column (string): column name for variable to plot along the x-axis.
+#' @param y_column (string): column name for variable to plot along the y-axis.
+#' @param color_column (string, optional): column name for variable to dictate
+#'     dot color. Default is '' with no coloring.
+#'
+#' @return (gg.ggplot): ggplot object of scatterplot
+#' @export
+#'
+#' @examples
+#'
+#' # plot 'A1CF' and 'A2M' expression
+#' create_scatterplot(combined_data, 'A1CF', 'A2M')
+#'
+#' # PLOT 'A1CF' and 'A2M' expression with 'Tissue' coloring
+#' create_scatterplot(combined_data, 'A1CF', 'A2M', 'Tissue')
+create_scatterplot <- function(dataframe, x_column, y_column, color_column='') {
+  scatter <- ggplot(dataframe, aes_string(x=x_column, y=y_column))
+  if (color_column != '' && color_column %in% colnames(dataframe)) {
+    scatter <- scatter + geom_point(aes_string(color=color_column))
+  } else {
+    scatter <- scatter + geom_point()
+  }
+  return(scatter)
+}
+
+#' create_histogram()
+#'
+#' Create a histogram!
+#'
+#' @param dataframe (data.frame): dataframe containing data to plot.
+#' @param column (string): column name of variable to plot.
+#' @param facet (string, optional): categorical variable to separate data on.
+#'     Default is `''` with no separation.
+#' @param bins (int, optional): number of bins in histogram. Default is 30.
+#'
+#' @return (gg.ggplot): ggplot object of histograms.
+#' @export
+#'
+#' @examples
+
+create_histogram <- function(dataframe, column, facet='', bins=30) {
+  hist <- ggplot(dataframe, aes_string(column)) +
+          geom_histogram(bins=bins)
+  if (facet != '' && facet %in% colnames(dataframe)) {
+    hist <- hist + facet_grid(reformulate('.', facet))
+  }
+  return(hist)
+}
+
+
+#' correlation_plot
+#' 
+#' Create a simple correlation heatmap.
+#'
+#' @param cor_mat (data.frame, data.matrix): square data matrix containing 
+#'     correlations between variables.
+#' @param row_title (string): name of features to plot along the x-axis.
+#' @param col_title (string): name of features to plot along the y-axis
+#'
+#' @return (gg.ggplot)
+#' @export
+#'
+#' @examples
+#' # cor_mat <- cor(combined_data[12:22])
+#' # correlation_plot(cor_mat, 'Genes', 'Genes')
+correlation_plot <- function(cor_mat, row_title, col_title) {
+  melted_data <- melt(cor_mat)
+  colnames(melted_data)[1:2] <- c(row_title, col_title)
+  cor_plot <- ggplot(data=melted_data, aes_string(x = row_title, y=col_title,
+                                      fill='value')) +
+              geom_tile() + 
+              theme(axis.text.x = element_text(angle=90, hjust=1))
+  return(cor_plot)
+}
+
+#' cross_validate_logit_model_example
+#' 
+#' Example of cross-validation implementation using 
+#' logistic regression to predict label from all gene expression
+#'
+#' @param dataframe (data.frame): data.frame containing both
+#' dependent and independent variable. 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' 
+#' # cross_validate_logit_model_example(combined_data)
+cross_validate_logit_model_example <- function(dataframe) {
+  y <- dataframe$label
+  folds <- caret::createFolds(y, k=10)
+  
+  # bind outputted list auc scores to dataframe 
+  # for future averaging
+  metrics <- lapply(1:length(folds), function(i) {
+    test_idx <- folds[[i]]  # get current test partition
+    test <- dataframe[test_idx, ]
+    train_idx <- unlist(folds[c(1:length(folds))[-i]])  # get train partions
+    train <- dataframe[train_idx, ]
+    
+    # create model --> formula Gender ~ A2m is predicting Gender from 
+    # all gene expression | label ~ . would predict label using all features
+    model <- glm(label ~., data=train, family=binomial(link="logit"))
+    
+    test_pred <- predict(model, test)  # predict test labels from data
+    pred_metrics <- ROCR::prediction(test_pred, test$label)
+    roc_values <- ROCR::performance(pred_metrics, measure = 'tpr', x.measure='fpr')
+    auc <- ROCR::performance(pred_metrics, measure='auc')
+    auc <- auc@y.values[[1]]
+    return(list('fpr' = roc_values@x.values[[1]], 
+                'tpr' = roc_values@y.values[[1]], 'auc'=auc))
+  })
+  
+  # Concatenate metrics from different runs
+  fpr <- c()
+  tpr <- c()
+  fold <- c()
+  roc <- c()
+  for (i in 1:length(metrics)) {
+    fpr <- c(fpr, metrics[[i]]$fpr)
+    tpr <- c(tpr, metrics[[i]]$tpr)
+    roc <- c(roc, metrics[[i]]$auc)
+    fold <- c(fold, seq(i, i, length.out=length(metrics[[i]]$fpr)))
+  }
+  
+  # create data frames for ggplotting
+  roc_df <- data.frame('fpr'=fpr, 'tpr'=tpr,'fold'=fold)
+  roc_df$fold <- as.factor(roc_df$fold)
+  linspace <- seq(from=0, to=1, length.out=1000)
+  average_roc <- approx(fpr, tpr, xout=linspace)
+  average_df <- data.frame('fpr'=average_roc$x, 'tpr'=average_roc$y)
+  
+  # plot roc curve + auc 
+  mean_auc <- round(mean(auc), 3)
+  ggplot(data=roc_df, aes(x=fpr, y=tpr)) +
+    geom_line(aes(color=fold), alpha=0.75) + 
+    geom_line(data=average_df, color='black') + 
+    ggtitle("ROC Curve", subtitle=paste0('AUC = ',
+                                           as.character(mean_auc)))
+  
+}
+
+```
+## Exploration 1: Features
+
+Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
+
+```{R distributions}
+# there are 10 meta features 
+colnames(GSE53987.meta)
+str(GSE53987.meta)
+summary(GSE53987.meta)
+
+```
+
+### Distributions/Histograms
+What type of distributions exist within the features? Is Gender a balanced feature (roughly equal representation between both men and women)? Are numerical values normally distributed? Explore numerical distributions by plotting histograms for Age, an Age + Gender histogram, and one of your favorite genes found in the dataset. Discuss your findings below your code.
+
+```{R distributions}
+
+create_histogram(dataframe = GSE53987, column = 'Age', facet = 'Disease.state')
+
+
+```
+
+### Factor Dependence/Boxplots
+Some features display factor dependent values. That is, whether a subject is a male or a female might effect the expression patterns of a given gene. Explore factor and feature relationships by creating boxplots for three different features grouped by Tissue, Disease.status, and combining the two with the `facet` parameter in `create_boxplot()`. Discuss your finding below your code. If we want to predict factor/group membership (e.g. tissue of origin), what types of boxplots would we expect to see from a predictive feature?
+
+```{r balance}
+# boxplot
+ggplot(GSE53987, aes(x=Disease.state, y=Age, fill=Gender)) + geom_boxplot()
+
+# violin plots
+create_boxplot(dataframe = GSE53987, y_column = 'Age', group_column = 'Tissue', facet = 'Gender')
+
+```
+
+
+## Exploration 2: Principal Component Analysis
+
+Principal Component Analysis (PCA) is a commonly used technique to create linearly uncorrelated features from a set of possibly correlated features. The procedure is done in such a way that the first feature produced by PCA, the first principal component -- PC1, explains the largest amount of variability possible. In this way, PCA is a dimension reduction technique, as the first few principal components often explain upwards of 90% of the variability found within a dataset. You can perform PCA in R using the `prcomp` function. Give your R terminal that fatty `?prcomp` to look up how to use the function. It is important to note that if we're planning on predicting anything using the principal components, such as tissue type or Disease.status, those features should *not* be included in the matrix that is passed to `prcomp`. Before performing PCA, create a new data.table containing only explanatory values (i.e. the features we want to use to predict class membership).
+
+```{R PCA_plot}
+# install.packaged("ggfortify")
+library(ggfortify)
+GSE53987.prcomp <- prcomp(GSE53987.expression, center = TRUE)
+autoplot(GSE53987.prcomp, data = GSE53987, colour = 'Tissue', shape = 'Disease.state')
+
+
+```
+
+### Variation Explanation
+
+Explore how much variation is explained by the principal components.How much variation is explained by the first two principal components? How many principal components are required to explain 75%, 85%, 90%, 95%, and 99% of the variation within our dataset?
+
+```{R PCA}
+
+plot(GSE53987.prcomp, type = "l")
+# proportion of variability
+PoV <- 100 * GSE53987.prcomp$sdev^2 / sum(GSE53987.prcomp$sdev^2)
+plot(PoV, type="o", ylab = "Proportion of variability", xlim = c(1,10), main = "GSE53987.prcomp")
+summary(GSE53987.prcomp$rotation[1:5,1:4])
+
+```
+
+
+### Separation in the Principal Components
+
+Because principal components contain so much information, they are often used to separate samples from different factor groups. Visually explore this separation using the `create_scatterplot()` function to plot the first two principal components and color samples according to Tissue and Disease.status. What effect does plotting the third principal component have on sample separation?
+
+```{R PCA_hist}
+
+create_scatterplot(dataframe =cbind(GSE53987.meta, GSE53987.prcomp$x), x_column = 'PC1', y_column = 'PC2', color_column = 'Tissue')
+create_scatterplot(dataframe = cbind(GSE53987.meta, GSE53987.prcomp$x), x_column = 'PC1', y_column = 'PC3', color_column = 'Disease.state')
+
+```
+
+
+### Tissue Dependent Separation
+
+It is possible samples from one tissue are more predictive of Disease.status than samples from another tissue. Subset the dataset into three disjoint datasets by Tissue. Run PCA on all three of these datasets, plot the first two principal components, and color the dots according to Disease.status. Does there appear to be a meaningful difference in the separation between disease classes between the three different datasets?
+
+```{R subset_tissue}
+
+# try to separate by Disease.state on a single Tissue
+idx <- which(GSE53987$Tissue == "hippocampus")
+GSE53987.hippocampus <- GSE53987[idx,]
+GSE53987.hippocamp.prcomp <- prcomp(GSE53987.expression[idx,])
+autoplot(GSE53987.hippocamp.prcomp, data = GSE53987.hippocampus, colour = 'Disease.state', shape = 'Gender')
+
+create_scatterplot(dataframe = cbind(GSE53987.hippocamp.prcomp$x, GSE53987.hippocampus[,1:10]), x_column = 'PC2', y_column = 'PC4', color_column = 'Disease.state')
+
+```
+
+## Exploration 3: Feature Selection
+
+Feature selection is a commonly performed step in statistics/machine learning to distinguish the most informative variable to use in model creation. There are several different ways to perform feature selection, and many of these can be application specific. In this workshop we'll explain four possible avenues for feature selection in gene expression data analysis: 1) selecting the $x$ most variable features, 2) selecting features with the $x$ largest correlations with principal components, 3) selecting the top $x$ differentially expressed genes between defined groups, and 4) calculating Fisher's Criterion for features between groups. Use one of the below methods to select the most informative features.
+
+### 1. Most variable features
+
+Calculating the most variable features in a dataset is relatively straight forward using the `var` or `cov` function in R. Ranking the values in the matrix diagnol will produce the most variable genes.
+
+```{R feature_selection_variability}
+# feature selection by variance
+features.var <- diag(var(GSE53987.expression))
+features.var.rank <- rank(features.var)
+
+features.var.top <- sort(names(features.var.rank[features.var.rank > M.ES-100]))
+GSE53987.var <- GSE53987.expression[,features.var.top]
+
+
+# feature selection by covariance
+# practice: replace var with cov
+
+```
+
+### 2. Highest correlations with principal components
+
+Correlation explains how much variation in a variable $y$ is explained by the variation in variable $x$. Knowing that principal components maximize the variance found within a dataset, finding how much each feature correlates with each prinicipal component thus gives us a measure for how informative various features are. Because different principal components likely explain different parts of the data, it may be important to select variables that are highly correlated with different components.
+
+```{R feature_selection_PCA}
+
+
+
+```
+
+### 3. Differential Expression
+
+If we have pre-defined groups that we know we're interested in predicting, such a `Disease.status` or `Tissue`, we can find genes that are differentially expressed between the groups, and then subset our dataset down to the most differentially expressed. When considering ranking differentially expressed genes, it is important to consider *both* statistical significance (i.e. a p-value) as well as the biological difference (i.e. average log-fold change between groups).
+
+```{R feature_selection_DE}
+# differentially expresed genes by t.test
+p_threshold <- 0.05
+# TODO:set the disease to be the class of interest
+control.group <- GSE53987.expression[GSE53987$Disease.state == "control",]
+disease.group <- GSE53987.expression[GSE53987$Disease.state != "control",]
+
+features.DE <- c()
+# perform a t.test to find significantly different genes
+for (i in 1:M.ES) { 
+  if(t.test(control.group[,i], disease.group[,i])$p.value <= p_threshold) {
+    features.DE <- c(features.DE, colnames(GSE53987.expression[i]))
+  }
+}
+features.DE <- sort(features.DE)
+length(features.DE)
+GSE53987.DE <- GSE53987.expression[,features.DE]
+
+# differentially expressed genes by limma
+library(limma)
+#source("http://www.bioconductor.org/biocLite.R")
+#biocLite("ALL")
+library("ALL")
+library(limma)
+GSE53987.eset <- ExpressionSet(t(as.matrix(GSE53987.expression)))
+phenoData(GSE53987.eset) <- AnnotatedDataFrame(GSE53987.meta)
+f <- factor(as.character(GSE53987.eset$Disease.state == "control"))
+design <- model.matrix(~f)
+fit <- eBayes(lmFit(GSE53987.eset, design))
+features.limma <- fit$p.value[, 2] < p_threshold # correct way is to adjust p-values 
+GSE53987.limma.eset <- GSE53987.eset[features.limma, ]
+GSE53987.limma <- cbind(GSE53987.limma.eset$Disease.state, t(exprs(GSE53987.limma.eset)))
+
+```
+
+
+### 4. Largest Fisher's Criterion
+
+Fisher's Criterion, otherwise known as Fisher's linear discriminant, is used in linear discrimant analysis for classification. However, given predefined groups $i$ and $j$, we can calculate the statistic to find the informative features:
+
+$F.C. = \frac{(\mu_i - \mu_j)}{\sigma_i^2 + \sigma_j^2}$
+
+## Exploration 4: Highly Related Features
+
+With datasets of any size, it is unlikely our features are entirely independent. Instead, there is likely redundant information contained in multiple features. While this is not a problem for some algorithms, with standard algorithms such as multi-variate linear regression, co-linearity between variables can lead to a highly overfit model. You might think of this as "double counting". Even if a specific algorithm may be able to deal with related variables, removing non-informative features can still help with overfitting and reducing run time. To visualize highly correlated features, first calculate the correlation matrix between your numerical variables, and visualize the relationships by calling the `correlation_plot()` function. Which features are highly related to each other? How do these relationships change if we subset our dataset by tissue type? If you would like, feel free to remove highly correlated variables. However, you'll need to decide how to determine which features to keep among those that are highly related.
+
+```{R correlation_plot}
+dataset <- GSE53987.var
+cor_matrix <- cor(dataset)
+# TODO: can't get this working
+#correlation_plot(cor_matrix, "genes", "genes")
+heatmap.2(cor_matrix, trace = "none")
+
+cor_matrix[upper.tri(cor_matrix)] <- 0
+diag(cor_matrix) <- 0
+GSE53987.var.cor <- dataset[,!apply(cor_matrix,2,function(x) any(abs(x) > 0.99))]
+dim(GSE53987.var.cor)
+
+```
+
+## Exploration 5: Unsupervised Learning - Clustering
+
+Unsupervised learning can be thought of as applying an algorithm to a dataset in order to discover latent structure that exists between samples. We've already been exposed to some of these algorithms via PCA. However, one of the most common techniques in machine learning, and especially bioinformatics, is hierarchical clustering. Hierarchical clustering builds a dendogram/tree relating similar samples together. While hierarchical clustering itself doesn't produce distinct clusters, cutting the dendogram at different three heights does. However, even without producing distinct clusters the technique is still useful. The `heatmap()` function in `R` clusters both samples and features to group highly related features along with highly related samples. Use the `heatmap()` function in R to visualize the previously created correlation matrix. Is it easier to parse which features are highly related? Heatmaps are also commonly used to visualize gene expression patterns. Isolating only the gene expression values from your dataset, use the `heatmap()` function to explore sample and gene clusters. Do any genes form distinct clusters? What about samples? 
+
+```{R clustering}
+# format the data
+library(tidyr)
+library(ggplot2)
+
+
+# use feature selection by var, change and see what happens
+dataset <- as.data.frame(GSE53987.var)
+
+color.map.disease <- function(disease) { if (disease=="control") "#FF0000" else if (disease == "Bipolar disorder") "#00FF00" else if (disease == "Major depression disorder") "#0000FF" else "#0FFF00"}
+color.map.tissue <- function(tissue) { if (tissue=="Associative striatum")  "#FF0000" else if (tissue == "hippocampus")  "#00FF00" else  "#0000FF" }
+patientcolors <- unlist(lapply(GSE53987[rownames(dataset), "Disease.state"], color.map.disease))
+tissuecolors <- unlist(lapply(GSE53987[rownames(dataset), "Tissue"], color.map.tissue))
+
+
+par(mar=c(10, 4.1, 4.1, 8), xpd=TRUE)
+heatmap(as.matrix(dataset), RowSideColors=patientcolors)
+legend("topleft", inset=c(-0.15,0), leg = c("control", "BPD", "MDD", "schiz"), fill=c("#FF0000", "#00FF00", "#0000FF", "#999999"), bty = "n")
+
+par(mar=c(10, 4.1, 4.1, 8), xpd=TRUE)
+heatmap.2(as.matrix(dataset), RowSideColors=tissuecolors, trace = "none", labRow = FALSE)
+legend("topleft", inset=c(-0.15,0), leg = c("striatum", "hippo", "BA46"), fill=c("#FF0000", "#00FF00", "#0000FF"), bty = "n")
+
+
+```
+
+
+## Exploration 6: Association Rules
+
+```{R associaition_rules, message=FALSE, warning=FALSE}
+library(arules)
+GSE53987.nominal_features <- GSE53987[,c(1:4, 9:10)]
+GSE53987.nominal_features$Age <- discretize(GSE53987.nominal_features$Age)
+rules <- apriori(GSE53987.nominal_features, parameter=list(support=0.10, confidence=0.50))
+length(rules)
+inspect(head(rules, n = 10, by ="lift"))
+
+```
+
+## Exploration 7: Supervised Learning
+
+Supervise learning is a technique to teach an algorithm to distinguish between previously labelled groups, such as `Tissue`, `Gender`, or `Disease.status`. However, all supervised methods require data to learn how to differentiate between classes. Therefore, it is necessary to separate data into test/train sets. The training set is used to train the model, while the test set is used to evaluate performance. Cross-validation, a method of partitioning the data into disjoint subsets and continually re-training and re-testing with different partition combinations, is often used to evaluate models. In `R`, you can use the `createFolds` function in the `caret` package to easily partition your data. Load/install the library, and `?createFolds` for more information. In this section, we will build various classifiers to predict different classes from our data. You should evaluate your models' performances using the AUC in ROC space -- at least for binary classes -- along with confusion matrices.
+
+```{R supervised_preparing}
+dataset <- GSE53987.expression[GSE53987$Disease.state == "control" | GSE53987$Disease.state == "schizophrenia", ]
+N <- nrow(dataset)
+
+# split the data into train and test
+RATIO <- 0.75
+idx.train <- sample(size = RATIO*N, x = c(1:N))
+idx.test <- setdiff(c(1:N), idx.train)
+dataset.train <- dataset[idx.train, ]
+dataset.test <- dataset[idx.test, ]
+
+# select features
+# percent of genes to keep
+KEEP <- 10
+features.var <- diag(var(dataset.train))
+features.var.rank <- rank(features.var)
+features.var.top <- sort(names(features.var.rank[features.var.rank > ncol(dataset.train)-10]))
+dataset.train <- dataset.train[,features.var.top]
+dataset.test <- dataset.test[,features.var.top]
+
+# add label
+dataset.train <- cbind(label = as.character(GSE53987[rownames(dataset.train), "Disease.state"]), dataset.train)
+dataset.test <- cbind(label = as.character(GSE53987[rownames(dataset.test), "Disease.state"]), dataset.test)
+
+
+```
+
+### Logistic Regression
+
+Logistic regression 
+
+```{R logistic_regression}
+# TODO I can't get this working
+cross_validate_logit_model_example(dataset.train)
+
+
+```
+>>>>>>> 5b25f84ed645d8b07a285edd53b279de409a4302

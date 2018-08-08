@@ -15,7 +15,8 @@ Welcome to the BRITE-REU Programming Workshop!
    Workshop 3: Python <workshops/03_python/index>
    Workshop 4: R <workshops/04_R/index>
    Workshop 5: Machine learning <workshops/05_Machine_learning/index>
-
+   Workshop 6: SQL <workshops/06_SQL/index>
+   Posters <workshops/07_posters/index>
 
 
 .. note:: This is a Work In Progress and is actively being updated.
