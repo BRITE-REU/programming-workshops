@@ -16,6 +16,14 @@ BU logo files
 
 	- `Red rectangular "Boston University" logo eps file <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/07_posters/data/BOSTON_UNIV_CMYK.eps>`_
 	- `Black rectangular "Boston University" logo eps file <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/07_posters/data/BOSTON_UNIV_BLACK.eps>`_
+	
+	
+-------------------------
+ABRCMS Poster Guidelines
+-------------------------
+
+	_ `ABRCMS Presentation Guidelines <http://www.abrcms.org/index.php/present-at-abrcms/guidelines>`_
+
 
 ------------------------
 Poster Draft Guidelines
