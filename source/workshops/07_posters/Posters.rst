@@ -10,7 +10,12 @@ The following are suggested posters templates.
 	- `Three column red <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/07_posters/data/36x48_phdposters_template%20red.pptx>`_
 	- `Three column blue <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/07_posters/data/36x48_phdposters_template%20blue.pptx>`_
 
+--------------------
+BU logo files
+--------------------
 
+	- `Red rectangular "Boston University" logo eps file <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/07_posters/data/BOSTON_UNIV_CMYK.eps>`_
+	- Black rectangular "Boston University" logo eps file <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/07_posters/data/BOSTON_UNIV_BLACK.eps>`
 
 ------------------------
 Poster Draft Guidelines
