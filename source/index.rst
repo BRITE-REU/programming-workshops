@@ -10,8 +10,8 @@ Welcome to the BRITE-REU Programming Workshop!
    :maxdepth: 1
 
    Instructions <workshops/00_instructions/index>
-   Workshop 1: Linux and Bash  <workshops/01_linux_bash/index>
-   Workshop 2: SCC and git  <workshops/02_scc_git/index>
+   Workshop 1: Linux/Bash and SCC <workshops/01_linux_bash/index>
+   Workshop 2: git  <workshops/02_scc_git/index>
    Workshop 3: Python <workshops/03_python/index>
    Workshop 4: R <workshops/04_R/index>
    Workshop 5: Machine learning <workshops/05_Machine_learning/index>
