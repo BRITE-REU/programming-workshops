@@ -10,12 +10,12 @@ In order to participate, you will need to install the required tools and applica
 
 **Instructors:**
 
-- Ali (LSEB room 104, email: aliamin@bu.edu)
 - Dakota (LSEB room 645, email: dyh0110@bu.edu)
 - Dileep (LSEB 9th floor, email: dkishore@bu.edu)
-- Jeff (LSEB room 104, email: maurerj@bu.edu)
-- Marzie (LSEB room 106, email: marzie@bu.edu)
-- Tanya (LSEB room 645, email: tanyatk@bu.edu)
+- Emma (, email: ebriars@bu.edu)
+- Jacquelyn (, email: Jjturcino@stedwards.edu)
+- Eric (, email: reeder@bu.edu)
+- Ahmed (, email: ayoussef@bu.edu)
 
 **Workshop schedule:**
 
@@ -26,7 +26,7 @@ In order to participate, you will need to install the required tools and applica
 5. *Week 7*: Machine learning
 6. *Week 8*: SQL
 
-**All sessions meet Tuesday 1-3 pm in LSE 904**
+**All sessions meet Wednesday 10 am - 12 pm in LSE 904**
 
 
 .. toctree::
