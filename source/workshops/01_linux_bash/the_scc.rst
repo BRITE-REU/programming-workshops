@@ -95,9 +95,9 @@ Linux
 
 Once you login, you will find yourself in your home directory.
 
---------------------
 
-**Tutorials and Workshop**
+Tutorials and Workshop
+########################
 
 .. toctree::
     :maxdepth: 3

@@ -53,6 +53,7 @@ What is the Bash Shell. *Runtime ~ 1min*
 **Tutorials and Workshop**
 
 .. toctree::
+    :maxdepth: 3
 
     Introduction to the Command Line <cli_intro>
     Navigation and Working with Files <nav_files>

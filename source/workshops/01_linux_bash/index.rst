@@ -15,6 +15,7 @@ familiarize you with Linux operating system (OS), Bash scripting, and the Shared
 **Tutorials**
 
 .. toctree::
+    :maxdepth: 2
 
 	Linux/Bash <linux_bash>
 	The SCC <the_scc>
