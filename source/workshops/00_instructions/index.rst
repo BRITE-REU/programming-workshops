@@ -19,6 +19,7 @@ In order to participate, you will need to install the required tools and applica
 - Anastasia (, email: agurinov@bu.edu)
 
 **Workshop schedule:**
+
 **All sessions meet Wednesday 10 am - 12 pm in LSE 904, except as noted**
 
 1. *Week 2*: Linux/Bash and SCC (Wednesday 12 pm - 2 pm)
@@ -27,7 +28,7 @@ In order to participate, you will need to install the required tools and applica
 4. *Week 6*: Machine Learning
 5. *Week 7*: Version Control and git
 6. *Week 8*: SQL
-7. *Week ???*: Data Visualization
+7. *Week 9*: Data Visualization
 
 
 .. toctree::
