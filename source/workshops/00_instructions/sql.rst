@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=zOJWL3oXDO8
 
 **Mac and Linux:**
 
-Should already be preinstalled.  To check, open a terminal window and type “sqlite3”.  To quit the program after you’ve started it, type “.quit”.
+Should already be preinstalled.  To check, open a terminal window and type “sqlite3”.  To quit the program after you’ve started it, type “.quit”. (Note the "." before "quit")
 
 **GUI:**
 
