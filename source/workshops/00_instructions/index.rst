@@ -16,11 +16,12 @@ In order to participate, you will need to install the required tools and applica
 - Jacquelyn (, email: Jjturcino@stedwards.edu)
 - Eric (, email: reeder@bu.edu)
 - Ahmed (, email: ayoussef@bu.edu)
+- Anastasia (, email: agurinov@bu.edu)
 
 **Workshop schedule:**
 
-1. *Week 2*: Linux and Bash
-2. *Week 3*: Git and SCC
+1. *Week 2*: Linux/Bash and SCC
+2. *Week 3*: Git
 3. *Week 4*: Python
 4. *Week 6*: R
 5. *Week 7*: Machine learning
@@ -33,8 +34,8 @@ In order to participate, you will need to install the required tools and applica
    :maxdepth: 2
 
     Linux and Bash <linux_bash>
-    Git <git>
     SSH <ssh>
+    Git <git>
     Python <python>
     R <r>
     Machine Learning <machine_learning>
