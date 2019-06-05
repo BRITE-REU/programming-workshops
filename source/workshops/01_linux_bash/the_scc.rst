@@ -94,3 +94,13 @@ Linux
 
 
 Once you login, you will find yourself in your home directory.
+
+--------------------
+
+**Tutorials and Workshop**
+
+.. toctree::
+    :maxdepth: 3
+
+    Submitting jobs <qsub>
+	SCC/qsub exercises <scc_workshop>
