@@ -1,7 +1,7 @@
 .. _linux_bash:
 
 ===========================
-Workshop 1: Linux and Bash
+Workshop 1: Linux/Bash and SCC
 ===========================
 
 
@@ -66,4 +66,7 @@ What is the Bash Shell. *Runtime ~ 1min*
     Processes <processes>
     Bash Scripting <bash_scripting>
     Tips & Tricks <tips_tricks>
+	The SCC <the_scc>
+    Submitting jobs <qsub>
+	SCC/qsub exercises <scc_workshop>
 
