@@ -96,8 +96,19 @@ Linux
 Once you login, you will find yourself in your home directory.
 
 
-Submitting jobs <qsub>
+Submitting jobs
 ########################
 
-Workshop 1.2 <scc_workshop>
+.. toctree::
+    :maxdepth: 3
+
+    Submitting jobs <qsub>
+
+Workshop 1.2 
 ########################
+
+.. toctree::
+    :maxdepth: 3
+	
+	Workshop 1.2 <scc_workshop>
+	
