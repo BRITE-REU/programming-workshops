@@ -16,11 +16,16 @@ A minimal example
 .. note::
 
     ``#!`` is called the "shebang". It indicates the path to the program/interpreter that would be used to execute the script.
+    
+Please create a file named myscript.sh and copy paste the code from the example above.
 
 --------------------
 
 Execution
 ********************
+The permissions on the script you created should be set so you can execute it. The file can be executed either as ``./myscript.sh`` or ``bash myscript.sh``. Try that.
+
+However, sometimes, the file might not have an appropriate permission set. For example:
 
 .. code-block:: sh
 
@@ -29,8 +34,7 @@ Execution
     $ ls -l myscript.sh
     -rw-r--r-- 18 dkishore users 4096 Jun 10 09:12 myscript.sh
 
-* The permissions on the script need to be changed to allow for execution - ``chmod +x myscript.sh``
-* The file can be executed either as ``./myscript.sh`` or ``bash myscript.sh``
+To be able to run the file, the permissions on the script need to be changed to allow for execution - ``chmod +x myscript.sh``
 
 --------------------
 
@@ -47,6 +51,8 @@ Variables
 
 ``$1`` and ``$2`` are the first and second arguments to the script.
 
+Let's experiment here. First, create a file named ``variables_test.sh`` and copy-paste the code above there. Next, try calling this file with ``myscript.sh`` as the first argument, and ``myscript2.sh`` as the second argument. What happened?  
+
  .. note:: 
 
     * ``$0`` refers to the name of the bash script
@@ -54,7 +60,7 @@ Variables
     * ``$@`` refers to all the arguments supplied
     * ``$?`` refers to the exit status of the most recent process
 
-Setting your own variables:
+You can also set your own variables inside the script:
 
 .. code-block:: sh
 
@@ -71,21 +77,7 @@ Setting your own variables:
     * When referring to or reading a variable we place a ``$`` sign before the variable name
     * When setting a variable we leave out the ``$`` sign
     * **Do not** use white-space around the ``=``
-        -  var=23, that’s the correct variable assignment syntax: a word that
-           consists of unquoted letters followed by an unquoted = that appears
-           before a command argument (here it’s on its own)
-        -  var =23, the var command with =23 as argument (except in zsh where
-           =something is a special operator that expands to the path of the
-           something command. Here, you’d likely to get an error as 23 is
-           unlikely to be a valid command name).
-        -  var= 23, an assignment var= followed by a command name 23. That’s
-           meant to execute 23 with var= passed to its environment (var
-           environment variable with an empty value).
-        -  var = 23, var command with = and 23 as argument. Try with echo = 23
-           for instance.
-
-
-
+ 
 --------------------
 
 Command Substitution
