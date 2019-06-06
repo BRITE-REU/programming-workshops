@@ -68,7 +68,7 @@ Grep (an acronym for “Global Regular Expression Print”), finds a string in a
       grep -C3 'appear' mary-lamb.txt
 
 
-AWK:
+AWK
 ********************
 awk [options] [filename]
 
@@ -82,63 +82,51 @@ Named after the authors: Aho, Weinberger, Kernighan
       awk '{print}' BRITE_students.txt
 --------------------
 
-* Now, let's get the more specific. Let's ask for names only:
+* Now, let's get the more specific. Let's ask for first names only:
 
 .. code-block:: sh
 
       awk '{print $1}' BRITE_students.txt
 --------------------
 
-* What if we want to see two columns at the same time, let's say name and GPA?
+* What if we want to see two columns at the same time, let's say first and last names?
 
 .. code-block:: sh
 
-      awk '{print $1" "$3}' BRITE_students.txt
+      awk '{print $1" "$2}' BRITE_students.txt
 --------------------
 
-* Now what let's see what your info is (exact match):
+* Now let's see what your info is (exact match):
 
 .. code-block:: sh
 
-      awk '$1=="Ali"' BRITE_students.txt
+      awk '$1=="Anastasia"' BRITE_students.txt
 --------------------
 
 
-* How can we see a particular pattern in our cohort (not an exact match):
+* How can we see a particular pattern in our cohort (e.g. students in Campbell lab)?
 
 .. code-block:: sh
 
-      awk '/Kat/ {print $0}' BRITE_students.txt
+      awk '/Campbell/ {print $0}' BRITE_students.txt
 --------------------
 
-* Question for you: How do you print the name and favorite sport of students whose names contain the letter "u"?
+* Question for you: How do you print the first name and faculty advisor of students whose last names contain the letter "u"?
 
 .. code-block:: sh
 
-      <insert code here>
+      <try it out on your terminal>
 --------------------
 
-* How many students are there whose name begins with "Kat"? 
+* How many students are there whose name begins with "B"? 
 
 .. code-block:: sh
 
-      awk '/Kat/{++cnt} END {print "Count = ", cnt}' BRITE_students.txt
---------------------
-
-* You could also run loops in awk, print all :
-
-.. code-block:: sh
-
-    awk 'BEGIN {
-       sum = 0; for (i = 0; i < 20; ++i) {
-           sum += i; if (sum > 50) exit(10); else print "Sum =", sum 
-       } 
-    }'
-
+      awk '/B/{++cnt} END {print "Count = ", cnt}' BRITE_students.txt
 --------------------
 
 
-SED:
+SED
 ********************
 sed [options] [filename]
 
