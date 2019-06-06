@@ -132,11 +132,11 @@ sed [options] [filename]
 
 SED  stands for "Stream EDitor". It is a widely used text processing Linux tool. 
 
-* I want to read the first three lines of a text file:
+* I want to read the fourth line of a text file:
 
 .. code-block:: sh
 
-      cat BRITE_students.txt | sed -n 3p
+      cat BRITE_students.txt | sed -n 4p
 --------------------
 
 * What if we want to replace one word with another:
@@ -151,22 +151,6 @@ SED  stands for "Stream EDitor". It is a widely used text processing Linux tool.
 .. code-block:: sh
 
       sed -e '1d' -e '2d' -e '5d' BRITE_students.txt
---------------------
-
-* But what if we had a much longer list and wanted to remove more lines?
-
-.. code-block:: sh
-
-      echo -e "1d\n2d\n5d" > my_lines.txt
-      cat my_lines.txt
-      sed -f my_lines.txt BRITE_students.txt
---------------------
-
-* Now let's print the 2nd line to last:
-
-.. code-block:: sh
-
-      cat BRITE_students.txt | sed -n 2,'$p'
 --------------------
 
 
