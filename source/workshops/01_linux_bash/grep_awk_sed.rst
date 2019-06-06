@@ -40,63 +40,32 @@ Grep (an acronym for “Global Regular Expression Print”), finds a string in a
       grep -w 'as' mary-lamb.txt
 
 
-3) recursively search through sub-folders (grep -r <pattern> <path>):
-
-.. code-block:: sh
-
-      grep -r '456' /<your_working_directory>/
-
-
-4) Inverted search (grep -v):
+3) Inverted search (grep -v):
 
 .. code-block:: sh
 
       grep -v ‘the’ mary-lamb.txt
 
 
-5) Print additional (trailing) context lines after match (grep -A <NUM>):
+4) Print additional (trailing) context lines after match (grep -A <NUM>):
 
 .. code-block:: sh
 
-      grep -A1 'School'  mary-lamb.txt
+      grep -A1 'eager'  mary-lamb.txt
 
 
-6) Print additional (leading) context lines before match (grep -B <NUM>):
-
-.. code-block:: sh
-
-      grep -B2 'School'  mary-lamb.txt
-
-
-7) Print additional (leading and trailing) context lines before and after the match (grep -C <NUM>):
+5) Print additional (leading) context lines before match (grep -B <NUM>):
 
 .. code-block:: sh
 
-      grep -C3 'School' mary-lamb.txt
+      grep -B2 'fleece'  mary-lamb.txt
 
 
-8) Print the filename for each match (grep -H <pattern> filename):
-
-.. code-block:: sh
-
-      grep -H 'School' mary-lamb.txt
-
-
---------------------
-
-**Regexp or regular expression:**
-
-Regexp is how we specify that we find to see a particular pattern (it could be words or characters). 
-
-
-* The period ``.`` matches any single character.
-* ``*`` when the previous pattern could be matched zero or more times.
+6) Print additional (leading and trailing) context lines before and after the match (grep -C <NUM>):
 
 .. code-block:: sh
 
-      grep 'M.a' mary-lamb.txt
-      grep 'M*y' Mary_Lamb_lyrics.txt 
---------------------
+      grep -C3 'appear' mary-lamb.txt
 
 
 AWK:
