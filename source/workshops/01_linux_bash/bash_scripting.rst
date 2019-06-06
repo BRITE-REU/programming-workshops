@@ -98,65 +98,6 @@ Create a new shell script with the code above and run it. Isn't it cool?
 
 --------------------
 
-Arithmetic
-********************
-
-
-1. ``let``
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # Basic arithmetic using let
-   let a=5+4
-   echo $a # 9
-   let "a = 5 + 4"
-   echo $a # 9
-   let a++
-   echo $a # 10
-   let "a = 4 * 5"
-   echo $a # 20
-   let "a = $1 + 30"
-   echo $a # 30 + first command line argument
-
-2. ``expr``
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # Basic arithmetic using expr
-   expr 5 + 4 # 9
-   expr "5 + 4" # 5 + 4
-   expr 5+4 # 5+4
-   expr 5 \* $1
-   expr 11 % 2
-   a=$( expr 10 - 3 )
-   echo $a # 7
-
-3. ``double parentheses``
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # Basic arithmetic using double parentheses
-   a=$(( 4 + 5 ))
-   echo $a # 9
-   a=$((3+5))
-   echo $a # 8
-   b=$(( a + 3 ))
-   echo $b # 11
-   b=$(( $a + 4 ))
-   echo $b # 12
-   (( b++ ))
-   echo $b # 13
-   (( b += 3 ))
-   echo $b # 16
-   a=$(( 4 * 5 ))
-   echo $a # 20
-
-
---------------------
-
 If statements
 ********************
 
@@ -173,8 +114,10 @@ If statements
    fi
 
 -  The square brackets in the if statement is a reference to the ``test`` command.
--  ``-gt`` is equivalent to >=. Similarly there are ``!``, ``-n``, ``-z``, ``=``, ``!=`` and many more.
--  Can be alternatively used as ``test 001 = 1``. (This won’t return anything you can test the exit status using ``$?``. 0 means TRUE and 1 means FAILURE).
+-  ``-gt`` is equivalent to >=. Similarly there are ``=``, ``!=`` and many more.
+-  0 means TRUE and 1 means FALSE (fail).
+
+Play with this script: do you understand what it is doing? What about the next two scripts below? If you don't understand, make sure to test them out and/or ask us questions!
 
 2. ``If-else``
 
@@ -204,31 +147,6 @@ If statements
    else
        echo "You may not go to the party."
    fi
-
-4. ``Case`` statements
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # case example
-   case $1 in
-       start)
-       echo starting
-       ;;
-       stop)
-       echo stoping
-       ;;
-       restart)
-       echo restarting
-       ;;
-       *)
-       echo "don\'t know"
-       ;;
-   esac
-
-.. note::
-
-    The ``;;`` are used as break statements
 
 
 --------------------
@@ -293,9 +211,7 @@ The ``until`` loop is the exact opposite of the ``while`` loop
 
 .. note::
 
-    1. You can have custom range by providing a step. Eg. ``{10..0..2}``
-    2. GNU ``seq`` can also be used to create custom iterators. Eg. ``seq 10 -2 0``
-
+    You can have custom range by providing a step. Eg. ``{10..0..2}``
 
 --------------------
 
