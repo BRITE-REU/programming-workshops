@@ -17,7 +17,7 @@ A minimal example
 
     ``#!`` is called the "shebang". It indicates the path to the program/interpreter that would be used to execute the script.
     
-Please create a file named myscript.sh and copy paste the code from the example above.
+Please create a file named myscript.sh and copy-paste the code from the example above.
 
 --------------------
 
@@ -25,7 +25,7 @@ Execution
 ********************
 The permissions on the script you created should be set so you can execute it. The file can be executed either as ``./myscript.sh`` or ``bash myscript.sh``. Try that.
 
-However, sometimes, the file might not have an appropriate permission set. For example:
+However, sometimes the file might not have an appropriate permissions set. For example:
 
 .. code-block:: sh
 
@@ -80,68 +80,10 @@ You can also set your own variables inside the script:
  
 --------------------
 
-Command Substitution
-*************************
-
-.. code-block:: sh
-
-   myvar=$( ls /etc | wc -l )
-   echo $myvar
-
-Command substitution is nice and simple if the output of the command is
-a single word or line. If the output goes over several lines then the
-newlines are simply removed and all the output ends up on a single line.
-
-
---------------------
-
-Exporting variables
-************************
-
-Scripts are run in their own process hence you cannot use a variable you
-assign outside of the script, in the script. To use external variables they need to be exported.
-
-``script1.sh``
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # demonstrate variable scope 1.
-   var1=blah
-   var2=foo
-   # Let's verify their current value
-   echo $0 :: var1 : $var1, var2 : $var2
-   export var1
-   ./script2.sh
-   # Let's see what they are now
-   echo $0 :: var1 : $var1, var2 : $var2
-
-``script2.sh``
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # demonstrate variable scope 2
-   # Let's verify their current value
-   echo $0 :: var1 : $var1, var2 : $var2
-   # Let's change their values
-   var1=flop
-   var2=bleh
-
-``result``
-
-::
-
-   ./script1.sh
-   script1.sh :: var1 : blah, var2 : foo
-   script2.sh :: var1 : blah, var2 :
-   script1.sh :: var1 : blah, var2 : foo
-
-
---------------------
-
 Input
 ********************
+
+Run the command read and save the users response into the variable ``varname``.
 
 .. code-block:: sh
 
@@ -151,7 +93,7 @@ Input
    read varname
    echo It\'s nice to meet you $varname
 
-Run the command read and save the users response into the variable ``varname``.
+Create a new shell script with the code above and run it. Isn't it cool?
 
 
 --------------------
