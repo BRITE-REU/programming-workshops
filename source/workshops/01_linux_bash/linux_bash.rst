@@ -57,12 +57,12 @@ What is the Bash Shell. *Runtime ~ 1min*
 
     Introduction to the Command Line <cli_intro>
     Navigation and Working with Files <nav_files>
-    Grep, AWK and Sed <grep_awk_sed>
-    Editing Files in the Terminal <file_editing>
     Piping and Redirection <piping>
-    Processes <processes>
+    Grep, AWK and Sed <grep_awk_sed>
     Bash Scripting <bash_scripting>
-    Tips & Tricks <tips_tricks>
+..    Editing Files in the Terminal <file_editing>    
+..    Processes <processes>
+..    Tips & Tricks <tips_tricks>
 ..	The SCC <the_scc>
 ..    Submitting jobs <qsub>
 ..	SCC/qsub exercises <scc_workshop>
