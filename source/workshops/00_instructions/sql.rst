@@ -50,9 +50,11 @@ This is the official SQLite Documentation:
 https://sqlite.org
 
 
-------------------------------------------------------------
-MySQL  --   We are not using MySQL this year!
-------------------------------------------------------------
+---------
+MySQL  
+---------
+
+.. note:: We are not using MySQL this year!
 
 For Mac, use the DMG archive.
 https://dev.mysql.com/downloads/mysql/5.7.html#downloads
