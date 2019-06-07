@@ -1,10 +1,12 @@
-7. Bash scripting
+5. Bash scripting
 ====================
 
 A bash script is a file containing commands that can run on the bash shell. They usually have the ``.sh`` extension.
 
 A minimal example
-**********************
+---------------------
+
+Create a file named myscript.sh and copy-paste the code from the example below.
 
 .. code-block:: sh
 
@@ -15,17 +17,12 @@ A minimal example
 
 .. note::
 
-    ``#!`` is called the "shebang". It indicates the path to the program/interpreter that would be used to execute the script.
-    
-Please create a file named myscript.sh and copy-paste the code from the example above.
-
---------------------
+    ``#!`` is called the "shebang". It indicates the path to the program/interpreter that should be used to execute the script.
 
 Execution
-********************
-The permissions on the script you created should be set so you can execute it. The file can be executed either as ``./myscript.sh`` or ``bash myscript.sh``. Try that.
+------------
 
-However, sometimes the file might not have an appropriate permissions set. For example:
+The permissions on the script you created should be set so you can execute it with either ``./myscript.sh`` or ``bash myscript.sh``. Sometimes the file might not have an appropriate permissions set. For example:
 
 .. code-block:: sh
 
@@ -34,12 +31,10 @@ However, sometimes the file might not have an appropriate permissions set. For e
     $ ls -l myscript.sh
     -rw-r--r-- 18 dkishore users 4096 Jun 10 09:12 myscript.sh
 
-To be able to run the file, the permissions on the script need to be changed to allow for execution - ``chmod +x myscript.sh``
-
---------------------
+To run this file, the permissions on the script need to be changed to allow for execution: ``chmod +x myscript.sh``
 
 Variables
-********************
+-----------
 
 .. code-block:: sh
 
@@ -73,17 +68,15 @@ You can also set your own variables inside the script:
 
 .. note::
 
-    * Use quotes if your value has a space. Eg: ``myvar="Hello World!"``
+    * Use quotes if your value has a space. For example: ``myvar="Hello World!"``
     * When referring to or reading a variable we place a ``$`` sign before the variable name
     * When setting a variable we leave out the ``$`` sign
     * **Do not** use white-space around the ``=``
- 
---------------------
 
 Input
-********************
+------------
 
-Run the command read and save the users response into the variable ``varname``.
+Run the command ``read`` and save the users response into the variable ``varname`` as shown below. Then create a new shell script with the code above and run it. Isn't it cool?
 
 .. code-block:: sh
 
@@ -93,15 +86,12 @@ Run the command read and save the users response into the variable ``varname``.
    read varname
    echo It\'s nice to meet you $varname
 
-Create a new shell script with the code above and run it. Isn't it cool?
+Conditional statements
+---------------------------
 
+Play with the scripts below. Do you understand what they are doing? If you don't understand, make sure to test them out and/or ask us questions!
 
---------------------
-
-If statements
-********************
-
-1. ``If`` statements
+1. ``if`` statements
 
 .. code-block:: sh
 
@@ -117,9 +107,7 @@ If statements
 -  ``-gt`` is equivalent to >=. Similarly there are ``=``, ``!=`` and many more.
 -  0 means TRUE and 1 means FALSE (fail).
 
-Play with this script: do you understand what it is doing? What about the next two scripts below? If you don't understand, make sure to test them out and/or ask us questions!
-
-2. ``If-else``
+2. ``if-else``
 
 .. code-block:: sh
 
@@ -132,7 +120,7 @@ Play with this script: do you understand what it is doing? What about the next t
        nl /dev/stdin
    fi
 
-3. ``If-else-if``
+3. ``if-else-if``
 
 .. code-block:: sh
 
@@ -148,11 +136,8 @@ Play with this script: do you understand what it is doing? What about the next t
        echo "You may not go to the party."
    fi
 
-
---------------------
-
 Loops
-********************
+--------------
 
 1. ``while`` loop
 
@@ -168,7 +153,7 @@ Loops
    done
    echo "All done"
 
-2. ``until`` loop
+2. ``until`` loop (opposite of the ``while`` loop)
 
 .. code-block:: sh
 
@@ -181,8 +166,6 @@ Loops
        ((counter++))
    done
    echo "All done"
-
-The ``until`` loop is the exact opposite of the ``while`` loop
 
 3. ``for`` loops
 
@@ -197,7 +180,7 @@ The ``until`` loop is the exact opposite of the ``while`` loop
    done
    echo All done
 
-4. Ranges and Iterators
+4. Ranges and iterators
 
 .. code-block:: sh
 
@@ -211,14 +194,12 @@ The ``until`` loop is the exact opposite of the ``while`` loop
 
 .. note::
 
-    You can have custom range by providing a step. Eg. ``{10..0..2}``
-
---------------------
+    You can have custom range by providing a step. For example: ``{10..0..2}``
 
 Functions
-********************
+--------------------
 
-* Simple example
+- Minimal example
 
 .. code-block:: sh
 
@@ -229,7 +210,7 @@ Functions
    }
    print_something
 
-* Passing arguments
+- Passing arguments
 
 .. code-block:: sh
 
@@ -241,9 +222,9 @@ Functions
    print_something Mars
    print_something Jupiter
 
-* Return values
+- Returning values
 
-Bash functions don’t allow for return values however they allow for a return status
+Bash functions don’t allow for return values, but they do allow for a return status.
 
 .. code-block:: sh
 
@@ -257,7 +238,7 @@ Bash functions don’t allow for return values however they allow for a return s
    print_something Jupiter
    echo The previous function has a return value of $?
 
-* Variable scope
+- Variable scope
 
 .. code-block:: sh
 
@@ -275,7 +256,8 @@ Bash functions don’t allow for return values however they allow for a return s
    var_change
    echo After function call: var1 is $var1 : var2 is $var2
 
-``result``
+Results
+---------
 
 ::
 

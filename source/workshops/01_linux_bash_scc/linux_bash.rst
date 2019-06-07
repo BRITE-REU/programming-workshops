@@ -1,9 +1,10 @@
 1. Linux/Bash
 ===============================
 
-**UNIX and Linux**
+UNIX & Linux
+------------------
 
-UNIX is an operating system which was first developed in the 1960s, and has been under constant development ever since. It is a stable, multi-user, multi-tasking system for servers, desktops and laptops. There are many different versions of UNIX, although they share common similarities. The most popular varieties of UNIX are Sun Solaris, GNU/Linux, and MacOS X.
+The UNIX operating system was first developed in the 1960s and has been under constant development ever since. It is a stable, multi-user, multi-tasking system for servers, desktops and laptops. There are many different versions of UNIX, although they share common similarities. The most popular varieties of UNIX are Sun Solaris, GNU/Linux, and MacOS X.
 
 The UNIX operating system is made up of three parts; the kernel, the shell and the programs.
 
@@ -25,11 +26,10 @@ In a GNU/Linux system, Linux is the kernel component. The rest of the system con
 
 Linux is also less likely to crash, better able to run more than one program at the same time, and more secure than many operating systems. With these advantages, Linux is the fastest growing operating system in the server market. More recently, Linux has begun to be popular among home and business users as well.
 
+Bash
 -----------------------
 
-**Bash**
-
-Bash is a UNIX shell and command language developed by the GNU Project as a replacement for the Bourne shell. It the default login shell for most Linux distributions and maxOS. Bash is a command processor that typically runs in a text window, where the user types commands that cause actions. Bash can also read and execute commands from a file, called a shell script. Like all Unix shells, it supports filename globbing (wildcard matching), piping, here documents, command substitution, variables, and control structures for condition-testing and iteration. We will explore some of these concepts in the subsequent tutorial sections.
+Bash is a UNIX shell and command language developed by the GNU Project as a replacement for the Bourne shell. It the default login shell for most Linux distributions and MacOS. Bash is a command processor that typically runs in a text window, where the user types commands that cause actions. Bash can also read and execute commands from a file, called a shell script. Like all Unix shells, it supports filename globbing (wildcard matching), piping, here documents, command substitution, variables, and control structures for condition-testing and iteration. We will explore some of these concepts in the subsequent tutorial sections.
 
 .. raw:: html
 
