@@ -11,11 +11,12 @@ Welcome to the BRITE-REU Programming Workshop!
 
    Instructions <workshops/00_instructions/index>
    Workshop 1: Linux/Bash and SCC <workshops/01_linux_bash/index>
-   Workshop 2: git  <workshops/02_scc_git/index>
+   Workshop 2: R <workshops/04_R/index>
    Workshop 3: Python <workshops/03_python/index>
-   Workshop 4: R <workshops/04_R/index>
-   Workshop 5: Machine learning <workshops/05_Machine_learning/index>
+   Workshop 4: Machine learning <workshops/05_Machine_learning/index>
+   Workshop 5: git  <workshops/02_scc_git/index>
    Workshop 6: SQL <workshops/06_SQL/index>
+   Workshop 7: Data visualization
    Posters <workshops/07_posters/index>
 
 

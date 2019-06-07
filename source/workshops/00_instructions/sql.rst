@@ -12,8 +12,7 @@ SQLite
 
 **Windows:**
 
-See this very useful video to install SQLite
-https://www.youtube.com/watch?v=zOJWL3oXDO8
+See this very useful `video <https://www.youtube.com/watch?v=zOJWL3oXDO8>` to install SQLite
 
 **Mac and Linux:**
 

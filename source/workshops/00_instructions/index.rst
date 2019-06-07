@@ -8,17 +8,19 @@ Through the ten weeks you are at BU, we will introduce some useful programming t
 
 In order to participate, you will need to install the required tools and applications prior to coming to the classes. Below are the instructions to install an SSH Client, git, R and RStudio, Python and anaconda, RapidMiner, and mySQL. Please have them ready and running on your laptops so we can make the most out of the sessions. These instructions have been tested, but it’s not possible for us to run through all the installation steps for all operating systems.  If you encounter a problem or need more clarification, please make a note and send it to us, or write up your own modification of these instructions.  In case you have any difficulty, please contact us to fix any potential problems before the specific sessions start.
 
-**Instructors:**
+Instructors
+---------------
 
 - Dakota (LSEB room 645, email: dyh0110@bu.edu)
 - Dileep (LSEB 9th floor, email: dkishore@bu.edu)
-- Emma (, email: ebriars@bu.edu)
-- Jacquelyn (, email: Jjturcino@stedwards.edu)
-- Eric (, email: reeder@bu.edu)
-- Ahmed (, email: ayoussef@bu.edu)
-- Anastasia (, email: agurinov@bu.edu)
+- Emma (email: ebriars@bu.edu)
+- Jacquelyn (email: jturcino@bu.edu)
+- Eric (email: reeder@bu.edu)
+- Ahmed (email: ayoussef@bu.edu)
+- Anastasia (email: agurinov@bu.edu)
 
-**Workshop schedule:**
+Workshop schedule
+---------------------
 
 **All sessions meet Wednesday 10 am - 12 pm in LSE 904, except as noted**
 
@@ -30,6 +32,8 @@ In order to participate, you will need to install the required tools and applica
 6. *Week 8*: SQL
 7. *Week 9*: Data Visualization
 
+Software installation
+----------------------
 
 .. toctree::
    :maxdepth: 2

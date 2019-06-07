@@ -1,7 +1,7 @@
 Linux/Unix and Bash
 ====================
 
-Windows 10 (linux subsystem for windows)
+Windows 10: Linux Subsystem for Windows
 -----------------------------------------------
 
 1. Control Panel -> Programs and Features and click "Turn Windows Features on or off" on the top left pane
@@ -20,7 +20,7 @@ Windows 10 (linux subsystem for windows)
 .. |unix_2| image:: images/unix_2.png
 
 
-Windows 8- (Installing Babun)
+Windows 8: Installing Babun
 -------------------------------
 
 Babun is just a customized and pre-configured Cygwin.  You can install Cygwin if you’re familiar with that.
@@ -31,7 +31,8 @@ Babun is just a customized and pre-configured Cygwin.  You can install Cygwin if
 4. Use the ``/target`` option to install babun to a custom directory.
 
 
-Mac / Linux
+Mac & Linux
 --------------------
+
 You default shell should already be bash.
 Otherwise run: ``chsh -s /bin/bash``
