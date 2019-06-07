@@ -6,7 +6,7 @@ A bash script is a file containing commands that can run on the bash shell. They
 A minimal example
 ---------------------
 
-Create a file named myscript.sh and copy-paste the code from the example below.
+Create a file named ``myscript.sh`` and insert the code from the example below.
 
 .. code-block:: sh
 
@@ -22,7 +22,7 @@ Create a file named myscript.sh and copy-paste the code from the example below.
 Execution
 ------------
 
-The permissions on the script you created should be set so you can execute it with either ``./myscript.sh`` or ``bash myscript.sh``. Sometimes the file might not have an appropriate permissions set. For example:
+The permissions on the script you created should be set so you can execute it with either ``./myscript.sh`` or ``bash myscript.sh``. Sometimes the file might not have appropriate permissions set. For example:
 
 .. code-block:: sh
 
@@ -76,7 +76,7 @@ You can also set your own variables inside the script:
 Input
 ------------
 
-Run the command ``read`` and save the users response into the variable ``varname`` as shown below. Then create a new shell script with the code above and run it. Isn't it cool?
+Run the command ``read`` and save the users response into the variable ``varname`` as shown below. Then create a new shell script with the code below and run it. Isn't it cool?
 
 .. code-block:: sh
 
@@ -89,7 +89,7 @@ Run the command ``read`` and save the users response into the variable ``varname
 Conditional statements
 ---------------------------
 
-Play with the scripts below. Do you understand what they are doing? If you don't understand, make sure to test them out and/or ask us questions!
+Play with the scripts below. Do you understand what they are doing? If you don't understand, make sure to test them out and ask us questions!
 
 1. ``if`` statements
 

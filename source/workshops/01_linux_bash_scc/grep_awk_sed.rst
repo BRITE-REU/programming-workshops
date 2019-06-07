@@ -12,7 +12,7 @@ Grep
 --------------------
 
 
-Grep (**G**\lobal **R**\egular **E**\xpression **P**\rint”) finds a string in a given file or input.
+Grep (**G**\lobal **R**\egular **E**\xpression **P**\rint) finds a string in a given file or input.
 
 .. code-block:: sh
 

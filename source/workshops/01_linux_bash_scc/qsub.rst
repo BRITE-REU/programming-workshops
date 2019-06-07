@@ -67,7 +67,7 @@ Job script arguments are specified like this:
 
    printenv
 
-To request other resources besides the general directives, the scc website details available directives that can be requested at `this page <https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/>`_ .
+To request other resources besides the general directives, the SCC website details available directives that can be requested at `this page <https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/>`_ .
 
 Job status and deletion
 -----------------------------
