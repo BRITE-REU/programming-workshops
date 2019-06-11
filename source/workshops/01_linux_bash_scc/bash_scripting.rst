@@ -76,7 +76,7 @@ You can also set your own variables inside the script:
 Input
 ------------
 
-Run the command ``read`` and save the users response into the variable ``varname`` as shown below. Then create a new shell script with the code below and run it. Isn't it cool?
+Run the command ``read`` and save the users response into the variable ``varname`` as shown below. Then create a new shell script with the code below and run it. This is how you can have an interactive program.
 
 .. code-block:: sh
 
@@ -107,20 +107,7 @@ Play with the scripts below. Do you understand what they are doing? If you don't
 -  ``-gt`` is equivalent to >=. Similarly there are ``=``, ``!=`` and many more.
 -  0 means TRUE and 1 means FALSE (fail).
 
-2. ``if-else``
-
-.. code-block:: sh
-
-   #!/bin/bash
-   # else example
-   if [ $# -eq 1 ]
-   then
-       nl $1
-   else
-       nl /dev/stdin
-   fi
-
-3. ``if-else-if``
+2. ``if-else-if``
 
 .. code-block:: sh
 
