@@ -125,17 +125,25 @@ SED stands for "**S**\tream **ED**\itor". It is a widely used text processing Li
 Usecases
 ************
 
+- Replace one word with another:
+
+.. code-block:: sh
+
+      cat mary-lamb.txt | sed -e 's/Mary/MARIA/'
+
+- Substitute the first occurrence of one word with another:
+
+.. code-block:: sh
+
+      sed -e s/Mary/Maria/ mary-lamb.txt
+
 - Read the fourth line of a text file:
 
 .. code-block:: sh
 
       cat BRITE_students.txt | sed -n 4p
 
-- Replace one word with another:
 
-.. code-block:: sh
-
-      cat mary-lamb.txt | sed 's/Mary/Maria/g'
 
 - Remove the 1st, 2nd and 5th lines from a text file:
 
