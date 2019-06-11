@@ -61,7 +61,8 @@ Usecases
 .. code-block:: sh
 
       grep -C3 'appear' mary-lamb.txt
-
+      
+      
 
 AWK
 --------------------
@@ -142,3 +143,16 @@ Usecases
 .. code-block:: sh
 
       sed -e '1d' -e '2d' -e '5d' BRITE_students.txt
+      
+Exercises
+--------------------
+
+1.  Remove all the lines from the file **mary-lamb.txt** that contain the word *lamb*. 
+
+2. Display only those lines of the file **mary-lamb.txt** that contain the word *he* in them. The search should NOT be sensitive to case.
+
+3. Display only those lines of the file **mary-lamb.txt** which contain either *lamb* or *Mary* words in the them. The search should not be sensitive to case.
+
+
+
+
