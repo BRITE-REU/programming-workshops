@@ -160,7 +160,32 @@ By default, the ``sed`` command replaces the first occurrence of the pattern in 
       sed '3 s/unix/linux/' geekfile.txt
       
 The above ``sed`` command replaces the string only on the third line.
+
+- Deleting lines from a particular file: ``sed`` command can also be used for deleting lines from a particular file. To Delete a particular line, e.g. 4 in this example:
+
+.. code-block:: sh
+
+      sed '4d' geekfile.txt
       
+- To delete a last line:
+
+.. code-block:: sh
+
+      sed '$d' geekfile.txt
+      
+- To delete line from range 2 to 4:
+
+.. code-block:: sh
+
+      sed '2,4d' geekfile.txt
+
+- To delete from 3d to last line:
+
+.. code-block:: sh
+
+      sed '3,$d' geekfile.txt
+
+
 Exercises
 --------------------
 
