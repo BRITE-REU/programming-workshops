@@ -121,7 +121,7 @@ Usecases
 
       awk '/B/{++cnt} END {print "Count = ", cnt}' BRITE_students.txt
 
-Exercise
+Exercises
 ************
 
 - How do you print the first name and faculty advisor of students whose last names contain the letter *u* (file **BRITE_students.txt**)?
@@ -200,12 +200,12 @@ The above ``sed`` command replaces the string only on the third line.
       sed '3,$d' geekfile.txt
 
 
-Exercise
+Exercises
 ************
 
 - Replace word *Mary* with *Maria* in the file **mary-lamb.txt**.
 
-- Remove the 1st, 2nd and 5th lines from the file **BRITE_students.txt**.
+- Remove the 1st, 2nd and 5th lines from the file **mary-lamb.txt**.
 
 
 
