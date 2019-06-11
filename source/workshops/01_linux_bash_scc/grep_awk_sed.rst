@@ -147,7 +147,7 @@ Usecases
 Exercises
 --------------------
 
-1.  Remove all the lines from the file **mary-lamb.txt** that contain the word *lamb*. 
+1.  Display all the lines of the file **mary-lamb.txt** that do NOT contain the word *lamb*. 
 
 2. Display only those lines of the file **mary-lamb.txt** that contain the word *he* in them. The search should NOT be sensitive to case.
 
