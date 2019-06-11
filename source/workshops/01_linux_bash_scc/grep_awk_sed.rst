@@ -63,6 +63,15 @@ Usecases
       grep -C3 'appear' mary-lamb.txt
       
       
+Exercises
+************
+
+-  Display all the lines of the file **mary-lamb.txt** that do NOT contain the word *lamb*. 
+
+- Display only those lines of the file **mary-lamb.txt** that contain the word *he* in them. The search should NOT be sensitive to case.
+
+- Display only those lines of the file **mary-lamb.txt** which contain either *lamb* or *Mary* words in the them. The search should not be sensitive to case.    
+
 
 AWK
 --------------------
@@ -111,6 +120,11 @@ Usecases
 .. code-block:: sh
 
       awk '/B/{++cnt} END {print "Count = ", cnt}' BRITE_students.txt
+
+Exercise
+************
+
+- How do you print the first name and faculty advisor of students whose last names contain the letter *u* (file **BRITE_students.txt**)?
 
 
 SED
@@ -186,17 +200,12 @@ The above ``sed`` command replaces the string only on the third line.
       sed '3,$d' geekfile.txt
 
 
-Exercises
---------------------
+Exercise
+************
 
-1.  Display all the lines of the file **mary-lamb.txt** that do NOT contain the word *lamb*. 
+- Replace word *Mary* with *Maria* in the file **mary-lamb.txt**.
 
-2. Display only those lines of the file **mary-lamb.txt** that contain the word *he* in them. The search should NOT be sensitive to case.
-
-3. Display only those lines of the file **mary-lamb.txt** which contain either *lamb* or *Mary* words in the them. The search should not be sensitive to case.
-
-4. How do you print the first name and faculty advisor of students whose last names contain the letter *u* (file **BRITE_students.txt**)?
-
+- Remove the 1st, 2nd and 5th lines from the file **BRITE_students.txt**.
 
 
 
