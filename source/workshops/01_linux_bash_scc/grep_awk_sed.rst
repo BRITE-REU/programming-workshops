@@ -4,9 +4,9 @@
 Materials to download
 -----------------------
 
-1. `Linux word dictionary <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/cracklib-small.txt>`_
-2. `Mary had a little lamb <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/mary-lamb.txt>`_
-3. `BRITE students <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/BRITE_students.txt>`_
+1. `Mary had a little lamb <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/mary-lamb.txt>`_
+2. `BRITE students <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/BRITE_students.txt>`_
+3. `Geekfile <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/geekfile.txt>`_
 
 Grep
 --------------------
@@ -125,31 +125,41 @@ SED stands for "**S**\tream **ED**\itor". It is a widely used text processing Li
 Usecases
 ************
 
-- Replace one word with another:
+- Replacing or substituting string: ``sed`` command is mostly used to replace the text in a file. The below simple ``sed`` command replaces the word “unix” with “linux” in the file.
 
 .. code-block:: sh
 
-      cat mary-lamb.txt | sed -e 's/Mary/MARIA/'
+      sed 's/unix/linux/' geekfile.txt
 
-- Substitute the first occurrence of one word with another:
+Here the ``s`` specifies the substitution operation. The ``/`` are delimiters. The ``unix`` is the search pattern and the ``linux`` is the replacement string.
 
-.. code-block:: sh
+By default, the ``sed`` command replaces the first occurrence of the pattern in each line and it won’t replace the second, third, …occurrence in the line.
 
-      sed -e s/Mary/Maria/ mary-lamb.txt
-
-- Read the fourth line of a text file:
+- Replacing the nth occurrence of a pattern in a line: Use the ``/1``, ``/2`` etc flags to replace the first, second occurrence of a pattern in a line. The below command replaces the second occurrence of the word ``unix`` with ``linux`` in a line.
 
 .. code-block:: sh
 
-      cat BRITE_students.txt | sed -n 4p
+      sed 's/unix/linux/2' geekfile.txt
 
-
-
-- Remove the 1st, 2nd and 5th lines from a text file:
+- Replacing all the occurrence of the pattern in a line: The substitute flag ``/g`` (global replacement) specifies the ``sed`` command to replace all the occurrences of the string in the line.
 
 .. code-block:: sh
 
-      sed -e '1d' -e '2d' -e '5d' BRITE_students.txt
+      sed 's/unix/linux/g' geekfile.txt
+
+- Replacing from nth occurrence to all occurrences in a line: Use the combination of ``/1``, ``/2``, etc. and ``/g`` to replace all the patterns from the nth occurrence of a pattern in a line. The following ``sed`` command replaces the third, fourth, fifth, … ``unix`` word with ``linux`` word in a line.
+
+.. code-block:: sh
+
+      sed 's/unix/linux/3g' geekfile.txt
+
+- Replacing string on a specific line number: You can restrict the ``sed`` command to replace the string on a specific line number. An example is:
+
+.. code-block:: sh
+
+      sed '3 s/unix/linux/' geekfile.txt
+      
+The above ``sed`` command replaces the string only on the third line.
       
 Exercises
 --------------------
