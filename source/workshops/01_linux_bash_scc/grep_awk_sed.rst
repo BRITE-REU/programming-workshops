@@ -112,7 +112,6 @@ Usecases
 
       awk '/B/{++cnt} END {print "Count = ", cnt}' BRITE_students.txt
 
-- **Question for you:** How do you print the first name and faculty advisor of students whose last names contain the letter "u"?
 
 SED
 ------------
@@ -152,6 +151,9 @@ Exercises
 2. Display only those lines of the file **mary-lamb.txt** that contain the word *he* in them. The search should NOT be sensitive to case.
 
 3. Display only those lines of the file **mary-lamb.txt** which contain either *lamb* or *Mary* words in the them. The search should not be sensitive to case.
+
+4. How do you print the first name and faculty advisor of students whose last names contain the letter *u* (file **BRITE_students.txt**)?
+
 
 
 
