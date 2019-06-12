@@ -8,8 +8,8 @@ We will work in R Markdown, a .Rmd file written in markdown and contains chunks 
 You can dowload the R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) from here:
 
 1. `R_Workshop.Rmd <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/R_Workshop.Rmd>`_
-2. `BRITE students <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/BRITE_students.txt>`_
-3. `Geekfile <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/geekfile.txt>`_
+2. `airway_scaledcounts.csv <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/airway_scaledcounts.csv>`_
+3. `airway_metadata.csv <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/airway_metadata.csv>`_
 
 ***********************
 Load Packages
