@@ -187,13 +187,13 @@ The above ``sed`` command replaces the string only on the third line.
 
       sed '$d' geekfile.txt
       
-- To delete line from range 2 to 4:
+- To delete 2-4 lines:
 
 .. code-block:: sh
 
       sed '2,4d' geekfile.txt
 
-- To delete from 3d to last line:
+- To delete 3-last lines:
 
 .. code-block:: sh
 
