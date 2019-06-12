@@ -5,7 +5,11 @@ In this workshop, we will focus on learning how to load packages, import data, p
 
 We will work in R Markdown, a .Rmd file written in markdown and contains chunks of embedded R code. 
 
-The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) are in the R_workshop folder which you can download `here <https://drive.google.com/open?id=1qqoupV8tYrKt0Zptzf3ooo7Um7hANcFb>`_. 
+You can dowload the R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) from here:
+
+1. `R_Workshop.Rmd <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/R_Workshop.Rmd>`_
+2. `BRITE students <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/BRITE_students.txt>`_
+3. `Geekfile <https://raw.githubusercontent.com/BRITE-REU/programming-workshops/master/source/workshops/01_linux_bash_scc/files/geekfile.txt>`_
 
 ***********************
 Load Packages
