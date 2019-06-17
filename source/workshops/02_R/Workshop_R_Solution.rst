@@ -85,8 +85,7 @@ Use the read.csv("file") function to import the airway_scalecounts.csv (count da
 
 .. code:: R
 
-   # Use read_csv() function to import airway_scaledcounts.csv and airway_metadata.csv files into R
-
+   # Use read.csv() function to import airway_scaledcounts.csv and airway_metadata.csv files into R
    scaledcounts <- read.csv("airway_scaledcounts.csv")
    metadata <-  read.csv("airway_metadata.csv")
 
