@@ -353,8 +353,8 @@ Hint: You can use a for loop, apply function, or base functions such as colSums(
 
 .. code:: R
 
-   # Sum the expression of each column, divide by 1e6
-   # Use summary function to see the range of values between each sample
+   # 1 Sum the expression of each column, divide by 1e6
+   # 2 Use summary function to see the range of values between each sample
 
     head(assay(airway))
     summary(colSums(assay(airway))/1e6)
