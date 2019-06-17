@@ -1,16 +1,16 @@
 R Workshop: RNA-seq Airway Data and Differential Expression Analysis
 =====================================================================
 
-In this workshop, we will focus on learning how to load packages, import data, perform exploratory analysis with built in functions as well as functions from packages installed, performing differential expression analysis of RNA-seq data with the DESeq2 package, and visualizing the results using ggplot2. 
+In this workshop, we will focus on learning how to load packages, import data, perform exploratory analysis with built in functions as well as functions from packages installed, performing differential expression analysis of RNA-seq data with the DESeq2 package, and visualizing the results using ggplot2.
 
-We will work in R Markdown, a .Rmd file written in markdown and contains chunks of embedded R code. 
+We will work in R Markdown, a .Rmd file written in markdown and contains chunks of embedded R code.
 
-The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) are in the R_workshop folder which you can download `here <https://drive.google.com/open?id=1qqoupV8tYrKt0Zptzf3ooo7Um7hANcFb>`_. 
+The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) are in the R_workshop folder which you can download `here <https://drive.google.com/open?id=1qqoupV8tYrKt0Zptzf3ooo7Um7hANcFb>`_.
 
 ***********************
 Load Packages
 ***********************
-We will begin by loading the necessary packages: 
+We will begin by loading the necessary packages:
 
 Go ahead and install these packages using install.packages():
 
@@ -31,7 +31,7 @@ Use bioclite("package_name") function to install packages SummarizedExperiment, 
 Note: If package base is not already installed, please install that as well.
 
 .. code:: R
-   
+
    packages <- c("readr", "ggplot2", "dplyr", "magrittr")
    install.packages(packages, dependencies = TRUE)
 
@@ -45,7 +45,7 @@ Note: If package base is not already installed, please install that as well.
 Load these libraries using library("package_name") function:
 
 .. code:: R
-   
+
    #library(base) in case it's not loaded
    library(readr)
    library(dplyr)
@@ -61,7 +61,7 @@ Load these libraries using library("package_name") function:
 Import Airway Data
 ***********************
 
-If you have not downloaded the R_Workshop folder already, please do that now. 
+If you have not downloaded the R_Workshop folder already, please do that now.
 
 Let's begin first by setting our working directory. Set your working directory to where the R_Workshop folder is located on your computer.
 
@@ -77,7 +77,7 @@ Let's begin first by setting our working directory. Set your working directory t
    getwd()
 
 
-Today we will work with the airway dataset. This data set comes from an RNA-Seq experiment, a high throughput sequencing method, on four human airway smooth muscle cell lines treated and untreated with dexamethasone. We will work with read counts or expression matrix for this dataset (i.e. processed files). 
+Today we will work with the airway dataset. This data set comes from an RNA-Seq experiment, a high throughput sequencing method, on four human airway smooth muscle cell lines treated and untreated with dexamethasone. We will work with read counts or expression matrix for this dataset (i.e. processed files).
 
 Note: The sequencing files of this experiment are available on the GEO database with GEO Series Number GSE52778, and can be downloaded using SRA toolkit.
 
@@ -105,7 +105,7 @@ Use base functions to describe and look at the airway data: scaledcounts and met
 .. code:: R
 
    #Use base functions to gain an initial view of the data
-   
+
    #Look at scaledcounts variable
    dim(scaledcounts)
 
@@ -124,6 +124,173 @@ Use base functions to describe and look at the airway data: scaledcounts and met
 
    str(metadata)
 
+***********************
+Working with `data.frame` objects
+***********************
+
+Looking at `scaledcounts` we can see that the first column, "ensgene", gives the gene identifier for each gene, while each successive column gives the expression values for this gene.
+
+.. code:: R
+    # Use the `ensgene` column to extract the gene expression values for "ENSG00000002549".
+
+    row2extract <- scaledcounts$ensgene == "ENSG00000002549"
+    scaledcounts[row2extract,]
+
+This is okay, but it's a little clunky. Alternatively we can set the gene identifiers as row names to index rows directly.
+
+.. code:: R
+    # 1  Set the gene identifiers to row names in `scaledcounts`.
+    rownames(scaledcounts) <- scaledcounts$ensgene
+
+    # 2  Remove the `ensgene` column.
+    scaledcounts <- scaledcounts[,-1]
+
+    # 3  Extract the gene expression values using the string "ENSG00000002549" directly.
+    scaledcounts <- scaledcounts["ENSG00000002549",]
+
+***********************
+Asking R for help
+***********************
+
+Alternative to steps 1 + 2 above, we could have set gene identifiers to row names when we read in the file.
+
+.. code:: R
+    # 1 Look up the help page for `read.csv()` using `?read.csv`, scroll down to the `row.names` in the "Arguments" section.
+    # 2 Use these instructions to reread in `scaledcounts` and set the gene identifiers to row names automatically.
+    scaledcounts <- read.csv("airway_scaledcounts.csv", row.names = 1)
+
+***********************
+Working with `matrix ` objects
+***********************
+
+The main difference between a `data.frame` object and a `matrix` object is that each column of a `data.frame` is free to have it's own format, whereas all values within an entire `matrix` must have the same format. One nice thing about `matrix` objects is that functions in R can be applied to all values at once. Note, that after setting the gene identifiers to row names, all values in `scaledcounts` is now a number.
+
+For gene expression it is common to work with log-scaled count data because these tend to adhere more closely to normal distributions than count data.  The one caveat to this that log(0) = -Inf. To overcome this, it is common practice to add a small value prior to performing log-transformations, most commonly by adding one to every value, log(1) = 0.
+
+.. code:: R
+    # 1 Use the `as.matrix()` function to convert `scaledcounts` to a matrix.
+    scaledcounts <- as.matrix(scaledcounts)
+
+    # 2 Add a pseudocount to every value.
+    scaledcounts <- scaledcounts + 1
+
+    # 3 Use the `log2()` function to log-scale the matrix.
+    scaledcounts <- log2(scaledcounts)
+
+***********************
+Running simple comparative statistical analyses
+***********************
+
+Later in this workshop, we will use a fancy Bioconductor package to run differential gene expression analysis.  The basis for this type of analysis is common when analyzing high-throughput data. It has the following steps
+
+1. Extract the expression values for a single gene.
+2. Run compare the mean expression between two groups using a statistical test.
+3. Repeat steps 1 + 2 for every gene.
+
+***********************
+Running one test
+***********************
+
+The t-test is a common choice for performing a differential analysis. The "dex" column in `metadata` gives group values for treated and control samples.
+
+.. code:: R
+    # 1 Create a new data.frame called `genedata` with two columns: 1) log-transformed expression values of "ENSG00000002549" and 2) group values from the "dex" variable. Call the columns "ex" and "group", respectively.
+    genedata <- data.frame(ex = scaledcounts["ENSG00000002549",], group = metadata$dex)
+
+    # 2 Run the following to use the `t.test()` function to compare the log transformed expression values between treated and control samples with pooled variance (var.equal = TRUE).
+    ttestRes <- t.test(ex ~ group, data = genedata, var.equal = TRUE)ttestRes <- t.test(ex ~ group, data = genedata, var.equal = TRUE)
+    print(ttestRes)
+
+
+Note that the syntax at the begining of this function, you will see it a lot.  Look up ?formula for more information. This is common in functions for statistical modelling, as well as base R plotting functions.  For example, instead of running a t-test we could run a linear model.
+
+.. code:: R
+    lmRes <- lm(ex ~ group, data = genedata)
+    print(summary(lmRes))
+
+Note, that the p-value for the linear model is equal to the p-value for the t-test.  This is because simple linear regression models are equivalent to a pooled variance t-test.
+
+Next, we can use a similar syntax to create boxplots of the expression values for either group.
+
+.. code:: R
+    boxplot(ex ~ group, data = genedata)
+
+As we can see, the difference in mean is very small relative to the variance, hence the large p-value.
+
+***********************
+Wrapper functions
+***********************
+
+If we want to run a test one any gene we can greatly reduce the amount of code we need to write by writing a function that takes a gene identifier as an argument, runs the t-test, and returns information we are interested in. For example, below is a function that takes the arguments, `geneid` and returns a vector with two values: the difference in mean and p-value.
+
+.. code:: R
+
+    # Function to run ttest for a given gene ID
+    ttestGene <- function(geneid) {
+
+        # Create data matrix
+        genedata <- data.frame(ex = scaledcounts[geneid,], group = metadata$dex)
+
+        # Run t-test
+        ttestRes <- t.test(ex ~ group, data = genedata)
+
+        # Get difference in mean
+        diffMean <- ttestRes$estimate[2] - ttestRes$estimate[1]
+
+        # Get difference and p-value
+        results <- c(diffMean, pvalue = ttestRes$p.value)
+
+        # Given these values a name
+        names(results) <- c("diff", "pvalue")
+
+        return(results)
+    }
+
+    # Run it on "ENSG00000002549"
+    ttestGene("ENSG00000002549")
+
+***********************
+Apply loops
+***********************
+
+We can run this analysis using an apply loop.  In are there are several choices of apply loops, for this case we will use the `sapply()` function.  `sapply()` takes two arguments: a vector and a function. You may want to check the help page, `?apply`, for other options.
+
+.. code:: R
+    # 1 Run sapply for the first 1000 genes in `scaledcounts` using their names and the `ttestGene()` function.  Write the ouput to an object called `res`.
+    res <- sapply(rownames(scaledcounts)[1:1000], ttestGene)
+
+    # 2 Transpose the output with t().
+    res <- t(res)
+    print(head(res))
+
+***********************
+Matrix operations
+***********************
+
+Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. For example, the maximum likelihood estimates for a linear regression model can be estimated using the following formula, $$\hat{\beta} = (X^TX)^{-1}X^Ty.$$ Here, X is and $N\times P$ matrix of variables, and $y$ can be a vector of outcome variables, in this case gene expression values for specific gene. $X^T$ denotes that a given matrix is transposed and $()^{-1} denotes taking the inverse of the items in the parathesis.
+
+.. code:: R
+    X <- model.matrix(~ group, data = genedata)
+    print(X)
+
+The three basic matrix operations functions in R are:
+1.  `t()`: Transpose matrix input.
+2.  `solve()`: Take the inverse of matrix input.
+3.  `%*%`: Multiply matrices on the left and right.
+
+.. code:: R
+    # 1 Use the formula for the maximum likelihood estimates for a linear regression model above to generate the difference in mean of log transformed expression values between treated and control samples for "ENSG00000002549".
+    y <- scaledcounts["ENSG00000002549",]
+    beta <- solve(t(X) %*% X) %*% t(X) %*% y
+    print(beta)
+
+In actuality, $y$ need not be a vector, but instead a $N \times Q$ matrix, where $Q$ is a set of variables for which you'd like to indepedently test the relationships to $X$.
+
+.. code:: R
+    # 1 Use the formula for the maximum likelihood estimates for a linear regression model above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
+    y <- t(scaledcounts[1:1000,])
+    beta <- solve(t(X) %*% X) %*% t(X) %*% y
+    print(head(t(beta)))
 
 This data set is also available in a package called "airway" in bioconductor. It is saved as an S4 object (object oriented programming) that contains the count data, meta data, and other information important to the data in fields or slots in the object. To load the airway data we can use the data("data_name") function and call airway to add the dataset to our workspace.
 
@@ -152,15 +319,15 @@ Let's remove the variables scaledcounts and metadata from our workspace. We'll k
 Explore Airway Dataset
 **********************
 
-Let's first do some preliminary work with the airway dataset. The sample/metadata information is saved under the slot colData which can be extracted using airway@colData or colData(airway). 
+Let's first do some preliminary work with the airway dataset. The sample/metadata information is saved under the slot colData which can be extracted using airway@colData or colData(airway).
 
 First check the data structure of the colData(airway) dataset.
 
 Hint: Built in functions to check data structure
 
-Let's set colData(airway) as a data frame. 
+Let's set colData(airway) as a data frame.
 
-Hint: We will use the as.data.frame() function to do this. 
+Hint: We will use the as.data.frame() function to do this.
 
 .. code:: R
 
@@ -173,7 +340,7 @@ Hint: We will use the as.data.frame() function to do this.
    dat_airway
 
 
-The count data is saved under the slot assay. We can extract the count matrix by calling airway@assay or assay(airway). We can also use descriptive statistics to look at the expression acrosss samples. We will sum the expression of each column and scale by 1e6 to get scaled expression value. We will then use the summary() function to look at the range of expression between the samples. 
+The count data is saved under the slot assay. We can extract the count matrix by calling airway@assay or assay(airway). We can also use descriptive statistics to look at the expression acrosss samples. We will sum the expression of each column and scale by 1e6 to get scaled expression value. We will then use the summary() function to look at the range of expression between the samples.
 
 Determine a way to sum the expression of each column.
 
@@ -183,7 +350,7 @@ Hint: You can use a for loop, apply function, or base functions such as colSums(
 
    #Sum the expression of each column, divide by 1e6
    #Use summary function to see the range of values between each sample
-    
+
     head(assay(airway))
 
     summary(colSums(assay(airway))/1e6)
@@ -193,7 +360,7 @@ Hint: You can use a for loop, apply function, or base functions such as colSums(
 Differential Expression Analysis using DESeq2
 *********************************************
 
-We will use DESeq2 package for differential expression analysis of the airway data set to find differentially expressed genes between untreated and treated samples. We will first load DESeq2 and set up the data to be compatible with DESeq by using the function DESeqDataSet(). 
+We will use DESeq2 package for differential expression analysis of the airway data set to find differentially expressed genes between untreated and treated samples. We will first load DESeq2 and set up the data to be compatible with DESeq by using the function DESeqDataSet().
 
 We can use the help("function_name") or ?function_name to look up the function to get a description.
 
@@ -201,7 +368,7 @@ A description or help pages will show up under the Help tab in the bottom right 
 
 .. code:: R
 
-   #Look up DESeqDataSet() function description 
+   #Look up DESeqDataSet() function description
 
     help("DESeqDataSet")
 
@@ -209,7 +376,7 @@ A description or help pages will show up under the Help tab in the bottom right 
 
 We can also go to the bioconductor page for DESeq2 and look at the manual for functions as well as a tutorial of using the package itself. Click here to see the `page <https://bioconductor.org/packages/release/bioc/html/DESeq2.html>`_.
 
-The function DESeqDataSet includes an argument called design which asks for a formula that expresses how the counts for each gene depends on the variables in colData. In this case we choose variables cell and dex because we care about the cell line and which samples are treated with dexamethasone versus which samples are untreated controls.  
+The function DESeqDataSet includes an argument called design which asks for a formula that expresses how the counts for each gene depends on the variables in colData. In this case we choose variables cell and dex because we care about the cell line and which samples are treated with dexamethasone versus which samples are untreated controls.
 
 .. code:: R
 
@@ -218,26 +385,26 @@ The function DESeqDataSet includes an argument called design which asks for a fo
    DE_airway
 
 
-Before we continue, we must set our control group as our reference level for comparison in our differential expression analysis. 
+Before we continue, we must set our control group as our reference level for comparison in our differential expression analysis.
 
 .. code:: R
 
    DE_airway@colData$dex <- relevel(DE_airway@colData$dex, ref = "untrt")
 
 
-Now we wil run the differential expression analysis steps through the function DESeq(). Again we can look up the function to learn more about what it does and the arguments needed to run it. We use the results() function to generate a results table with log2 fold changes, p values and adjusted p values for each gene. The log2 fold change and the Wald test p value is based on the last variable in the design formula, in this case variable dex. Therefore our results will show which genes are differentially expressed between the untreated and treated groups.  
+Now we wil run the differential expression analysis steps through the function DESeq(). Again we can look up the function to learn more about what it does and the arguments needed to run it. We use the results() function to generate a results table with log2 fold changes, p values and adjusted p values for each gene. The log2 fold change and the Wald test p value is based on the last variable in the design formula, in this case variable dex. Therefore our results will show which genes are differentially expressed between the untreated and treated groups.
 
 .. code:: R
-   
+
    help("DESeq")
 
    DE_airway <- DESeq(DE_airway)
-   res <- results(DE_airway) 
+   res <- results(DE_airway)
 
    res
 
 
-How do we order the results table (res) based on the p-value? 
+How do we order the results table (res) based on the p-value?
 There are already available functions in R that we can use to sort the dataframe.
 Hint: Use function order() to order the rows based on p-value
 
@@ -264,9 +431,9 @@ Let's add a column that tell us whether each gene is significant. Using the muta
 .. code:: R
 
    #first add column with gene names (using row names of matrix)
-   
+
    res$gene <- rownames(res)
-   
+
    #change res to a tibble format to work with dplyr
 
    res <- tbl_df(res)
@@ -291,12 +458,12 @@ Try using piping format %>% to do this!
 
    # Filter res based on cutoff padj < 0.01 and save this result into a csv file called significant_results.csv
 
-   res %>% 
-   filter(padj<0.01) %>% 
+   res %>%
+   filter(padj<0.01) %>%
    write_csv("significant_results.csv")
 
 
-What if we want to generate our own plots? We can use ggplot2 to create our own volcano plot of the differential expression results between the untreated and treated groups. 
+What if we want to generate our own plots? We can use ggplot2 to create our own volcano plot of the differential expression results between the untreated and treated groups.
 
 Now let's try generating a volcano plot using ggplot2?
 
@@ -304,7 +471,7 @@ Hint: log2FoldChange for x-axis, -1*log10(pvalue) for y-axis, sig to color the p
 
 Make sure to include argument for points and include the title "Volcano plot"
 
-Bonus: Change the axis titles to something more readable and change the point shapes, or play around with any other parameters to get a feel for how ggplot2 works.  
+Bonus: Change the axis titles to something more readable and change the point shapes, or play around with any other parameters to get a feel for how ggplot2 works.
 
 .. code:: R
 
@@ -315,8 +482,8 @@ Bonus: Change the axis titles to something more readable and change the point sh
    res %>% ggplot(aes(log2FoldChange, -1*log10(padj), col=sig)) + geom_point() + ggtitle("Volcano plot")
 
 
-How would you generate the same MA plot above using ggplot2? 
-Hint: Use baseMean for x-axis, log2FoldChange for y-axis, sig for color. 
+How would you generate the same MA plot above using ggplot2?
+Hint: Use baseMean for x-axis, log2FoldChange for y-axis, sig for color.
 
 Make sure to have points and to use a log10 scale for the x-axis (i.e. scale_x_log10() ).
 
@@ -324,9 +491,9 @@ Add the title "MA plot" to your plot as well.
 
 
 .. code:: R
-   
+
    #Create MA plot using ggplot2
-   
+
    ggplot(res, aes(baseMean, log2FoldChange, col=sig)) + geom_point() + scale_x_log10() + ggtitle("MA plot")
 
 
@@ -346,10 +513,10 @@ Let's start by keeping only the set of genes that showed statistically-significa
 
    #filter out  genes with no p-values
    res <- res[!is.na(res$padj),]
-   
+
    #keep significant genes only
    sigGenes <- res[res$sig == TRUE,]
-   
+
    #how many significant genes did we get?
    nrow(sigGenes)
 
@@ -359,37 +526,37 @@ There's one more step before we carry out GSEA. The genes in this dataset use En
 
    #load package (remember to install it if you haven't)
    library("biomaRt")
-   
+
    #load human reference genome
    ensembl <- useMart("ensembl",dataset="hsapiens_gene_ensembl")
-   
+
    #map Ensembl IDs  to gene symbols (might take a couple of minutes)
-   geneSymbols <- getBM(attributes='hgnc_symbol', 
-      filters = 'ensembl_gene_id', 
-      values = sigGenes$gene, 
+   geneSymbols <- getBM(attributes='hgnc_symbol',
+      filters = 'ensembl_gene_id',
+      values = sigGenes$gene,
       mart = ensembl)
-   
+
 Now that we have our correctly-formatted gene symbols, we can perform GSEA. There are many different databases we can use for  this step; for this workshop we will  use the Gene Ontology (GO) databases: GO Biological Process, GO Molecular Function, and GO Cellular Component.
 
 .. code:: R
 
    #find the list of all available databases from Enrichr
    dbs <- listEnrichrDbs()
-   
+
    #scroll through list of available databases
    View(dbs)
-   
+
    #set up list with databases of interest
    dbs = c('GO_Biological_Process_2018','GO_Molecular_Function_2018', 'GO_Cellular_Component_2018')
-   
+
    #perform GSEA
    enriched <- enrichr(genes = geneSymbols$hgnc_symbol, databases = dbs)
-   
+
    #check first few results for the biological process database
    head(enriched$GO_Biological_Process_2018)
-      
 
-To conclude, we can look at our session information including the packages we loaded and worked with. 
+
+To conclude, we can look at our session information including the packages we loaded and worked with.
 
 .. code:: R
 
