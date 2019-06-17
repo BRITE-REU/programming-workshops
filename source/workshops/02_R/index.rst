@@ -27,6 +27,6 @@ In the workshop, we will work with RNA-Seq data and perform differential analysi
 
     R and RStudio: Introduction and Data Structures <Intro_R>
     Exploring Data in R <Explore_R>
-    Test <Test>
+    Test <test>
     R Workshop <Workshop_R>
     R Workshop Solution <Workshop_R_Solution>
