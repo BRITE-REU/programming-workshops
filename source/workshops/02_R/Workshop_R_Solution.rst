@@ -267,7 +267,12 @@ We can run this analysis using an apply loop.  In are there are several choices 
 Matrix operations
 ***********************
 
-Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. For example, the maximum likelihood estimates for a linear regression model can be estimated using the following formula, $$\hat{\beta} = (X^TX)^{-1}X^Ty.$$ Here, X is and $N\times P$ matrix of variables, and $y$ can be a vector of outcome variables, in this case gene expression values for specific gene. $X^T$ denotes that a given matrix is transposed and $()^{-1} denotes taking the inverse of the items in the parathesis.
+Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. For example, the maximum likelihood estimates for a linear regression model can be estimated using the following formula, 
+
+.. math::
+    \hat{\beta} = (X^TX)^{-1}X^Ty.
+
+Here, :math:`X` is and :math:`N\times P` matrix of variables, and :math:`y` can be a vector of outcome variables, in this case gene expression values for specific gene. :math:`X^T` denotes that a given matrix is transposed and :math:`()^{-1}` denotes taking the inverse of the items in the parathesis.
 
 .. code:: R
     X <- model.matrix(~ group, data = genedata)
