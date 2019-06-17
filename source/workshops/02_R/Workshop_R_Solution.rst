@@ -39,8 +39,7 @@ Note: If package base is not already installed, please install that as well.
    biocLite("SummarizedExperiment", dependencies = TRUE)
    biocLite("DESeq2", dependencies = TRUE)
    biocLite("airway", dependencies = TRUE)
-
-
+   biocLite("enrichR", dependencies = TRUE)
 
 
 Load these libraries using library("package_name") function:
@@ -55,6 +54,7 @@ Load these libraries using library("package_name") function:
    library(SummarizedExperiment)
    library(DESeq2)
    library(airway)
+   library(enrichR)
 
 
 ***********************
@@ -263,6 +263,10 @@ Let's add a column that tell us whether each gene is significant. Using the muta
 
 .. code:: R
 
+   #first add column with gene names (using row names of matrix)
+   
+   res$gene <- rownames(res)
+   
    #change res to a tibble format to work with dplyr
 
    res <- tbl_df(res)
@@ -328,7 +332,64 @@ Add the title "MA plot" to your plot as well.
 
 
 
-We can look at our session information including the packages we loaded and worked with. 
+*********************************************
+Gene Set Enrichment using enrichR
+*********************************************
+
+Gene set enrichment analysis (GSEA) is a method to identify classes of genes that are over-represented in a large set of genes. This is performed by comparing the input gene set with annotated gene sets from online functional databases such as `Gene Ontology (GO) <http://geneontology.org>`_ and `KEGG <https://www.kegg.jp>`_. This is a common step in bioinformatics as it aids with the biological interpretation of results.
+
+In this section of the workshop, we will perform GSEA on the set of differentially-expressed genes we identified earlier in this workshop using the `enrichR <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4987924/>`_ tool. Please note that this section will require a working internet connection.
+
+Let's start by keeping only the set of genes that showed statistically-significant change in expression between conditions. Remember from the  previous section that our threshold is be a false discovery rate (FDR) of 0.1 (i.e. no more than 10% chance that the observed change in expression is due to chance). Not all the genes in the results from DESeq2 were assigned  p-values so we'll start by filtering out the genes without p-values followed by storing the significant genes separately.
+
+.. code:: R
+
+   #filter out  genes with no p-values
+   res <- res[!is.na(res$padj),]
+   
+   #keep significant genes only
+   sigGenes <- res[res$sig == TRUE,]
+   
+   #how many significant genes did we get?
+   nrow(sigGenes)
+
+There's one more step before we carry out GSEA. The genes in this dataset use Ensembl indentifiers, while enrichR expects  gene symbols. We'll use the biomaRt package to map our Ensembl IDs to gene symbols.
+
+.. code:: R
+
+   #load package (remember to install it if you haven't)
+   library("biomaRt")
+   
+   #load human reference genome
+   ensembl <- useMart("ensembl",dataset="hsapiens_gene_ensembl")
+   
+   #map Ensembl IDs  to gene symbols (might take a couple of minutes)
+   geneSymbols <- getBM(attributes='hgnc_symbol', 
+      filters = 'ensembl_gene_id', 
+      values = sigGenes$gene, 
+      mart = ensembl)
+   
+Now that we have our correctly-formatted gene symbols, we can perform GSEA. There are many different databases we can use for  this step; for this workshop we will  use the Gene Ontology (GO) databases: GO Biological Process, GO Molecular Function, and GO Cellular Component.
+
+.. code:: R
+
+   #find the list of all available databases from Enrichr
+   dbs <- listEnrichrDbs()
+   
+   #scroll through list of available databases
+   View(dbs)
+   
+   #set up list with databases of interest
+   dbs = c('GO_Biological_Process_2018','GO_Molecular_Function_2018', 'GO_Cellular_Component_2018')
+   
+   #perform GSEA
+   enriched <- enrichr(genes = geneSymbols$hgnc_symbol, databases = dbs)
+   
+   #check first few results for the biological process database
+   head(enriched$GO_Biological_Process_2018)
+      
+
+To conclude, we can look at our session information including the packages we loaded and worked with. 
 
 .. code:: R
 
