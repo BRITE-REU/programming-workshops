@@ -272,13 +272,14 @@ Loops are great and often necessary, but whenever possible utilizing matrix oper
 .. math::
     \hat{\beta} = (X^TX)^{-1}X^Ty.
 
-Here, :math:`X` is and :math:`N\times P` matrix of variables, and :math:`y` can be a vector of outcome variables, in this case gene expression values for specific gene. :math:`X^T` denotes that a given matrix is transposed and :math:`()^{-1}` denotes taking the inverse of the items in the parathesis.
+Here, :math:`X` is and :math:`N+1\times P` design matrix of variables, and :math:`y` can be a vector of outcome variables, in this case gene expression values for specific gene. :math:`X^T` denotes that a given matrix is transposed and :math:`()^{-1}` denotes taking the inverse of the items in the parathesis.
 
 .. code:: R
     X <- model.matrix(~ group, data = genedata)
     print(X)
 
 The three basic matrix operations functions in R are:
+
 1.  `t()`: Transpose matrix input.
 2.  `solve()`: Take the inverse of matrix input.
 3.  `%*%`: Multiply matrices on the left and right.
@@ -289,7 +290,7 @@ The three basic matrix operations functions in R are:
     beta <- solve(t(X) %*% X) %*% t(X) %*% y
     print(beta)
 
-In actuality, $y$ need not be a vector, but instead a $N \times Q$ matrix, where $Q$ is a set of variables for which you'd like to indepedently test the relationships to $X$.
+In actuality, :math:`y   need not be a vector, but instead a :math:`N \times Q` matrix, where :math:`Q` is a set of variables for which you'd like to indepedently test the relationships to :math:`X`.
 
 .. code:: R
     # Use the formula for the maximum likelihood estimates for a linear regression model above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
