@@ -81,14 +81,14 @@ Today we will work with the airway dataset. This data set comes from an RNA-Seq 
 
 Note: The sequencing files of this experiment are available on the GEO database with GEO Series Number GSE52778, and can be downloaded using SRA toolkit.
 
-Use the read_csv("file") function from package readr to import the airway_scalecounts.csv (count data) and airway_metadata.csv (meta data) files from the downloaded folder R_Workshop.
+Use the read.csv("file") function to import the airway_scalecounts.csv (count data) and airway_metadata.csv (meta data) files from the downloaded folder R_Workshop.
 
 .. code:: R
 
-   #User read_csv() function to import airway_scaledcounts.csv and airway_metadata.csv files into R
+   # Use read_csv() function to import airway_scaledcounts.csv and airway_metadata.csv files into R
 
-   scaledcounts <- read_csv("airway_scaledcounts.csv")
-   metadata <-  read_csv("airway_metadata.csv")
+   scaledcounts <- read.csv("airway_scaledcounts.csv")
+   metadata <-  read.csv("airway_metadata.csv")
 
 
 Use base functions to describe and look at the airway data: scaledcounts and metadata.
@@ -104,9 +104,9 @@ Use base functions to describe and look at the airway data: scaledcounts and met
 
 .. code:: R
 
-   #Use base functions to gain an initial view of the data
+   # 1 Use base functions to gain an initial view of the data
 
-   #Look at scaledcounts variable
+   # 2 Look at scaledcounts variable
    dim(scaledcounts)
 
    head(scaledcounts)
@@ -115,7 +115,7 @@ Use base functions to describe and look at the airway data: scaledcounts and met
 
    str(scaledcounts)
 
-   #Look at metadata variable
+   # 3 Look at metadata variable
    dim(metadata)
 
    head(metadata)
@@ -139,13 +139,13 @@ Looking at `scaledcounts` we can see that the first column, "ensgene", gives the
 This is okay, but it's a little clunky. Alternatively we can set the gene identifiers as row names to index rows directly.
 
 .. code:: R
-    # 1  Set the gene identifiers to row names in `scaledcounts`.
+    # 1 Set the gene identifiers to row names in `scaledcounts`.
     rownames(scaledcounts) <- scaledcounts$ensgene
 
-    # 2  Remove the `ensgene` column.
+    # 2 Remove the `ensgene` column.
     scaledcounts <- scaledcounts[,-1]
 
-    # 3  Extract the gene expression values using the string "ENSG00000002549" directly.
+    # 3 Extract the gene expression values using the string "ENSG00000002549" directly.
     scaledcounts <- scaledcounts["ENSG00000002549",]
 
 ***********************
@@ -156,11 +156,12 @@ Alternative to steps 1 + 2 above, we could have set gene identifiers to row name
 
 .. code:: R
     # 1 Look up the help page for `read.csv()` using `?read.csv`, scroll down to the `row.names` in the "Arguments" section.
+    
     # 2 Use these instructions to reread in `scaledcounts` and set the gene identifiers to row names automatically.
     scaledcounts <- read.csv("airway_scaledcounts.csv", row.names = 1)
 
 ***********************
-Working with `matrix ` objects
+Working with `matrix` objects
 ***********************
 
 The main difference between a `data.frame` object and a `matrix` object is that each column of a `data.frame` is free to have it's own format, whereas all values within an entire `matrix` must have the same format. One nice thing about `matrix` objects is that functions in R can be applied to all values at once. Note, that after setting the gene identifiers to row names, all values in `scaledcounts` is now a number.
@@ -279,7 +280,7 @@ The three basic matrix operations functions in R are:
 3.  `%*%`: Multiply matrices on the left and right.
 
 .. code:: R
-    # 1 Use the formula for the maximum likelihood estimates for a linear regression model above to generate the difference in mean of log transformed expression values between treated and control samples for "ENSG00000002549".
+    # Use the formula for the maximum likelihood estimates for a linear regression model above to generate the difference in mean of log transformed expression values between treated and control samples for "ENSG00000002549".
     y <- scaledcounts["ENSG00000002549",]
     beta <- solve(t(X) %*% X) %*% t(X) %*% y
     print(beta)
@@ -287,7 +288,7 @@ The three basic matrix operations functions in R are:
 In actuality, $y$ need not be a vector, but instead a $N \times Q$ matrix, where $Q$ is a set of variables for which you'd like to indepedently test the relationships to $X$.
 
 .. code:: R
-    # 1 Use the formula for the maximum likelihood estimates for a linear regression model above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
+    # Use the formula for the maximum likelihood estimates for a linear regression model above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
     y <- t(scaledcounts[1:1000,])
     beta <- solve(t(X) %*% X) %*% t(X) %*% y
     print(head(t(beta)))
@@ -298,7 +299,7 @@ You'll notice that the class is called RangedSummarizedExperiment (i.e. an S4 ob
 
 .. code:: R
 
-   #call airway data using data() and print airway data to save to workspace
+   # Call airway data using data() and print airway data to save to workspace
 
    data("airway")
    airway
@@ -310,9 +311,8 @@ Let's remove the variables scaledcounts and metadata from our workspace. We'll k
 
 .. code:: R
 
-   #remove scaledcounts and metadata variable
+   # Remove scaledcounts and metadata variable
    rm(scaledcounts)
-
    rm(metadata)
 
 **********************
@@ -331,7 +331,7 @@ Hint: We will use the as.data.frame() function to do this.
 
 .. code:: R
 
-   #Check mode of colData(airway) and make change the structure to a data frame.
+   # Check mode of colData(airway) and make change the structure to a data frame.
 
    mode(colData(airway))
 
@@ -348,11 +348,10 @@ Hint: You can use a for loop, apply function, or base functions such as colSums(
 
 .. code:: R
 
-   #Sum the expression of each column, divide by 1e6
-   #Use summary function to see the range of values between each sample
+   # Sum the expression of each column, divide by 1e6
+   # Use summary function to see the range of values between each sample
 
     head(assay(airway))
-
     summary(colSums(assay(airway))/1e6)
 
 
@@ -368,10 +367,8 @@ A description or help pages will show up under the Help tab in the bottom right 
 
 .. code:: R
 
-   #Look up DESeqDataSet() function description
-
+    # Look up DESeqDataSet() function description
     help("DESeqDataSet")
-
     ?DESeqDataSet
 
 We can also go to the bioconductor page for DESeq2 and look at the manual for functions as well as a tutorial of using the package itself. Click here to see the `page <https://bioconductor.org/packages/release/bioc/html/DESeq2.html>`_.
@@ -381,7 +378,6 @@ The function DESeqDataSet includes an argument called design which asks for a fo
 .. code:: R
 
    DE_airway <- DESeqDataSet(airway, design = ~ cell + dex)
-
    DE_airway
 
 
@@ -410,8 +406,7 @@ Hint: Use function order() to order the rows based on p-value
 
 .. code:: R
 
-   #Use order() to order the results table based on the p-value
-
+   # Use order() to order the results table based on the p-value
    res[order(res$pvalue),]
 
 In DESeq2, the function plotMA generates an MA Plot commonly used to visualize the differential expression results. The plot shows the log2 fold changes attributable to a given variable over the mean of normalized counts for all the samples in the DESeqDataSet. Points represent genes and will be colored red if the adjusted p value is less than 0.1. Points which fall out of the window are plotted as open triangles pointing either up or down.
@@ -430,19 +425,16 @@ Let's add a column that tell us whether each gene is significant. Using the muta
 
 .. code:: R
 
-   #first add column with gene names (using row names of matrix)
-
+   # 1 Add column with gene names (using row names of matrix)
    res$gene <- rownames(res)
 
-   #change res to a tibble format to work with dplyr
-
+   # 2 Change res to a tibble format to work with dplyr
    res <- tbl_df(res)
 
-   #add sig column to show which genes are significant or not by using mutate() from dplyr
-
+   # 3 Add sig column to show which genes are significant or not by using mutate() from dplyr
    res <- mutate(res, sig=padj<0.01)
 
-   # We can use the symbol %>% from library magrittr to represent a pipe. Pipes take the output from one function and feed it to the first argument of the next function. You may have seen something similar in unix with |
+   # 4 We can use the symbol %>% from library magrittr to represent a pipe. Pipes take the output from one function and feed it to the first argument of the next function. You may have seen something similar in unix with |
 
    res <- res %>% mutate(sig=padj<0.01)
 
@@ -475,10 +467,8 @@ Bonus: Change the axis titles to something more readable and change the point sh
 
 .. code:: R
 
-   #Create Volcano plot using ggplot2
-
+   # Create Volcano plot using ggplot2
    ggplot(res, aes(log2FoldChange, -1*log10(padj), col=sig)) + geom_point() + ggtitle("Volcano plot")
-
    res %>% ggplot(aes(log2FoldChange, -1*log10(padj), col=sig)) + geom_point() + ggtitle("Volcano plot")
 
 
@@ -492,7 +482,7 @@ Add the title "MA plot" to your plot as well.
 
 .. code:: R
 
-   #Create MA plot using ggplot2
+   # Create MA plot using ggplot2
 
    ggplot(res, aes(baseMean, log2FoldChange, col=sig)) + geom_point() + scale_x_log10() + ggtitle("MA plot")
 
@@ -511,26 +501,26 @@ Let's start by keeping only the set of genes that showed statistically-significa
 
 .. code:: R
 
-   #filter out  genes with no p-values
+   # 1 Filter out  genes with no p-values
    res <- res[!is.na(res$padj),]
 
-   #keep significant genes only
+   # 2 Keep significant genes only
    sigGenes <- res[res$sig == TRUE,]
 
-   #how many significant genes did we get?
+   # 3 How many significant genes did we get?
    nrow(sigGenes)
 
 There's one more step before we carry out GSEA. The genes in this dataset use Ensembl indentifiers, while enrichR expects  gene symbols. We'll use the biomaRt package to map our Ensembl IDs to gene symbols.
 
 .. code:: R
 
-   #load package (remember to install it if you haven't)
+   # 1 Load package (remember to install it if you haven't)
    library("biomaRt")
 
-   #load human reference genome
+   # 2 Load human reference genome
    ensembl <- useMart("ensembl",dataset="hsapiens_gene_ensembl")
 
-   #map Ensembl IDs  to gene symbols (might take a couple of minutes)
+   # 3 Map Ensembl IDs  to gene symbols (might take a couple of minutes)
    geneSymbols <- getBM(attributes='hgnc_symbol',
       filters = 'ensembl_gene_id',
       values = sigGenes$gene,
@@ -540,19 +530,19 @@ Now that we have our correctly-formatted gene symbols, we can perform GSEA. Ther
 
 .. code:: R
 
-   #find the list of all available databases from Enrichr
+   # 1 Find the list of all available databases from Enrichr
    dbs <- listEnrichrDbs()
 
-   #scroll through list of available databases
+   # 2 Scroll through list of available databases
    View(dbs)
 
-   #set up list with databases of interest
+   # 3 Set up list with databases of interest
    dbs = c('GO_Biological_Process_2018','GO_Molecular_Function_2018', 'GO_Cellular_Component_2018')
 
-   #perform GSEA
+   # 4 Perform GSEA
    enriched <- enrichr(genes = geneSymbols$hgnc_symbol, databases = dbs)
 
-   #check first few results for the biological process database
+   # 5 Check first few results for the biological process database
    head(enriched$GO_Biological_Process_2018)
 
 
