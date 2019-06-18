@@ -5,10 +5,15 @@ output:
   html_document
 ---
 
+```{r 'setup chunks' , include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
+
 ```{r "set-options",echo=FALSE}
 options(width=120)
 require("knitr")
 opts_knit$set(root.dir = "~/Desktop/R_Workshop/")
+opts_chunk$set(eval = FALSE)
 ```
 
 In this workshop, we will focus on learning how to load packages, import data, perform exploratory analysis with built in functions as well as functions from packages installed, performing differential expression analysis of RNA-seq data with the DESeq2 package, and visualizing the results using ggplot2.
@@ -32,7 +37,7 @@ source("https://bioconductor.org/biocLite.R")
 Use bioclite("package_name") function to install packages SummarizedExperiment, DESeq2 and airway.
 
 
-```{r "install"}
+```{r "install", eval = FALSE}
 packages <- c("readr", "ggplot2", "dplyr", "magrittr")
 install.packages(packages, dependencies = TRUE)
 
@@ -45,7 +50,7 @@ biocLite("airway", dependencies = TRUE)
 
 Load these libraries using library("package_name") function:
 
-```{r "setup"}
+```{r "setup", eval = FALSE}
 
 library(readr)
 library(dplyr)
@@ -61,7 +66,7 @@ If you have not downloaded the R_Workshop folder already, please do that now.
 
 Let's begin first by setting our working directory. Set your working directory to where the R_Workshop folder is located on your computer.
 
-```{r "set working directory"}
+```{r "set working directory", eval = FALSE}
 #Find working directory
 getwd()
 
@@ -120,6 +125,7 @@ Alternative to steps 1 + 2 above, we could have set gene identifiers to row name
 
 ```{r 'assign rownames'}
 # 1 Look up the help page for `read.csv()` using `?read.csv`, scroll down to the `row.names` in the "Arguments" section.  
+
 # 2 Use these instructions to reread in `scaledcounts` and set the gene identifiers to row names automatically.
 ```
 
@@ -131,7 +137,9 @@ For gene expression it is common to work with log-scaled count data because thes
 
 ```{r 'make a matrix'}
 # 1 Use the `as.matrix()` function to convert `scaledcounts` to a matrix.
+
 # 2 Add a pseudocount to every value.
+
 # 3 Use the `log2()` function to log-scale the matrix.
 ```
 
@@ -149,6 +157,7 @@ The t-test is a common choice for performing a differential analysis. The "dex" 
 
 ```{r 'ttest'}
 # 1 Create a new data.frame called `genedata` with two columns: 1) log-transformed expression values of "ENSG00000002549" and 2) group values from the "dex" variable. Call the columns "ex" and "group", respectively. 
+
 # 2 Run the following to use the `t.test()` function to compare the log transformed expression values between treated and control samples with pooled variance (var.equal = TRUE).
 ttestRes <- t.test(ex ~ group, data = genedata, var.equal = TRUE)
 ```
@@ -389,9 +398,7 @@ Add the title "MA plot" to your plot as well.
 # Create MA plot using ggplot2
 ```
 
-*********************************************
-Gene Set Enrichment using enrichR
-*********************************************
+# Gene Set Enrichment using enrichR
 
 Gene set enrichment analysis (GSEA) is a method to identify classes of genes that are over-represented in a large set of genes. This is performed by comparing the input gene set with annotated gene sets from online functional databases such as `Gene Ontology (GO) <http://geneontology.org>`_ and `KEGG <https://www.kegg.jp>`_. This is a common step in bioinformatics as it aids with the biological interpretation of results.
 
