@@ -1,7 +1,7 @@
 .. _linux_bash:
 
 ===========================
-Workshop 4: R and RStudio
+Workshop 2: R and RStudio
 ===========================
 
 
