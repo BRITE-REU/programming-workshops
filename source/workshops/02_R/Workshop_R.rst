@@ -1,6 +1,14 @@
 R Workshop: RNA-seq Airway Data and Differential Expression Analysis
 =====================================================================
 
+Materials to download
+-----------------------
+
+1. `airway_metadata.csv <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/airway_metadata.csv>`_
+2. `airway_scaledcounts.csv <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/airway_scaledcounts.csv>`_
+3. `Workshop R Markdown file <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/R_Workshop.Rmd>`_
+
+
 In this workshop, we will focus on learning how to load packages, import data, perform exploratory analysis with built in functions as well as functions from packages installed, performing differential expression analysis of RNA-seq data with the DESeq2 package, and visualizing the results using ggplot2.
 
 We will work in R Markdown, a .Rmd file written in markdown and contains chunks of embedded R code.
