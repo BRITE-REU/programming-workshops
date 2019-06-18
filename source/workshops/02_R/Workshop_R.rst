@@ -237,7 +237,7 @@ We can run this analysis using an apply loop.  In are there are several choices 
 Matrix operations
 ***********************
 
-Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. For example, the maximum likelihood estimates for a linear regression model can be estimated using the following formula, 
+Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. For example, the maximum likelihood estimates of linear regression coefficients can be estimated using the following formula, 
 
 .. math::
     \hat{\beta} = (X^TX)^{-1}X^Ty.
@@ -255,12 +255,16 @@ The three basic matrix operations functions in R are:
 3.  `%*%`: Multiply matrices on the left and right.
 
 .. code:: R
-    # Use the formula for the maximum likelihood estimates for a linear regression model above to generate the difference in mean of log transformed expression values between treated and control samples for "ENSG00000002549".
+    # Use the formula for the maximum likelihood estimates of linear regression coefficients above to generate the difference in mean of log transformed expression values between treated and control samples for "ENSG00000002549".
 
 In actuality, :math:`y` need not be a vector, but instead a :math:`N \times Q` matrix, where :math:`Q` is a set of variables for which you'd like to indepedently test the relationships to :math:`X`.
 
 .. code:: R
-    # Use the formula for the maximum likelihood estimates for a linear regression model above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
+    # Use the formula for the maximum likelihood estimates of linear regression coefficients above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
+
+***********************
+Loading data from R packages
+***********************
 
 This data set is also available in a package called "airway" in bioconductor. It is saved as an S4 object (object oriented programming) that contains the count data, meta data, and other information important to the data in fields or slots in the object. To load the airway data we can use the data("data_name") function and call airway to add the dataset to our workspace.
 
