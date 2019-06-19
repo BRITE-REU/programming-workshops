@@ -172,7 +172,7 @@ Later in this workshop, we will use a fancy Bioconductor package to run differen
 Running one test
 ***********************
 
-The t-test is a common choice for performing a differential analysis. The "dex" column in `metadata` gives group values for treated and control samples.
+The t-test is a common choice for performing a differential analysis. Next we will perform a simple differential test comparing treated and control groups in our gene expression data. The "dex" column in `metadata` gives group values for treated and control samples.
 
 .. code:: R
     # 1 Create a new data.frame called `genedata` with two columns: 1) log-transformed expression values of "ENSG00000002549" and 2) group values from the "dex" variable. Call the columns "ex" and "group", respectively.
@@ -186,9 +186,9 @@ Note that the syntax at the begining of this function, you will see it a lot.  L
     lmRes <- lm(ex ~ group, data = genedata)
     print(summary(lmRes))
 
-Note, that the p-value for the linear model is equal to the p-value for the t-test.  This is because simple linear regression models are equivalent to a pooled variance t-test.
+Note, that the p-value for the linear model is equal to the p-value for the t-test.  This is because simple linear regression models are equivalent to a t-test with pooled variance.
 
-Next, we can use a similar syntax to create boxplots of the expression values for either group.
+We can use a similar syntax to create boxplots of the expression values for either group with the `boxplot()` function.
 
 .. code:: R
     boxplot(ex ~ group, data = genedata)
@@ -199,7 +199,7 @@ As we can see, the difference in mean is very small relative to the variance, he
 Wrapper functions
 ***********************
 
-If we want to run a test one any gene we can greatly reduce the amount of code we need to write by writing a function that takes a gene identifier as an argument, runs the t-test, and returns information we are interested in. For example, below is a function that takes the arguments, `geneid` and returns a vector with two values: the difference in mean and p-value.
+What if we want to run a t-test on any gene? We can greatly reduce the amount of code we need to write by writing a function that takes a gene identifier as an argument, runs the t-test, and returns information we are interested in. For example, below is a function that takes the arguments, `geneid` and returns a vector with two values: the difference in mean and p-value.
 
 .. code:: R
 
@@ -231,7 +231,7 @@ If we want to run a test one any gene we can greatly reduce the amount of code w
 Apply loops
 ***********************
 
-We can run this analysis using an apply loop.  In are there are several choices of apply loops, for this case we will use the `sapply()` function.  `sapply()` takes two arguments: a vector and a function. You may want to check the help page, `?apply`, for other options.
+We can run this analysis using an apply loop.  In are there are several choices of apply loops, for this case we will use the `sapply()` function.  `sapply()` takes two arguments: a vector and a function. You may want to check the help page, `?apply`, for other options. `sapply()` takes every value of a vector and **applies** it to the first argument of the function argument.
 
 .. code:: R
     # 1 Run sapply for the first 1000 genes in `scaledcounts` using their names and the `ttestGene()` function.  Write the ouput to an object called `res`.
@@ -242,7 +242,7 @@ We can run this analysis using an apply loop.  In are there are several choices 
 Matrix operations
 ***********************
 
-Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. For example, the maximum likelihood estimates of linear regression coefficients can be estimated using the following formula, 
+Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. The maximum likelihood estimates of linear regression coefficients can be estimated using the following formula, 
 
 .. math::
     \hat{\beta} = (X^TX)^{-1}X^Ty.
