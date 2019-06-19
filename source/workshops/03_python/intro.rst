@@ -26,6 +26,10 @@ Python packages, installing via Anaconda will also install several scientific
 libraries that you will likely find useful later. Further, Jupyter is also
 included in the Anaconda install, giving you access to Jupyter Notebooks.
 
+To ensure Anaconda is successfully installed, look for the "Anaconda Navigator"
+or "Navigator" in your applications (if you're using OSX or Windows, on linux
+type "conda --version" into the terminal). 
+
 Interacting with Python
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -53,8 +57,10 @@ Writing a Python Script
 A python script is a file with the '.py' extension and can be written
 using your favorite text editor or IDE. If you have Anaconda installed
 on your computer, you will have access to the Sypder IDE, which is a
-popular and useful IDE for writing scripts in Python. A python file can
-be run by typing '**python *script\_name*.py**' into the terminal.
+popular and useful IDE for writing scripts in Python. Anaconda also provides the
+option to install VSCode, a cross plotform text-editor, that can also be used to
+write scripts, and provides an IDE-lite experience. A python file can be run by
+typing '**python *script\_name*.py**' into the terminal.
 
 Using Jupyter Notebook/Lab
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
