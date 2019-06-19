@@ -1,0 +1,139 @@
+---
+title: "Workshop Intro Draft"
+author: "Eric Reed"
+date: "6/13/2019"
+
+output: html_document
+---
+
+# Import airway data
+```{r, include=FALSE}
+scaledcounts <- read.csv("airway_scaledcounts.csv")
+metadata <-  read.csv("airway_metadata.csv")
+```
+
+# Working with `data.frame` objects
+
+Looking at `scaledcounts` we can see that the first column, "ensgene", gives the gene identifier for each gene, while each successive column gives the expression values for this gene. 
+
+```{r q1, eval = FALSE}
+# Use the `ensgene` column to extract the gene expression values for "ENSG00000002549".
+```
+
+```{r ans1}
+row2extract <- scaledcounts$ensgene == "ENSG00000002549"
+scaledcounts[row2extract,]
+```
+
+This is okay, but a little clunky. Alternatively we can set the gene identifiers as row names to index rows directly.
+
+```{r q2, eval=FALSE}
+# 1  Set the gene identifiers to row names in `scaledcounts`.
+# 2  Remove the `ensgene` column.
+# 3  Extract the gene expression values using the string "ENSG00000002549" directly.
+```
+
+```{r ans2}
+rownames(scaledcounts) <- scaledcounts$ensgene
+scaledcounts <- scaledcounts[,-1]
+scaledcounts <- scaledcounts["ENSG00000002549",]
+```
+
+### Asking R for help
+
+Alternative to steps 1 + 2 above, we could have set gene identifiers to row names when we read in the file. 
+
+```{r q3, eval=FALSE}
+# 1 Look up the help page for `read.csv()` using `?read.csv`, scroll down to the `row.names` in the "Arguments" section.  
+# 2 Use these instructions to reread in `scaledcounts` and set the gene identifiers to row names automatically.
+```
+
+```{r ans3}
+scaledcounts <- read.csv("airway_scaledcounts.csv", row.names = 1)
+```
+
+# Working with `matrix ` objects
+
+The main difference between a `data.frame` object and a `matrix` object is that each column of a `data.frame` is free to have it's own format, whereas all values within an entire `matrix` must have the same format. One nice thing about `matrix` objects is that functions in R can be applied to all values at once. Note, that after setting the gene identifiers to row names, all values in `scaledcounts` is now a number. 
+
+For gene expression it is common to work with log-scaled count data because these tend to adhere more closely to normal distributions than count data.  The one caveat to this that log(0) = -Inf. To overcome this, it is common practice to add a small value prior to performing log-transformations, most commonly by adding one to every value, log(1) = 0.
+
+```{r q4, eval=FALSE}
+# 1 Use the `as.matrix()` function to convert `scaledcounts` to a matrix.
+# 2 Add a pseudocount to every value.
+# 3 Use the `log2()` function to log-scale the matrix.
+```
+
+```{r ans4}
+scaledcounts <- as.matrix(scaledcounts)
+scaledcounts <- scaledcounts + 1
+scaledcounts <- log2(scaledcounts)
+```
+
+# Running simple comparative statistical analyses
+
+Later in this workshop, we will use a fancy Bioconductor package to run differential gene expression analysis.  The basis for this type of analysis is common when analyzing high-throughput data. It has the following steps
+
+1. Extract the expression values for a single gene.
+2. Run compare the mean expression between two groups using a statistical test.
+3. Repeat steps 1 + 2 for every gene.
+
+### Running one test
+
+The t-test is a common choice for performing a differential analysis. The "dex" column in `metadata` gives group values for treated and control samples.
+
+```{r q5, eval = FALSE}
+# 1 Create a new data.frame called `genedata` with two columns: 1) log-transformed expression values of "ENSG00000002549" and 2) group values from the "dex" variable. Call the columns "ex" and "group", respectively. 
+# 2 Run the following to use the `t.test()` function to compare the log transformed expression values between treated and control samples.
+ttestRes <- t.test(group ~ ex, data = genedata)
+```
+
+```{r ans5}
+genedata <- data.frame(ex = scaledcounts["ENSG00000002549",], group = metadata$dex)
+ttestRes <- t.test(ex ~ group, data = genedata)
+```
+Note that the syntax at the begining of this function, you will see it a lot.  Look up ?formula for more information.
+
+### Wrapper functions
+
+If we want to run a test one any gene we can greatly reduce the amount of code we need to write by writing a function that takes a gene identifier as an argument, runs the t-test, and returns information we are interested in. For example, below is a function that takes the arguments, `geneid` and returns a vector with two values: the test statistic and p-value.
+
+```{r}
+# Function to run ttest for a given gene ID
+ttestGene <- function(geneid) {
+    
+    # Create data matrix
+    genedata <- data.frame(ex = scaledcounts[geneid,], group = metadata$dex)
+    
+    # Run t-test
+    ttestRes <- t.test(ex ~ group, data = genedata)
+    
+    # Get difference and p-value
+    results <- c(ttestRes$statistic, pvalue = ttestRes$p.value)
+    
+    # Given these values a name
+    names(results) <- c("testtat", "pvalue")
+    
+    return(results)
+}
+
+# Run it on "ENSG00000002549"
+ttestGene("ENSG00000002549")
+```
+
+### Apply loops
+
+We can run this analysis using an apply loop.  In are there are several choices of apply loops, for this case we will use the `sapply()` function.  `sapply()` takes two arguments: a vector and a function. You may want to check the help page, `?apply`, for other options.
+
+```{r q7, eval=FALSE}
+# 1 Run sapply for the first 10 genes in `scaledcounts` using their names and the `ttestGene()` function.  Write the ouput to an object called `res`.
+# 2 Transpose the output.
+```
+
+```{r ans7}
+res <- sapply(rownames(scaledcounts)[1:1000], ttestGene)
+res <- t(res)
+head(res)
+```
+
+### Matrix operations

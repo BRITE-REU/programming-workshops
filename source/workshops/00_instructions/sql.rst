@@ -12,12 +12,11 @@ SQLite
 
 **Windows:**
 
-See this very useful video to install SQLite
-https://www.youtube.com/watch?v=zOJWL3oXDO8
+See this very useful `video <https://www.youtube.com/watch?v=zOJWL3oXDO8>` to install SQLite
 
 **Mac and Linux:**
 
-Should already be preinstalled.  To check, open a terminal window and type “sqlite3”.  To quit the program after you’ve started it, type “.quit”.
+Should already be preinstalled.  To check, open a terminal window and type “sqlite3”.  To quit the program after you’ve started it, type “.quit”. (Note the "." before "quit")
 
 **GUI:**
 
@@ -51,9 +50,11 @@ This is the official SQLite Documentation:
 https://sqlite.org
 
 
-------------------------------------------------------------
-MySQL  --   We are not using MySQL this year!
-------------------------------------------------------------
+---------
+MySQL  
+---------
+
+.. note:: We are not using MySQL this year!
 
 For Mac, use the DMG archive.
 https://dev.mysql.com/downloads/mysql/5.7.html#downloads

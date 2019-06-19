@@ -1,14 +1,14 @@
-5. Piping and Redirection
+3. Piping and Redirection
 ===============================
 
 I/O redirection and concepts covered in the video:
 
 1. Standard output (stdout), standard input (stdin), standard error (stderr)
-2. ``>``, ``>>`` - redirect stdout and replace/append to file
-3. ``2>``, ``2>>`` - redirect stderr and replace/append to file
-4. ``&>``, ``&>>`` - redirect both stdout and stderr and replace/append to file
-5. ``>`` - stdin redirect from file
-6. ``|`` - pipe stdout from one program to another
+2. ``>``, ``>>``: redirect stdout and replace/append to file
+3. ``2>``, ``2>>``: redirect stderr and replace/append to file
+4. ``&>``, ``&>>``: redirect both stdout and stderr and replace/append to file
+5. ``>``:stdin redirect from file
+6. ``|``: pipe stdout from one program to another
 
 .. raw:: html
 
