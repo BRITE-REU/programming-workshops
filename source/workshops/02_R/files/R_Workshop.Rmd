@@ -5,15 +5,10 @@ output:
   html_document
 ---
 
-```{r 'setup chunks' , include=FALSE, eval=TRUE}
-knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
-```
-
-```{r "set-options",echo=FALSE}
+```{r "set-options", include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 options(width=120)
 require("knitr")
-opts_knit$set(root.dir = "~/Desktop/R_Workshop/")
-opts_chunk$set(eval = FALSE)
 ```
 
 In this workshop, we will focus on learning how to load packages, import data, perform exploratory analysis with built in functions as well as functions from packages installed, performing differential expression analysis of RNA-seq data with the DESeq2 package, and visualizing the results using ggplot2.
@@ -155,7 +150,7 @@ Later in this workshop, we will use a robust Bioconductor package to run differe
 
 The t-test is a common choice for performing a differential analysis. Next we will perform a simple differential test comparing treated and control groups in our gene expression data. The "dex" column in `metadata` gives group values for treated and control samples.
 
-```{r 'ttest'}
+```{r 'ttest', eval = FALSE}
 # 1 Create a new data.frame called `genedata` with two columns: 1) log-transformed expression values of "ENSG00000002549" and 2) group values from the "dex" variable. Call the columns "ex" and "group", respectively. 
 
 # 2 Run the following to use the `t.test()` function to compare the log transformed expression values between treated and control samples with pooled variance (var.equal = TRUE).
@@ -164,7 +159,7 @@ ttestRes <- t.test(ex ~ group, data = genedata, var.equal = TRUE)
 
 Note that the syntax at the begining of this function, you will see it a lot.  Look up ?formula for more information. This is common in functions for statistical modelling, as well as base R plotting functions.  For example, instead of running a t-test we could run a linear model.
 
-```{r 'linear model'}
+```{r 'linear model', eval = FALSE}
 lmRes <- lm(ex ~ group, data = genedata)
 print(summary(lmRes))
 ```
@@ -172,7 +167,7 @@ Note, that the p-value for the linear model is equal to the p-value for the t-te
 
 We can use a similar syntax to create boxplots of the expression values for either group with the `boxplot()` function.
 
-```{r 'boxplot'}
+```{r 'boxplot', eval = FALSE}
 boxplot(ex ~ group, data = genedata)
 ```
 As we can see, the difference in mean is very small relative to the variance, hence the large p-value.
@@ -181,7 +176,7 @@ As we can see, the difference in mean is very small relative to the variance, he
 
 What if we want to run a t-test on any gene? We can greatly reduce the amount of code we need to write by writing a function that takes a gene identifier as an argument, runs the t-test, and returns information we are interested in. For example, below is a function that takes the arguments, `geneid` and returns a vector with two values: the difference in mean and p-value.
 
-```{r 'wrap ttest'}
+```{r 'wrap ttest', eval = FALSE}
 # Function to run ttest for a given gene ID
 ttestGene <- function(geneid) {
     
@@ -220,7 +215,7 @@ We can run this analysis using an apply loop.  In are there are several choices 
 
 Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. The maximum likelihood estimates of linear regression coefficients can be estimated using the following formula, $$\hat{\beta} = (X^TX)^{-1}X^Ty.$$ Here, X is and $N\times P$ matrix of variables, and $y$ can be a vector of outcome variables, in this case gene expression values for specific gene. $X^T$ denotes that a given matrix is transposed and $()^{-1} denotes taking the inverse of the items in the parenthesis.
 
-```{r 'create a design'}
+```{r 'create a design', eval = FALSE}
 X <- model.matrix(~ group, data = genedata)
 print(X)
 ```
@@ -300,7 +295,7 @@ We can also go to the bioconductor page for DESeq2 and look at the manual for fu
 
 The function DESeqDataSet includes an argument called design which asks for a formula that expresses how the counts for each gene depends on the variables in colData. In this case we choose variables cell and dex because we care about the cell line and which samples are treated with dexamethasone versus which samples are untreated controls.  
 
-```{r 'set up DESeqDataSet'}
+```{r 'set up DESeqDataSet', eval = FALSE}
 DE_airway <- DESeqDataSet(airway, design = ~ cell + dex)
 
 DE_airway
@@ -309,7 +304,7 @@ DE_airway
 
 Before we continue, we must set our control group as our reference level for comparison in our differential expression analysis. 
 
-```{r 'reference level'}
+```{r 'reference level', eval = FALSE}
 DE_airway@colData$dex <- relevel(DE_airway@colData$dex, ref = "untrt")
 
 ```
@@ -317,7 +312,7 @@ DE_airway@colData$dex <- relevel(DE_airway@colData$dex, ref = "untrt")
 
 Now we wil; run the differential expression analysis steps through the function DESeq(). Again we can look up the function to learn more about what it does and the arguments needed to run it. We use the results() function to generate a results table with log2 fold changes, p values and adjusted p values for each gene. The log2 fold change and the Wald test p value is based on the last variable in the design formula, in this case variable dex. Therefore our results will show which genes are differentially expressed between the untreated and treated groups.  
 
-```{r 'Run DE Analysis'}
+```{r 'Run DE Analysis', eval = FALSE}
 help("DESeq")
 
 DE_airway <- DESeq(DE_airway)
@@ -331,21 +326,21 @@ How do we order the results table (res) based on the p-value?
 There are already available functions in R that we can use to sort the dataframe.
 Hint: Use function order() to order the rows based on p-value
 
-```{r 'order res'}
+```{r 'order res', eval = FALSE}
 # Use order() to order the results table based on the p-value
 ```
 
 
 In DESeq2, the function plotMA generates an MA Plot commonly used to visualize the differential expression results. The plot shows the log2 fold changes attributable to a given variable over the mean of normalized counts for all the samples in the DESeqDataSet. Points represent genes and will be colored red if the adjusted p value is less than 0.1. Points which fall out of the window are plotted as open triangles pointing either up or down.
 
-```{r 'MA Plot'}
+```{r 'MA Plot', eval = FALSE}
 plotMA(res, ylim=c(-2,2))
 ```
 
 
 Let's add a column that tell us whether each gene is significant. Using the mutate() function from library dplyr, we can add a column showing whether the significance is TRUE or FALSE based on cutoff padj < 0.01.
 
-```{r 'Add signicance column'}
+```{r 'Add signicance column', eval = FALSE}
 # Change res to a tibble format to work with dplyr
 
 res <- tbl_df(res)
@@ -366,7 +361,7 @@ Let's use the filter() function from dplyr to filter out results based on padj <
 
 Try using piping format %>% to do this!
 
-```{r 'Filter and save file'}
+```{r 'Filter and save file', eval = FALSE}
 # Filter res based on cutoff padj < 0.01 and save this result into a csv file called significant_results.csv
 ```
 
@@ -442,7 +437,7 @@ Now that we have our correctly-formatted gene symbols, we can perform GSEA. Ther
 
 
 To conclude, we can look at our session information including the packages we loaded and worked with.
-```{r 'session info'}
+```{r 'session info', eval = FALSE}
 
 sessionInfo()
 
