@@ -14,7 +14,7 @@ Getting Started
 
 To get started we will likely need to install Python. While there are
 many ways to install Python on your system, I recommend using the
-Anaconda Distribution (https://www.continuum.io/downloads). Anaconda is
+Anaconda Distribution (https://www.anaconda.com/distribution/). Anaconda is
 a cross-platform (OSX, Linux, Windows) distribution manager that
 simplifies installing and managing packages. While this tutorial only
 makes use of the base Python packages, installing via Anaconda will also
@@ -33,11 +33,15 @@ Accessing a Python Interpreter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To access a Python Interpreter simply open a terminal window, and type
-'**python**'. This will create an interactive Python session where we
-can write and test Python code. If you are on a Windows machine, instead
-of the normal command prompt, barring specific installation steps, you
-will need to open an Anaconda Prompt. This is a special terminal that
-will give you access to your Python/Anaconda installation.
+'**python**'. If you have iPython install on your computer, which Anaconda
+includes by default, you can replace a normal Python environment with an iPython
+environment by issuing the command **ipython**, instead. Think of Ipython and a
+"Python +" version. Either way, issuing a **python** or **ipython** command
+will create an interactive Python session where we can write and test Python
+code. If you are on a Windows machine, instead of the normal command prompt,
+barring specific installation steps, you will need to open an Anaconda Prompt.
+This is a special terminal that will give you access to your Python/Anaconda
+installation.
 
 Writing a Python Script
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,6 +51,27 @@ using your favorite text editor or IDE. If you have Anaconda installed
 on your computer, you will have access to the Sypder IDE, which is a
 popular and useful IDE for writing scripts in Python. A python file can
 be run by typing '**python *script\_name*.py**' into the terminal.
+
+Using Jupyter Notebook/Lab
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Instead of using a traditonal text editor or IDE, you can also chose to write
+code in a Jupyter Notebook/Jupyter Lab. Jupyter Notebooks are interactive
+notebooks where you can write code, display results inline, and include report
+overviews. When used properly, they can be great for sharing results, learning,
+and rapid prototyping. To start a Jupyter notebook, either navigate to the
+Anaconda navigator, or execute the command **jupyter notebook** in a terminal.
+Again, if you are using a Windows system, this will have to be in an Anaconda
+prompt instead of a normal terminal window. Once started, you should have a
+Jupyter Notebook opened as a tab in your default web browser. Python code in a
+Jupyter Notebook can be written block-by-block into small sections known as
+cells. Cells can be executed by hitting the "play button" a the top of the
+notebook or by pressing "ctrl + enter". In this way, Jupyter Notebooks function
+as something akin to an "interactive script". Jupyter Lab is similar to
+Jupyter Notebook, but offers a more complete IDE experience -- still within a
+browser. To run Jupyter Lab, simply execute the command **jupyter lab**. You 
+may need to install Jupyter Lab, however, which can be done by executing the
+command **pip install jupyterlab**.
 
 Basic Python Variables and Operations
 -------------------------------------
