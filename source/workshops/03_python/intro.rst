@@ -17,13 +17,14 @@ Getting Started
 
 To get started we will likely need to install Python. While there are
 many ways to install Python on your system, I recommend using the
-Anaconda Distribution (https://www.anaconda.com/distribution/). Anaconda is
-a cross-platform (OSX, Linux, Windows) distribution manager that
-simplifies installing and managing packages. While this tutorial only
-makes use of the base Python packages, installing via Anaconda will also
-install several scientific libraries that you will likely find useful
-later. Further, Jupyter is also included in the Anaconda install, giving
-you access to Jupyter Notebooks.
+Anaconda Distribution (https://www.anaconda.com/distribution/). **Make sure to
+install the Python 3 version of Anaconda**. It's 20XX, and unless you're working
+with legacy code bases, there's no reason to use to Python 2. Anaconda is a
+cross-platform (OSX, Linux, Windows) distribution manager that simplifies
+installing and managing packages. While this tutorial only makes use of the base
+Python packages, installing via Anaconda will also install several scientific
+libraries that you will likely find useful later. Further, Jupyter is also
+included in the Anaconda install, giving you access to Jupyter Notebooks.
 
 Interacting with Python
 ~~~~~~~~~~~~~~~~~~~~~~~
