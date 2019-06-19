@@ -7,7 +7,10 @@ general purpose programming language created in the early 1990s by Guido
 van Rossum. Today, Python is one of the most popular languages and
 enjoys particular success in statistics/data science and scientific
 computing. This tutorial will serve as a brief introduction to the
-capabilities of Python and its syntax.
+capabilities of Python and its syntax. It is recommended that you follow along
+with the examples, typing in and executing each code example yourself. This will
+help familiarize yourself with Python syntax and ensure you know how to run
+Python code before the workshop.
 
 Getting Started
 ---------------
@@ -1106,4 +1109,8 @@ structures in Python. Many concepts, techniques, and capabilities were
 left out. Feel free to explore more of Python's capabilities on your own
 if you so desire. Looking into external libraries such as **numpy** and
 **scipy** will be incredibly beneficial for anyone looking to continue
-to perform numerical/data analysis in Python.
+to perform numerical/data analysis in Python. If you're feeling spicy,
+Jake VanderPlas has a wonderful introduction to Data Science in Python that is
+freely available on the web
+(https://jakevdp.github.io/PythonDataScienceHandbook/). This is not required for
+the workshop, but you might find it beneficial in your work down the road.
