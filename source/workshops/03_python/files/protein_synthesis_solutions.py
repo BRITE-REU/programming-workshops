@@ -38,7 +38,7 @@ def read_codon_table(codon_table='codon_table.csv'):
     return(codon_dict)
 
 
-def transcribe(dna_seq, direction='-'):
+def transcribe(dna_seq, direction='+'):
     """
     Transcribe a DNA sequence to an RNA sequence.
 
@@ -46,7 +46,7 @@ def transcribe(dna_seq, direction='-'):
         dna_seq (string): DNA sequence to transcribe to RNA.
         strand (string, optional): which strand of DNA the sequence is
             derived from. The symbol '+' denotes forward/template strand
-            while '-' denotes reverse/coding strand. Default is '-'.
+            while '-' denotes reverse/coding strand. Default is '+'.
             Regardless of strand, the sequence is assumed to oriented
             5' to 3'.
     Returns:
