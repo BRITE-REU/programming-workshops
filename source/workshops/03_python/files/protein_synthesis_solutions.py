@@ -54,13 +54,13 @@ def transcribe(dna_seq, direction='+'):
     """
     rna_seq = ''
     # template strand
-    if direction == '+':
+    if direction == '-':
         # match amino acids to compliments
         compliment = {'A': 'U', 'T': 'A', 'C': 'G', 'G': 'C'}
         for base in dna_seq:
             rna_seq += compliment[base]
     # coding strand
-    elif direction == '-':
+    elif direction == '+':
         # change T's to U's
         rna_seq = sub('T', 'U', dna_seq)
     else:
@@ -151,7 +151,7 @@ def main(dna_seq, output_fasta):
     Returns:
         None.
     """
-    rna_seq = transcribe(dna_seq, '-')
+    rna_seq = transcribe(dna_seq, '+')
     codon_to_amino = read_codon_table()
     aa_seq = translate(rna_seq, codon_to_amino)
     write_fasta(aa_seq, output_fasta)
