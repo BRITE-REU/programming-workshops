@@ -198,7 +198,7 @@ Transcribe DNA to RNA:
 
 .. code-block:: python
 
-   def transcribe(dna_seq, direction='-'):
+   def transcribe(dna_seq, direction='+'):
        """
        Transcribe a DNA sequence to an RNA sequence.
        Arguments:
