@@ -28,7 +28,7 @@ def read_codon_table(codon_table='codon_table.csv'):
     return(0)
 
 
-def transcribe(dna_seq, direction='-'):
+def transcribe(dna_seq, direction='+'):
     """
     Transcribe a DNA sequence to an RNA sequence.
 
