@@ -88,3 +88,10 @@ def main():
     """Return the first protein synthesized by a DNA sequence."""
 
     return(0)
+
+if __name__ == "__main__":
+    pass
+    # this is were you'll execute the commands necessary to A. read in a
+    # DNA sequence from a fasta file, B. Find the first amino acid
+    # sequence it codes for, and C. write the final sequence to an
+    # output fasta file
