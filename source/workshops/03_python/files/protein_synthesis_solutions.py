@@ -57,7 +57,7 @@ def transcribe(dna_seq, direction='+'):
     if direction == '-':
         # match amino acids to compliments
         compliment = {'A': 'U', 'T': 'A', 'C': 'G', 'G': 'C'}
-        for base in dna_seq:
+        for base in reverse(dna_seq):
             rna_seq += compliment[base]
     # coding strand
     elif direction == '+':
