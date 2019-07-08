@@ -25,14 +25,15 @@ Linear Classifiers
 *******************
 Probability based
 *******************
+
 These models use probability to predict the label.
 
 * **Naive-bayes** uses Bayes theorem on the feature distribution and probabilities. Usually is used as a baseline model (default or worse).
 * **K nearest neighbors (KNN)** predicts each sample based on majority vote of its K nearest neighbors (the K most similar samples).
 
-**************
+*******************
 Tree based
-**************
+*******************
 
 * **Decision trees**  learn a set of rules for predicting the outcome variable from a set of predictor variables by recursively splitting the data into two-or-more subsets. For each split, it finds a rule for which the outcome variable of the observations that follow that rule are more similar than those that do not. These are handy for both **regression** and **classification** tasks.
 
@@ -63,8 +64,9 @@ An illustration of cross validation is shown below. Here we divide the data into
 A workflow that incorporates cross-validation in model training is shown below ...
 
 .. image:: img/supervised_flowchart.png
+
 **********************
-Performance of a regression learning
+Performance of a regression model
 **********************
 
 Assessing the performance of a regression model is fairly straight forward. We have to measure the *error* of the prediction, e.g. how close to the real values are the predicted values. Two fitness measures for regression are:
@@ -84,7 +86,7 @@ Assessing the performance of a regression model is fairly straight forward. We h
 Assessing model performance 
 
 **********************
-Performance of a classification learning
+Performance of a classification model
 **********************
 
 On the other hand, assessing the performance of a classification model is more nuanced.  There are many different performance metrics and the level to which one regards one compared to another is specific to the task at hand.
