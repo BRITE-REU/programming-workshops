@@ -26,7 +26,7 @@ There are a total of 13768 genes (numeric features) and 10 meta features and 1 I
 
 
 *************
-Workshop task
+Workshop tasks
 *************
 
 1. Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
