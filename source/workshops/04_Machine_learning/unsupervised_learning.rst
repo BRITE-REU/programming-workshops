@@ -12,19 +12,17 @@
 Dimensionality reduction
 ----------------------------
 
-It is hard to interpret the data in the feature space (M dimensions). The first exploration step into data is to reduce the dimensionality to 2 dimensions and plot the dimensions in x-y coordinates which are human readable. 
+Dimensionality refered to the number of features or variables included in the data. Among others, problems that arise when analyzing a dataset with high-dimensionality include: computational efficiency and visualization.  By transforming our data into a smaller set of variables(dimesnions) without sacraficing vital information, we can reduce the run-time of performing certain machine learning tasks, as well as visualize observe patterns in our data via plotting
 
-* **Principle Component Analysis (PCA)** is the most commonly used dimensionality reduction method. Each principle component is a linear combination of :math:`weights.features`. Weights are adjusted to capture the most variability across samples. The components are uncorrelated and can be used as features for further clustering or classification. Common practice is to plot principle components and color the samples by different features to see how the samples are separating. You should keep in mind that while PCA shows the variability in the data, it is not always meaningful and might be showing noise or batch errors. 
+* **Principal Component Analysis (PCA)** is probably the most commonly used dimensionality reduction method.  It transforms a high-dimensional data set into a smaller set of variables, as well as an set of weights which are proportional to the relative amount of the variance of the original data set that can be attributed to each of these new variables.  The set of these features that account for an adequate proportion of the total amount of variance are referred to as the *principal components*. 
+
+PCA is done by performing an eigen decomposition on the variance matrix of the original data set. The new variables are the eigen vectors and the weights are the eigen values.
 
 .. image:: img/grz_tissues_PCA.png
 
-* **Singular-value decomposition (SVD)** calculates the diagonal matrix S on the data matrix A :
+* **Singular-value decomposition (SVD)** is similar to PCA, except that the new features and weights are calculated directly from the data matrix.  It is sometimes prefered to PCA due to the impact of rounding due to the impact of round-off error when calculating the variance matrix when performing PCA.
 
-.. math::
-
-    A_{M \times N} = U_{M \times M} S_{M \times N} V_{N \times N}
-
-where M is the feature size (columns) and N is the sample size (rows). Read more `here <http://andrew.gibiansky.com/blog/mathematics/cool-linear-algebra-singular-value-decomposition/>`_. 
+Read more `here <http://andrew.gibiansky.com/blog/mathematics/cool-linear-algebra-singular-value-decomposition/>`_. 
 
 ----------------------------
 Clustering
