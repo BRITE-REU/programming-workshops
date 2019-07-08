@@ -40,7 +40,7 @@ Below is a decision tree to predict if a sample is a vampire. Each branch ask a 
 
 .. image:: img/vampire-decsion-tree.jpg
 
-* **Random forest** is an algorithm for which we generate a set of decision trees.  For each tree the random forest, we perturb the data using one-or-more sampling methods.  This is referred to as an *esemble method* because the final prediction is based on ensemble of predictions made by each tree.
+* **Random forest** is an algorithm which generates a set of decision trees.  For each tree the random forest, we perturb the data using one-or-more sampling methods.  This is referred to as an *esemble method* because the final prediction is based on ensemble of predictions made by each tree.
 
 ---------------------------------
 Assessing model performance
