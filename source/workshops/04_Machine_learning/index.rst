@@ -25,7 +25,7 @@ In the workshop, do some basic data exploration and modeling.
 .. toctree::
     :maxdepth: 2
 
-    Learning models <learning>
-    Unsupervised <unsupervised_learning>
+    Introduction <learning>
     Supervised <supervised_learning>
+    Unsupervised <unsupervised_learning>
     Machine Learning Workshop <Workshop_machine_learning>
