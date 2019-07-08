@@ -31,7 +31,7 @@ Clustering
 ----------------------------
 Clustering algorithms try to divide the data samples based on some sort of similarity into different *clusters*. An example is to cluster single cell gene expression data to find tissue types.
 
-* **Hierarchical (agglermorative) clustering** is the most basic clustering algorithm. The samples are put in its own clusters and then iteratively the most similar clusters are combined to create super-clusters. This can be done bottom up or downwards to form a dendrogram which you can cut at any level to obtain different number of clusters. Hierarchical clustering is usually shown as a heatmap.
+* **Hierarchical clustering** is a clustering algorithm which estimates a tree-like structure between observations based on their relative distance, such that observations that are most similar to eachother are connected at the terminal parts of the tree. The tree is most often generated using a bottom-up or *agglomerative* approach, in which samples are initially put in its own clusters and then iteratively the most similar clusters are combined to create super-clusters. Alternatively, top-down hierarchical clustering is call *divisive* clustering.
 
 .. image:: img/hierarchical_clustering.png
     :scale: 50%
@@ -42,15 +42,13 @@ Clustering algorithms try to divide the data samples based on some sort of simil
 
  
  
-* **K-means** is a method to cluster the samples into K distributions with different means. The algorithm starts by choosing K random points as *means* in the feature space and assigns samples to a cluster with the closest mean (by some similarity measure). The means are iteratively moved to best fit the samples until no further improvement are made. This method is not deterministic and depends on the initial random guesses. Bad guesses will result in poor clustering.
+* **K-means** is a method to cluster the samples into K distributions with different means. The algorithm starts by choosing K random points as *means* in the feature space and assigns samples to a cluster with the closest mean (by some similarity measure). The means are iteratively moved to best fit the samples until no further improvement are made. This method is stochastic, in that the final model may differ depending on the initial random guesses.
 
 .. image:: img/k-means.png
 
 .. raw:: html
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/BVFG7fd1H30" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    
-
     
 
 * **X-means** is a general K-means clustering algorithm that tries different K values to find the K that best represents the data.
