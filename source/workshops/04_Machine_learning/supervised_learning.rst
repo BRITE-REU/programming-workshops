@@ -6,7 +6,7 @@
 
 For *supervised learning*, we employ learning algorithms which are able to generate estimates of an outcome variable based on a set of predictor variables.
 
-There are two types of supervised learning **regression** and **classification**.  For **regression** the outcome variable is a numeric value, for which learning algorithms try to minimize the error or distance of the predictions of this value and the true value. For **classification** the outcome variable is a label or category for which learning algorithms try to minimize the rate at which our prediction of this label or category is wrong. Often the same or slightly tweaked versions of the same method can be employed to perform either task.  Below we list some examples of supervised learning algorithms.
+There are two types of supervised learning: **regression** and **classification**.  For **regression** the outcome variable is a numeric value, for which learning algorithms try to minimize the error or distance of the predictions of this value and the true value. For **classification** the outcome variable is a label or category for which learning algorithms try to minimize the rate at which our prediction of this label or category is wrong. Often the same or slightly tweaked versions of a method can be employed to perform either task.  Below we list some examples of supervised learning algorithms.
 
 ---------------------------------
 Examples of supervised learning
@@ -17,14 +17,14 @@ Generalized linear regression
 **************
 
 * **Linear regression** learns a linear combination of the values of the predictor variables to make ubiased estimates of a numeric outcome variable.
-* **Logistic regression** is similar to linear regression but applies to a binary outcome variable. Estimates the log-odds that of an outcome variable being of one-of-two labels based on a linear combinations of the values of a predictor variable.
+* **Logistic regression** is similar to linear regression but applies to a binary outcome variable. It estimates the log-odds that of an outcome variable is of one-of-two labels based on a linear combinations of the values of a predictor variables.
 
 **************
 Linear classifiers
 **************
 
 * **Support Vector Machine (SVM)** learns a hyperplane which separates the values of a binary outcome variable based on a set of predictor variables.
-* **Linear Discrimant Analysis** learns multivariate gaussian distribution for each label of a categorical outcome variable based on the set of predictor variables.  Predictions are then made based on the relative probability that an unlabelled observation came from each distribution.
+* **Linear Discrimant Analysis** learns multivariate gaussian distribution for each label of a categorical outcome variable based on the set of predictor variables.  Predictions are then made based on the relative probability that an new observation came from each distribution.
 
 *******************
 Probability based
@@ -45,13 +45,13 @@ Below is a decision tree to predict if a sample is a vampire. Each branch ask a 
 
 .. image:: img/vampire-decsion-tree.jpg
 
-* **Random forest** is an algorithm which generates a set of decision trees.  For each tree the random forest, we perturb the data using one-or-more sampling methods.  This is referred to as an *esemble method* because the final prediction is based on ensemble of predictions made by each tree.
+* **Random forest** is an algorithm which generates a set of decision trees.  For each tree the forest, it perturbs the data using one-or-more sampling methods, in order to create trees that are relatively uncorrelated and will make different predicitons. Random forests is referred to as an *esemble method* because the final prediction is based on ensemble of predictions made by each tree.
 
 ---------------------------------
 Assessing model performance
 ---------------------------------
 
-A common problem in supervised machine learning is what is called overfitting.  Overfitting arises when the error of predicting the values of the outcome variable of the observations used to learn or train the model is very low, but the model is not useful for predicting the values of outcome variables for new observations which were not used for learning the model. For this reason, model performance is commonly assessed by randomly separating an initial data set into a *training* set, and a *test* set. The model is learned (or trained) using the *training* data and then we estimate the error of the model using the *test* data. A critical part in supervised learning is to make sure the train data does not *lea^k* into the test, meaning no information from the train should be secreted into the test data - whether at normalization, feature selection or when learning the model. 
+A common problem in supervised machine learning is what is called overfitting.  Overfitting arises when the error of predicting the values of the outcome variable of the observations used to learn or train the model is very low, but the model is not useful for predicting the values of outcome variables for new observations which were not used for learning the model. For this reason, model performance is commonly assessed by randomly separating an initial data set into a *training* set, and a *test* set. The model is learned (or trained) using the *training* data and then the error is estimated using the *test* data. A critical part in supervised learning is to make sure the train data does not *lea^k* into the test, meaning no information from the train should be secreted into the test data - whether at normalization, feature selection or when learning the model. 
 
 If enough data is available, it is common to randomly split the data into three subsets. Here, a *validation* data set is used to tune the parameters of the model generated by the *training* data.
 
