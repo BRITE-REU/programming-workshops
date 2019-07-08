@@ -8,15 +8,19 @@ For *supervised learning*, we employ learning algorithms which are able to gener
 
 There are two types of supervised learning **regression** and **classification**.  For **regression** the outcome variable is a numeric value, for which learning algorithms try to minimize the error or distance of the predictions of this value and the true value. For **classification** the outcome variable is a label or category for which learning algorithms try to minimize the rate at which our prediction of this label or category is wrong. Often the same or slightly tweaked versions of the same method can be employed to perform either task.  Below we list some examples of supervised learning algorithms.
 
+---------------------------------
+Examples of supervised learning
+---------------------------------
+
 **************
-Generalized Linear Regression
+Generalized linear regression
 **************
 
 * **Linear regression** learns a linear combination of the values of the predictor variables to make ubiased estimates of a numeric outcome variable.
 * **Logistic regression** is similar to linear regression but applies to a binary outcome variable. Estimates the log-odds that of an outcome variable being of one-of-two labels based on a linear combinations of the values of a predictor variable.
 
 **************
-Linear Classifiers
+Linear classifiers
 **************
 
 * **Support Vector Machine (SVM)** learns a hyperplane which separates the values of a binary outcome variable based on a set of predictor variables.
@@ -127,22 +131,6 @@ If you show the performance of the model as a confusion matrix, fitness can be m
 .. math::
 
    \frac{TN}{TN + FP}
-
-**********************
-Numeric labels
-**********************
-In the case of numeric labels, we have to measure the *error* of the prediction. Here the prediction is not binary. We need to measure how close to the real value the model predicts. The fitness measures for numeric values are:
-
-* **Mean Squared Error (MSE)**
-.. math::
-
-   MSE = \frac{1}{N} \sum{(label_{predicted} - label_{actual})^2}
-
-* **Root Mean Squared Deviation (RMSD)** 
-
-.. math::
-
-   RMSD = \sqrt{\frac{\sum{(label_{predicted} - label_{actual})^2}}{N}}
 
 * **Receiver operating characteristic (ROC) curve** illustrates the performance of a model based on different decision boundaries when making binary predictions. For each decision boundary we calculate the sensitivity and specificity and plot the resulting curve.  The **area under the curve (AUC)** is simply the error under this curve.  If there exists a decision boundary for which the sensitivity and specificity are both perfect, i.e. 1, then the AUC will be 1. In contrast, poorly fit models will have AUC close to 0.5.
 
