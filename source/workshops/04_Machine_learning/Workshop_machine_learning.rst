@@ -32,6 +32,7 @@ Workshop tasks
 **************
 
 :download:`Notebook <notebooks/workshop4.ipynb>`
+
 :download:`Solutions <notebooks/workshop4_solutions.ipynb>`
 
 1. Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
