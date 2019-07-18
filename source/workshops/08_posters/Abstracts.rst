@@ -6,9 +6,12 @@ Abstracts
 --------------------------
 Abstract Draft Guidelines
 --------------------------
-
+**Length**
+  - max 2500 characters, excluding spaces
+  
 **Include**:
   - Title
+  - Authors (you and your mentors)
   - Motivation and Background
   - Question or Goal
   - Methods and Data
