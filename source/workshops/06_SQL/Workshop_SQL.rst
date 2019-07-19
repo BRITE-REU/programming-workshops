@@ -23,9 +23,9 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 
 ************
 Task 1
-************
+***Starting and stopping sqlite.**
 
-**Starting and stopping sqlite.**
+Create a directory for this workshop called SQLworkshop. All your work should be done in this directory. Open a terminal window and cd to SQLworkshop.  
 
 The following starts sqlite and creates a database file **mymovies.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
@@ -42,7 +42,7 @@ The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
 **Creating the database tables**
 
-Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste them from below.  
+Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste th statements below.  
 
 .. code:: SQL
 
@@ -75,7 +75,7 @@ Create a file **create.txt** in an editor and enter the CREATE TABLE statements 
 	CREATE INDEX mid_aid_index on cast (mid, aid);
 	CREATE INDEX aid_mid_index on cast (aid, mid);
 
-**Restart sqlite** with mymovies.db and use **.read** to read in the file create.txt and execute the statements in sqlite.
+**Restart sqlite** with mymovies.db and use **.read** to read in the file create.txt.  This will execute the statements in the file and create the tables.
 
 .. code::
 
