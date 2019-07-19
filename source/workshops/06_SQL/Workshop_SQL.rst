@@ -27,11 +27,11 @@ Task 1
 
 **Starting and stopping sqlite.**
 
-The following starts sqlite and creates a database file **mydatabase.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
+The following starts sqlite and creates a database file **mymovies.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
 .. code::
 	
-	%sqlite3 mydatabase.db
+	%sqlite3 mymovies.db
 
 
 The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
@@ -40,15 +40,42 @@ The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
     sqlite> .quit
 
+**Creating the database tables**
 
-Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  **Also add the following two lines to your create.txt file**.  They create indexes which sort the data in the cast file for fast lookup.  This is necessary because the cast table doesn't have a primary key.
+Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste them from below.  
+
+.. code:: SQL
+
+    CREATE TABLE movies (
+        mid integer primary key, 
+        title text, 
+        year integer, 
+        genres text
+    );
+
+
+    CREATE TABLE actors (
+        aid integer primary key, 
+        name text
+    );
+
+
+    CREATE TABLE cast (
+        mid integer, 
+        aid integer, 
+        role text
+    ); 
+
+
+
+**Also add the following two lines at the bottom of your create.txt file**.  They create indexes which sort the data in the cast file for fast lookup.  This is necessary because the cast table doesn't have a primary key.
 
 .. code::
 
 	CREATE INDEX mid_aid_index on cast (mid, aid);
 	CREATE INDEX aid_mid_index on cast (aid, mid);
 
-Use **.read** to read in the file create.txt and execute the statements in sqlite.
+**Restart sqlite** and use **.read** to read in the file create.txt and execute the statements in sqlite.
 
 .. code::
 
@@ -67,7 +94,7 @@ Use **.schema** to see that all the tables were created.  This will list the CRE
 Task 2
 ************
 
-Copy the files "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_", "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_", and "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_" into your directory and load their data into the tables you've created.  Use something similar to the following for each file.
+Copy the files "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_", "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_", and "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_" into your directory and load their data into the tables you've created.  Use the following for the movies.tsv file.  Repeat for the other two files.  
 
 .. code::
 
