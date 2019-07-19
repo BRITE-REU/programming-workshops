@@ -89,6 +89,10 @@ Use **.schema** to see that all the tables were created.  This will list the CRE
 .. code::
 
    sqlite> .schema
+ 
+ 
+If you've made a mistake at this point, quit sqlite, delete the mymovies.db file in SQLworkshop and start again.
+
 
 .. _`Task 2`:
 
@@ -96,7 +100,9 @@ Use **.schema** to see that all the tables were created.  This will list the CRE
 Task 2
 ************
 
-Copy the files "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_", "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_", and "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_" into your directory and load their data into the tables you've created.  Use the following for the movies.tsv file.  Repeat for the other two files.  
+Download the files "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_", "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_", and "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_" by clicking on the names and using the download button on the next page.  Put them into your SQLworkshop directory.
+
+Load each file into its own table.  Use the following for the movies.tsv file.  Repeat for the other two files.  
 
 .. code::
 
