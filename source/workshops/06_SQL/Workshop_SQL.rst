@@ -159,7 +159,7 @@ Write SQL select statements to get the answers to the listed questions.  Use the
 	
 	#. Pick an actor you know and find out her or his aid.  (answer is aid)
 	
-	#. Pick a year and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre) 
+	#. Pick a year from 2000 or later and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre) 
 
 **Using count()**
 
