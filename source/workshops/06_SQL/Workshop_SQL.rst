@@ -25,7 +25,7 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 Task 1
 ************
 
-***Starting and stopping sqlite.**
+**Starting and stopping sqlite**
 
 **Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and cd to SQLworkshop.  
 
