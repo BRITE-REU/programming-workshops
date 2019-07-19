@@ -155,7 +155,7 @@ Write SQL select statements to get the answers to the listed questions.  Use the
     
 **Using SELECT and WHERE in a single table**
 
-	1. Pick a movie you know from year 2000 or later and find out its mid.  (answer is mid)
+	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid)
 	
 	#. Pick an actor you know and find out her or his aid.  (answer is aid)
 	
