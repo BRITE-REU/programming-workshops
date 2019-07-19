@@ -23,9 +23,11 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 
 ************
 Task 1
+************
+
 ***Starting and stopping sqlite.**
 
-Create a directory for this workshop called SQLworkshop. All your work should be done in this directory. Open a terminal window and cd to SQLworkshop.  
+**Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and cd to SQLworkshop.  
 
 The following starts sqlite and creates a database file **mymovies.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
