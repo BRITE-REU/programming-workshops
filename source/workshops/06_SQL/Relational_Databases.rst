@@ -278,7 +278,7 @@ For **string comparison** several options are available.
 
 - **=** – strings must match exactly (usage\: **field = "pattern"**)
 
-     - not case sensitive
+     - CaSe SeNsItIvE
 
 - **LIKE** –  strings must match exactly (usage\: **field LIKE "pattern"**)
     
