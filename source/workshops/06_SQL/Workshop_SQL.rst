@@ -183,15 +183,8 @@ Write SQL select statements to get the answers to the listed questions.  Use the
 	
 **Using ORDER BY**
 
-	11. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)
-	
-**Using the same table more than once in a join**
+	11. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)	
 
-	12. Find two actors that appear together in two different movies (harder).  (answer is multiple rows, each containing actor1, actor2, movie1, movie2)
-	
-
-
-.. _`dot commands`:
 
 ***************
 Try It At Home
@@ -206,7 +199,7 @@ Follow these steps to add movie ratings to your database.
 - **Download** the data file "`ratings.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>`_"
 - **Import** the data into your table
 
-Asnwer these queries
+Answer these queries
 
 	1. How many movies are rated?
 	#. How many movies have more than 5000 votes?
@@ -215,7 +208,10 @@ Asnwer these queries
 	#. Show the ratings, votes, and year of all Star Wars movies, from highest to lowest.
 	#. What is the distribution of ratings in bins of size 1 (i.e., how many are rated from 0 to 0.999, from 1 to 1.999, etc).  To do this you can use 1) the **round( )** function on the ratings and 2) GROUP BY.
 	#. What is the distribution of votes in bins of size 1000?
-	
+
+
+.. _`dot commands`:
+
 ---------------
 SQLite Dot Commands 
 ---------------
