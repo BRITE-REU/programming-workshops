@@ -748,11 +748,13 @@ visualization!
 
 Some useful functions for reshaping data with pandas:
 
--  **stack()**
+-  **stack()**  
+
    -  Stack method works with the MultiIndex objects in DataFrame, it
    returning a DataFrame with an index with a new inner-most level of
    row labels. It changes the wide table to a long table.
--  **unstack()**
+-  **unstack()**  
+
    -  Unstack is similar to stack method, It also works with multi-index
    objects in dataframe, producing a reshaped DataFrame with a new
    inner-most level of column labels.
