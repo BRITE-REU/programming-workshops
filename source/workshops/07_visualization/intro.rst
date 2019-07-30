@@ -167,6 +167,8 @@ More information on perceptually uniform color maps can be found
     
     plt.tight_layout()
 
+.. image:: intro_files/colormaps.png
+
 Include the Least Amount of Necessary Information
 -------------------------------------------------
 
