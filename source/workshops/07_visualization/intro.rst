@@ -749,11 +749,11 @@ visualization!
 Some useful functions for reshaping data with pandas:
 
 -  **stack()**
--  Stack method works with the MultiIndex objects in DataFrame, it
+   -  Stack method works with the MultiIndex objects in DataFrame, it
    returning a DataFrame with an index with a new inner-most level of
    row labels. It changes the wide table to a long table.
 -  **unstack()**
--  Unstack is similar to stack method, It also works with multi-index
+   -  Unstack is similar to stack method, It also works with multi-index
    objects in dataframe, producing a reshaped DataFrame with a new
    inner-most level of column labels.
 -  **melt()**
@@ -783,7 +783,8 @@ Relational
   Draws a scatter plot
 | - Seaborn
   `Lineplot <https://seaborn.pydata.org/generated/seaborn.lineplot.html#seaborn.lineplot>`__:
-  Draws a line plot - Seaborn
+  Draws a line plot 
+  - Seaborn
   `Relplot <https://seaborn.pydata.org/generated/seaborn.relplot.html#seaborn.relplot>`__:
   Figure-level interface for drawing relational plots onto a
   **FacetGrid**.
