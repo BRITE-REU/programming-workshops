@@ -175,7 +175,7 @@ Required Workshop Tasks
 	#. Use the provided function to perform an ANOVA (analysis of variance) between two groups of data.
 	#. Modify the skeleton code to plot box plots for the top 5 differentially expressed genes. You can modify the function you wrote in Task 1. The plot should show the expression of the gene for each sample and seperate out the control v. treatment group.
 	#. Modify the skeleton code and use the provided function to plot a volcano plot to visualize both the gene expression fold change and the p-value from the ANOVA.
-		* Look at volcano plots in publications/google images. Modify the function so that your plots mirror the expected format.
+		- Look at volcano plots in publications/google images. Modify the function so that your plots mirror the expected format.
 
 .. code-block:: python
 	
@@ -274,6 +274,32 @@ Required Workshop Tasks
 			ax.spines[spine].set_visible(False)
 		plt.tight_layout()
 		return ax
+
+.. code-block:: python
+
+	### Skeleton Code
+	## Data Pre-Processing
+	# Subset the data into different tissue types
+	hippocampus = data[data["Tissue"] == "hippocampus"]
+	pf_cortex = data[data["Tissue"] == "Pre-frontal cortex (BA46)"]
+	as_striatum = data[data["Tissue"] == "Associative striatum"]
+
+	# For one tissue type, reduce the data to just two disease states
+
+	# Get a list of gene names
+
+	## Run Differential Expression Analysis
+	# Run differential expression analysis (one-way ANOVA) for 1 tissue type
+
+	## Plot box plots to visualize gene expression across samples for top DE genes
+	# Identify the top DE genes
+	
+	# Melt the data
+	
+	# Plot box plots
+	
+	## Visualize DE with a volcano plot 
+	##   A volcano plot visualizes the fold change and associated p-value for all genes
 
 Bonus Tasks
 ++++++++++++
