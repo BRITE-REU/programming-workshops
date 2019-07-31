@@ -46,3 +46,18 @@ Finally, as this is your final workshop, we hope that you will this as an opport
 Workshop Logistics:
 ~~~~~~~~~~~~~~~~~  
 As mentioned in the pre-workshop documentation, you can do this workshop either in a Jupyter Notebook, or in a python script. Please make sure you have set-up the appropriate environment for youself. This workshop will be completed using "paired-programming" and the "driver" will switch every 15 minutes. Also, we will be using the python plotting libraries matplotlib and seaborn.
+
+
+Workshop Tasks
+------------------------
+
+Task 0: Set-Up your environment
+~~~~~~~~~~~~~~~~~
+Whether you are working in a Jupyter Notebook or directly with a python script, make sure that you have followed the pre-workshop instructions. From there, create a script/notebook and load a few libraries that might be useful:  
+
+.. code-block:: python
+  # Import Necessary Libraries
+  import pandas as pd
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+  import scipy.stats as stats
