@@ -34,7 +34,8 @@ There are a total of 13768 genes (numeric features) and 10 meta features and 1 I
 Workshop Overview 
 ------------------  
 
-This workshop will walk you through an analysis of the GSE53987 microarray data set. This workshop has the following three tasks:
+This workshop will walk you through an anlaysis of the GSE53987 microarray data set. This workshop has the following three tasks:
+
   1. Visualize the demographics of the data set  
   2. Cluster gene expression data and appropriately visualize the cluster results
   3. Compute differential gene expression and visualize the differential expression
