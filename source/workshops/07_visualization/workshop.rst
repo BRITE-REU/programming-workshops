@@ -27,3 +27,19 @@ In total there are 205 rows consisting of 19 individuals diagnosed with BPD, 19 
 - Tissue: tissue the expression was obtained from.
 - Disease.state: class of disease the patient belongs to: bipolar, schizophrenia, depression or control.
 - source.name: combination of the tissue and disease.state
+
+Workshop tasks
+------------------------  
+  
+This workshop will walk you through an analysis of the GSE53987 microarray data set. This workshop has the following three tasks:  
+    1. Visualize the demographics of the data set  
+    2. Cluster gene expression data and appropriately visualize the cluster results
+    3. Compute differential gene expression and visualize the differential expression
+
+Each task has a **required** section and a **bonus** section. Focus on completing the three **required** sections first, then if you have time at the end, revisit the **bonus** sections.  
+
+Finally, as this is your final workshop, we hope that you will this as an opportunity to integrate the different concepts that you have learned in previous workshops. 
+
+Workshop Logistics:
+~~~~~~~~~~~~~~~~~  
+As mentioned in the pre-workshop documentation, you can do this workshop either in a Jupyter Notebook, or in a python script. Please make sure you have set-up the appropriate environment for youself. This workshop will be completed using "paired-programming" and the "driver" will switch every 15 minutes. Also, we will be using the python plotting libraries matplotlib and seaborn.
