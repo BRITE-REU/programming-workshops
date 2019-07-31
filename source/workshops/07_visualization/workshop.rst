@@ -19,7 +19,7 @@ This is a microarray data on platform GPL570 (HG-U133_Plus_2, Affymetrix Human G
 The raw CEL files of the GEO series were downloaded, `frozen-RMA normalized <https://bioconductor.org/packages/release/bioc/html/frma.html>`_ , and the probes have been converted to HUGO gene symbols using the `annotate package <https://www.bioconductor.org/packages/release/bioc/html/annotate.html>`_ averaging on genes. The sample clinical data (meta-data) was parsed from the `series matrix file <ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE53nnn/GSE53987/matrix/>`_. You can download it `here <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/04_Machine_learning/data/GSE53987_combined.csv>`_.
 
 In total there are 205 rows consisting of 19 individuals diagnosed with BPD, 19 with MDD, 19 schizophrenia and 19 controls. Each sample has gene expression from 3 tissues (post-mortem brain). There are a total of 13768 genes (numeric features) and 10 meta features and 1 ID (GEO sample accession):
-	*Age
+	* Age
 	* Race (W for white and B for black)
 	* Gender (F for female and M for male)
 	* Ph: pH of the brain tissue
@@ -88,15 +88,8 @@ Your plots should satisfy the following critical components:
 	* Figure title
 	* Legend (if applicable)
 	* Be readable
-    
-Bonus Tasks
-++++++++++++
-	#. Return to these functions and include functionality to customize color palettes, axis legends, etc. You can choose to define your own plotting "style" and keep that consistent for all of your plotting functions.
-	#. Faceting your plots. Modify your functions to take in a "facet" argument that when facet is an observation, the function will create a facet grid and facet on that observation. Read more about faceting here <https://seaborn.pydata.org/tutorial/axis_grids.html>`_. Faceting generates multi-plot grids by mapping a dataset onto multiple axes arrayed in a grid of rows and columns that correspond to levels of variables in the dataset.
-		* In order to use facteting, your data **must be** in a Pandas DataFrame and it must take the form of what Hadley Whickam calls “tidy” data.
-		* In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation. There are figure-level functions (e.g. relplot() or catplot()) that will create facet grids automatically and can be used in place of things like distplot() or scatterplot().
 
-Use the below skeleton code to complete Task 1.
+Incorporate the below function skeleton code to complete Task 1.
 
 .. code-block:: python
 	
@@ -156,7 +149,30 @@ Use the below skeleton code to complete Task 1.
 		3. Scatter plot of gene expression for 1 gene by ages 
 		4. Scatter plot of gene expression for 1 gene by disease state 
 		"""
-    
+
+Bonus Tasks
+++++++++++++
+	#. Return to these functions and include functionality to customize color palettes, axis legends, etc. You can choose to define your own plotting "style" and keep that consistent for all of your plotting functions.
+	#. Faceting your plots. Modify your functions to take in a "facet" argument that when facet is an observation, the function will create a facet grid and facet on that observation. Read more about faceting here <https://seaborn.pydata.org/tutorial/axis_grids.html>`_. Faceting generates multi-plot grids by mapping a dataset onto multiple axes arrayed in a grid of rows and columns that correspond to levels of variables in the dataset.
+		* In order to use facteting, your data **must be** in a Pandas DataFrame and it must take the form of what Hadley Whickam calls “tidy” data.
+		* In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation. There are figure-level functions (e.g. relplot() or catplot()) that will create facet grids automatically and can be used in place of things like distplot() or scatterplot().
 
 Task 2: Cluster Analysis
 --------------------------
+
+Required Workshop Tasks
+++++++++++++++++++++++++
+
+Bonus Tasks
+++++++++++++
+
+Task 3: Differential Expression Analysis
+-----------------------------------------
+
+Required Workshop Tasks
+++++++++++++++++++++++++
+
+	#. Use the provided function to perform an ANOVA (analysis of variance) between two groups of data.
+	#. Modify the skeleton code to plot box plots for the top 5 differentially expressed genes. You can modify the function you wrote in Task 1. The plot should show the expression of the gene for each sample and seperate out the control v. treatment group.
+	#. Modify the skeleton code and use the provided function to plot a volcano plot to visualize both the gene expression fold change and the p-value from the ANOVA.
+		* Look at volcano plots in publications/google images. Modify the function so that your plots mirror the expected format.
