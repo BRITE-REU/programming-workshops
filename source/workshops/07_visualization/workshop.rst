@@ -94,7 +94,7 @@ Your plots should satisfy the following critical components:
 	* Legend (if applicable)
 	* Be readable
 
-Incorporate the below function skeleton code to complete Task 1.
+Utilize the below functions in skeleton code to complete Task 1.
 
 .. code-block:: python
 	
@@ -180,6 +180,7 @@ Required Workshop Tasks
 	#. Use the provided function to perform an ANOVA (analysis of variance) between two groups of data.
 	#. Modify the skeleton code to plot box plots for the top 5 differentially expressed genes. You can modify the function you wrote in Task 1. The plot should show the expression of the gene for each sample and seperate out the control v. treatment group.
 	#. Modify the skeleton code and use the provided function to plot a volcano plot to visualize both the gene expression fold change and the p-value from the ANOVA.
+	
 		- Look at volcano plots in publications/google images. Modify the function so that your plots mirror the expected format.
 
 .. code-block:: python
@@ -308,5 +309,6 @@ Required Workshop Tasks
 
 Bonus Tasks
 ++++++++++++
+
 	#. For your box plots, color by disease state and/or other demographics
 	#. Plot a heatmap of the gene expression for the top 100 differentially expressed genes in the relevant samples.
