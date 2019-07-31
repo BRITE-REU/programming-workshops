@@ -57,38 +57,104 @@ Task 0: Set-Up your environment
 Whether you are working in a Jupyter Notebook or directly with a python script, make sure that you have followed the pre-workshop instructions. From there, create a script/notebook and load a few libraries that might be useful:  
 
 .. code-block:: python
-    # Import Necessary Libraries
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    import scipy.stats as stats  
+	
+	# Import Necessary Libraries
+	import pandas as pd
+	import matplotlib.pyplot as plt
+	import seaborn as sns
+	import scipy.stats as stats   
   
 Task 1: Visualize Dataset Demographics
 ---------------------------------------
 
 **Required Workshop Task:**
 Use the skeleton code to write 3 plotting functions: 
-    #. plot_distribution()
-        * Returns a distribution plot object given a dataframe and one observation
-    #. plot_relational()
-        * Returns a distribution plot object given a dataframe and (x,y) observations
-    #. plot_categorical()
-        * Returns a categorical plot object given a dataframe and (x,y) observations
+	#. plot_distribution()
+		* Returns a distribution plot object given a dataframe and one observation
+	#. plot_relational()
+		* Returns a distribution plot object given a dataframe and (x,y) observations
+	#. plot_categorical()
+		* Returns a categorical plot object given a dataframe and (x,y) observations
 
 Use these functions to produce the following plots:
-    1. Histogram of patient ages
-    2. Histogram of gene expression for 1 gene
-    3. Scatter plot of gene expression for 1 gene by ages 
-    4. Scatter plot of gene expression for 1 gene by disease state
+	#. Histogram of patient ages
+	#. Histogram of gene expression for 1 gene
+	#. Scatter plot of gene expression for 1 gene by ages
+	#. Scatter plot of gene expression for 1 gene by disease state
 
-Your plots should satisfy the following critical components:  
-    - Axis titles
-    - Figure title
-    - Legend (if applicable)
-    - Be readable
+Your plots should satisfy the following critical components:
+	* Axis titles
+	* Figure title
+	* Legend (if applicable)
+	* Be readable
     
-**Bonus Task:** 
-  1. Return to these functions and include functionality to customize color palettes, axis legends, etc. You can choose to define your own plotting "style" and keep that consistent for all of your plotting functions.  
-  2. Faceting your plots. Modify your functions to take in a "facet" argument that when facet is an observation, the function will create a facet grid and facet on that observation. Read more about faceting here <https://seaborn.pydata.org/tutorial/axis_grids.html>`_. Faceting generates multi-plot grids by mapping a dataset onto multiple axes arrayed in a grid of rows and columns that correspond to levels of variables in the dataset.  
-    - In order to use facteting, your data **must be** in a Pandas DataFrame and it must take the form of what Hadley Whickam calls “tidy” data. 
-    - In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation. There are figure-level functions (e.g. relplot() or catplot()) that will create facet grids automatically and can be used in place of things like distplot() or scatterplot(). 
+**Bonus Tasks:**
+	#. Return to these functions and include functionality to customize color palettes, axis legends, etc. You can choose to define your own plotting "style" and keep that consistent for all of your plotting functions.
+	#. Faceting your plots. Modify your functions to take in a "facet" argument that when facet is an observation, the function will create a facet grid and facet on that observation. Read more about faceting here <https://seaborn.pydata.org/tutorial/axis_grids.html>`_. Faceting generates multi-plot grids by mapping a dataset onto multiple axes arrayed in a grid of rows and columns that correspond to levels of variables in the dataset.
+		* In order to use facteting, your data **must be** in a Pandas DataFrame and it must take the form of what Hadley Whickam calls “tidy” data.
+		* In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation. There are figure-level functions (e.g. relplot() or catplot()) that will create facet grids automatically and can be used in place of things like distplot() or scatterplot().
+
+Use the below skeleton code to complete Task 1.
+
+.. code-block:: python
+	
+	# Import the data (.csv file) as a data frame
+	data = pd.read_csv("/path/to/data/GSE53987_combined.csv", index_col=0)
+
+	# Function to Plot a Distribtion
+	def plot_distribution(df, obs1, obs2=''):
+		"""
+		Create a distribution plot for at least one observation
+
+		Arguments:
+			df (pandas data frame): data frame containing at least 1 column of numerical values
+			obs1 (string): observation to plot distribution on
+			obs2 (string, optional)
+		Returns:
+			axes object
+		"""
+		return
+
+	# Function to Plot Relational (x,y) Plots 
+	def plot_relational(df, x, y, hue=None, kind=None):
+		"""
+		Create a plot for an x,y relationship (default = scatter plot)
+		Optional functionality for additional observations.
+
+		Arguments:
+			df (pandas data frame): data frame containing at least 2 columns of numerical values
+			x (string): observation for the independent variable
+			y (string): observation for the dependent variable
+			hue (string, optional): additional observation to color the plot on
+			kind (string, optional): type of plot to create [scatter, line]
+		Returns:
+			axes object
+		"""
+		return
+
+	def plot_categorical(df, x, y, hue=None, kind=None):
+		"""
+		Create a plot for an x,y relationship where x is categorical (not numerical)
+
+		Arguments:
+			df (pandas data frame): data frame containing at least 2 columns of numerical values
+			x (string): observation for the independent variable (categorical)
+			y (string): observation for the dependent variable
+			hue (string, optional): additional observation to color the plot on
+			kind (string, optional): type of plot to create. Options should include at least: 
+			strip (default), box, and violin
+		"""
+		return
+
+	def main():
+		"""
+		Generate the following plots:
+		1. Histogram of patient ages
+		2. Histogram of gene expression for 1 gene
+		3. Scatter plot of gene expression for 1 gene by ages 
+		4. Scatter plot of gene expression for 1 gene by disease state 
+		"""
+    
+
+Task 2: Cluster Analysis
+--------------------------
