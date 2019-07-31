@@ -66,19 +66,21 @@ Whether you are working in a Jupyter Notebook or directly with a python script, 
 Task 1: Visualize Dataset Demographics
 ---------------------------------------
 
-**Required Workshop Task:**  
+**Required Workshop Task:**
 Use the skeleton code to write 3 plotting functions: 
-    1. plot_distribution()
-      - Returns a distribution plot object given a dataframe and one observation
-    2. plot_relational()
-      - Returns a distribution plot object given a dataframe and (x,y) observations  
-    3. plot_categorical()
-      - Returns a categorical plot object given a dataframe and (x,y) observations
+    #. plot_distribution()
+        * Returns a distribution plot object given a dataframe and one observation
+    #. plot_relational()
+        * Returns a distribution plot object given a dataframe and (x,y) observations
+    #. plot_categorical()
+        * Returns a categorical plot object given a dataframe and (x,y) observations
+
 Use these functions to produce the following plots:
     1. Histogram of patient ages
     2. Histogram of gene expression for 1 gene
     3. Scatter plot of gene expression for 1 gene by ages 
-    4. Scatter plot of gene expression for 1 gene by disease state 
+    4. Scatter plot of gene expression for 1 gene by disease state
+
 Your plots should satisfy the following critical components:  
     - Axis titles
     - Figure title
