@@ -2,8 +2,11 @@
 Workshop 7: Bioinformatic Visualizations
 ========================================
 
-The Data Set
+Introduction & Overview
 ------------------------
+
+The Data Set
+~~~~~~~~~~~~~~~~~
 
 In today's workshop, we will revisit the data set you worked with in the Machine Learning workshop. As a refresher:  this data set is from the `GSE53987 <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE53987>`_ dataset on Bipolar disorder (BD) and major depressive disorder (MDD) and schizophrenia:
 
@@ -28,8 +31,8 @@ In total there are 205 rows consisting of 19 individuals diagnosed with BPD, 19 
 - Disease.state: class of disease the patient belongs to: bipolar, schizophrenia, depression or control.
 - source.name: combination of the tissue and disease.state
 
-Workshop tasks
-------------------------  
+Workshop Tasks
+~~~~~~~~~~~~~~~~~ 
   
 This workshop will walk you through an analysis of the GSE53987 microarray data set. This workshop has the following three tasks:  
     1. Visualize the demographics of the data set  
