@@ -71,7 +71,8 @@ Task 1: Visualize Dataset Demographics
 Required Workshop Task
 +++++++++++++++++++++++
 
-Use the skeleton code to write 3 plotting functions: 
+Use the skeleton code to write 3 plotting functions:
+
 	#. plot_distribution()
 		* Returns a distribution plot object given a dataframe and one observation
 	#. plot_relational()
@@ -80,12 +81,14 @@ Use the skeleton code to write 3 plotting functions:
 		* Returns a categorical plot object given a dataframe and (x,y) observations
 
 Use these functions to produce the following plots:
+
 	#. Histogram of patient ages
 	#. Histogram of gene expression for 1 gene
 	#. Scatter plot of gene expression for 1 gene by ages
 	#. Scatter plot of gene expression for 1 gene by disease state
 
 Your plots should satisfy the following critical components:
+
 	* Axis titles
 	* Figure title
 	* Legend (if applicable)
