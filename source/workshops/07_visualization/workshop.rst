@@ -50,7 +50,7 @@ The raw CEL files of the GEO series were downloaded, frozen-RMA
 normalized, and the probes have been converted to HUGO gene symbols
 using the annotate package averaging on genes. The sample clinical data
 (meta-data) was parsed from the series matrix file. You can download it
-**here**.
+here <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/04_Machine_learning/data/GSE53987_combined.csv>`_..
 
 In total there are 205 rows consisting of 19 individuals diagnosed with
 BPD, 19 with MDD, 19 schizophrenia and 19 controls. Each sample has gene
