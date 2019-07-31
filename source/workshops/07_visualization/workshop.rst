@@ -176,3 +176,106 @@ Required Workshop Tasks
 	#. Modify the skeleton code to plot box plots for the top 5 differentially expressed genes. You can modify the function you wrote in Task 1. The plot should show the expression of the gene for each sample and seperate out the control v. treatment group.
 	#. Modify the skeleton code and use the provided function to plot a volcano plot to visualize both the gene expression fold change and the p-value from the ANOVA.
 		* Look at volcano plots in publications/google images. Modify the function so that your plots mirror the expected format.
+
+.. code-block:: python
+	
+	def differential_expression(data, group_col, features, reference=None):
+    """
+    Perform a one-way ANOVA across all provided features for a given grouping.
+    
+    Arguments
+    ---------
+    
+        data : (pandas.DataFrame)
+            DataFrame containing group information and feature values.
+        group_col : (str)
+            Column in `data` containing sample group labels.
+        features : (list, numpy.ndarray):
+            Columns in `data` to test for differential expression. (e.g. a list of gene names)
+        reference : (str, optional)
+            Value in `group_col` to use as the reference group. Default is None,
+            and the value will be chosen.
+            
+    Returns
+    -------
+        pandas.DataFrame
+            A DataFrame of differential expression results with columns for
+            fold changes between groups, maximum fold change from reference,
+            f values, p values, and adjusted p-values by Bonferroni correction.
+    """
+    if group_col not in data.columns:
+        raise ValueError("`group_col` {} not found in data".format(group_col))
+    if any([x not in data.columns for x in features]):
+        raise ValueError("Not all provided features found in data.")
+    if reference is None:
+        reference = data[group_col].unique()[0]
+        print("No reference group provided. Using {}".format(reference))
+    elif reference not in data[group_col].unique():
+        raise ValueError("Reference value {} not found in column {}.".format(
+                         reference, group_col))
+    by_group = data.groupby(group_col)
+    reference_avg = by_group.get_group(reference).loc[:,features].mean()
+    values = []
+    results = {}
+    for each, index in by_group.groups.items():
+        values.append(data.loc[index, features])
+        if each !=  reference:
+            key = "{}.FoldChange".format(each)
+            results[key] = data.loc[index, features].mean()\
+                         / reference_avg
+    fold_change_cols = list(results.keys())
+    fvalues, pvalues = stats.f_oneway(*values)
+    results['f.value'] = fvalues
+    results['p.value'] = pvalues
+    results['p.value.adj'] = pvalues * len(features)
+    results_df = pd.DataFrame(results)
+    def largest_deviation(x):
+        i = np.where(abs(x) == max(abs(x)))[0][0]
+        return x[i]
+    results_df['Max.FoldChange'] = results_df[fold_change_cols].apply(
+                                       lambda x: largest_deviation(x.values),
+                                       axis=1)
+
+    return results_df
+
+	def plot_de_genes(data, sig_col, fc_col, sig_thresh, fc_thresh):
+		"""
+		Simple script to plot a volcano plot
+
+		Arguments
+		---------
+		data : (pandas.DataFrame)
+				DataFrame containing group information and feature values.
+		sig_col : (string)
+				Column header in data for column that contains the significance measure (e.g. p value)
+		fc_col : (string)
+				Column header in data for column that contains the fold change values
+		sig_thresh : (int or float)
+				Number to draw a threshold line at for significance level cut-off
+		fc_thresh : (int or float)
+				Number to draw a threshold line at for fold change cut-off
+		"""
+		ax = sns.scatterplot(x=fc_col, y=sig_col, data=data,
+							palette=['black', 'red'], alpha=0.75)
+		linewidth = plt.rcParams['lines.linewidth'] - 1
+		plt.axvline(x=fc_thresh, linestyle='--', linewidth=linewidth,
+					   color='#4D4E4F')
+		plt.axvline(x=-fc_thresh, linestyle='--', linewidth=linewidth,
+					   color='#4D4E4F')
+		plt.axhline(y=sig_thresh, linestyle='--', linewidth=linewidth,
+					   color='#4D4E4F')
+		ax.legend().set_visible(False)
+		ylabel = sig_col
+		if sig_col.lower() == 'fdr':
+			ylabel = 'False Discovery Rate'
+		plt.xlabel("Fold Change")
+		plt.ylabel(ylabel)
+		for spine in ['right', 'top']:
+			ax.spines[spine].set_visible(False)
+		plt.tight_layout()
+		return ax
+
+Bonus Tasks
+++++++++++++
+	#. For your box plots, color by disease state and/or other demographics
+	#. Plot a heatmap of the gene expression for the top 100 differentially expressed genes in the relevant samples.
