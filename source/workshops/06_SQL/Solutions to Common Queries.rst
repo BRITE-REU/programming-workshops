@@ -153,7 +153,7 @@ Top actors (most movies over 30)
 	order by c desc 
 	limit 10;
 
-Top actors (most movies) since 2015
+Top actors (most movies since 2015)
 
 .. code::
 
