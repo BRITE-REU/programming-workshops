@@ -142,7 +142,7 @@ Movies for George Clooney sorted by title
 	where name="George Clooney" 
 	order by title;
 
-Top actors (most movies) over 30
+Top actors (most movies over 30)
 
 .. code::
 
