@@ -160,14 +160,14 @@ In **sqlite3**, the easiest way to add data to a table is to **load it from a fi
 
 The file should:
 
-  - contain **rows of data**
+* contain **rows of data**
 
-  - have **in each row** 
-      - **one value for each field**
-      - **fields in the same order as the create table statement**
-  - **all fields separated by the same character**, such as
-      - a tab "\\t" (a tab separated file or **tsv**)
-      - a comma "," (a comma separated file or **csv**)
+* have **in each row** 
+   * **one value for each field**
+   * **fields in the same order as the create table statement**
+* **all fields separated by the same character**, such as
+   * a tab "\\t" (a tab separated file or **tsv**)
+   * a comma "," (a comma separated file or **csv**)
     
 For example, importing movie data into the movies table can be done as follows.  First set the type of field separator.  This can be done with **.mode csv** or **.mode tabs** command,  then import the data from the file movies.tsv.  Note that the prompt **sqlite>** appears when the sqlite3 program is running.
 
