@@ -174,7 +174,7 @@ For example, importing movie data into the movies table can be done as follows. 
 .. code:: SQL
 
     sqlite>.mode tabs
-    sqlite>.import movies.tsv
+    sqlite>.import movies.tsv movies
 
 
 --------------------
