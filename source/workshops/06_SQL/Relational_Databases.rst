@@ -161,7 +161,7 @@ In **sqlite3**, the easiest way to add data to a table is to **load it from a fi
 The file should:
 
 - contain **rows of data**
-- have **in each row**, 
+- have **in each row** 
     - **one value for each field**
     - **fields in the same order as the create table statement**
 - **all fields separated by the same character**, such as
@@ -376,7 +376,7 @@ The second join is:
     X join actors using (aid)
     
 
-**where X is the result of the first join**.   This indicates that rows from the first join should be combined with rows from actors when they share the same aid.  Again, this has the effect of producing an intermediate table with one additional field, name.  
+**where X is the result of the first join**.   This indicates that rows from the first join should be combined with rows from actors **when they share the same aid**.  Again, this has the effect of producing an intermediate table with one additional field, name.  
 
 .. code:: SQL
 	
