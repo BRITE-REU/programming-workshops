@@ -27,7 +27,7 @@ Task 1
 
 **Starting and stopping sqlite**
 
-**Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and cd to SQLworkshop.  
+**Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and `cd` to SQLworkshop.  
 
 The following starts sqlite and creates a database file **mymovies.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
@@ -44,7 +44,7 @@ The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
 **Creating the database tables**
 
-Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste th statements below.  
+Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste the statements below.  
 
 .. code:: SQL
 
@@ -223,7 +223,7 @@ SQLite Dot Commands
 	.headers on|off        	Turn display of field names on or off
 	.help                  	Show this message
 	.import FILE TABLE     	Import data from FILE into TABLE
-	.mode OPTION		Set output mode where OPTION is one of:
+	.mode OPTION		Set output/input mode where OPTION is one of:
 				    csv     	  Comma-separated values
 				    tabs    	  Tab-separated values
 				    list     	  Values delimited by .separator strings
@@ -232,7 +232,7 @@ SQLite Dot Commands
 	.output FILE|stdout    	Send output (such as result of SQL query) to FILE or screen
 	.read FILE	       	Execute SQL in FILE
 	.schema 		Show the CREATE statements in this database
-	.separator "x"		Change the column separator to x for both .import and output
+	.separator "x"		Change the column separator to x for both .import and .output
 	.show                  	Show the current values for various settings
 	.width n1 n2 …		Set column widths for "column" mode, 0 means auto set column, 
 				    negative values right-justify
