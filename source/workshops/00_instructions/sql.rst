@@ -12,7 +12,7 @@ SQLite
 
 **Windows:**
 
-See this very useful `video <https://www.youtube.com/watch?v=zOJWL3oXDO8>` to install SQLite
+See this very useful video to install SQLite: https://www.youtube.com/watch?v=zOJWL3oXDO8 
 
 **Mac and Linux:**
 
@@ -22,7 +22,7 @@ Should already be preinstalled.  To check, open a terminal window and type “sq
 
 There are two reasonably good GUIs for using SQLite.  I haven’t used either extensively, so can’t make a strong recommendation, but I preferred SQLite Studio. These are not required for the workshop, but may be beneficial if you use the program after this summer. 
 
-- **SQLite Studio**.  Download for all three major operating systems here: https://sqlitestudio.pl/index.rvt?act=download
+- **SQLite Studio**.  Download for all three major operating systems here: https://sqlitestudio.pl
 - **DB Browser for SQLite**. Downloads are here: https://sqlitebrowser.org/
 
 **Test:**
