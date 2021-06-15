@@ -25,17 +25,42 @@ Loading Data
 Importing downloaded data
 **************************
 
-Based on the data object, there are different functions available to import datasets into R. A cheatsheet from RStudio community is provided below with useful functions to load in data.
+Based on the file type, there are different functions available to import datasets into R. A few of the most common ones are listed below:
 
-.. image:: images/Import_Cheatsheet.png
+* *read.csv*: For reading in comma separated value files (".csv").
+* *read.delim*: For reading in delimited text files (".txt").
+* *scan*: For reading a file, or keyboard input, into a vector.
+* *read_excel*: For reading in excel spreadsheets (".xls" or ".xlsx"). From the *readxl* package.
+
+Some examples:
+
+.. code:: R
+
+	#read in CSV file
+	my_csv_file <- read.csv("/path/to/csv_file.csv")
+
+	#read in tab-delimited text file
+	my_tab_file <- read.delim("/path/to/csv_file.txt", sep = "\t")
+
+	#read input from keyboard (hit enter twice to stop scanning)
+	keyboard_input <- scan() 
+	1
+	2
+	3
+
+	#read i first sheet of excel spreadsheet
+	install.packages("readxl")
+	library(readxl)
+	my_excel_file <- read_excel("/path/to/excel_file.xlsx", sheet = 1)
+
 
 An alternative way to import downloaded data is to also click on "Import Dataset" on the upper right hand side under Environment. 
 
 .. image:: images/RStudio_Console.png
 
-In addition, datasets that are available online can be imported into R using their url. 
+In addition, datasets that are available online can be imported into R using their URL. 
 
-For example
+For example:
 
 .. code:: R
 
@@ -58,6 +83,8 @@ For example
 	4:  4 307 1000 37.15  0
 	5:  5 307 1010 37.23  0
 	6:  6 307 1020 37.24  0
+
+Here's a helpful `cheat sheet <https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf>`_ for importing data in R.
 
 *************************
 Available data sets in R
