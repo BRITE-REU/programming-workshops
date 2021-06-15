@@ -121,11 +121,13 @@ Working with `data.frame` objects
 Looking at `scaledcounts` we can see that the first column, "ensgene", gives the gene identifier for each gene, while each successive column gives the expression values for this gene.
 
 .. code:: R
+
     # Use the `ensgene` column to extract the gene expression values for "ENSG00000002549".
 
 This is okay, but it's a little clunky. Alternatively we can set the gene identifiers as row names to index rows directly.
 
 .. code:: R
+
     # 1 Set the gene identifiers to row names in `scaledcounts`.
 
     # 2 Remove the `ensgene` column.
@@ -139,6 +141,7 @@ Asking R for help
 Alternative to steps 1 + 2 above, we could have set gene identifiers to row names when we read in the file.
 
 .. code:: R
+
     # 1 Look up the help page for `read.csv()` using `?read.csv`, scroll down to the `row.names` in the "Arguments" section.
     
     # 2 Use these instructions to reread in `scaledcounts` and set the gene identifiers to row names automatically.
@@ -147,11 +150,12 @@ Alternative to steps 1 + 2 above, we could have set gene identifiers to row name
 Working with `matrix` objects
 ***********************
 
-The main difference between a `data.frame` object and a `matrix` object is that each column of a `data.frame` is free to have it's own format, whereas all values within an entire `matrix` must have the same format. One nice thing about `matrix` objects is that functions in R can be applied to all values at once. Note, that after setting the gene identifiers to row names, all values in `scaledcounts` is now a number.
+The main difference between a `data.frame` object and a `matrix` object is that each column of a `data.frame` is free to have it's own format, whereas all values within an entire `matrix` must have the same format (e.g. all numbers). One nice thing about `matrix` objects is that functions in R can be applied to all values at once. Note, that after setting the gene identifiers to row names, all values in `scaledcounts` are now numbers.
 
-For gene expression it is common to work with log-scaled count data because these tend to adhere more closely to normal distributions than count data.  The one caveat to this that log(0) = -Inf. To overcome this, it is common practice to add a small value prior to performing log-transformations, most commonly by adding one to every value, log(1) = 0.
+For gene expression, it is common to work with log-scaled count data because these tend to adhere more closely to normal distributions than count data. The one caveat to this that log(0) = -Inf. To overcome this, it is common practice to add a small value prior to performing log-transformations, most commonly by adding one to every value, log(1) = 0.
 
 .. code:: R
+
     # 1 Use the `as.matrix()` function to convert `scaledcounts` to a matrix.
 
     # 2 Add a pseudocount to every value.
@@ -162,10 +166,10 @@ For gene expression it is common to work with log-scaled count data because thes
 Running simple comparative statistical analyses
 ***********************
 
-Later in this workshop, we will use a fancy Bioconductor package to run differential gene expression analysis.  The basis for this type of analysis is common when analyzing high-throughput data. It has the following steps
+In bioinformatics, we frequently want to perform statistical tests to find genes with a significant deviation in expression patterns across experimental conditions, for example genes that seem to be down-regulated in tumors compared to normal cells. Later in this workshop, we will use a fancy Bioconductor package (*DESeq2*) to run differential gene expression analysis.  This type of analysis is common when analyzing high-throughput data, and it has the following basic steps:
 
 1. Extract the expression values for a single gene.
-2. Run compare the mean expression between two groups using a statistical test.
+2. Compare the mean expression between two groups using a statistical test.
 3. Repeat steps 1 + 2 for every gene.
 
 ***********************
@@ -175,6 +179,7 @@ Running one test
 The t-test is a common choice for performing a differential analysis. Next we will perform a simple differential test comparing treated and control groups in our gene expression data. The "dex" column in `metadata` gives group values for treated and control samples.
 
 .. code:: R
+
     # 1 Create a new data.frame called `genedata` with two columns: 1) log-transformed expression values of "ENSG00000002549" and 2) group values from the "dex" variable. Call the columns "ex" and "group", respectively.
 
     # 2 Run the following to use the `t.test()` function to compare the log transformed expression values between treated and control samples with pooled variance (var.equal = TRUE).
@@ -183,6 +188,7 @@ The t-test is a common choice for performing a differential analysis. Next we wi
 Note that the syntax at the begining of this function, you will see it a lot.  Look up ?formula for more information. This is common in functions for statistical modelling, as well as base R plotting functions.  For example, instead of running a t-test we could run a linear model.
 
 .. code:: R
+
     lmRes <- lm(ex ~ group, data = genedata)
     print(summary(lmRes))
 
@@ -191,6 +197,7 @@ Note, that the p-value for the linear model is equal to the p-value for the t-te
 We can use a similar syntax to create boxplots of the expression values for either group with the `boxplot()` function.
 
 .. code:: R
+
     boxplot(ex ~ group, data = genedata)
 
 As we can see, the difference in mean is very small relative to the variance, hence the large p-value.
@@ -234,6 +241,7 @@ Apply loops
 We can run this analysis using an apply loop.  In are there are several choices of apply loops, for this case we will use the `sapply()` function.  `sapply()` takes two arguments: a vector and a function. You may want to check the help page, `?apply`, for other options. `sapply()` takes every value of a vector and **applies** it to the first argument of the function argument.
 
 .. code:: R
+
     # 1 Run sapply for the first 1000 genes in `scaledcounts` using their names and the `ttestGene()` function.  Write the ouput to an object called `res`.
 
     # 2 Transpose the output with t().
@@ -242,14 +250,10 @@ We can run this analysis using an apply loop.  In are there are several choices 
 Matrix operations
 ***********************
 
-Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime. The maximum likelihood estimates of linear regression coefficients can be estimated using the following formula, 
-
-.. math::
-    \hat{\beta} = (X^TX)^{-1}X^Ty.
-
-Here, :math:`X` is and :math:`N+1\times P` design matrix of variables, and :math:`y` can be a vector of outcome variables, in this case gene expression values for specific gene. :math:`X^T` denotes that a given matrix is transposed and :math:`()^{-1}` denotes taking the inverse of the items in the parathesis.
+Loops are great and often necessary, but whenever possible utilizing matrix operations is a great way to speed up runtime.
 
 .. code:: R
+
     X <- model.matrix(~ group, data = genedata)
     print(X)
 
@@ -258,14 +262,6 @@ The three basic matrix operations functions in R are:
 1.  `t()`: Transpose matrix input.
 2.  `solve()`: Take the inverse of matrix input.
 3.  `%*%`: Multiply matrices on the left and right.
-
-.. code:: R
-    # Use the formula for the maximum likelihood estimates of linear regression coefficients above to generate the difference in mean of log transformed expression values between treated and control samples for "ENSG00000002549".
-
-In actuality, :math:`y` need not be a vector, but instead a :math:`N \times Q` matrix, where :math:`Q` is a set of variables for which you'd like to indepedently test the relationships to :math:`X`.
-
-.. code:: R
-    # Use the formula for the maximum likelihood estimates of linear regression coefficients above to estimate the difference in log transformed expression values between treated and control samples for the first 1000 genes in `scaledcounts`.
 
 ***********************
 Loading data from R packages
