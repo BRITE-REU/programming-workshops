@@ -5,7 +5,12 @@ In this workshop, we will focus on learning how to load packages, import data, p
 
 We will work in R Markdown, a .Rmd file written in markdown and contains chunks of embedded R code.
 
-The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) are in the R_workshop folder which you can download `here <https://drive.google.com/open?id=1qqoupV8tYrKt0Zptzf3ooo7Um7hANcFb>`_.
+The R Mardown file and two csv files containing count data (airway_scaledcounts.csv) and meta data file (airway_metadata.csv) can be downloaded from here:
+
+1. `airway_metadata.csv <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/airway_metadata.csv>`_
+2. `airway_scaledcounts.csv <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/airway_scaledcounts.csv>`_
+3. `Workshop R Markdown file <https://github.com/BRITE-REU/programming-workshops/tree/master/source/workshops/02_R/files/R_Workshop.Rmd>`_
+
 
 ***********************
 Load Packages
@@ -302,9 +307,14 @@ In actuality, :math:`y   need not be a vector, but instead a :math:`N \times Q` 
 Loading data from R packages
 ***********************
 
-This data set is also available in a package called "airway" in bioconductor. It is saved as an S4 object (object oriented programming) that contains the count data, meta data, and other information important to the data in fields or slots in the object. To load the airway data we can use the data("data_name") function and call airway to add the dataset to our workspace.
+This data set is also available in a package called "airway" in Bioconductor. 
 
-You'll notice that the class is called RangedSummarizedExperiment (i.e. an S4 object), which is used to store matrices of experimental results such as the count data and meta data. This class is from the SummarizedExperiment package which is used often to store sequencing and microarray data.
+.. tip::
+   Bioconductor (www.bioconductor.org) is an R programming language open-source and open-development software project for the analysis and interpretation of genomic data. It is comparable to CRAN for packages that are oriented towards biological data analysis. Open development means that the community is made aware of the development plans for each of the tools and in some instances, encouraged to contribute additions and modifications to the software itself. 
+
+The dataset is saved as something called an S4 object. The s4 object class is a somewhat complicated concept, but in this case, all you need to know is that there are named components of the object called "slots", which are accessed using the specialised subsetting operator @ (pronounced at). The set of slots, and their classes, forms an important part of the definition of an S4 class. In R analyses of experiment data, you will often come across s4 objects that contain matrices of gene expression count data, sample metadata, and other information important to the data in fields or slots in the object.
+
+To load the airway data we can use the data("data_name") function and call airway to add the dataset to our workspace. You'll notice that the class is called RangedSummarizedExperiment (i.e. an S4 object), which is used to store matrices of experimental results such as the count data and meta data. This class is from the SummarizedExperiment package which is used often to store sequencing and microarray data. A descriptive and fairly concise tutorial of SummarizedExperiment objects is available `here <https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html>`_.
 
 .. code:: R
 

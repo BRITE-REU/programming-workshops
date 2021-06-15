@@ -1,6 +1,6 @@
 ---
 title: 'R Workshop: RNA-seq Airway Data and Differential Expression Analysis'
-author: "Tanya Karagiannis, Eric Reed, Anastasia Gurinovich, Ahmed Youssef"
+author: "Tanya Karagiannis, Eric Reed, Anastasia Gurinovich, Ahmed Youssef, Brie Odom"
 output:
   html_document
 ---
