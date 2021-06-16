@@ -235,10 +235,161 @@ What if we want to run a t-test on any gene? We can greatly reduce the amount of
     ttestGene("ENSG00000002549")
 
 ***********************
-Apply loops
+The apply() Family of Functions
 ***********************
 
-We can run this analysis using an apply loop.  In are there are several choices of apply loops, for this case we will use the `sapply()` function.  `sapply()` takes two arguments: a vector and a function. You may want to check the help page, `?apply`, for other options. `sapply()` takes every value of a vector and **applies** it to the first argument of the function argument.
+In order to run this function on every gene in our dataset, we will turn to a family of R functions called the apply functions. These functions are very useful in a wide variety of contexts, so before we get into how we will use them here, let's take time to have a thorough introduction to how they work and why we might use them.
+
+.. code:: R
+
+    x <- list(c(1,5,4,8), c(2,45,7,4,2,6), c(5,347,1))
+    # if we want the mean of each of these vectors, we might write a for loop like this
+    means <- c()
+    for (i in 1:length(x)) {
+      means[i] <- mean(x[[i]])
+    }
+    means
+    # output: [1]   4.5000  11.0000 117.6667
+
+For annoying reasons we won't get into right now, R is very bad at handling for loops; when the thing you're looping over gets appreciably large, it takes ages and ages to execute the loop. Consequently, people do all sorts of things to avoid writing for loops in R, and apply functions are often a great alternative. The general idea of all apply functions is passing one argument that is some iterable object, like a vector or list, and some function that you want to be called on each element of that vector/list.
+
+.. code:: R
+    lapply(x, mean)
+    # output: 
+    # [[1]]
+    # [1] 4.5
+
+    # [[2]]
+    # [1] 11
+
+    # [[3]]
+    # [1] 117.6667
+
+In addition to avoiding the potentially inefficient for loop, note that we've also written much less code to accomplish the same thing.
+The l in lapply stands for list, so it returns a list with one element for each element of the input object. This can be helpful when the function you're applying returns multiple things, but in our case it makes the output slightly more messy/complicated than it needs to be. Fortunately, we can use sapply to simplify the output (the s stands for simplify):
+
+.. code:: R
+    sapply(x, mean)
+    # output: [1]   4.5000  11.0000 117.6667
+
+Now we've perfectly replicated the behavior of our for loop in much less code. The full extent of what sapply does when it "simplifies" output it a bit complicated, but much of the time it generally does what you expect/want.
+
+It is often handy to use apply functions to work with lists/vectors/dataframe columns of strings. Let's say we're trying to strip the prefixes off of these gene IDs:
+
+.. code:: R
+    genes = c("ENSG00000166411", "ENSG00000143311", "ENSG00039457411")
+    # to get just one gene, we might do
+    sub(pattern = "ENSG", replacement = "", genes[1])
+    # last time the function we were applying only had one argument; what do we do with sub, which needs three arguments?
+    lapply(genes, sub, pattern = "ENSG", replacement = "")
+    # output: 
+    # [[1]]
+    # [1] "00000166411"
+
+    # [[2]]
+    # [1] "00000143311"
+
+    # [[3]]
+    # [1] "00039457411"
+
+When applying functions with multiple arguments where you want to keep some arguments constant as you apply the function to each element of your list/vector, just specify them by name after the name of the function. Alternatively, you can write a little wrapper function:
+
+.. code:: R
+    lapply(genes, function(gene) sub(pattern = "ENSG", replacement = "", gene))
+    # same output as before
+
+As before, the fact that the output is a list might be undesirable, so let's use sapply
+
+.. code:: R
+   sapply(genes, function(gene) sub(pattern = "ENSG", replacement = "", gene))
+   # output:
+   # ENSG00000166411 ENSG00000143311 ENSG00039457411 
+   #   "00000166411"   "00000143311"   "00039457411" 
+
+Notice that this time, sapply returned a vector with named elements where each name was the input string. Sometimes this is valuable information, but sometimes the names get in the way of downstream operations. You can access/remove the names like so:
+
+.. code:: R
+    out <- sapply(genes, function(gene) sub(pattern = "ENSG", replacement = "", gene)) 
+    names(out)
+    names(out) <- NULL
+
+We can also apply functions to dataframes, as we plan to for this workshop:
+
+.. code:: R
+    df <- data.frame(
+      "ID" = c("p1", "p2", "p3"),
+      "Gene1" = c(1,5,0.3),
+      "Gene2" = c(10,5,4),
+      stringsAsFactors = FALSE # lots of R functions automatically convert strings into factors and it can mess up all sorts of things
+    }
+    # since dataframes have two axes, you need to specify whether you're applying over rows or columns
+    apply(df, 1, function(row) row)
+    # output:
+    #       [,1]  [,2]  [,3] 
+    # ID    "p1"  "p2"  "p3" 
+    # Gene1 "1.0" "5.0" "0.3"
+    # Gene2 "10"  " 5"  " 4" 
+
+Note that applying over the rows transposed the dataframe. It is often the case that you'll need to transpose the output of an apply() call:
+
+.. code:: R
+    t(apply(df, 1, function(row) row))
+    # output:
+    #      ID   Gene1 Gene2
+    # [1,] "p1" "1.0" "10" 
+    # [2,] "p2" "5.0" " 5" 
+    # [3,] "p3" "0.3" " 4"
+
+Also note that, in our original dataframe, the Gene1 and Gene2 columns are numeric, but the outputs of these apply statements are matrices where everything is a string. Consequently, you may find yourself coercing the outputs of apply calls back into dataframes a lot:
+
+.. code:: R
+    as.data.frame(t(apply(df, 1, function(row) row)))
+    # output:
+    #   ID Gene1 Gene2
+    # 1 p1   1.0    10
+    # 2 p2   5.0     5
+    # 3 p3   0.3     4
+
+Now let's actually apply a function that does something, like finding the highest expression level for each patient:
+
+.. code:: R
+    # we can't just apply max() to each row, because it will get confused by the ID column
+    apply(df, 1, function(row) max(c(row[2], row[3])))
+    # output: [1] "10"  "5.0" "0.3"
+
+This does not produce the expected result because each row is represented as a vector and a vector can only have one type of data in it, so the numbers in the Gene1 and Gene2 columns were coerced to strings. Instead, we can try:
+
+.. code:: R
+    apply(df[,c(2,3)], 1, max)
+    # output: [1] 10  5  4
+    # and then reassemble an output dataframe (cbind takes vectors and returns a matrix with those vectors as columns)
+    as.data.frame(cbind(df$ID, apply(df[,c(2,3)], 1, max)))
+    # output:
+    #   V1 V2
+    # 1 p1 10
+    # 2 p2  5
+    # 3 p3  4
+    # we could also use this to get the column of max expression levels
+    apply(df, 1, function(row) max(c(as.numeric(row[2]), as.numeric(row[3]))))
+    # output: [1] 10  5  4
+
+At some point, your functions may get complicated enough that you don't want to define them inside the apply call:
+
+.. code:: R
+    part_max <- function(row) {
+      max_exp <- max(as.numeric(row[2]), as.numeric(row[3]))
+      names(max_exp) <- "max_exp"
+      out <- c(row[1], max_exp)
+      return(out)
+    }
+    as.data.frame(t(apply(df, 1, part_max)), stringsAsFactors = FALSE)
+    # output:
+    #   ID max_exp
+    # 1 p1      10
+    # 2 p2       5
+    # 3 p3       4
+
+Now that we've familiarized ourselves with the basics of apply functions, let's get back to the task at hand:
 
 .. code:: R
 
