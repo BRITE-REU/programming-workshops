@@ -1,7 +1,7 @@
 .. _linux_bash:
 
 ============================================
-Workshop 4: Machine Learning 
+Workshop 6: Machine Learning 
 ============================================
 
 This workshop provides a basic introduction to machine learning. 

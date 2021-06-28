@@ -1,7 +1,7 @@
 .. _visualization
 
 =========================
-Workshop 7: Visualization
+Workshop 5: Visualization
 =========================
 
 Introduction
