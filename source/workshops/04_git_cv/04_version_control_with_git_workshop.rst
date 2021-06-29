@@ -8,8 +8,8 @@ Instructors: Dakota Hawkins and Emma Briars
 
 In this workshop you will use Snakemake to implement a basic pipeline to download,
 preprocess, and cluster single-cell RNA sequencing (scRNA-seq) datasets. During
-development, you will use git and GitHub for version control, to track changes,
-and to complete to-dos. You can either complete the tasks on the Shared Computing
+development, you will use git and GitHub for version control to track changes
+and complete to-dos. You can either complete the tasks on the Shared Computing
 Cluster (SCC) or on your local computer. We will be using the ``git`` command
 line interface throughout this workshop.
 
