@@ -1,3 +1,5 @@
+.. _git_cv
+
 Workshop 4. Reproducible Research Using Git + Snakemake
 =======================================================
 
