@@ -1,143 +1,78 @@
-Workshop 7. Version Control with git workshop
----------------------------------------------
+Workshop 4. Reprodicible Research with Snakemake and Git
+--------------------------------------------------------
 
-Instructors: Dileep Kishore and Emma Briars
+Instructors: Dakota Hawkins and Emma Briars
 
 .. contents::
    :local:
 
-In this workshop you will work on both basic and advanced ``git`` commands and collaborate with each other through ``git`` repositories.
-For this workshop you will be working in small teams of 2-3 people.
-You can either complete the tasks on the Shared Computing Cluster (SCC) or on your local computer.
-We will be using the ``git`` command line interface throughout this workshop.
+In this workshop you will use Snakemake to implement a basic pipeline to download,
+preprocess, and cluster single-cell RNA sequencing (scRNA-seq) datasets. During
+development, you will use git and GitHub for version control, to track changes,
+and to complete to-dos. You can either complete the tasks on the Shared Computing
+Cluster (SCC) or on your local computer. We will be using the ``git`` command
+line interface throughout this workshop.
 
 
 .. tip::
 
     To login to the SCC use: ``ssh <username>@scc1.bu.edu``
 
+.. tip::
+
+    Once on the scc, start an interactive session using: ``qrsh -pe omp 2 -l mem_per_core=4``
+
 Getting started
 +++++++++++++++
 
-You will be working on a movie recommender system that recommends movies based on plot and keyword similarities.
+A basic skeleton pipeline is hosted on the BRITE github `here. <https://github.com/BRITE-REU/snakemake-workshop>`_
+To begin, login to GitHub using your personal log-in, navigate to the skeleton repository,
+and fork the repo.
 
-.. admonition:: Task 1
+.. image:: sm_images/to_fork.png
 
-    1. One team member should fork this repository: https://github.com/BRITE-REU/git-practice
-    2. Add all your other team members as collaborators.
-    3. Clone the repository
-    4. Follow the instructions in the README to set up your environment
-    5. Ensure that the package runs as expected
+Forking the repo will give you access to your own independent version of the
+repository. 
 
-.. tip::
+Once you've forked the repo to your own Github profile, clone the repo to either
+your local computer or the scc using ``git clone``. This workshop will require 
+several packages necessary for analysis. To install these packages we have
+provided an ``install.sh`` bash script. However, because of ``conda`` weirdness,
+you'll need to execute the script line-by-line.
 
-    1. If you're working on the scc you can use ``module load anaconda3``
-    2. Look at the git history
-    3. Observe the list of remote repositories
+Introduction
+++++++++++++
 
+While the packages are installing, navigate to the **issues** tab in your forked
+version of the repository.
 
-Your first contribution
-+++++++++++++++++++++++
+.. image:: sm_images/issues.png
 
-You can now make your first contribution to the package
+Here you will see a list of "issues" that need to be resolved. We will implement
+the analysis pipeline by resolving each issue in order. Which issues need to be
+worked on, and which issues have already been completed, can be visualized using
+project boards.
 
-.. admonition:: Task 2
+.. image:: sm_images/projects.png
 
-    1. Add your name to the contributors section of the README
-    2. Commit your changes
-    3. Oops, I meant to ask you to add your team member's name not yours. Fix that.
-    4. Push, pull and merge (fix conflicts, if any)
+To actually implement the fixes necessary to produce a working pipeline, we will
+be modifying the workflow file, ``Snakefile``, to specify target input, parameters,
+and output. We will also need to make small modifications to the called scripts
+to ensure they are correctly handling the arguments passed by ``snakemake``.
 
-.. tip::
+Once you've completed a task, you should ``add``, ``commit`` and ``push`` the
+modified files to your remote repository on GitHub. When commiting, specify
+issue the commit is resolving in order to automatically close the respective
+issue. For example, assuming I have modified ``Snakefile`` and
+``scripts/download_data.py`` to correctly download the ``pbmc3k`` dataset, I
+would write:
 
-    1. If you're stuck, look up how to ammend a commit
-    2. Use ``git status`` to explore what happens to the unstaged and staging areas
+.. code-block:: bash
 
+    git commit -m 'Now downloads pbmc3k dataset. Fixes #1' 
 
-Exploring the tree
-++++++++++++++++++
-
-In this section you will explore the history of the repository
-
-.. admonition:: Task 3
-
-    1. Go back 10-20 commits (these should be one of my commits)
-    2. Now go to commit ``0338440``
-    3. What's changed?
-    4. Compare the version of the README you had just updated with this version
-    5. Go back to the latest commit
-
-
-Extending the source code
-+++++++++++++++++++++++++
-
-Software development usually involves multiple developers working on the software at the same time. You will now divide your team into *bug fixers* and *feature contributors*. Don't worry you will get to switch roles in the middle.
-
-.. admonition:: Task 4
-
-    1. *Bug fixers* (will work on the ``master`` branch)
-        - Fix: Raise ``ValueError`` when unsupported method is passed to ``movie_recommender``
-        - Now switch roles
-        - Fix: Load pickled recommender when available
-    2. *Feature contributors* (will create a new ``feature`` branch)
-        - Feat: Save the recommender object after training
-        - Now switch roles
-        - Feat: Unknown movie query returns fuzzy matches
-
-    The ``save``, ``load`` and ``search`` functions are already implemented in ``utils.py`` and can be imported as
-
-    .. code-block:: python
-
-        ``from .utils import save, load, search``
-
-.. tip::
-
-    1. How can the bug fixers also get access to the feature branch?
-    2. Make sure you merge to ``master`` after completing your first feature
-    3. Use ``git stash`` to stash changes before switching branches
-
-
-Changing history
-++++++++++++++++
-
-When you ``git`` a time-machine the first thing you do is go change history.
-
-.. admonition:: Task 5
-
-    1. Reset the repository to the state it was in when you found it (my last commit). Observe the working directory
-    2. Now reset it back to your commit
-    3. Now revert your last commit. Observe the git history
-    4. Undo your revert
-
-.. caution::
-
-    Do not push or pull if you've just reset to a previous commit. This will screw up your history and make things a lot more complicated since the remote history will be different.
-
-.. tip::
-
-    1. Use ``git reflog`` to get the reference of your last commit before you reset
-    2. Can you reset a revert?
-
-
-Getting ready for the release
-+++++++++++++++++++++++++++++
-
-.. admonition:: Task 6
-
-    1. Add the pickled file to `gitignore`. We don't want to store binaries in version control especially large binaries.
-    2. Tag your commit with a version number. Finally, release your source code.
-
-
-Send me a pull request
-++++++++++++++++++++++
-
-You can inform other's of you magnificent changes and accomplishments by making pull requests.
-This way you let everyone know that you made some changes and they need to pull.
-
-.. admonition:: Task 7
-
-    Create a new pull request.
-
-.. tip::
-
-    Ideally pull requests should be from branches in your fork of the repository
+By including ``Fixes`` followed by the issue number (i.e. ``#1``) GitHub
+recognizes that the changes fixes the outstanding issue and closes it. Once
+pushed, go look at the issues and project board on your repository to see what's
+changed. Repeat this process for all listed issues and by the end you'll have a
+functional pipeline!
