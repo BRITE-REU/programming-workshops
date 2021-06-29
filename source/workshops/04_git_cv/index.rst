@@ -19,4 +19,4 @@ important that you have a basic understanding of both tools.
     Git <git>
     Code hosting and repositories <code_hosting>
     Snakemake and Workflow Management <snakemake>
-    Workshop task <07_version_control_with_git_workshop>
+    Workshop task <04_version_control_with_git_workshop>
