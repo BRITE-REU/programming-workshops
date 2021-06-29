@@ -1,4 +1,4 @@
-Workshop 4. Reprodicible Research with Snakemake and Git
+Workshop 4. Reproducible Research with Snakemake and Git
 --------------------------------------------------------
 
 Instructors: Dakota Hawkins and Emma Briars
