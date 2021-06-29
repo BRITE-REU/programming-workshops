@@ -1,3 +1,10 @@
+
+2021 Workshop: https://github.com/BRITE-REU/snakemake-workshop
+
+
+---------------------------------------------
+Everything below this line is from a previous version of this workshop. It is retained here for extra documentation.
+
 Workshop 7. Version Control with git workshop
 ---------------------------------------------
 
