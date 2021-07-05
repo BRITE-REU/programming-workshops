@@ -2,7 +2,7 @@
 Introduction
 ============
 
-Instructors: Dakota Hawkins & Emma Briars
+Instructors: Brie Odom, Michael Silverstein, Devlin Moyer
 
 Welcome to the in-class portion of the visualization workshop in Python! Feel
 free to work in either a Jupyter Notebook or a typical text editor/IDE,
@@ -37,7 +37,7 @@ Machine Learning workshop. As a refresher: this data set is from the
 GSE53987 dataset on Bipolar disorder (BD) and major depressive disorder
 (MDD) and schizophrenia:
 
-Lanz TA, Joshi JJ, Reinhart V, Johnson K et al. STEP levels are
+Lanz TA, Joshi JJ, Reinhart V, Johnson K et al. STEP levels are
 unchanged in pre-frontal cortex and associative striatum in post-mortem
 human brain samples from subjects with schizophrenia, bipolar disorder
 and major depressive disorder. PLoS One 2015;10(3):e0121744. PMID:
@@ -321,19 +321,24 @@ Volcano plots are ways to showcase the number of differentially
 expressed genes found during high throughput sequencing analysis. Log
 fold changes are plotted along the x-axis, while p-values are plotted
 along the y-axis. Genes are marked significant if they exceed some
-absolute Log fold change theshold **as well** some p-value level for
+absolute Log fold change theshold **as well as** some p-value level for
 significance. This can be seen in the plot below.
 
 .. image:: images/volcanoplot.png
 
 Your first task will be to generate some Volcano plots:
 
-**Requirments** 1. Use the provided function to perform an ANOVA
+**Requirements**
+1. Use the provided function to perform an ANOVA
 (analysis of variance) between control and experimental groups in each
-tissue. - Perform a separate analysis for each tissue. 2. Implement the
+tissue. Perform a separate analysis for each tissue.
+
+2. Implement the
 skeleton function to create a volcano plot to visualize both the log
 fold change in expression values and the adjusted p-values from the
-ANOVA 3. Highlight significant genes with distinct colors
+ANOVA.
+
+3. Highlight significant genes with distinct colors
 
 .. code:: python3
 
@@ -364,9 +369,14 @@ introductory material. Here we will be plotting the 1000 most
 differentially expressed genes for each of the analysis performed
 before.
 
-**Requirements** - Implement the skeleton function below - Z normalize
-gene values - Use a diverging and perceptually uniform colormap -
-Generate plots for each of the DE results above
+**Requirements** 
+1. Implement the skeleton function below.
+
+2. Z normalize gene values.
+
+3. Use a diverging and perceptually uniform colormap.
+
+4. Generate plots for each of the DE results above.
 
 **Hint**: Look over all the options for
 `sns.clustermap() <https://seaborn.pydata.org/generated/seaborn.clustermap.html>`__.
@@ -419,7 +429,7 @@ which curvature is maximized. However, the inflection point is also a
 decent – though more conservative – estimate. However, we’ll just stick
 to eye-balling it for this workshop. If you would like to know how to
 automatically find the elbow point, more information can be found
-`here <https://raghavan.usc.edu/papers/kneedle-simplex11.pdf>`__
+`here. <https://raghavan.usc.edu/papers/kneedle-simplex11.pdf>`__
 
 Task 2a: Implement a function that creates an elbow plot
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

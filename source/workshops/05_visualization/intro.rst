@@ -1,5 +1,5 @@
 
-Workshop 7: Data Visualization
+Workshop 5: Data Visualization
 ==============================
 
 In this online workshop you will learn the basic components neccessary
@@ -12,19 +12,19 @@ Visualization Philosophy
 
 While science is often thought of as simply running experiments and
 processing results, communicating those results is one of the most
-important steps. Data visualization is a pivotal step that not only aids
+important steps! Data visualization is a pivotal step that not only aids
 in processing results, but also communicating key take aways. However,
 not all visualizations are created equal, and poor visualizations may
 obscure or even mislead important findings.
 
 While not exhaustive, here are few guidelines to consider when making
-visualizations.
+visualizations:
 
 Pick the Correct Plot to Represent Your Data
 --------------------------------------------
 
 It is important to pick the plot that best represents the data, and
-supports conclusions that are
+supports conclusions.
 
 Plotting Only Summary Statistics May Lead to Incorrect Conclusions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,9 +38,6 @@ plotting summary statistics (boxplots simply plot the 1st, 2nd, and 3rd
 quartile) while ignoring the raw data.
 
 .. figure:: https://blog.bioturing.com/wp-content/uploads/2018/11/BoxViolin.gif
-   :alt: alt text
-
-   alt text
 
 The above plot was taken from
 `https://www.autodeskresearch.com/publications/samestats <here>`__, and
@@ -60,10 +57,7 @@ allows you to visualize potential cell types in your dataset, but also
 lets you easily visualize how gene expression patterns may change as a
 function of cells types. One of these plots, is shown below.
 
-.. figure:: https://raw.githubusercontent.com/SaskiaFreytag/schex/master/misc/example_schex_files/figure-html/ggplot-decreasing-1.png
-   :alt: alt text
-
-   alt text
+.. figure:: https://github.com/SaskiaFreytag/schex/blob/master/man/figures/figure-html/ggplot-decreasing-1.png
 
 Looking at the above figure, it seems gene expression does not differ
 from the major clusters in the dataset. However, single-cell datasets
@@ -74,7 +68,7 @@ different order. Because the order changed, the cells with higher
 expression were plotted atop the cells with lower expression that were
 previously obscuring them.
 
-|image0|
+.. figure:: https://github.com/SaskiaFreytag/schex/blob/master/man/figures/figure-html/ggplot-increasing-1.png
 
 To avoid creating potentially misleading plots, the `schex
 package <https://github.com/SaskiaFreytag/schex>`__ summarizes
@@ -82,7 +76,7 @@ neighborhoods of data and plots those summarized areas on a hexgrid.
 This plot still allows viewers to easily distinguish clusters in the
 dataset, while also more accurately displaying gene expression patterns.
 
-|image1|
+.. figure:: https://github.com/SaskiaFreytag/schex/blob/master/man/figures/figure-html/schex-1.png
 
 Color Choice May Introduce Artifical Artifacts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,33 +322,6 @@ More information can be found
     show(p)
 
 
-
-.. raw:: html
-
-    
-        <div class="bk-root">
-            <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-            <span id="1136">Loading BokehJS ...</span>
-        </div>
-
-
-
-
-
-.. raw:: html
-
-    
-    
-    
-    
-    
-    
-      <div class="bk-root" id="502a0758-5fe1-4c2c-9efd-b61918855514" data-root-id="1137"></div>
-
-
-
-
-
 Altair
 ~~~~~~
 
@@ -459,7 +426,7 @@ environment known as a ``conda`` environment, but there are other
 options out there such as
 `pipenv <https://docs.pipenv.org/en/latest/>`__.
 
-Matplotlip Basics
+Matplotlib Basics
 -----------------
 
 As mentioned above, *matplotlib* is a massive package, and it would be
@@ -481,8 +448,6 @@ now, we’ll just be going over the extreme basic to get started.
     plt.plot(x, y)
 
 
-
-
 .. parsed-literal::
 
     [<matplotlib.lines.Line2D at 0x7efce6fe7748>]
@@ -493,7 +458,7 @@ now, we’ll just be going over the extreme basic to get started.
 .. image:: intro_files/intro_14_1.png
 
 
-**Note** If you are working in a non-notebook environment (i.e. a python
+**Note** If you are working in a non-notebook environment (i.e. a python
 script or another python interpreter), you’ll need to issue the command
 ``plt.show()`` in order to view the plot window.
 
@@ -736,13 +701,12 @@ Data Frameifying Data
 ^^^^^^^^^^^^^^^^^^^^^
 
 Oftentimes, your tabular data is not stored in this data frame
-structure, e.g. is “unstacked” and common attributes are spread across
+structure, e.g. is “unstacked” and common attributes are spread across
 different columns. For these cases it is important to be able to
 **reshape** your data into the data frame structure. This reshaped data
 is sometimes called *tidy* data.
 
-**TASK:** Read about *tidy* data here: `tidy
-data <https://vita.had.co.nz/papers/tidy-data.pdf>`__ Understanding
+**TASK:** Read about *tidy* data `here. <https://vita.had.co.nz/papers/tidy-data.pdf>`__ Understanding
 effective data pre-processing (tidying) is crucial to efficient data
 visualization!
 
@@ -753,19 +717,21 @@ Some useful functions for reshaping data with pandas:
    -  Stack method works with the MultiIndex objects in DataFrame, it
    returning a DataFrame with an index with a new inner-most level of
    row labels. It changes the wide table to a long table.
+   
 -  **unstack()**  
 
    -  Unstack is similar to stack method, It also works with multi-index
    objects in dataframe, producing a reshaped DataFrame with a new
    inner-most level of column labels.
+   
 -  **melt()**
 
    -  Melt reshapes the dataframe from wide format to long format. It
       uses the “id_vars[‘col_names’]” to melt the dataframe by column
       names.
 
-*Note: In R, it is useful to use the ‘tidyverse’ packages to reshape
-data*
+*Note:* In R, it is useful to use the ‘tidyverse’ packages to reshape
+data!
 
 Types of Plots
 ==============
@@ -777,6 +743,7 @@ Relational
   displays the relationship between two numerical variables. The intent
   of these plots is to draw a causal relationship between the two
   variables.
+  
 | **Biological Example:** Expression of one gene over time
 | **Types of Plots:** Scatter plot, line plot
 | **Seaborn API:**
@@ -793,7 +760,7 @@ Relational
 | - Data must be passed in a long-form DataFrame with variables
   specified by passing strings to x, y, and other parameters - Use the
   *kind* parameter to specify which underlying plotting fucntion to use
-  (e.g. kind = “scatter”)
+  (e.g. kind = “scatter”)
 | - Can do the same things as the figure-level functions (scatterplot()
   and lineplot(), but can also facet and do other nice features)
 
@@ -847,7 +814,9 @@ Categorical
 
 | Categorical plots show the relationship between one numerical variable
   and one or more categorical variables.
-| **Types of Plots:** \* Categorical Scatter Plots \* Categorical
+  
+| **Types of Plots:** 
+| \* Categorical Scatter Plots \* Categorical
   Distribution Plots \* Categorical Estimate Plots
 
 | **Seaborn API:**
@@ -937,7 +906,7 @@ Matrix plots – often referred ot as “heatmaps” – take an
 color. The color of each cell is determine by the value in the cell, and
 where the value falls along the specific color map – note: a color map
 is a mapping from a value range (e.g. :math:`[0, 1]`) to specified
-colors representing these values (e.g. the closer to zero a number is
+colors representing these values (e.g. the closer to zero a number is
 the more blue it will appear, and the closer to 1 the value is the more
 red the color will be). In this way, matrix plots allow the
 visualization of multidimensional data fairly easily. In Bioinformatics,

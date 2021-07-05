@@ -23,9 +23,12 @@ material before the workshop.
 Installation 
 ------------
 
-You should have already installed Anaconda/`conda` for the python workshop. This
-workshop will use a `conda environment` to make sure all required packages are
-installed without version issues. However, if choose to work in a `Jupyter
+You should either have already installed Anaconda/`conda` for the python
+workshop, or have access to a Python IDE like Jupyter Notebook via the
+`BU Shared Computing Cluster <https://scc-ondemand1.bu.edu/pun/sys/dashboard/batch_connect/sessions>`.
+
+This workshop will use a `conda environment` to make sure all required packages
+are installed without version issues. However, if choose to work in a `Jupyter
 Notebook` we will first need to install the `nb_conda_kernels` package. This
 will ensure the `conda environment` is discoverable when working in a Notebook.
 
@@ -36,9 +39,9 @@ To install, issue the following command in a terminal:
     conda install -c conda-forge nb_conda_kernels
 
 Conda environments are isolated installations of software that are kept
-seperate from each other. For example, if I wanted to have both Python 2.7 and
-Python 3.x installed on my machine -- without conflicting with one another --
-I could run the following commands:
+seperate from each other. For example, if we wanted to have both Python 2.7 and
+Python 3.x installed on a machine -- without conflicting with one another --
+we could run the following commands:
 
 .. code-block:: bash
 
@@ -90,7 +93,6 @@ If you follow the above instructions, and you do not see
 "Python [conda env:viz]" in selectable the list of selectable kernels, make sure
 you started `Jupyter` from the base conda environment (i.e. you don't see
 "(viz)" at the beginning of your terminal prompt). Otherwise, try restarting.
-
 
 Workshop Materials
 ------------------
