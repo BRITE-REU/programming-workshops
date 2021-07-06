@@ -1181,3 +1181,204 @@ Seaborn Cheat Sheet
 
 `Seaborn Cheat
 Sheet <https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Python_Seaborn_Cheat_Sheet.pdf>`__
+
+An Example of Exploratory Data Analysis with ggplot
+===================================================
+
+Loading Packages and Data
+-------------------------
+
+.. code:: R
+
+   library(palmerpenguins)
+   library(tidyverse)
+   theme_set(theme_bw())
+   data(package = "palmerpenguins")
+
+
+Summarize Data
+--------------
+
+.. code:: R
+
+   summary(penguins)
+
+   ##       species          island    bill_length_mm  bill_depth_mm  
+   ##  Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
+   ##  Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
+   ##  Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  
+   ##                                  Mean   :43.92   Mean   :17.15  
+   ##                                  3rd Qu.:48.50   3rd Qu.:18.70  
+   ##                                  Max.   :59.60   Max.   :21.50  
+   ##                                  NA's   :2       NA's   :2      
+   ##  flipper_length_mm  body_mass_g       sex           year     
+   ##  Min.   :172.0     Min.   :2700   female:165   Min.   :2007  
+   ##  1st Qu.:190.0     1st Qu.:3550   male  :168   1st Qu.:2007  
+   ##  Median :197.0     Median :4050   NA's  : 11   Median :2008  
+   ##  Mean   :200.9     Mean   :4202                Mean   :2008  
+   ##  3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
+   ##  Max.   :231.0     Max.   :6300                Max.   :2009  
+   ##  NA's   :2         NA's   :2
+
+Make Some Plots
+===============
+
+Let’s start by just plotting two of the quantitiative variables against
+each other
+
+.. code:: R
+
+   ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = island)) +
+     geom_point()
+
+   ## Warning: Removed 2 rows containing missing values (geom_point).
+
+|image4|
+
+.. code:: R
+
+   ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+     geom_point()
+
+   ## Warning: Removed 2 rows containing missing values (geom_point).
+
+|image5|
+
+The islands do some work separating the penguins, but the separation is
+crystal clear when using species. If we want to make separate
+scatterplots for each category in a categorical variable, we can use
+``facet_wrap``
+
+.. code:: R
+
+   ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+     geom_point() + facet_wrap(. ~ island)
+
+   ## Warning: Removed 2 rows containing missing values (geom_point).
+
+|image6|
+
+.. code:: R
+
+   ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+     geom_point() + facet_wrap(. ~ species)
+
+   ## Warning: Removed 2 rows containing missing values (geom_point).
+
+|image7|
+
+It looks like the distribution of species across islands isn’t uniform;
+let’s make a plot to visualize the interaction between those variables
+
+.. code:: R
+
+   ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+     geom_point() + facet_wrap(. ~ island)
+
+   ## Warning: Removed 2 rows containing missing values (geom_point).
+
+|image8|
+
+Of course, if we’re just interested in the relationship between the
+species and the islands we can just do a table:
+
+.. code:: R
+
+   table(penguins$species, penguins$island)
+
+   ##            
+   ##             Biscoe Dream Torgersen
+   ##   Adelie        44    56        52
+   ##   Chinstrap      0    68         0
+   ##   Gentoo       124     0         0
+
+On a completely unrelated note, let’s see how body mass differs by sex
+
+.. code:: R
+
+   ggplot(penguins, aes(x = sex, y = body_mass_g)) +
+     geom_boxplot()
+
+   ## Warning: Removed 2 rows containing non-finite values (stat_boxplot).
+
+|image9|
+
+Let’s take a minute to really spruce up the aesthetic appeal of this
+plot. The axis labels could be a bit nicer looking (who likes looking at
+underscores), and the plot could use a title. Also it might be nice if
+the interiors of the boxplots were colored.
+
+.. code:: R
+
+   ggplot(penguins, aes(x = sex, y = body_mass_g)) +
+     geom_boxplot(fill = "skyblue") +
+     labs(x = "Sex", y = "Body Mass (in grams)", title = "Male Penguins Typically Have Higher Body Masses Than Females")
+
+   ## Warning: Removed 2 rows containing non-finite values (stat_boxplot).
+
+|image10|
+
+Just for fun, let’s see what that looks like as a violin plot
+
+.. code:: R
+
+   ggplot(penguins, aes(x = sex, y = body_mass_g)) +
+     geom_violin(fill = "skyblue") +
+     labs(x = "Sex", y = "Body Mass (in grams)", title = "Male Penguins Typically Have Higher Body Masses Than Females")
+
+   ## Warning: Removed 2 rows containing non-finite values (stat_ydensity).
+
+|image11|
+
+That’s a bit concerning; we’ve got some bimodal distributions going on
+here. Once again, let’s use ``color`` and ``facet_wrap`` to see if we
+can find a categorical variable that separates these distributions.
+
+.. code:: R
+
+   ggplot(penguins, aes(x = sex, y = body_mass_g, fill = species)) +
+     geom_violin()
+
+   ## Warning: Removed 2 rows containing non-finite values (stat_ydensity).
+
+|image12|
+
+.. code:: R
+
+   ggplot(penguins, aes(x = sex, y = body_mass_g, fill = species)) +
+     geom_violin() + facet_wrap(. ~ species)
+
+   ## Warning: Removed 2 rows containing non-finite values (stat_ydensity).
+
+|image13|
+
+I’ve decided I don’t like the fact that the little boxes with the facet
+labels are grey and the legend is redunant with the facet labels; let’s
+fix those (and also bring back the nice axis labels I dropped)
+
+::
+
+   ggplot(penguins, aes(x = sex, y = body_mass_g, fill = species)) +
+     geom_violin() + facet_wrap(. ~ species) +
+     theme(strip.background = element_rect(fill = "white"), legend.position = "none") + 
+     labs(x = "Sex", y = "Body Mass (in grams)", title = "Body Mass Distributions By Sex and Species")
+
+   ## Warning: Removed 2 rows containing non-finite values (stat_ydensity).
+
+|image14|
+
+``theme`` can do all sorts of fun things; it can be hard to remember all
+of the different arguments there are for ``theme``, but it’s usually
+pretty easy to google those sorts of things
+
+.. |image4| image:: intro_files/figure-markdown_strict/unnamed-chunk-3-1.png
+.. |image5| image:: intro_files/figure-markdown_strict/unnamed-chunk-3-2.png
+.. |image6| image:: intro_files/figure-markdown_strict/unnamed-chunk-4-1.png
+.. |image7| image:: intro_files/figure-markdown_strict/unnamed-chunk-4-2.png
+.. |image8| image:: intro_files/figure-markdown_strict/unnamed-chunk-5-1.png
+.. |image9| image:: intro_files/figure-markdown_strict/unnamed-chunk-7-1.png
+.. |image10| image:: intro_files/figure-markdown_strict/unnamed-chunk-8-1.png
+.. |image11| image:: intro_files/figure-markdown_strict/unnamed-chunk-9-1.png
+.. |image12| image:: intro_files/figure-markdown_strict/unnamed-chunk-10-1.png
+.. |image13| image:: intro_files/figure-markdown_strict/unnamed-chunk-10-2.png
+.. |image14| image:: intro_files/figure-markdown_strict/unnamed-chunk-11-1.png
