@@ -48,7 +48,7 @@ Human Genome U133 Plus 2.0 Array) consisting of 54675 probes.
 
 The raw CEL files of the GEO series were downloaded, `frozen-RMA normalized <https://bioconductor.org/packages/release/bioc/html/frma.html>`_ , and the probes have been converted to HUGO gene symbols using the `annotate package <https://www.bioconductor.org/packages/release/bioc/html/annotate.html>`_ averaging on genes. The sample clinical data (meta-data) was parsed from the `series matrix file <ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE53nnn/GSE53987/matrix/>`_. You can download it `here <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/04_Machine_learning/data/GSE53987_combined.csv>`_.
 
-:download:`GSE53987_combined.csv <../workshops/04_Machine_Learning/data/GSE53987_combined.csv>`
+:download:`GSE53987_combined.csv <../workshops/06_Machine_Learning/data/GSE53987_combined.csv>`
 
 In total there are 205 rows consisting of 19 individuals diagnosed with
 BPD, 19 with MDD, 19 schizophrenia and 19 controls. Each sample has gene
