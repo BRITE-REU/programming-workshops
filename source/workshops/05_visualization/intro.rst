@@ -57,7 +57,7 @@ allows you to visualize potential cell types in your dataset, but also
 lets you easily visualize how gene expression patterns may change as a
 function of cells types. One of these plots, is shown below.
 
-.. figure:: https://github.com/SaskiaFreytag/schex/blob/master/man/figures/figure-html/ggplot-decreasing-1.png
+.. image:: images/ggplot-decreasing-1.png
 
 Looking at the above figure, it seems gene expression does not differ
 from the major clusters in the dataset. However, single-cell datasets
@@ -68,7 +68,7 @@ different order. Because the order changed, the cells with higher
 expression were plotted atop the cells with lower expression that were
 previously obscuring them.
 
-.. figure:: https://github.com/SaskiaFreytag/schex/blob/master/man/figures/figure-html/ggplot-increasing-1.png
+.. image:: images/ggplot-increasing-1.png
 
 To avoid creating potentially misleading plots, the `schex
 package <https://github.com/SaskiaFreytag/schex>`__ summarizes
@@ -76,7 +76,7 @@ neighborhoods of data and plots those summarized areas on a hexgrid.
 This plot still allows viewers to easily distinguish clusters in the
 dataset, while also more accurately displaying gene expression patterns.
 
-.. figure:: https://github.com/SaskiaFreytag/schex/blob/master/man/figures/figure-html/schex-1.png
+.. image:: images/schex-1.png
 
 Color Choice May Introduce Artifical Artifacts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
