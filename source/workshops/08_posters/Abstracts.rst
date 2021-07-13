@@ -24,3 +24,5 @@ Abstract Draft Guidelines
   - sloppy grammar
 
 From the **ABRCMS National Conference website**: "Your abstract must contain a hypothesis or statement about the problem under investigation, a statement of the experimental methods/methodology used, essential results provided in summary form (even if preliminary), and a conclusion that explains how the work contributes to the hypothesis or statement of problem." 
+
+**Important:** See the **ABRCMS guidelines for preparing an abstract** [here](https://abrcms.org/index.php/present-at-abrcms/preparing-your-abstract-submission). 
