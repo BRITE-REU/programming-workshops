@@ -1,5 +1,5 @@
 ====================================================
-Workshop 6: An Introduction to Relational Detabases
+Workshop 7: An Introduction to Relational Detabases
 ====================================================
 
 This workshop provides a basic introduction to Relational Databases using the SQLite program.
@@ -49,7 +49,7 @@ The data in a row is divided into **fields**.  Each field holds a particular pie
 - **year** – the year the movie came out, stored as an integer
 - **genres** – a list of classification labels for the movie content, stored as a text string
 
-The primary key notation on the mid field indicates that the data will be sorted for fast lookup on this field.  
+The **primary key** notation on the mid field indicates that the data will be sorted for fast lookup on this field.  
 The following are a **few rows of data from the movies table**.   This data comes from the publicly available IMDb (Internet Movie Database) at `https://www.imdb.com/interfaces/ <https://www.imdb.com/interfaces/>`_ .
 
 .. code:: 
@@ -169,7 +169,7 @@ The file should:
    * a tab "\\t" (a tab separated file or **tsv**)
    * a comma "," (a comma separated file or **csv**)
     
-For example, importing movie data into the movies table can be done as follows.  First set the type of field separator.  This can be done with **.mode csv** or **.mode tabs** command,  then import the data from the file movies.tsv.  Note that the prompt **sqlite>** appears when the sqlite3 program is running.
+For example, importing movie data into the movies table can be done as follows.  First, create a tab separated file with the data.  We'll arbitrarily call it movies.tsv.  Next, set the type of field separator in sqlite.  This can be done with **.mode tabs** command (or **.mode csv** if your file is comma separated).  Finally import the data from the file movies.tsv using the **.import** command including the file name and the destination table.  Note that the prompt **sqlite>** appears when the sqlite3 program is running.
 
 .. code:: SQL
 
@@ -202,7 +202,7 @@ The individual query parts are referred to as clauses. The **Select and From cla
 - **Order by** – sorts the output by field(s), either ascending (ASC) or descending (DESC)
 - **Limit** – restricts the output to a maximum number of rows
 
-The simplest query returns the whole table.  Limit is used because the table contains over 100,000 rows. Here, "*" means “all fields.”
+The simplest query returns the whole table.  Limit is used in this example because the table contains over 100,000 rows. Here, "*" means “all fields.”
 
 .. code::
 
