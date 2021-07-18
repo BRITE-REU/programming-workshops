@@ -161,9 +161,9 @@ Write SQL select statements to get the answers to the listed questions.  Use the
     
 **Using SELECT and WHERE in a single table**
 
-	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid)
+	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid, title, i.e, use **SELECT mid, title ...**)
 	
-	#. Pick an actor you know and find out her or his aid.  (answer is aid)
+	#. Pick an actor you know and find out her or his aid.  (answer is aid, name)
 	
 	#. Pick a year from 2000 or later and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre) 
 
@@ -173,23 +173,27 @@ Write SQL select statements to get the answers to the listed questions.  Use the
 	
 	#. How many movies in the movie table? (answer is a count)
 	
+	#. How many movies are in the comedy genre? (answer is a count)
+	
 	#. How many movies have the word "bride" in the title?  "groom" in the title? (answer for each is a count)
 	
 	#. How many actors have a first name that starts "Amy"? (answer is a count)
 	
 **Using Group By**
 	
-	8. List the number of movies in each year.  (answer is multiple rows, each containing year and count)
+	9. List the number of movies in each year.  (answer is multiple rows, each containing year and count)
 	
 **Using joins**
 	
-	9. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
+	10. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
 	
 	#. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	
+	#. Pick an actor and list each movie that person appears in and that person's role in the movie.  (answer is multiple rows, each containing a movie and role
+	
 **Using ORDER BY**
 
-	11. List the top ten actors with the most roles.  (answer is multiple rows, each containing name, count of roles)	
+	12. List the actors in descending order by their number of roles and limit the list to the top ten.  (answer is multiple rows, each containing name, count of roles)	
 
 
 ***************
