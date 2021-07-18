@@ -193,7 +193,7 @@ Write SQL select statements to get the answers to the listed questions.  Use the
 	
 **Using ORDER BY**
 
-	12. List the actors in descending order by their number of roles and limit the list to the top ten.  (answer is multiple rows, each containing name, count of roles)	
+	13. List the actors in descending order by their number of roles and limit the list to the top ten.  (answer is multiple rows, each containing name, count of roles)	
 
 
 ***************
