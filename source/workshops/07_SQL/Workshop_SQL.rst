@@ -42,9 +42,9 @@ Now, stop sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
     sqlite> .quit
 
-3. **Creating the database tables**
+3. **Create the database tables**
 
-Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste the statements below.  
+Create a file **create.sql** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste the statements below.  
 
 .. code:: SQL
 
@@ -70,18 +70,24 @@ Create a file **create.txt** in an editor and enter the CREATE TABLE statements 
 
 
 
-**Also add the following two lines at the bottom of your create.txt file**.  They create indexes which sort the data in the cast file for fast lookup.  This is necessary because the cast table doesn't have a primary key.
+**Also add the following two lines at the bottom of your create.sql file**.  They create indexes which sort the data in the cast table for fast lookup.  This is necessary because the cast table doesn't have a primary key.
 
-.. code::
+.. code:: SQL
 
 	CREATE INDEX mid_aid_index on cast (mid, aid);
 	CREATE INDEX aid_mid_index on cast (aid, mid);
 
-**Restart sqlite** with mymovies.db and use **.read** to read in the file create.txt.  This will execute the statements in the file and create the tables.
+**Restart sqlite** with mymovies.db.
 
 .. code::
+	
+	%sqlite3 mymovies.db
 
-   sqlite> .read create.txt
+Use **.read** to read in the file create.sql.  This will execute the statements in the file and create the tables.
+
+.. code::  
+
+   sqlite> .read create.sql
 
 
 Use **.schema** to see that all the tables were created.  This will list the CREATE TABLE and CREATE INDEX statements.
