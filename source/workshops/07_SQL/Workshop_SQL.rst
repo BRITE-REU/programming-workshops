@@ -14,7 +14,7 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 
 - `Task 2`_: Add data to the tables using the files movies.tsv, actors.tsv, cast.tsv.
 
-- `Task 3`_:  Write queries to get answers for the following.
+- `Task 3`_:  Write queries to get answers for questions about the data.
 
 
 	
@@ -25,24 +25,24 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 Task 1
 ************
 
-**Starting and stopping sqlite**
+1. **Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and `cd` to your `SQLworkshop` directory.  
 
-**Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and `cd` to SQLworkshop.  
+2. **Create the database file**
 
-The following starts sqlite and creates a database file **mymovies.db** or uses that file if it already exists.  **Note that % is used below as an arbitrary symbol for your system prompt.**
+Starting sqlite3 with a file name creates a database file with that name or uses that file if it already exists.  Create a file called **mymovies.db**.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
 .. code::
 	
 	%sqlite3 mymovies.db
 
 
-The following stops sqlite.  **Note that "sqlite>" is the sqlite prompt.**
+Now, stop sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
 .. code::
 
     sqlite> .quit
 
-**Creating the database tables**
+3. **Creating the database tables**
 
 Create a file **create.txt** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste the statements below.  
 
