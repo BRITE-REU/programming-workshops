@@ -108,11 +108,11 @@ Data for the three tables, in tab separated format, has been stored on the SCC i
  - /projectnb/bubpwtf/SQL_workshop/actors.tsv
  - /projectnb/bubpwtf/SQL_workshop/cast.tsv
 
-(Note that these files are also stored at the following location if you want to download them to your own computer:
+(Note that these files are also stored at the following location if you want to download them to your own computer.  Click on the names and use the download button on the next page.:
  - "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_"  
  - "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_"   
  - "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_"
-Clicking on the names and use the download button on the next page. )
+)
 
 Load each file into its own table.  Use the following for the movies.tsv file.  
 
