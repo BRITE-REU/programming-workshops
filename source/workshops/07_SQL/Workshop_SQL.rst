@@ -101,27 +101,27 @@ If you've made a mistake at this point, quit sqlite, delete the mymovies.db file
 
 ************
 Task 2
-************
+************  
 
 Data for the three tables, in tab separated format, has been stored on the SCC in the following files:
  - /projectnb/bubpwtf/SQL_workshop/movies.tsv
  - /projectnb/bubpwtf/SQL_workshop/actors.tsv
  - /projectnb/bubpwtf/SQL_workshop/cast.tsv
 
-(Note that these files are also stored at the following location if you want to download them to your own computer.  Click on the names and use the download button on the next page.:
+
+Note that these files are also stored at the following location if you want to download them to your own computer.  Click on the names and use the download button on the next page.
  - "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_"  
  - "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_"   
  - "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_"
-)
 
 Load each file into its own table.  Use the following for the movies.tsv file.  
 
 .. code::
 
 	sqlite> .mode tabs
-	sqlite> .import movies.tsv movies
+	sqlite> .import /projectnb/bubpwtf/SQL_workshop/movies.tsv movies
 
-Confirm that data has been loaded into the movies table using the following command that counts the number of records.  The answer should be 102754.  
+Confirm that data has been loaded into the movies table using the following command that counts the number of records in the table.  The answer should be 102754.  
 
 .. code::
 
@@ -130,11 +130,15 @@ Confirm that data has been loaded into the movies table using the following comm
 Note that if you get the continuation symbol  **...>** it means you hit return before the command was complete.  Either continue typing or add a missing semicolon (;) at the end. 
 
 
-Now **repeat for the other two files**. 
+.. code:: 
+
+	sqlite> select count(*) from movies
+   	...>; 
 
 
-	sqlite> .import movies.tsv movies
-each table using commands like the following, which list the first 10 lines from a table.  Note that the **.mode** and **.headers** commands make the output easy to read.  **select \*** means output all fields of each row. 
+Now **repeat for the other two files**. The counts are: actors: 223146, cast: 420000.
+
+To view the contents of an individual table, use a **select** command like the following, which lists the first 10 lines from a table.  Note that the **.mode** and **.headers** commands make the output easy to read.  **select \*** means output all fields of each row. 
 
 .. code::
 
@@ -142,22 +146,6 @@ each table using commands like the following, which list the first 10 lines from
 	sqlite> .headers on
 	sqlite> select * from movies limit 10;
 	
-
-Note that if you get the continuation symbol  **...>** it means you hit return before the command was complete.  Either continue typing or add a missing semicolon (;) at the end. 
-
-.. code:: 
-
-	sqlite> select * from movies limit 10
-   	...>; 
-	
-
-
-Confirm the number of rows of data in the table. **select count(*)** means count the number of rows in the table.
-
-.. code:: 
-
-	sqlite> select count(*) from movies;
-
 
 .. _`Task 3`:
 
