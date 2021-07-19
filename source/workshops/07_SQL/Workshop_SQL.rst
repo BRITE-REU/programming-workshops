@@ -77,17 +77,14 @@ Create a file **create.sql** in an editor and enter the CREATE TABLE statements 
 	CREATE INDEX mid_aid_index on cast (mid, aid);
 	CREATE INDEX aid_mid_index on cast (aid, mid);
 
-**Restart sqlite** with mymovies.db.
+**Restart sqlite** with mymovies.db.  Then use **.read** to read in the file create.sql.  This will execute the statements in the file and create the tables.
+
 
 .. code::
 	
-	%sqlite3 mymovies.db
+	%sqlite3 mymovies.dd
 
-Use **.read** to read in the file create.sql.  This will execute the statements in the file and create the tables.
-
-.. code::  
-
-   sqlite> .read create.sql
+        sqlite> .read create.sql
 
 
 Use **.schema** to see that all the tables were created.  This will list the CREATE TABLE and CREATE INDEX statements.
