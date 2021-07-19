@@ -102,7 +102,7 @@ If you've made a mistake at this point, quit sqlite, delete the mymovies.db file
 ************
 Task 2
 ************  
-
+  
 Data for the three tables, in tab separated format, has been stored on the SCC in the following files:
  - /projectnb/bubpwtf/SQL_workshop/movies.tsv
  - /projectnb/bubpwtf/SQL_workshop/actors.tsv
@@ -168,7 +168,7 @@ Write SQL select statements to get the answers to the listed questions.  Use the
     
 **Using SELECT and WHERE in a single table**
 
-	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid, title, i.e, use **SELECT mid, title ...**)
+	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid, title, *i.e.*, use **SELECT mid, title ...**)
 	
 	#. Pick an actor you know and find out her or his aid.  (answer is aid, name)
 	
