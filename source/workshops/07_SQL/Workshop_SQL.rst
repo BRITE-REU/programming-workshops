@@ -103,16 +103,38 @@ If you've made a mistake at this point, quit sqlite, delete the mymovies.db file
 Task 2
 ************
 
-Download the files "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_", "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_", and "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_" by clicking on the names and using the download button on the next page.  Put them into your SQLworkshop directory.
+Data for the three tables, in tab separated format, has been stored on the SCC in the following files:
+- /projectnb/bubpwtf/SQL_workshop/movies.tsv
+- /projectnb/bubpwtf/SQL_workshop/actors.tsv
+- /projectnb/bubpwtf/SQL_workshop/cast.tsv
 
-Load each file into its own table.  Use the following for the movies.tsv file.  Repeat for the other two files.  
+(Note that these files are also stored at the following location if you want to download them to your own computer:
+ - "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_"  
+ - "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_"   
+ - "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_" 
+ Clicking on the names and use the download button on the next page. )
+
+Load each file into its own table.  Use the following for the movies.tsv file.  
 
 .. code::
 
 	sqlite> .mode tabs
 	sqlite> .import movies.tsv movies
 
-Confirm that data has been loaded into each table using commands like the following, which list the first 10 lines from a table.  Note that the **.mode** and **.headers** commands make the output easy to read.  **select \*** means output all fields of each row. 
+Confirm that data has been loaded into the movies table using the following command that counts the number of records.  The answer should be 102754.  
+
+.. code::
+
+	sqlite> select count(*) from movies;
+	
+Note that if you get the continuation symbol  **...>** it means you hit return before the command was complete.  Either continue typing or add a missing semicolon (;) at the end. 
+
+
+Now **repeat for the other two files**. 
+
+
+	sqlite> .import movies.tsv movies
+each table using commands like the following, which list the first 10 lines from a table.  Note that the **.mode** and **.headers** commands make the output easy to read.  **select \*** means output all fields of each row. 
 
 .. code::
 
