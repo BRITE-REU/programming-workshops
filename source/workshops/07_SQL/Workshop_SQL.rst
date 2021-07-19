@@ -235,7 +235,7 @@ Follow these steps to add movie ratings to your database.
 	- **rating** – a floating point value for the movie rating (**datatype: real**)
 	- **votes** – an integer value for the number of votes received by the movie
 - The **data file** is on the SCC at /projectnb/bubpwtf/SQL_workshop/ratings.tsv (or download at "`ratings.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/ratings.tsv>`_" by clicking on the name and selecting Raw on the next page.)  
-- **Import** the data into your table
+- **Import** the data into your table.  There should be 66781 records.
 
 Answer these queries
 
