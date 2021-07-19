@@ -27,7 +27,15 @@ Task 1
 
 1. **Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and `cd` to your `SQLworkshop` directory.  
 
-2. **Create the database file**
+2. **Load sqlite3**.
+
+Use module load.
+
+.. code::
+	
+	%module load sqlite3
+
+3. **Create the database file**
 
 Starting sqlite3 with a file name creates a database file with that name or uses that file if it already exists.  Create a file called **mymovies.db**.  **Note that % is used below as an arbitrary symbol for your system prompt.**
 
@@ -42,7 +50,7 @@ Now, stop sqlite.  **Note that "sqlite>" is the sqlite prompt.**
 
     sqlite> .quit
 
-3. **Create the database tables**
+4. **Create the database tables**
 
 Create a file **create.sql** in an editor and enter the CREATE TABLE statements for movies, actors, and cast.  You can copy and paste the statements below.  
 
@@ -110,9 +118,9 @@ Data for the three tables, in tab separated format, has been stored on the SCC i
 
 
 Note that these files are also stored at the following location if you want to download them to your own computer.  Click on the names and use the download button on the next page.
- - "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/movies.tsv>`_"  
- - "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/actors.tsv>`_"   
- - "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/cast.tsv>`_"
+ - "`movies.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/movies.tsv>`_"  
+ - "`actors.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/actors.tsv>`_"   
+ - "`cast.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/cast.tsv>`_"
 
 Load each file into its own table.  Use the following for the movies.tsv file.  
 
@@ -162,6 +170,7 @@ Write SQL select statements to get the answers to the listed questions.  Use the
     FROM table name
     WHERE condition [AND|OR condition etc.] 
     GROUP BY field name
+    HAVING condition [AND|OR condition etc.] 
     ORDER BY field name [asc|desc] ...
     LIMIT integer
     
@@ -176,31 +185,43 @@ Write SQL select statements to get the answers to the listed questions.  Use the
 
 **Using count()**
 
-	4. How many actors are listed in the actor table?  (answer is a count)
+	4. How many actors have a first name that starts "Amy"? (answer is a count)
 	
-	#. How many movies in the movie table? (answer is a count)
+	#. How many actors have a last name beginning with "C"? (answer is a count)
 	
 	#. How many movies are in the comedy genre? (answer is a count)
 	
 	#. How many movies have the word "bride" in the title?  "groom" in the title? (answer for each is a count)
 	
-	#. How many actors have a first name that starts "Amy"? (answer is a count)
+	#. How many movies have both comedy and romance listed in their genres? (answer is a count) 
 	
-**Using Group By**
+**Using GROUP BY**
 	
 	9. List the number of movies in each year.  (answer is multiple rows, each containing year and count)
 	
+**Using GROUP BY, HAVING, ORDER BY**
+
+	10. List the top genre combinations, i.e, those that occur at least 500 times. List them in descending order by the number of occurrences.
+	
+You'll have to adjust the column widths to see the entire genre names.  Use this:
+
+.. code:: 
+
+	sqlite> .width 30 10
+
 **Using joins**
 	
-	10. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
+	11. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
 	
 	#. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
 	
 	#. Pick an actor and list each movie that person appears in and that person's role in the movie.  (answer is multiple rows, each containing a movie and role
 	
-**Using ORDER BY**
-
-	13. List the actors in descending order by their number of roles and limit the list to the top ten.  (answer is multiple rows, each containing name, count of roles)	
+	#. List the actors in descending order by their number of roles and limit the list to the top ten.  (answer is multiple rows, each containing name, count of roles)
+	
+	#. Find actors who have appeared in at least five comedies.  Limit to 30.  First do this without any ordering.  Then, list them in descending order of number of comedies. (answer is multiple rows, each containing name, count of movies)
+	
+	#. (Hard) Find actors who have appeared in at least five comedies and five dramas.  Limit to 30.  First do this without any ordering, then list them in descending order of the combined number of comedies and dramas. 
 
 
 ***************
@@ -213,7 +234,7 @@ Follow these steps to add movie ratings to your database.
 	- **mid** – a unique integer identifier for the movie (set this as the **primary key**)
 	- **rating** – a floating point value for the movie rating (**datatype: real**)
 	- **votes** – an integer value for the number of votes received by the movie
-- **Download** the data file "`ratings.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_SQL/data/ratings.tsv>`_" by clicking on the name and selecting Raw on the next page.  Save the file in SQLworkshop.
+- The **data file** is on the SCC at /projectnb/bubpwtf/SQL_workshop/ratings.tsv (or download at "`ratings.tsv <https://github.com/BRITE-REU/programming-workshops/blob/master/ratings.tsv>`_" by clicking on the name and selecting Raw on the next page.)  
 - **Import** the data into your table
 
 Answer these queries
