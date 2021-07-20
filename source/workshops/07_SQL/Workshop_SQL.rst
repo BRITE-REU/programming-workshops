@@ -25,7 +25,7 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 Task 1
 ************
 
-1. **Create a directory** for this workshop called **SQLworkshop**. All your work should be done in this directory. Open a terminal window and `cd` to your `SQLworkshop` directory.  
+1. **Create a directory** for this workshop called **SQLworkshop**.  Do this on the SCC under your directory.  All your work should be done in this directory. Open a terminal window and `cd` to your `SQLworkshop` directory.  
 
 2. **Load sqlite3**.
 
