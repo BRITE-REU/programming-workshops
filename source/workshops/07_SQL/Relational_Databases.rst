@@ -189,6 +189,7 @@ Data is queried with **SQL select statements**.  The basic form of an SQL query 
     FROM table name
     WHERE condition [AND|OR condition etc.] 
     GROUP BY field name
+    HAVING condition [AND|OR condition etc.] 
     ORDER BY field name [asc|desc] ...
     LIMIT integer
 
