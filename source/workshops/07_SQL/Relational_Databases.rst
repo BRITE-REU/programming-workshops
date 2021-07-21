@@ -325,7 +325,7 @@ Going back to the **Wonder Woman example**.  Here is a query that returns the ac
 .. code:: SQL
 
     sqlite> select mid, title, aid, name, role 
-       ...> from movies join cast using(mid) join actors using (aid) 
+       ...> from movies join cast using(mid) join actors using(aid) 
        ...> where title like "wonder woman";
 
 
