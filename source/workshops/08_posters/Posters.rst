@@ -38,7 +38,7 @@ Poster Draft Guidelines
 	- **Title**
 	- **Authors**
 	- **Affiliations of Authors**
-		- Yours should be your school and "Boston University Bioinformatics BRITE REU Program, Summer 2019" 
+		- Yours should be your school and "Boston University Bioinformatics BRITE REU Program, Summer 2021" 
 	- **Abstract**
 	- **Text for** 
 		- Motivation and Background
@@ -48,7 +48,7 @@ Poster Draft Guidelines
 	- **Figures**
 	- **References**  
 	- **Acknowledgements**
-		- Include: "This work was funded, in part, by NSF grant DBI-1559829, awarded to the Boston University Bioinformatics BRITE REU program, [and if other grants] and <grant agency, like NSF or NIH> grant <grant number>."
+		- Include: "This work was funded, in part, by NSF grant DBI-1949968, awarded to the Boston University Bioinformatics BRITE REU program, [and if other grants] and <grant agency, like NSF or NIH> grant <grant number>."
 
 ---------------------------------------
 What to look for when reading a poster
