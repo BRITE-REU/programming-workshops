@@ -90,7 +90,7 @@ Create a file **create.sql** in an editor and enter the CREATE TABLE statements 
 
 .. code::
 	
-	%sqlite3 mymovies.dd
+	%sqlite3 mymovies.db
 
         sqlite> .read create.sql
 
