@@ -71,7 +71,7 @@ Use module load.
     sqlite> .width 18 18 18 18 18 18 18
     sqlite> .headers on
     
-***Note:** If the columns are too narrow to see all the content, you can always switch columns off using `sqlite> .mode list`{:.sqlite}.
+***Note:** If the columns are too narrow to see all the content, you can always switch columns off using `sqlite> .mode list`{:.sql}.
 
 7. **Skip ahead** to `Task 3`_.
 
