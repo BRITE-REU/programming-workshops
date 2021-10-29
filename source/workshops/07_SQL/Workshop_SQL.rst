@@ -16,8 +16,62 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 
 - `Task 3`_:  Write queries to get answers for questions about the data.
 
+************
+Abbreviated workshop only
+************
+If this is an abbreviated workshop, we'll skip Tasks 1 and 2 and instead load a pre-existing sqlite database.  This can be done as follows:  
 
+1. **Create a directory** for this workshop called **SQLworkshop**.  Do this on the SCC under your directory.  All your work should be done in this directory. Open a terminal window and **`cd` to your `SQLworkshop` directory**.  **Note that % is used below as an arbitrary symbol for your system prompt.**
+
+.. code::
 	
+	%mkdir SQLworkshop
+	%cd SQLworkshop
+
+
+2. **Load sqlite3**.
+
+Use module load.
+
+.. code::
+	
+	%module load sqlite3
+
+3. **Copy the pre-existing database file** to your SQLworkshop directory.
+
+.. code::
+	
+	cp /projectnb/bubpwtf/SQL_workshop/mymovies.db .
+
+4. **Open the pre-existing sqlite database file**.
+
+.. code::
+	
+	%sqlite3 mymovies.db
+
+
+5. Use **.schema to see the tables** in the database.  This will list the CREATE TABLE and CREATE INDEX statements that were used to create the database tables. **Note that "sqlite>" is the sqlite prompt.**
+
+.. code::
+
+   sqlite> .schema
+ 
+6. **Stop sqlite and restart** (so you can see how this is done).
+
+.. code::
+
+    sqlite> .quit
+    %sqlite3 mymovies.db
+
+7. **Set the viewing parameters** in sqlite.
+
+.. code::
+
+    sqlite> .mode columns
+    sqlite> .headers on
+
+7. **Skip ahead** to `Task 3`_.
+
 
 .. _`Task 1`:
 
@@ -25,7 +79,13 @@ In the workshop, we'll do the following.  See the instructions below for guidanc
 Task 1
 ************
 
-1. **Create a directory** for this workshop called **SQLworkshop**.  Do this on the SCC under your directory.  All your work should be done in this directory. Open a terminal window and `cd` to your `SQLworkshop` directory.  
+1. **Create a directory** for this workshop called **SQLworkshop**.  Do this on the SCC under your directory.  All your work should be done in this directory. Open a terminal window and `cd` to your `SQLworkshop` directory. **Note that % is used below as an arbitrary symbol for your system prompt.**
+
+.. code::
+	
+	%mkdir SQLworkshop
+	%cd SQLworkshop
+
 
 2. **Load sqlite3**.
 
@@ -37,7 +97,7 @@ Use module load.
 
 3. **Create the database file**
 
-Starting sqlite3 with a file name creates a database file with that name or uses that file if it already exists.  Create a file called **mymovies.db**.  **Note that % is used below as an arbitrary symbol for your system prompt.**
+Starting sqlite3 with a file name creates a database file with that name or uses that file if it already exists.  Create a file called **mymovies.db**.  
 
 .. code::
 	
