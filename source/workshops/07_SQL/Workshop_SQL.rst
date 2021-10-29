@@ -74,9 +74,10 @@ Use module load.
 ***Note:** If the columns are too narrow to see all the content, you can always switch columns off using 
 
 .. code::
+
      sqlite> .mode list
 
-7. **Skip ahead** to `Task 3`_.
+8. **Skip ahead** to `Task 3`_.
 
 
 .. _`Task 1`:
