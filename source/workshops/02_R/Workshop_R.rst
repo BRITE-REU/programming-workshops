@@ -31,7 +31,7 @@ We will use packages from the bioconductor repository, which provides tools for 
 
 source("https://bioconductor.org/biocLite.R")
 
-Use bioclite("package_name") function to install packages SummarizedExperiment, DESeq2 and airway.
+Use BiocManager::install("package_name") function to install packages SummarizedExperiment, DESeq2 and airway.
 
 Note: If package base is not already installed, please install that as well.
 
