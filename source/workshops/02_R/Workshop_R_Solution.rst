@@ -40,11 +40,13 @@ Note: If package base is not already installed, please install that as well.
    packages <- c("readr", "ggplot2", "dplyr", "magrittr")
    install.packages(packages, dependencies = TRUE)
 
-   source("https://bioconductor.org/biocLite.R")
-   biocLite("SummarizedExperiment", dependencies = TRUE)
-   biocLite("DESeq2", dependencies = TRUE)
-   biocLite("airway", dependencies = TRUE)
-   biocLite("enrichR", dependencies = TRUE)
+   if(!require("BiocManager", quietly = TRUE))
+      install.packages("BiocManager")
+   BiocManager::install(version = "3.15")
+   
+   BiocManager::install("SummarizedExperiment", dependencies = TRUE)
+   BiocManager::install("DESeq2", dependencies = TRUE)
+   BiocManager::install("airway", dependencies = TRUE)
 
 
 Load these libraries using library("package_name") function:
