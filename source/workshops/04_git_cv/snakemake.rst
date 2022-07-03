@@ -66,7 +66,7 @@ rule implementation. That is, a *rule* is an operation that takes an input one f
 and operates onto it to produce another file.
 
 
-.. code-block::
+..code-block::
     rule copy_file:
         input:
             "test.txt"
