@@ -66,7 +66,7 @@ rule implementation. That is, a *rule* is an operation that takes an input one f
 and operates onto it to produce another file.
 
 
-..code-block::
+.. code-block:: python
     rule copy_file:
         input:
             "test.txt"
@@ -107,7 +107,7 @@ be broken down as:
 
 To begin, we create a **rule** to generate a genomic index (required for alignment).
 
-..code-block::
+.. code-block:: python
 
     rule index:
         input:
