@@ -51,20 +51,21 @@ You can find a list of commands `here <https://confluence.atlassian.com/bitbucke
 In general, the most typical use of ``git`` consists of:
 
 1. ``git init`` to initialize a new repository
-2. ``git clone`` to copy a repository onto your local computer
-3. ``git add`` to make a list of changes you made locally
+2. ``git clone <url/to/your/hosted/repository>`` to copy a repository onto your local computer
+3. ``git add <path_to_file_you_want_to_add>`` to make a list of changes you made locally
 4. ``git commit`` to make a log of your changes
 5. ``git push`` to send the changes to the online repository
 6. ``git pull`` to get changes.
 
 There are plenty of nice turorials to learn ``git`` on the web.
-The best way to get started with ``git`` would be to try out this `short tutorial <http://rogerdudler.github.io/git-guide>`_ on the command line along with this `interactive web tutorial <https://learngitbranching.js.org>`_ which features a built-in terminal that you can use to walk through the commands step by step.
+The best way to get started with ``git`` would be to try out this `short tutorial <http://rogerdudler.github.io/git-guide>`_ on the command line to familiarize yourself with the common
+commands used by ``git``. If you would like a more in-depth tutorial, follow along with this `interactive web tutorial <https://learngitbranching.js.org>`_ which features a built-in terminal that you can use to walk through the commands step by step.
 The `Bibucket tutorial from Atlassian <https://www.atlassian.com/git/tutorials/setting-up-a-repository>`_ is also a very comprehensive and detailed turorial, and overall, a good resource to find what you need.
 
 .. admonition:: Exercise
 
    1. Start with this `tutorial <http://rogerdudler.github.io/git-guide>`_
-   2. Try the `interactive web tutorial <https://learngitbranching.js.org>`_ and try to finish all the exercises in the "Main" tab.
+   2. Try the `interactive web tutorial <https://learngitbranching.js.org>`_. Finish *at least* the four exercises in the "Introduction Sequence" section in the "Main" tab.
 
    For the workshop, we expect you to know how to clone a repository, add and commit changes, push to, pull from the repository and some basic knowledge for moving and modifying the ``source`` tree.
 
