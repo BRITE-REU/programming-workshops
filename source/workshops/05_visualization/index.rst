@@ -70,7 +70,7 @@ Run the following command in a terminal:
 
 .. code-block:: bash
 
-    conda create --name viz --file environment.yaml
+    conda env create --name viz --file environment.yaml
 
 
 Jupyter
