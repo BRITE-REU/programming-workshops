@@ -510,3 +510,102 @@ analysis
     top_genes = get_top_genes(tissue_res, 'p_value', 100)
     heatmap()
 
+
+Task 3: Subplots and Facet Grids
+--------------------------------------------------------
+Often we want to combine multiple plots into one larger figure for presentations, articles, publications. This is where `plt.subplots` comes in handy!
+
+Task 3A: Combining Violin Plots into one figure
+--------------------------------------------------------
+For Task 2B, we found the top 100 DE genes in order to plot a heatmap. For the top 3 DE genes, let's compare the expression of control samples vs. schizophrenia samples in each of the three tissues.
+
+**Hints**
+- `plt.subplots()` creates a grid of individual axes. You can access each of these individual axes using indices e.g. `axs[0]`
+- `sns.violinplot` has options for x,y, and hue. Assigning `hue` to the `Disease.state` allows for easy comparisons between control and schizophrenia. 
+- You might get too many legends! You can control which axis has a legend using `ax.legend().set_visible(False)`
+
+.. code:: python3
+
+    def main():
+        top_three = top_genes[:3]
+        tissues = data['Tissue'].unique()
+        data_disease_state_filter = data[(data['Disease.state'] == 'control') | (data['Disease.state'] == 'schizophrenia')]
+
+        fig, axs = plt.subplots()
+
+
+    main()
+
+
+.. image:: images/violins_subplots.png
+
+
+Task 3B: Combining Volcano plots into one figure
+--------------------------------------------------------
+
+Requirements
+~~~~~~~~~~~~
+- Implement the skeleton function to create a figure with three volcano plots for each of the three tissues using both `plt.subplots` 
+- Highlight significant genes for each plot
+- Add titles for each of the sub-plots
+
+**Hints**
+- Look for axes options in [sns.scatterplot()](https://seaborn.pydata.org/generated/seaborn.scatterplot.html).
+
+.. code:: python3
+
+    hippo_de = differential_expression(hippocampus, "Disease.state",  features=data.columns[10:], reference="control")
+    pf_de = differential_expression(pf_cortex, "Disease.state",  features=data.columns[10:], reference="control")
+    as_de = differential_expression(as_striatum, "Disease.state",  features=data.columns[10:], reference="control")
+
+    combined_de = [hippo_de, pf_de, as_de]
+    labels = ['Hippocampus', 'Pre-frontal cortex', 'Associative striatum']
+    
+    def volcano_plot_combined(dfs, labels, x_col, y_col, sig_col, sig_thresh, fc_thresh):
+        """
+        Generate a volcano plot to showcasing differentially expressed genes.
+        
+        Parameters
+        ----------
+            dfs : List of pandas.DataFrame
+                A list of data frames containing differential expression results
+            labels : List of str
+            x_col : str
+                Column to plot along x-axis, typically log2(foldchange)
+            y_col : str
+                Column to plot along y-axis, typically -log10(p-value)
+            sig_col : str
+                Column in `df` with adjusted p-values.
+            sig_thresh : float
+                Threshold for statistical significance.
+            fc_thresh : float
+                Threshold for biological significance 
+        """
+        # Helper function to find the adjusted p-value cutoff for plotting purposes
+        def find_sig_y(df, x_col, y_col, sig_col, sig_thresh, fc_thresh):
+            df['significant'] = False
+            def get_direction(fc, p_value):
+                if p_value < sig_thresh and abs(fc) > fc_thresh:
+                    if fc > 0:
+                        return "Up"
+                    else:
+                        return "Down"
+                else:
+                    return "Not Sig."
+
+            df["DE"] = df.apply(lambda x: get_direction(x[x_col], x[sig_col]), axis=1)
+            sig_y = df[df.DE != "Not Sig."][y_col].min()
+            return sig_y
+
+
+        # Plot each volcano plot onto the same figure
+        n_dfs = len(dfs)
+        n_rows = 1
+        n_cols = n_dfs
+        fig, axs = plt.subplots(n_rows, n_cols, figsize=(15,5))
+
+        return axs
+
+
+.. image:: images/volcano_subplots.png
+
