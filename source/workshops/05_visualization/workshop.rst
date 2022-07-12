@@ -46,9 +46,9 @@ and major depressive disorder. PLoS One 2015;10(3):e0121744. PMID:
 This is a microarray data on platform GPL570 (HG-U133_Plus_2, Affymetrix
 Human Genome U133 Plus 2.0 Array) consisting of 54675 probes.
 
-The raw CEL files of the GEO series were downloaded, `frozen-RMA normalized <https://bioconductor.org/packages/release/bioc/html/frma.html>`_ , and the probes have been converted to HUGO gene symbols using the `annotate package <https://www.bioconductor.org/packages/release/bioc/html/annotate.html>`_ averaging on genes. The sample clinical data (meta-data) was parsed from the `series matrix file <ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE53nnn/GSE53987/matrix/>`_. You can download it `here <https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/04_Machine_learning/data/GSE53987_combined.csv>`_.
+The raw CEL files of the GEO series were downloaded, `frozen-RMA normalized <https://bioconductor.org/packages/release/bioc/html/frma.html>`_ , and the probes have been converted to HUGO gene symbols using the `annotate package <https://www.bioconductor.org/packages/release/bioc/html/annotate.html>`_ averaging on genes. The sample clinical data (meta-data) was parsed from the `series matrix file <ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE53nnn/GSE53987/matrix/>`_. You can download it here:
 
-:download:`GSE53987_combined.csv <../workshops/06_Machine_Learning/data/GSE53987_combined.csv>`
+:download:`GSE53987_combined.csv <data/GSE53987_combined.csv>`
 
 In total there are 205 rows consisting of 19 individuals diagnosed with
 BPD, 19 with MDD, 19 schizophrenia and 19 controls. Each sample has gene
@@ -99,10 +99,11 @@ switch every 15 minutes. Also, we will be using the python plotting
 libraries matplotlib and seaborn.
 
 TASK 0: Import Libraries and Data
----------------------------------
+=================================
 
 -  Download the data set (above) as a .csv file
--  Initialize your script by loading the following libraries.
+-  Initialize your script by running the first cell and ensuring the data file
+   is pointing to the correct location on your local computer.
 
 .. code:: python3
 
@@ -117,35 +118,39 @@ TASK 0: Import Libraries and Data
     genes = data.columns[10:]
 
 TASK 1: Visualize Dataset Demographics
---------------------------------------
+======================================
 
 Required Workshop Task:
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-Use the skeleton code to write 3 plotting functions:
-''''''''''''''''''''''''''''''''''''''''''''''''''''
+1. Use the skeleton code to write 3 plotting functions:
 
-::
+   1. plot_distribution()
 
-   1. plot_distribution()  
-       - Returns a distribution plot object given a dataframe and one observation
+      -  Returns a distribution plot object given a dataframe and one
+         observation
+
    2. plot_relational()
-       - Returns a distribution plot object given a dataframe and (x,y) observations  
+
+      -  Returns a distribution plot object given a dataframe and (x,y)
+         observations
+
    3. plot_categorical()
-       - Returns a categorical plot object given a dataframe and (x,y) observations
 
-Use these functions to produce the following plots:
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+      -  Returns a categorical plot object given a dataframe and (x,y)
+         observations
 
-::
+2. Use these functions to produce the following plots:
 
    1. Histogram of patient ages
    2. Histogram of gene expression for 1 gene
-   3. Scatter plot of gene expression for 1 gene by ages 
-   4. Scatter plot of gene expression for 1 gene by disease state 
+   3. Scatter plot of gene expression for 1 gene by ages
+   4. Box plot of gene expression for 1 gene by disease state
+   5. Violin plot of gene expression for 1 gene by Tissue
 
 | Your plots should satisfy the following critical components:
-| - Axis titles - Figure title - Legend (if applicable) - Be readable
+| \* Axis titles \* Figure title \* Legend (if applicable) \* Be
+  readable
 
 Bonus Task:
 ~~~~~~~~~~~
@@ -154,21 +159,9 @@ Bonus Task:
    color palettes, axis legends, etc. You can choose to define your own
    plotting “style” and keep that consistent for all of your plotting
    functions.
-2. Faceting your plots. Modify your functions to take in a “facet”
-   argument that when facet is an observation, the function will create
-   a facet grid and facet on that observation. Read more about faceting
-   here: Faceting generates multi-plot grids by **mapping a dataset onto
-   multiple axes arrayed in a grid of rows and columns that correspond
-   to levels of variables in the dataset.**
-
-   -  In order to use facteting, your data **must be** in a Pandas
-      DataFrame and it must take the form of what Hadley Whickam calls
-      “tidy” data.
-   -  In brief, that means your dataframe should be structured such that
-      each column is a variable and each row is an observation. There
-      are figure-level functions (e.g. relplot() or catplot()) that will
-      create facet grids automatically and can be used in place of
-      things like distplot() or scatterplot().
+2. Clean up any axis or tick labels so that all labels are clearly
+   visible. This may include playing with text size, rotation, or some
+   other parameter.
 
 .. code:: python3
 
@@ -230,19 +223,17 @@ Bonus Task:
         """
         
 
-TASK 2: Differential Expression Analysis
-----------------------------------------
-
-Differential expression analysis is a fancy way of saying, “We want to
-find which genes exhibit increased or decreased expression compared to a
-control group”. Neat. Because the dataset we’re working with is
-MicroArray data – which is mostly normally distributed – we’ll be using
-a simple One-Way ANOVA. If, however, you were working with sequence data
-– which follows a Negative Binomial distribution – you would need more
-specialized tools. A helper function is provided below.
 
 .. code:: python3
 
+    def bh_adjust(pvalues):
+        from scipy.stats import rankdata
+        ranked_pvalues = rankdata(pvalues)
+        fdr = pvalues * len(pvalues) / ranked_pvalues
+        fdr[fdr > 1] = 1
+    
+        return fdr
+    
     def differential_expression(data, group_col, features, reference=None):
         """
         Perform a one-way ANOVA across all provided features for a given grouping.
@@ -285,64 +276,60 @@ specialized tools. A helper function is provided below.
         for each, index in by_group.groups.items():
             values.append(data.loc[index, features])
             if each !=  reference:
-                key = "{}.FoldChange".format(each)
-                results[key] = data.loc[index, features].mean()\
-                             / reference_avg
+                key = f"{each.replace(' ', '_')}_foldchange"
+                results[key] = np.log2(data.loc[index, features].mean()) \
+                             - np.log2(reference_avg)
         fold_change_cols = list(results.keys())
         fvalues, pvalues = stats.f_oneway(*values)
-        results['f.value'] = fvalues
-        results['p.value'] = pvalues
-        results['p.value.adj'] = pvalues * len(features)
+        results['f_value'] = fvalues
+        results['p_value'] = pvalues
+        results['neg_log10_pvalue'] = - np.log10(pvalues)
+        results['adj_p_value'] = bh_adjust(pvalues)
         results_df = pd.DataFrame(results)
         def largest_deviation(x):
             i = np.where(abs(x) == max(abs(x)))[0][0]
             return x[i]
-        results_df['Max.FoldChange'] = results_df[fold_change_cols].apply(
-                                           lambda x: largest_deviation(x.values), axis=1)
+        if len(fold_change_cols) > 0:
+            results_df['max_foldchange'] = results_df[fold_change_cols].apply(
+                                               lambda x: largest_deviation(x.values), axis=1)
     
         return results_df  
 
-.. code:: python3
-
-    # Here's some pre-subsetted data
-    hippocampus = data[data["Tissue"] == "hippocampus"]
-    pf_cortex = data[data["Tissue"] == "Pre-frontal cortex (BA46)"]
-    as_striatum = data[data["Tissue"] == "Associative striatum"]
-    # Here's how we can subset a dataset by two conditions.
-    # You might find it useful :thinking:
-    data[(data["Tissue"] == 'hippocampus') & (data['Disease.state'] == 'control')]
-
-
-
 Task 2a: Volcano Plots
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 Volcano plots are ways to showcase the number of differentially
 expressed genes found during high throughput sequencing analysis. Log
 fold changes are plotted along the x-axis, while p-values are plotted
 along the y-axis. Genes are marked significant if they exceed some
-absolute Log fold change theshold **as well as** some p-value level for
+absolute Log fold change theshold **as well** some p-value level for
 significance. This can be seen in the plot below.
 
 .. image:: images/volcanoplot.png
 
 Your first task will be to generate some Volcano plots:
 
-**Requirements**
-1. Use the provided function to perform an ANOVA
-(analysis of variance) between control and experimental groups in each
-tissue. Perform a separate analysis for each tissue.
+Requirments
+-----------
 
-2. Implement the
-skeleton function to create a volcano plot to visualize both the log
-fold change in expression values and the adjusted p-values from the
-ANOVA.
+1. Use the provided function to perform an ANOVA (analysis of variance)
+   between control and experimental groups in each tissue.
 
+   -  Perform a separate analysis for each tissue.
+
+2. Implement the skeleton function to create a volcano plot to visualize
+   both the log fold change in expression values and the p-values from
+   the ANOVA comparison
 3. Highlight significant genes with distinct colors
+
+**hints**: 1. You might find the ``palette`` argument for seaborn plots
+helpful when coloring each gene 2. Volcano plots are typically a little
+strange where *significance* is determined by **adjusted** p-values, but
+**raw** -:math:`log_{10}` p-values are plotted along the y-axis
 
 .. code:: python3
 
-    def volcano_plot(data, sig_col, fc_col, sig_thresh, fc_thresh):
+    def volcano_plot(data, x_col, y_col, sig_col, sig_thresh, fc_thresh):
         """
         Generate a volcano plot to showcasing differentially expressed genes.
         
@@ -350,18 +337,67 @@ ANOVA.
         ----------
             data : (pandas.DataFrame)
                 A data frame containing differential expression results
+            x_col : str
+                Column to plot along x-axis, typically log2(foldchange)
+            y_col : str
+                Column to plot along y-axis, typically -log10(p-value)
             sig_col : str
                 Column in `data` with adjusted p-values.
-            fc_col : str
-                Column in `data` with fold changes.
-            sig_thresh : str
+            sig_thresh : float
                 Threshold for statistical significance.
-            fc_thresh
+            fc_thresh : float
+                Threshold for biological significance 
         """
+        data['significant'] = False
+        def get_direction(fc, p_value):
+            if p_value < sig_thresh and abs(fc) > fc_thresh:
+                if fc > 0:
+                    return "Up"
+                else:
+                    return "Down"
+            else:
+                return "Not Sig."
+        data["DE"] = data.apply(lambda x: get_direction(x[x_col], x[sig_col]), axis=1)
         return ax
 
-Task 2b: Plot the Top 1000 Differentially Expressed Genes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Generate and Plot Tissue-specific Volcano Plots
+-----------------------------------------------
+
+Hippocampus DE
+~~~~~~~~~~~~~~
+
+.. code:: python3
+
+    # Here's some pre-subsetted data
+    hippocampus = data[data["Tissue"] == "hippocampus"]
+    
+    hippo_de = differential_expression(hippocampus, "Disease.state",  features=data.columns[10:], reference="control")
+    volcano_plot()
+
+
+Pre-frontal Cortex Volcano Plot
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python3
+
+    pf_cortex = data[data["Tissue"] == "Pre-frontal cortex (BA46)"]
+    pf_de = differential_expression(pf_cortex, "Disease.state",  features=data.columns[10:], reference="control")
+    volcano_plot()
+
+
+Associative Striatum Volcano Plot
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python3
+
+    as_striatum = data[data["Tissue"] == "Associative striatum"]
+    as_de = differential_expression(as_striatum, "Disease.state",  features=data.columns[10:], reference="control")
+    volcano_plot()
+
+
+Task 2b: Plot the Top 100 Differentially Expressed Genes
+--------------------------------------------------------
 
 Clustered heatmaps are hugely popular for displaying differences in gene
 expression values. To reference such a plot, look back at the
@@ -369,310 +405,108 @@ introductory material. Here we will be plotting the 1000 most
 differentially expressed genes for each of the analysis performed
 before.
 
-**Requirements** 
-1. Implement the skeleton function below.
+Requirements
+~~~~~~~~~~~~
 
-2. Z normalize gene values.
+-  Implement the skeleton function below
+-  Z normalize gene values
+-  To visualize the effects of row and cluster ordering on data
+   presentation, make heatmaps that are both clustered and not clustered
+-  Use a diverging and perceptually uniform colormap
+-  Annotate rows using ``row_colors`` parameter in ``sns.clustermap`` to
+   color rows by disease status or tissue of origin
 
-3. Use a diverging and perceptually uniform colormap.
-
-4. Generate plots for each of the DE results above.
-
-**Hint**: Look over all the options for
+**Hints**: 1. Look over all the options for
 `sns.clustermap() <https://seaborn.pydata.org/generated/seaborn.clustermap.html>`__.
-It might make things easier.
+It might make things easier. 2. The data we are plotting is the
+**expression** values, not the direct DE results 3. We’ve provided a
+helper function to get the top :math:`n` genes from a DE comparison
+``get_top_genes()`` as well as to generate and additional legend
+
 
 .. code:: python3
 
-    def heatmap(data, genes, group_col):
-        """[summary]
+    def get_top_genes(de_results, pval_col, n_genes):
+        """
+        Return to the top n genes from a differential expression analysis comparison.
+        
+        Parameters
+        ----------
+        de_results : pd.DataFrame
+            A table containing results from a DE analysis run
+        pval_col : str
+            A column in `de_results` containing p-values
+        n_genes : int
+            The number of genes to return
+        """
+        return de_results.sort_values(pval_col, ascending=True).iloc[:n_genes, :].index.values
+    
+    def plot_legend(palette_dict, col_name):
+        """Generate plot legend using a dictionary mapping values to color codes"""
+        from matplotlib import patches as mpatches
+        handles = [
+            mpatches.Patch(facecolor=each)
+            for each in palette_dict.values()
+        ]
+        plt.legend(
+            handles,
+            list(palette_dict.keys()),
+            title=col_name,
+            bbox_to_anchor=(1, 1),
+            bbox_transform=plt.gcf().transFigure,
+            loc="upper left",
+        )
+    
+    def heatmap(data, genes, row_color, cluster=False):
+        """
+        Plot heatmap over provided genes.
         
         Parameters
         ----------
         data : pd.DataFrame
             A (sample x gene) data matrix containing gene expression values for each sample.
         genes : list, str
-            List of genes to plot   
+            List of genes to plot
+        row_color : str
+            Column in `data` containing categorical data to color rows by
+        cluster : bool
+            Whether to order rows and column by dendrogram.
         """
-        return ax
-
-**Bonus** There’s nothing denoting which samples belong to which
-experimental group. Fix it.
-
-*Bonus hint*: Look real close at the documentation.
-
-TASK 3: Clustering Analysis
----------------------------
-
-You’ve seen clustering in the previous machine learning workshop. Some
-basic plots were generated for you, including plotting the clusters on
-the principle componets. While we can certainly do more of that, we will
-also be introducing two new plots: elbow plots and silhouette plots.
-
-Elbow Plots
-~~~~~~~~~~~
-
-Elbow plots are plots that are used to help diagnose the perennial
-question of K-means clustering: how do I chose K? To create the graph,
-you plot the number of clusters on the x-axis and some evaluation of
-“cluster goodness” on the y-axis. Looking at the name of the plot, you
-might guess that we’re looking for an “elbow”. This is the point in the
-graph when we start getting diminished returns in performance, and
-specifying more clusters may lead to over-clustering the data. An
-example plot is shown below.
-
-.. image:: images/elbowplot.jpg
-
-You can see the K selected (K = 3), is right before diminishing returns
-start to kick in. Mathematically, this point is defined as the point in
-which curvature is maximized. However, the inflection point is also a
-decent – though more conservative – estimate. However, we’ll just stick
-to eye-balling it for this workshop. If you would like to know how to
-automatically find the elbow point, more information can be found
-`here. <https://raghavan.usc.edu/papers/kneedle-simplex11.pdf>`__
-
-Task 2a: Implement a function that creates an elbow plot
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Skeleton code is provided below. The function expects a list of k-values
-and their associated scores. An optional “ax” parameter is also
-provided. This parameter should be an axes object and can be created by
-issueing the following command:
-
-``ax = plt.subplot()``
-
-While we won’t need the parameter right now, we’ll likely use it in the
-future.
-
-**Function Requirements** - Generate plot data by clustering the entire
-dataset on the first 50 principle components. Vary K values from 2 - 10.
-- While you’ve been supplied a helper function for clustering, you’ll
-need to supply the principle components yourself. Refer to your machine
-learning workshop along with the scikit-learn
-`documentation <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html>`__
-- Plots each k and it’s associated value. - Plots lines connecting each
-data point. - Produces a plot with correctly labelled axes.
-
-**Hint:** Working with an axis object is similar to base matplotlib,
-except ``plt.scatter()`` might become something like ``ax.scatter()``.
-
-Helper Function
-^^^^^^^^^^^^^^^
-
-.. code:: python3
-
-    def cluster_data(X, k):
-        """
-        Cluster data using K-Means.
-        
-        Parameters
-        ----------
-            X : (numpy.ndarray)
-                Data matrix to cluster samples on. Should be (samples x features).
-            k : int
-                Number of clusters to find.
-        Returns
-        -------
-            tuple (numpy.ndarray, float)
-                A tuple where the first value is the assigned cluster labels for
-                each sample, and the second value is the score associated with
-                the particular clustering.
-        """
-        model = cluster.KMeans(n_clusters=k).fit(X)
-        score = model.score(X)
-        return (model.labels_, score)
-
-Task 2a Implementation
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. code:: python3
-
-    def elbow_plot(ks, scores, best=None, ax=None):
-        """
-        Create a scatter plot to aid in choosing the number of clusters using K-means.
-        
-        
-        Arguments
-        ---------
-            ks : (numpy.ndarray)
-                Tested values for the number of clusters.
-            scores: (numpy.ndarray)
-                Cluster scores associated with each number K.
-            ax: plt.Axes Object, optional
-        """
-        if ax is None:
-            ax = plt.subplot()
-        return ax
-
-Once you’ve created the base plotting function, you’ll probably realize
-we have no indivation of where the elbow point is. Fix this by adding
-another optional parameter (``best``) to your function. The parameter
-``best`` should be the K value that produces the elbow point.
-
-**Function Requirements**
-
--  Add an optional parameter ``best`` that if supplied denotes the elbow
-   point with a vertical, dashed line.
--  If ``best`` is not supplied, the plot should still be produced but
-   without denoting the elbow point.
-
-**Hint**: ``plt.axvline`` and ``plt.axhline`` can be used to produce
-vertical and horizontal lines, respectively. More information
-`here <https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.axvline.html>`__
-
-**Note**: You are not required to have the line end at the associated
-score value.
-
-.. code:: python3
-
-    def elbow_plot(ks, scores, best=None, ax=None):
-        """
-        Create a scatter plot to aid in choosing the number of clusters using K-means.
-        
-        
-        Arguments
-        ---------
-            ks : (numpy.ndarray)
-                Tested values for the number of clusters.
-            scores: (numpy.ndarray)
-                Cluster scores associated with each number K.
-            best: int, optional
-                The best value for K. Determined by the K that falls at the elbow. If
-                passed, a black dashed line will be plotted to indicate the best.
-                Default is no line.
-            ax: plt.Axes Object, optional
-        """
-        if ax is None:
-            fig, ax = plt.subplots()
-        return ax
-
-Silhouette Plots
-~~~~~~~~~~~~~~~~
-
-Silhouette plots are another way to visually diagnose cluster
-performance. They are created by finding the `silhouette
-coefficient <https://en.wikipedia.org/wiki/Silhouette_(clustering)>`__
-for each sample in the data, and plotting an area graph for each
-cluster. The silhouette coefficient measures how well-separated clusters
-are from each other. The value ranges from :math:`[-1 , 1]`, where 1
-indicates good separation, 0 indicates randomness, and -1 indicates
-mixing of clusters. An example is posted below.
-
-|image0|
-
-As you can see, each sample in each cluster has the area filled from
-some minimal point (usually 0 or the minimum score in the dataset) and
-clusters are separated to produce distinct
-`silhouettes <https://www.youtube.com/watch?v=-TcUvXzgwMY>`__.
-
-Task 3b: Implement a function to plot silhouette coefficients
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Because the code for create a silhouette plot can be a little bit
-involved, we’ve created both a skeleton function with documentation, and
-provided the following pseudo-code:
-
-::
-
-   - Calculate scores for each sample.
-   - Get a set of unique sample labels.
-   - Set a score minimum
-   - Initialize variables y_lower, and y_step
-       - y_lower is the lower bound on the x-axis for the first cluster's silhouette
-       - y_step is the distance between cluster silhouettes
-   - Initialize variable, breaks
-       - breaks are the middle point of each cluster silhouette and will be used to
-         position the axis label
-   - Interate through each cluster label, for each cluster:
-       - Calcaluate the variable y_upper by adding the number of samples
-       - Fill the area between y_lower and y_upper using the silhoutte scores for
-         each sample
-       - Calculate middle point of y distance. Append the variable break.
-       - Calculate new y_lower value
-   - Label axes with appropriate names and tick marks
-   - Create dashed line at the average silhouette score over all samples
-
-**Hint**: you might find
-`ax.fill_betweenx() <https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.fill_betweenx.html>`__
-and
-`ax.set_yticks() <https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.set_yticks.html?highlight=set_yticks#matplotlib.axes.Axes.set_yticks>`__/
-`ax.set_yticklabels() <https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.set_yticklabels.html?highlight=set_yticklabels#matplotlib.axes.Axes.set_yticklabels>`__
-useful.
-
-.. |image0| image:: https://scikit-plot.readthedocs.io/en/stable/_images/plot_silhouette.png
-
-.. code:: python3
-
-    def silhouette_plot(X, y, ax=None):
-        """
-        Plot silhouette scores for all samples across clusters. 
-        
-        Parameters
-        ----------
-        X : numpy.ndarray
-            Numerical data used to cluster the data.
-        y : numpy.ndarray
-            Cluster labels assigned to each sample.
-        ax : matplotlib.Axes
-            Axis object to plot scores onto. Default is None, and a new axis will
-            be created.
-        
-        Returns
-        -------
-        matplotlib.Axes
-        """
-        if ax is None:
-            ax = plt.subplot()
-        scores = metrics.silhouette_samples(X, y)
-        clusters = sorted(np.unique(y))
-        score_min = 0
-        y_lower, y_step = 5, 5
-        props = plt.rcParams['axes.prop_cycle']
-        colors = itertools.cycle(props.by_key()['color'])
-        breaks = []
-        for each, color in zip(clusters, colors):
-            # Aggregate the silhouette scores for samples, sort scores for
-            # area filling
-        return ax
-
-Task 3C: Put it all together!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Requirements** - Create a function ``cluster_and_plot`` that will
-cluster a provided dataset for a range of k-values - The function should
-return a single figure with two subplots: - An elbow plot with the
-“best” K value distinguished - A silhouette plot associated with
-clustering determined by the provided K value. - Appropriate axes labels
-
-**Hint**: You will likely find
-`plt.subplots() <https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.subplots.html?highlight=subplots#matplotlib.pyplot.subplots>`__
-useful.
-
-.. code:: python3
-
-    def cluster_and_plot(X, best=3, kmax=10):
-        """
-        Cluster samples using KMeans and display the results.
-        
-        Results are displayed in a (1 x 2) figure, where the
-        first subplot is an elbow plot and the second subplot
-        is a silhouette plot.
-        
-        Parameters
-        ----------
-            X : (numpy.ndarray)
-                A (sample x features) data matrix used to cluster
-                samples.
-            best : int, optional
-                Final value of K to use for K-Means clustering.
-                Default is 3.
-            kmax : int, optional
-                Maximum number of clusters to plot in the elbow
-                plot. Default is 10.
-        Returns
-        -------
-            matplotlib.Figure
-                Clustering results.
-        """
-        fig, axes = plt.subplots(nrows=1, ncols=2)
+        plot_data = data.loc[:, genes]
+        fig = None
         return fig
+
+
+.. code:: python3
+
+    top_genes = get_top_genes(de_res, 'p_value', 100)
+    heatmap()
+
+
+Bonus
+~~~~~
+
+The above results were all done on disease comparisons across multiple
+tissues. Another question we could ask is if there are any genes that
+are differntially expressed between the tissues themselves. Repeat the
+above analysis by subsetting the data down to control samples only, and
+perform DE analysis betweeen tissues. Plot the results as a volcano plot
+as well as a clustered heatmap
+
+*hint*: we used a very low :math:`log_2` fold change cutoff during the
+previous steps, it may be worth increasing that threshold for this
+analysis
+
+
+.. code:: python3
+
+    controls = data[data['Disease.state'] == 'control']
+    tissue_res = differential_expression(controls, "Tissue", features=data.columns[10:], reference="hippocampus")
+    volcano_plot()
+
+
+.. code:: python3
+
+    top_genes = get_top_genes(tissue_res, 'p_value', 100)
+    heatmap()
+
