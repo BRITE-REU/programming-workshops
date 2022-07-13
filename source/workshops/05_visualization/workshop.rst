@@ -2,8 +2,6 @@
 Introduction
 ============
 
-Instructors: Brie Odom, Michael Silverstein, Devlin Moyer
-
 Welcome to the in-class portion of the visualization workshop in Python! Feel
 free to work in either a Jupyter Notebook or a typical text editor/IDE,
 depending on your preference.
@@ -71,7 +69,7 @@ accession):
 -  source.name: combination of the tissue and disease.state
 
 Workshop Goals
---------------
+^^^^^^^^^^^^^^
 
 | This workshop will walk you through an analysis of the GSE53987
   microarray data set. This workshop has the following three tasks:
@@ -89,7 +87,7 @@ an opportunity to integrate the different concepts that you have learned
 in previous workshops.
 
 Workshop Logistics
-------------------
+^^^^^^^^^^^^^^^^^^
 
 As mentioned in the pre-workshop documentation, you can do this workshop
 either in a Jupyter Notebook, or in a python script. Please make sure
@@ -98,8 +96,8 @@ will be completed using “paired-programming” and the “driver” will
 switch every 15 minutes. Also, we will be using the python plotting
 libraries matplotlib and seaborn.
 
-TASK 0: Import Libraries and Data
-=================================
+Task 0: Import Libraries and Data
+---------------------------------
 
 -  Download the data set (above) as a .csv file
 -  Initialize your script by running the first cell and ensuring the data file
@@ -117,11 +115,11 @@ TASK 0: Import Libraries and Data
     data = pd.read_csv('GSE53987_combined.csv', index_col=0)
     genes = data.columns[10:]
 
-TASK 1: Visualize Dataset Demographics
-======================================
+Task 1: Visualize Dataset Demographics
+--------------------------------------
 
 Required Workshop Task:
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Use the skeleton code to write 3 plotting functions:
 
@@ -153,7 +151,7 @@ Required Workshop Task:
   readable
 
 Bonus Task:
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 1. Return to these functions and include functionality to customize
    color palettes, axis legends, etc. You can choose to define your own
@@ -295,8 +293,8 @@ Bonus Task:
     
         return results_df  
 
-Task 2a: Volcano Plots
-----------------------
+Task 2: Volcano Plots
+---------------------
 
 Volcano plots are ways to showcase the number of differentially
 expressed genes found during high throughput sequencing analysis. Log
@@ -309,8 +307,8 @@ significance. This can be seen in the plot below.
 
 Your first task will be to generate some Volcano plots:
 
-Requirments
------------
+Requirements
+^^^^^^^^^^^^
 
 1. Use the provided function to perform an ANOVA (analysis of variance)
    between control and experimental groups in each tissue.
@@ -362,10 +360,10 @@ strange where *significance* is determined by **adjusted** p-values, but
 
 
 Generate and Plot Tissue-specific Volcano Plots
------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Hippocampus DE
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 .. code:: python3
 
@@ -377,7 +375,7 @@ Hippocampus DE
 
 
 Pre-frontal Cortex Volcano Plot
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python3
 
@@ -387,7 +385,7 @@ Pre-frontal Cortex Volcano Plot
 
 
 Associative Striatum Volcano Plot
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python3
 
@@ -397,7 +395,7 @@ Associative Striatum Volcano Plot
 
 
 Task 2b: Plot the Top 100 Differentially Expressed Genes
---------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clustered heatmaps are hugely popular for displaying differences in gene
 expression values. To reference such a plot, look back at the
@@ -406,7 +404,7 @@ differentially expressed genes for each of the analysis performed
 before.
 
 Requirements
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 -  Implement the skeleton function below
 -  Z normalize gene values
@@ -484,7 +482,7 @@ helper function to get the top :math:`n` genes from a DE comparison
 
 
 Bonus
-~~~~~
+^^^^^
 
 The above results were all done on disease comparisons across multiple
 tissues. Another question we could ask is if there are any genes that
@@ -515,8 +513,8 @@ Task 3: Subplots and Facet Grids
 --------------------------------------------------------
 Often we want to combine multiple plots into one larger figure for presentations, articles, publications. This is where `plt.subplots` comes in handy!
 
-Task 3A: Combining Violin Plots into one figure
---------------------------------------------------------
+Task 3a: Combining Violin Plots into one figure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For Task 2B, we found the top 100 DE genes in order to plot a heatmap. For the top 3 DE genes, let's compare the expression of control samples vs. schizophrenia samples in each of the three tissues.
 
 **Hints**
@@ -540,11 +538,11 @@ For Task 2B, we found the top 100 DE genes in order to plot a heatmap. For the t
 .. image:: images/violins_subplots.png
 
 
-Task 3B: Combining Volcano plots into one figure
---------------------------------------------------------
+Task 3b: Combining Volcano plots into one figure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Requirements
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 - Implement the skeleton function to create a figure with three volcano plots for each of the three tissues using both `plt.subplots` 
 - Highlight significant genes for each plot
 - Add titles for each of the sub-plots
