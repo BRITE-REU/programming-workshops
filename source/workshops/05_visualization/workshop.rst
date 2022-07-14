@@ -175,7 +175,7 @@ Bonus Task:
         Returns:
             axes object
         """
-        fig, ax = plt.subplots()
+        ax = None
         return ax
     
     # Function to Plot Relational (x,y) Plots 
@@ -193,7 +193,7 @@ Bonus Task:
         Returns:
             axes object
         """
-        fig, ax = plt.subplots()
+        ax = None
         return ax
     
     def plot_categorical(df, x, y, hue=None, kind=None):
@@ -208,7 +208,7 @@ Bonus Task:
             kind (string, optional): type of plot to create. Options should include at least: 
             strip (default), box, and violin
         """
-        fig, ax = plt.subplot()
+        ax = None
         return ax
     
     def main():
