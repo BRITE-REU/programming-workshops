@@ -12,15 +12,15 @@
 Dimensionality reduction
 ----------------------------
 
-Dimensionality refers to the number of variables in a data set. Problems that arise when analyzing a dataset with high-dimensionality include: computational efficiency and visualization.  By transforming our data into a smaller set of variables that that still contains most of the usefull information, we can reduce the run-time of performing certain machine learning tasks, as well as visually observe patterns in our data via plotting
+Dimensionality refers to the number of variables in a data set. Problems that arise when analyzing a dataset with high-dimensionality include: computational efficiency and visualization.  By transforming our data into a smaller set of variables that still contain most of the useful information, we can reduce the run-time of performing certain machine learning tasks, as well as visually observe patterns in our data via plotting.
 
 * **Principal Component Analysis (PCA)** is among the most commonly used dimensionality reduction method.  It transforms a high-dimensional data set into a smaller set of variables.  Each variable is associated to a weight, proportional to the relative amount of the variance of the original data set it accounts for.  The set of these features that account for an adequate proportion of the total amount of variance in the original data set are referred to as the *principal components*. 
 
-PCA is done by performing an eigen decomposition on the variance matrix of the original data set. The new variables are the eigen vectors and the weights are the eigen values of this eigen decomposition.
+PCA is done by performing an eigen decomposition on the covariance matrix of the original data set. The new variables and weights (loadings) are the eigen vectors and eigen values respectively of this covariance matrix.
 
 .. image:: img/grz_tissues_PCA.png
 
-* **Singular-value decomposition (SVD)** is similar to PCA, except that the new features and weights are calculated directly from the data matrix.  It is sometimes prefered to PCA due to the impact of round-off error when calculating the variance matrix when performing PCA.
+* **Singular-value decomposition (SVD)** is similar to PCA, except that the new features and weights are calculated directly from the data matrix.  It is sometimes preferred to PCA due to the round-off errors when estimating the covariance matrix for PCA.
 
 Read more `here <http://andrew.gibiansky.com/blog/mathematics/cool-linear-algebra-singular-value-decomposition/>`_. 
 
@@ -29,7 +29,7 @@ Clustering
 ----------------------------
 Clustering algorithms try to divide the data samples based on some sort of similarity into different *clusters*. An example is to cluster single cell gene expression data to find tissue types.
 
-* **Hierarchical clustering** is a clustering algorithm which estimates a tree-like structure between observations based on their relative distance, such that observations that are most similar to eachother are connected at the terminal parts of the tree. The tree is most often generated using a bottom-up or *agglomerative* approach, in which samples are initially put in its own clusters and then iteratively the most similar clusters are combined to create super-clusters. Alternatively, top-down hierarchical clustering is call *divisive* clustering.
+* **Hierarchical clustering** is a clustering algorithm which estimates a tree-like structure between observations based on their relative distance, such that observations that are most similar to each other are connected at the terminal parts of the tree. The tree is most often generated using a bottom-up or *agglomerative* approach, in which samples are initially in their own clusters and then iteratively the most similar clusters are combined to create super-clusters. Alternatively, top-down hierarchical clustering is call *divisive* clustering.
 
 .. image:: img/hierarchical_clustering.png
     :scale: 50%
