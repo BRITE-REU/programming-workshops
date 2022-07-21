@@ -1,0 +1,371 @@
+---
+title: "BRITE Machine Learning Workshop"
+author: "M. Muzamil Khan, Ahmed Youssef, Conor Shea"
+date: "7/18/2022"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(caret)
+library(nnet)
+```
+
+## Introduction
+
+In this workshop, we will study GSE53987 dataset on Bipolar disorder (BD), major depressive disorder (MDD) and schizophrenia. You can download it [here](https://github.com/BRITE-REU/programming-workshops/blob/master/source/workshops/06_Machine_learning/data/GSE53987_combined.csv).
+
+In total there are 205 rows consisting of 19 individuals diagnosed with BPD, 19 with MDD, 19 schizophrenia and 19 controls. Each sample has gene expression from 3 tissues (post-mortem brain). There are a total of 13,768 genes (numeric features) and 10 meta features and 1 ID (GEO sample accession).
+
+* Age
+* Race (W for white and B for black)
+* Gender is F for female and M for male
+* Ph is the ph of the brain tissue
+* Pmi is the post mortal interval
+* Rin is the RNA integrity number
+* Patient is unique for each patient. Each patient has up to 3 tissue samples. The patient ID is written as disease followed by a number from 1 to 19
+* Tissue is the tissue the expression was obtained from.
+* Disease.state is the class of disease the patient belongs to: bipolar, schizophrenia, depression or control.
+* source.name is the combination of the tissue and disease.state
+
+# Load data
+
+```{r loadData}
+data <- read.csv("~/Downloads/GSE53987_combined.csv", row.names = 1)
+```
+
+# Explore dataset
+
+First, let's check the dimensions of the dataset.
+
+```{r dimensions}
+dim(data)
+```
+
+## Task 1: Feature Exploration
+
+Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
+
+* What type of distributions exist within the features? Is Gender a balanced feature (roughly equal representation between both men and women)? Are numerical values normally distributed? Explore numerical distributions by plotting histograms for Age, an Age + Gender histogram, and one of your favorite genes found in the dataset.
+
+* Some features display factor dependent values. That is, whether a subject is a male or a female might effect the expression patterns of a given gene. Explore factor and feature relationships by creating boxplots to observe how Age is dependent on Tissue, Gender and Disease.status.
+
+# Gender
+
+```{r genderDisribution}
+# Explore the distribution of genders
+table(data[,'Gender'])
+```
+
+# Age
+
+```{r ageDistribution}
+# Explore the distribution of ages
+hist(data[, 'Age'],  prob = TRUE)
+lines(density(data[, 'Age']))
+
+#fancy ggplot
+ggplot2::ggplot(data = data, aes(x=Age)) +
+  geom_histogram(aes(y=stat(density)), binwidth = 5) + geom_density()
+```
+
+# Age faceted by gender
+
+```{r ageGenderPlot}
+# Explore the distribution of age in each gender
+ggplot2::ggplot(data = data, aes(x=Age)) +
+  geom_histogram(aes(y = stat(density))) +
+  geom_density() +
+  facet_wrap(~Gender)
+```
+
+# Distribution of ZWINT gene
+
+```{r exampleGeneDistribution}
+ggplot2::ggplot(data = data, aes(x=ZWINT)) +
+  geom_histogram(aes(y=stat(density))) +
+  geom_density()
+```
+
+# Relationship between age, disease state, and gender
+
+```{r ageDiseaseStateGender}
+ggplot2::ggplot(data = data, aes(x=Disease.state, y=Age, fill=Gender)) +
+  geom_boxplot() 
+
+ggplot2::ggplot(data = data, aes(x=Gender, y=Age, fill=Disease.state)) +
+  geom_boxplot()
+```
+
+# It is always a good practice to arrange the conditions starting from the control group or baseline condition.
+
+```{r relevelGroups}
+data$Disease.state <- factor(data$Disease.state, levels = c("control", "Bipolar disorder", "Major depression disorder", "schizophrenia"))
+ggplot2::ggplot(data = data, aes(x=Disease.state, y=Age, fill=Gender)) +
+  geom_boxplot() 
+
+ggplot2::ggplot(data = data, aes(x=Gender, y=Age, fill=Disease.state)) +
+  geom_boxplot()
+```
+
+# Relationship between age, disease state, and tissue type
+
+```{r stratifyAgeDiseaseState}
+ggplot2::ggplot(data = data, aes(x=Disease.state, y=Age, fill=Tissue)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplot2::ggplot(data = data, aes(x=Tissue, y=Age, fill=Disease.state)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r stratifyAgeDiseaseStateFacetByGender}
+ggplot2::ggplot(data = data, aes(x=Disease.state, y=Age, fill=Tissue)) +
+  geom_boxplot() +
+  facet_wrap(~Gender) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) #make labels more readable
+
+ggplot2::ggplot(data = data, aes(x=Tissue, y=Age, fill=Disease.state)) +
+  geom_boxplot() +
+  facet_wrap(~Gender) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+## Task 2: Principal Component Analysis
+
+Principal Component Analysis (PCA) is a commonly used technique to create linearly uncorrelated features from a set of possibly correlated features. The procedure is done in such a way that the first feature produced by PCA, the first principal component – PC1, explains the largest amount of variability possible. In this way, PCA is a dimension reduction technique, as the first few principal components often explain upwards of 90% of the variability found within a dataset. It is important to note that if we’re planning on predicting anything using the principal components, such as tissue type or Disease.status, those features should not be included in the input matrix. Before performing PCA, create a new data frame containing only explanatory values (i.e. the features we want to use to predict class membership).
+
+* Explore how much variation is explained by the principal components. How much variation is explained by the first two principal components? How many principal components might be required to explain 75%, 85%, 90%, 95%, and 99% of the variation within our dataset?
+
+* Visually explore this separation to plot the first two principal components and color samples according to Tissue and Disease.status. What effect does plotting the third principal component have on sample separation?
+
+* Subset the dataset into three disjoint datasets by Tissue. Run PCA on all three of these datasets, plot the first two principal components, and color the dots according to Disease.status. Does there appear to be a meaningful difference in the separation between disease classes between the three different datasets?
+
+# Clean up data for PCA
+
+```{r cleanUpPCA}
+# Create a dataframe containing only the expression data
+expression = data[, 11:ncol(data)]
+
+# Create a PCA class with 2 components
+pca = prcomp(x = expression)
+```
+
+# Scale your data first, then rerun PCA
+
+PCA is sensitive to the underlying variance of your variables, such that PCA preferentially chooses axes with higher variance. That may be what you want, but many people scale their data (in this case, Z-score) and perform PCA on that data, in order to identify sets of correlated features along which PCA can find axes. 
+
+```{r cleanUpPCAScaled}
+
+expression_scaled = scale(expression, center = TRUE, scale = TRUE)
+
+pca_scaled = prcomp(x = expression_scaled)
+```
+
+# Plot the first two PCs
+
+```{r plotFirstTwoPCs}
+pca_df <- data.frame(pca$x)
+pca_df$tissue <- data$Tissue
+ggplot(data = pca_df, aes(x=PC1, y=PC2, col=tissue)) +
+  geom_point()
+```
+
+# Plot the first two PCs after scaling is performed.
+
+What differences do you notice?
+
+```{r plotFirstTwoPCsScaled}
+pca_df_scaled <- data.frame(pca_scaled$x)
+pca_df_scaled$tissue <- data$Tissue
+ggplot(data = pca_df_scaled, aes(x=PC1, y=PC2, col=tissue)) +
+  geom_point() 
+```
+
+# PCA explained variation
+
+```{r explainedVariation}
+# %Variance = pca$sdev^2/sum(pca$sdev^2)
+summary(pca)
+```
+
+# By tissue: hippocampus 
+
+```{r hippocampusPCA}
+hippocampus = data[data$Tissue == "hippocampus",]
+hippocampus_expression = hippocampus[,11:ncol(hippocampus)]
+hippocampus_pca = prcomp(hippocampus_expression)
+
+# Again, you can scale this data
+hippocampus_expression_scaled <- scale(hippocampus_expression, center = TRUE, scale = TRUE)
+hippocampus_pca_scaled = prcomp(hippocampus_expression_scaled)
+```
+
+# Plot the first two PCs: hippocampus
+
+```{r hippocampusPlotFirstTwoPCs}
+hippo_df <- data.frame(hippocampus_pca$x)
+hippo_df$disease <- hippocampus$Disease.state
+ggplot(data = hippo_df, aes(x=PC1, y=PC2, col=disease)) +
+  geom_point() 
+
+hippo_df_scaled <- data.frame(hippocampus_pca_scaled$x)
+hippo_df_scaled$disease <- hippocampus$Disease.state
+ggplot(data = hippo_df_scaled, aes(x=PC1, y=PC2, col=disease)) +
+  geom_point() 
+```
+
+## Task 3: Feature Selection
+
+# Feature selection by variance
+
+```{r varianceThreshold}
+gene_var <- apply(expression, 2, var)
+gene_var.df <- data.frame(gene_var, row.names = colnames(expression))
+quantile(gene_var.df$gene_var, seq(0,1,0.01))
+
+# ~2/3 of features have a variance less than 0.1 (this threshold is arbitrary)
+expression_highvar <- expression[,which(gene_var.df$gene_var > 0.1)]
+dim(expression_highvar) # 205 x 4853
+```
+
+# Univariate Feature Selection
+
+Here, we perform univariate feature selection by choosing features with lowest p-values in an ANOVA (here, across tissue type).
+
+```{r univariateFeatureExpression}
+expression_tissue <- expression 
+expression_tissue$tissue <- factor(data$Tissue)
+
+allModelsList <- lapply(paste(colnames(expression), "~ tissue"), as.formula)
+allModelsResults <- lapply(allModelsList, function(x) lm(x, data = expression_tissue))
+allModelsANOVA <- lapply(allModelsResults, anova)
+allModelsP <- lapply(allModelsANOVA, function(x) x[["Pr(>F)"]][1])
+names(allModelsP) <- colnames(expression)
+allModelsPSort <- sort(unlist(allModelsP))
+
+# Top 10 features
+head(allModelsPSort, n = 10)
+
+# Plot top feature
+ggplot(expression_tissue, aes(x = ADORA2A, y = tissue)) + geom_boxplot() + coord_flip()
+```
+
+## Task 4: K-means Clustering (Unsupervised Learning)
+
+Unsupervised learning can be thought of as applying an algorithm to a dataset in order to discover latent structure that exists between samples. We’ve already been exposed to some of these algorithms via PCA. However, one of the most common techniques in machine learning, and especially bioinformatics, is clustering. In this section, the goal is to cluster the data using the k-means algorithm.
+
+We start by clustering the data into 3 clusters. Hint: use the `kmeans` function in R.
+
+# Compute k-means with k = 3.
+
+```{r kmeans}
+set.seed(123)
+km <- kmeans(expression, centers = 3)
+```
+
+# Examine the sizes of the resultant clusters.
+
+```{r clusterSizes}
+table(km$cluster)
+```
+
+# Visualize the clustering results in the PCA plot. 
+
+Do the k-means clusters correspond to the tissues from the earlier PCA plot?
+
+```{r KmeansPCAPlot}
+pca_df$cluster <- factor(km$cluster)
+ggplot(data = pca_df, aes(x=PC1, y=PC2, col=cluster)) +
+  geom_point()  +
+  ggtitle("K-means clustering")
+```
+
+## Task 5: Logistic Regression (Supervised Learning)
+
+Supervised learning is a technique to teach an algorithm to distinguish between previously labelled groups, such as Tissue, Gender, or Disease.status. However, all supervised methods require data to learn how to differentiate between classes. Therefore, it is necessary to separate data into test/train sets. The training set is used to train the model, while the test set is used to evaluate performance. Cross-validation, a method of partitioning the data into disjoint subsets and continually re-training and re-testing with different partition combinations, is often used to evaluate models. In this section, we will build various classifiers using logistic regression to predict different classes from our data. You should evaluate your models’ performances using confusion matrices and accuracy scores.
+
+Many functions below are from the caret package.  See https://topepo.github.io/caret/ for helpful instructions.
+
+# Split data into training and tests sets (75% training, 25% test). Make sure to maintain distribution of Disease.status in splits.
+
+```{r trainTestSplit}
+expression_disease <- expression
+expression_disease$Disease <- data$Disease.state
+
+set.seed(123)
+trainIndex <- createDataPartition(expression_disease$Disease, p = .75, 
+                                  list = FALSE, 
+                                  times = 1)
+
+disease_train <- expression_disease[trainIndex,]
+disease_test <- expression_disease[-trainIndex,]
+
+dim(disease_train)
+dim(disease_test)
+
+prop.table(table(disease_train$Disease))
+prop.table(table(disease_test$Disease))
+```
+
+# Scale the training data
+
+Features should be scaled in supervised learning. Importantly, you scale the training data and apply the same scaling parameters (mean, standard deviation) to the test data. Allowing testing data to influence training (i.e. by allowing testing data to influence scaling parameters) is called bleeding and will artificially improve your results.
+
+```{r trainTestScaling}
+preProcValues <- preProcess(disease_train, method = c("center", "scale"))
+
+disease_train_scaled <- predict(preProcValues, disease_train)
+disease_test_scaled <- predict(preProcValues, disease_test)
+```
+
+# Perform Feature Selection for Disease using Univariate Methods
+
+```{r featureSelection}
+diseaseModels <- lapply(paste(colnames(expression), "~ Disease"), as.formula)
+diseaseModelsResults <- lapply(diseaseModels, function(x) lm(x, data = disease_train_scaled))
+diseaseModelsANOVA <- lapply(diseaseModelsResults, anova)
+diseaseModelsP <- lapply(diseaseModelsANOVA, function(x) x[["Pr(>F)"]][1])
+names(diseaseModelsP) <- colnames(expression)
+diseaseModelsPSort <- sort(unlist(diseaseModelsP))
+
+# This is the Bonferroni correction for 13768 tests at p < 0.05 significance
+length(which(diseaseModelsPSort < 0.05/13768)) # 32 genes pass significance
+
+# Subset to most discriminative features
+genes_discriminative_disease <- c(head(names(diseaseModelsPSort), n = 32), "Disease")
+train_subset <- disease_train_scaled[, genes_discriminative_disease]
+test_subset <- disease_test_scaled[, genes_discriminative_disease]
+```
+
+# Train the multinomial logistic model using the "multinom" method.
+
+NB: This requires that the "nnet" be installed.)
+
+```{r trainModel}
+disease_log_mod = train(
+  Disease ~ .,
+  data = train_subset,
+  method = "multinom",
+  trControl = trainControl(method = "cv", number = 5),
+  trace = FALSE, 
+  # tuneGrid = multinom_grid
+)
+```
+
+# Predict the testing classes.
+
+```{r predictClassesEvaluateAccuracy}
+test_classes <- predict(disease_log_mod, newdata = test_subset)
+
+test_table <- table(test_subset$Disease, test_classes)
+
+# The similarity of the training and test accuracy suggests that this is a stable (albeit poor) model
+test_table
+sum(diag(test_table))/sum(test_table)
+```
+
