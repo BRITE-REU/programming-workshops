@@ -31,9 +31,13 @@ There are a total of 13768 genes (numeric features) and 10 meta features and 1 I
 Workshop tasks
 **************
 
-:download:`Notebook <notebooks/workshop4.ipynb>`
+:download:`Jupyter Notebook (Python) <notebooks/workshop4.ipynb>`
 
-:download:`Solutions <notebooks/workshop4_solutions.ipynb>`
+:download:`Solutions (Python) <notebooks/workshop4_solutions.ipynb>`
+
+:download:`R Workshop <notebooks/BRITE_ML_Workshop_R.html>`
+
+:download:`R Solutions <notebooks/BRITE_ML_Workshop_R.Rmd>`
 
 1. Check all the features. Which features are numeric, which are categorical? Understanding the nature of your data is a very important and necessary first step before proceeding with any analysis.
 
