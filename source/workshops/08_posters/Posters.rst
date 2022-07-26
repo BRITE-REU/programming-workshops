@@ -22,7 +22,7 @@ BU logo files
 ABRCMS Poster Presentation Guidelines
 -----------------------------------------
 
-	_ `ABRCMS Poster Presentation Guidelines <http://www.abrcms.org/index.php/present-at-abrcms/guidelines>`_
+	_ `ABRCMS Poster Presentation Guidelines [Will be updated when available]
 
 
 ---------------------------------
@@ -38,9 +38,11 @@ Poster Draft Guidelines
 	- **Title**
 	- **Authors**
 	- **Affiliations of Authors**
-		- Yours should be your school and "Boston University Bioinformatics BRITE REU Program, Summer 2021" 
+	
+		- Yours should be your school and "Boston University Bioinformatics BRITE REU Program, Summer 2022" 
 	- **Abstract**
 	- **Text for** 
+	
 		- Motivation and Background
 		- Methods
 		- Results
@@ -48,6 +50,7 @@ Poster Draft Guidelines
 	- **Figures**
 	- **References**  
 	- **Acknowledgements**
+	
 		- Include: "This work was funded, in part, by NSF grant DBI-1949968, awarded to the Boston University Bioinformatics BRITE REU program, [and if other grants] and <grant agency, like NSF or NIH> grant <grant number>."
 
 ---------------------------------------
