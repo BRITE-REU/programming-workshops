@@ -7,6 +7,7 @@ Poster Templates
 --------------------
 
 The following are suggested posters templates.
+
 	- `Three column red <https://github.com/BRITE-REU/programming-workshops/raw/master/source/workshops/08_posters/data/36x48_phdposters_template%20red.pptx>`_
 	- `Three column blue <https://github.com/BRITE-REU/programming-workshops/raw/master/source/workshops/08_posters/data/36x48_phdposters_template%20blue.pptx>`_
 
@@ -22,7 +23,7 @@ BU logo files
 ABRCMS Poster Presentation Guidelines
 -----------------------------------------
 
-	_ `ABRCMS Poster Presentation Guidelines [Will be updated when available]
+	- ABRCMS Poster Presentation Guidelines [Will be updated when available]
 
 
 ---------------------------------
