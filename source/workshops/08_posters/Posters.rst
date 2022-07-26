@@ -58,7 +58,7 @@ Poster Draft Guidelines
 What to look for when reading a poster
 ---------------------------------------
 
-**Contents**
+**Contents**  
 	1) Does the abstract say briefly what the authors did, why they did it (including importance), what results they got?
 	2) Is there an introduction to basic concepts?
 	3) Does it use diagrams or flowcharts to increase clarity?
@@ -69,7 +69,7 @@ What to look for when reading a poster
 	8) Is there a reference section with relevant articles and books?
 	9) Is there an acknowledgement section that contains grant support information?
 
-**Appearance and overall effect**
+**Appearance and overall effect**  
 	1) Is it interesting?
 	2) Is there a good mix of text and figures?
 	3) Was there a good flow in the story?
