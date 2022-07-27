@@ -286,8 +286,7 @@ You'll have to adjust the column widths to see the entire genre names.  Use this
 	
 	#. Find actors who have appeared in at least five comedies.  Limit to 30.  First do this without any ordering.  Then, list them in descending order of number of comedies. (answer is multiple rows, each containing name, count of movies)
 	
-	#. (Hard) Find actors who have appeared in at least five comedies and five dramas.  Limit to 30.  First do this without any ordering, then list them in descending order of the combined number of comedies and dramas. 
-
+	#. (Hard) Find actors who have appeared in at least five comedies and five dramas. Limit to 30. First do this without any ordering, then list them in descending order of the combined number of comedies and dramas. (answer is multiple rows, each containing name, count of comedies, count of dramas, total count)
 
 ***************
 Try It At Home
