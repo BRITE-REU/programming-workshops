@@ -278,11 +278,9 @@ You'll have to adjust the column widths to see the entire genre names.  Use this
 
 **Using joins**
 	
-	11. Pick a favorite actor and list all titles and years of the movies that person appears in. (answer is multiple rows, each containing name, title, year) 
+	11. Pick a favorite actor and list all titles, years, and roles of the movies that person appears in. (answer is multiple rows, each containing name, title, year, role) 
 	
-	#. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name)
-	
-	#. Pick an actor and list each movie that person appears in and that person's role in the movie.  (answer is multiple rows, each containing a movie and role
+	#. Pick a movie and find all the actors that appeared in it.  (answer is multiple rows, each containing title, name, role, year)
 	
 	#. List the actors in descending order by their number of roles and limit the list to the top ten.  (answer is multiple rows, each containing name, count of roles)
 	
