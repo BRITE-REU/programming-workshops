@@ -163,11 +163,11 @@ The file should:
 * contain **rows of data**
 
 * have **in each row** 
-   * **one value for each field**
-   * **fields in the same order as the create table statement**
+    * **one value for each field**
+    * **fields in the same order as the create table statement**
 * **all fields separated by the same character**, such as
-   * a tab "\\t" (a tab separated file or **tsv**)
-   * a comma "," (a comma separated file or **csv**)
+    * a tab "\\t" (a tab separated file or **tsv**)
+    * a comma "," (a comma separated file or **csv**)
     
 For example, importing movie data into the movies table can be done as follows.  First, create a tab separated file with the data.  We'll arbitrarily call it movies.tsv.  Next, set the type of field separator in sqlite.  This can be done with **.mode tabs** command (or **.mode csv** if your file is comma separated).  Finally import the data from the file movies.tsv using the **.import** command including the file name and the destination table.  Note that the prompt **sqlite>** appears when the sqlite3 program is running.
 
