@@ -246,7 +246,7 @@ Write SQL select statements to get the answers to the listed questions.  Use the
 
 	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid, title, *i.e.*, use **SELECT mid, title ...**)
 	
-	#. Pick an actor you know and find out her or his aid.  (answer is aid, name)
+	#. Pick an actor you know and find out her, his, or their aid.  (answer is aid, name)
 	
 	#. Pick a year from 2000 or later and list the first five movies in the year you picked with titles that start with a "b" and with "comedy" in the genres column.  (answer is five rows, each containing year, title, genre) 
 
