@@ -346,7 +346,7 @@ Notice the joins in the from clause.   The first one is
     movies join cast using(mid)
 
 
-This indicates that rows from movie should be combined with rows from cast **when they share the same mid value**.  In effect, this produces an intermediate table with the following columns: mid, title, year, genries, aid, role as can be seen in the following query.
+This indicates that rows from movie should be combined with rows from cast **when they share the same mid value**.  In effect, this produces an intermediate table with the following columns: mid, title, year, genres, aid, role as can be seen in the following query.
 
 
 .. code:: SQL
