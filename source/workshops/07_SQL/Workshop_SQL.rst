@@ -70,7 +70,7 @@ Use module load.
     sqlite> .mode columns
     sqlite> .headers on
     
-***Note:** This will put column headers at the top of the output and make the columns as wide as necessary to hold the output data.  If the columns are too wide to easily see all the content, you can limit the length of the columns by specificying the number of characters, such as the following which makes each column 18 characters wide for up to 8 columns:
+**Note:** This will put column headers at the top of the output and make the columns as wide as necessary to hold the output data.  If the columns are too wide to easily see all the content, you can limit the length of the columns by specificying the number of characters, such as the following which makes each column 18 characters wide for up to 8 columns:
 
 .. code::
 
@@ -244,9 +244,10 @@ Write SQL select statements to get the answers to the listed questions.  Use the
     GROUP BY field name
     HAVING condition [AND|OR condition etc.] 
     ORDER BY field name [asc|desc] ...
-    LIMIT integer
+    LIMIT integer;
     
-    
+**Note:** You must put a **semicolon at the end** of each query. 
+
 **Using SELECT and WHERE in a single table**
 
 	1. Pick a movie you know from year 2000 or later and find out its mid. Try using the `LIKE' keyword for pattern matching so you don't have to write out the entire name.  (answer is mid, title, *i.e.*, use **SELECT mid, title ...**)
