@@ -68,14 +68,19 @@ Use module load.
 .. code::
 
     sqlite> .mode columns
-    sqlite> .width 18 18 18 18 18 18 18
     sqlite> .headers on
     
-***Note:** If the columns are too narrow to see all the content, you can always switch columns off using 
+***Note:** This will put column headers at the top of the output and make the columns as wide as necessary to hold the output data.  If the columns are too wide to easily see all the content, you can limit the length of the columns by specificying the number of characters, such as the following which makes each column 18 characters wide for up to 8 columns:
 
 .. code::
 
-     sqlite> .mode list
+     sqlite> .width 18 18 18 18 18 18 18 18
+
+To reset to automatic column width, use .width without arguments
+
+.. code::
+
+     sqlite> .width
 
 8. **Skip ahead** to `Task 3`_.
 
